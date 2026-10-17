@@ -1,0 +1,7 @@
+---
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/withBase';
+---
+<Base title="Not found">
+  <div class="wrap narrow"><section class="hero"><h1>Not found</h1><p class="lead">That page doesn't exist. Try <a href={withBase('/use-cases/')}>use cases</a> or <a href={withBase('/search/')}>search</a>.</p></section></div>
+</Base>

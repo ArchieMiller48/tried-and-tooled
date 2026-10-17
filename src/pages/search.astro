@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/withBase';
+const pagefindDir = withBase('/pagefind/');
+---
+<Base title="Search" description="Search Tried & Tooled use cases and new releases.">
+  <div class="wrap narrow">
+    <section class="hero" style="padding-bottom:8px">
+      <span class="eyebrow">Search</span>
+      <h1>Search</h1>
+      <p class="lead">Search use cases, tools and new releases.</p>
+    </section>
+    <link href={`${pagefindDir}pagefind-ui.css`} rel="stylesheet" />
+    <div id="search"></div>
+    <noscript>Search needs JavaScript. You can <a href={withBase('/use-cases/')}>browse use cases</a> instead.</noscript>
+    <p id="search-dev-note" class="notice" hidden>The search index is generated at build time (<code>npm run build</code>). It isn't available in <code>astro dev</code>.</p>
+    <script is:inline src={`${pagefindDir}pagefind-ui.js`} onerror="document.getElementById('search-dev-note').hidden=false"></script>
+    <script is:inline define:vars={{ pagefindDir, base: import.meta.env.BASE_URL }}>
+      const withSiteBase = (url) => {
+        if (!url || url.startsWith('#') || /^[a-z][a-z0-9+.-]*:/i.test(url) || url.startsWith(base)) return url;
+        if (url.startsWith('/')) return base.replace(/\/$/, '') + url;
+        return base + url;
+      };
+      window.addEventListener('DOMContentLoaded', () => {
+        if (!window.PagefindUI) return;
+        new PagefindUI({
+          element: '#search',
+          bundlePath: pagefindDir,
+          showSubResults: true,
+          showImages: false,
+          processResult: (result) => {
+            if (result.url) result.url = withSiteBase(result.url);
+            if (Array.isArray(result.sub_results)) {
+              for (const sub of result.sub_results) {
+                if (sub.url) sub.url = withSiteBase(sub.url);
+              }
+            }
+            return result;
+          },
+        });
+      });
+    </script>
+  </div>
+</Base>

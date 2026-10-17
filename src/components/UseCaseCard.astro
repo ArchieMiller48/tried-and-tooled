@@ -1,0 +1,16 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { withBase } from '../lib/withBase';
+interface Props { entry: CollectionEntry<'use-cases'>; }
+const { entry } = Astro.props;
+const d = entry.data;
+---
+<a class="card" href={withBase(`/use-cases/${entry.id}/`)}>
+  <span class="tag">{d.category}</span>
+  <h3 style="margin-top:10px">{d.title}</h3>
+  <p>{d.summary}</p>
+  <div class="meta">
+    <span class="tag">Top pick: {d.topPick.name}</span>
+    <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span>
+  </div>
+</a>

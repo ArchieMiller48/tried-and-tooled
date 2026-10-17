@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import UseCaseCard from '../../components/UseCaseCard.astro';
+import { getCollection } from 'astro:content';
+const all = (await getCollection('use-cases', ({ data }) => !data.draft)).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const groups = [
+  { key: 'vibe-coders', label: 'For vibe coders' },
+  { key: 'creators', label: 'For creators' },
+  { key: 'builders', label: 'For builders' },
+] as const;
+---
+<Base title="Use cases" description="Which AI tool to use for which job, with a top pick, budget pick, one to avoid and a full stack.">
+  <div class="wrap">
+    <section class="hero" style="padding-bottom:16px">
+      <span class="eyebrow">Use cases</span>
+      <h1>Pick the job. We'll pick the stack.</h1>
+      <p class="lead">Each page gives a top pick, a budget pick, one to avoid and the full workflow. Pages marked <span class="tag pending">Pending hands-on test</span> rest on verified vendor facts only, until we've run our standard test.</p>
+    </section>
+    {groups.map((g) => {
+      const items = all.filter((e) => e.data.audience.includes(g.key));
+      return items.length > 0 && (
+        <section>
+          <h2>{g.label}</h2>
+          <div class="grid">{items.map((e) => <UseCaseCard entry={e} />)}</div>
+        </section>
+      );
+    })}
+  </div>
+</Base>

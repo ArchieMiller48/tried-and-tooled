@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('use-cases', ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+// Affiliate placeholder: use affiliateUrl if approved, otherwise the vendor URL. Never affects ranking.
+const go = (p: { url: string; affiliateUrl: string | null }) => p.affiliateUrl ?? p.url;
+---
+<Base title={d.title} description={d.summary}>
+  <article class="wrap narrow" data-pagefind-body>
+    <section class="hero" style="padding-bottom:8px">
+      <span class="eyebrow">{d.category}</span>
+      <h1 style="font-size:clamp(2rem,4vw,2.8rem)">{d.title}</h1>
+      <p class="lead">{d.summary}</p>
+      <div class="meta">
+        <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : `Tested ${d.lastTested ? fmt(d.lastTested) : ''}`}</span>
+        <span class="tag">Facts last verified {fmt(d.lastVerified)}</span>
+        {d.audience.map((a) => <span class="tag">{a.replace('-', ' ')}</span>)}
+      </div>
+    </section>
+
+    {d.testStatus === 'pending' && (
+      <p class="notice"><strong>Not hands-on tested yet.</strong> The picks below are based on vendor documentation and pricing we verified on {fmt(d.lastVerified)}. Test results will appear here once we've run our standard task. We don't publish made-up test results.</p>
+    )}
+
+    <div class="picks">
+      <div class="card pick">
+        <div class="label">Top pick</div>
+        <h3>{d.topPick.name}</h3>
+        <p>{d.topPick.why}</p>
+        <div class="price">{d.topPick.pricing.summary}<br /><a href={d.topPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, checked {fmt(d.topPick.pricing.checked)}</div>
+        <p style="margin-top:12px"><a class="btn" href={go(d.topPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.topPick.name}</a></p>
+      </div>
+      <div class="card pick budget">
+        <div class="label">Budget pick</div>
+        <h3>{d.budgetPick.name}</h3>
+        <p>{d.budgetPick.why}</p>
+        <div class="price">{d.budgetPick.pricing.summary}<br /><a href={d.budgetPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, checked {fmt(d.budgetPick.pricing.checked)}</div>
+        <p style="margin-top:12px"><a class="btn ghost" href={go(d.budgetPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.budgetPick.name}</a></p>
+      </div>
+      <div class="card pick avoid">
+        <div class="label">Avoid for this job</div>
+        <h3>{d.avoid.name}</h3>
+        <p>{d.avoid.reason}</p>
+        {d.avoid.sourceUrl && <p><a href={d.avoid.sourceUrl} rel="nofollow noopener" target="_blank">source</a></p>}
+      </div>
+    </div>
+
+    <section style="padding-top:8px">
+      <h2>The full stack</h2>
+      <ol class="stack">
+        {d.stack.map((s) => <li><div><strong>{s.step}:</strong> {s.tool}<br /><span style="color:var(--muted)">{s.role}</span></div></li>)}
+      </ol>
+    </section>
+
+    {d.alsoConsidered.length > 0 && (
+      <section>
+        <h2>Also considered</h2>
+        <table>
+          <thead><tr><th>Tool</th><th>Why it's not the pick</th><th>Pricing (verified)</th></tr></thead>
+          <tbody>
+            {d.alsoConsidered.map((t) => (
+              <tr><td><a href={t.url} rel="nofollow noopener" target="_blank">{t.name}</a></td><td>{t.note}</td><td>{t.pricing.summary} (<a href={t.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, {fmt(t.pricing.checked)})</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    )}
+
+    <section>
+      <h2>Test notes</h2>
+      <p><span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span></p>
+      <p>{d.testNotes}</p>
+    </section>
+
+    <section class="prose"><Content /></section>
+  </article>
+  <div class="wrap"><section><Newsletter /></section></div>
+</Base>

@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import Newsletter from '../components/Newsletter.astro';
+import UseCaseCard from '../components/UseCaseCard.astro';
+import { withBase } from '../lib/withBase';
+import { getCollection } from 'astro:content';
+const useCases = (await getCollection('use-cases', ({ data }) => !data.draft)).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const news = (await getCollection('news')).sort((a, b) => b.data.spotted.valueOf() - a.data.spotted.valueOf()).slice(0, 4);
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+<Base>
+  <div class="wrap">
+    <section class="hero">
+      <span class="eyebrow">For vibe coders · creators · builders</span>
+      <h1>Tested AI stacks for<br />vibe coders, creators and builders.</h1>
+      <p class="lead">Stop scrolling 50,000-tool directories. Pick a job, like shipping an MVP, clipping shorts or voicing a video, and get a top pick, a budget pick, one to avoid and the full stack. Every price links to its source and carries the date we checked it.</p>
+      <div class="cta-row">
+        <a class="btn" href={withBase('/use-cases/')}>Browse use cases</a>
+        <a class="btn ghost" href={withBase('/new/')}>What's new this week</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="pillars">
+        <div class="card"><h3>🎯 Job first</h3><p>Every page answers one job you actually have, not "top 100 AI tools".</p></div>
+        <div class="card"><h3>🧪 Proof over hype</h3><p>Test notes, verified pricing with sources, and a "last verified" date on every page. Untested means labelled untested.</p></div>
+        <div class="card"><h3>🧱 Full stacks</h3><p>We show how tools fit together, from the first prompt to shipping or posting.</p></div>
+        <div class="card"><h3>🚫 Never pay-to-rank</h3><p>Sponsors and affiliate deals never change a ranking. <a href={withBase('/about/')}>Read the policy</a>.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Use cases</h2><a href={withBase('/use-cases/')}>All use cases →</a></div>
+      <div class="grid">{useCases.map((e) => <UseCaseCard entry={e} />)}</div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>New this week</h2><a href={withBase('/new/')}>Full feed →</a></div>
+      <div class="grid">
+        {news.map((n) => (
+          <a class="card" href={withBase(`/new/#${n.id}`)}>
+            <span class="tag">{n.data.tool}</span>
+            <h3 style="margin-top:10px">{n.data.title}</h3>
+            <p>{n.data.summary}</p>
+            <div class="meta"><span class="tag">Spotted {fmt(n.data.spotted)}</span></div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section><Newsletter /></section>
+  </div>
+</Base>

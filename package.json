@@ -1,0 +1,19 @@
+{
+  "name": "tried-and-tooled",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^7.4.0",
+    "pagefind": "^1.5.2"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  }
+}

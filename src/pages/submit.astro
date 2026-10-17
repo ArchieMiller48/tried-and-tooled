@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+// TODO(forms): connect to Tally (free) or a Cloudflare Worker that opens a GitHub issue in the content repo.
+// Until then the form doesn't submit anywhere and no data is collected.
+const SUBMIT_FORM_ACTION = ''; // TODO(forms): fill in
+---
+<Base title="Submit a tool" description="Suggest an AI tool for vibe coders, creators or builders. Free, and it doesn't buy a ranking.">
+  <div class="wrap narrow">
+    <section class="hero" style="padding-bottom:8px">
+      <span class="eyebrow">Submit</span>
+      <h1>Submit a tool</h1>
+      <p class="lead">Built something for vibe coders, creators or builders? Tell us about it. Submissions are free and go into our research queue. A submission doesn't guarantee a listing and never buys a ranking.</p>
+    </section>
+    <form class="stacked card" method="post" action={SUBMIT_FORM_ACTION || undefined} onsubmit={!SUBMIT_FORM_ACTION ? "event.preventDefault(); this.querySelector('button').textContent='Submissions open soon ✓';" : undefined}>
+      <label>Tool name<input name="name" required /></label>
+      <label>Website<input name="url" type="url" required placeholder="https://" /></label>
+      <label>Which job does it do best?
+        <select name="category">
+          <option>Build / vibe coding</option><option>Code quality</option><option>Video</option><option>Images</option><option>Audio</option><option>Other</option>
+        </select>
+      </label>
+      <label>Pricing page URL<input name="pricing" type="url" placeholder="https://" /></label>
+      <label>Free tier or trial for testing?<input name="trial" placeholder="e.g. 14-day trial, free plan, test credits available" /></label>
+      <label>Anything else we should know?<textarea name="notes" rows="4"></textarea></label>
+      <label>Your email<input name="email" type="email" /></label>
+      <button class="btn" type="submit">Submit tool</button>
+      <small style="color:var(--muted)">Placeholder form. Submissions open soon, and nothing is stored yet.</small>
+    </form>
+  </div>
+</Base>

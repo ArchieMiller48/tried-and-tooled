@@ -1,0 +1,21 @@
+---
+// TODO(beehiiv): replace this placeholder with the Beehiiv subscribe endpoint once the
+// publication exists (Archie must create the Beehiiv account). Options:
+//   1) Beehiiv embed form: set `action` to the embed URL from Beehiiv > Grow > Subscribe forms, or
+//   2) POST to a Cloudflare Worker that calls the Beehiiv API
+//      (POST https://api.beehiiv.com/v2/publications/{pubId}/subscriptions) with the API key kept server-side.
+// Until then the form is disabled from submitting anywhere (no data is collected).
+const BEEHIIV_FORM_ACTION = ''; // TODO(beehiiv): fill in
+---
+<div class="newsletter" id="newsletter">
+  <div>
+    <h2>The weekly: tools worth your time</h2>
+    <p>Every Tuesday: the best new AI tools for vibe coders, creators and builders, one full stack of the week, and one price change or "avoid" alert. Five minutes, no hype.</p>
+  </div>
+  <form method="post" action={BEEHIIV_FORM_ACTION || undefined} data-placeholder={!BEEHIIV_FORM_ACTION ? 'true' : undefined} onsubmit={!BEEHIIV_FORM_ACTION ? "event.preventDefault(); this.querySelector('button').textContent='Coming soon ✓';" : undefined}>
+    <label class="sr-only" for="nl-email" style="position:absolute;left:-9999px">Email</label>
+    <input id="nl-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email" />
+    <button class="btn" type="submit">Subscribe</button>
+  </form>
+  <small>Newsletter launching soon. Sign-up is a placeholder and doesn't store anything yet.</small>
+</div>
