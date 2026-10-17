@@ -1,15 +1,19 @@
 ---
 /**
- * Beehiiv publication "Tried & Tooled".
- * The hosted site's home redirects to /subscribe, which is the signup flow.
- * Beehiiv's signup client reads `email` from the query string (and stores it
- * for later steps). UTM params are the documented acquisition fields.
- * https://www.beehiiv.com/support/article/42701649665559-understanding-subscriber-attribution-from-your-website
+ * Beehiiv inline embed (form builder v3).
+ * Snippet: https://subscribe-forms.beehiiv.com/v3/loader.js
+ *   data-beehiiv-form="<uuid>"
+ * The loader builds an iframe and resizes it from the form. It copies
+ * utm_source / utm_medium / utm_campaign from the parent page, and skips
+ * utm_content. This page writes all four onto the iframe URL before the
+ * first load. The form stores source, medium, and campaign. It has no
+ * utm_content field; the path is still on the iframe URL.
  */
+const FORM_ID = 'd293e9f8-7032-40a9-b09b-958e9f366204';
 const BEEHIIV_SUBSCRIBE = 'https://archies-newsletter-77bb75.beehiiv.com/subscribe';
 
 const pagePath = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
-const source = {
+const utm = {
   utm_source: 'tried-and-tooled',
   utm_medium: 'site',
   utm_campaign: 'newsletter',
@@ -17,18 +21,71 @@ const source = {
 };
 
 const fallbackUrl = new URL(BEEHIIV_SUBSCRIBE);
-for (const [key, value] of Object.entries(source)) fallbackUrl.searchParams.set(key, value);
+for (const [key, value] of Object.entries(utm)) fallbackUrl.searchParams.set(key, value);
 ---
 <div class="newsletter" id="newsletter">
   <div>
     <h2>The weekly: tools worth your time</h2>
     <p>Every Tuesday: the best new AI tools for vibe coders, creators and builders, one full stack of the week, and one price change or "avoid" alert. Five minutes, no hype.</p>
   </div>
-  <form method="get" action={BEEHIIV_SUBSCRIBE}>
-    {Object.entries(source).map(([key, value]) => <input type="hidden" name={key} value={value} />)}
-    <label class="sr-only" for="nl-email" style="position:absolute;left:-9999px">Email</label>
-    <input id="nl-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email" />
-    <button class="btn" type="submit">Subscribe</button>
-  </form>
-  <small>Subscribe opens Beehiiv with your email attached. Or <a href={fallbackUrl.href}>open the subscribe page</a>.</small>
+  <div class="newsletter-embed">
+    <script is:inline define:vars={{ utm }}>
+      (function () {
+        var patched = false;
+        try {
+          var desc = Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype, 'src');
+          if (desc && desc.set && desc.configurable) {
+            var orig = desc.set;
+            Object.defineProperty(HTMLIFrameElement.prototype, 'src', {
+              configurable: true,
+              enumerable: desc.enumerable,
+              get: desc.get,
+              set: function (value) {
+                try {
+                  var url = new URL(value, window.location.href);
+                  if (url.hostname === 'subscribe-forms.beehiiv.com') {
+                    Object.keys(utm).forEach(function (key) {
+                      url.searchParams.set(key, utm[key]);
+                    });
+                    value = url.toString();
+                  }
+                } catch (err) {}
+                return orig.call(this, value);
+              }
+            });
+            patched = true;
+          }
+        } catch (err) {}
+
+        var root = document.currentScript && document.currentScript.parentNode;
+        if (!root) return;
+        var observer = new MutationObserver(function () {
+          var iframe = root.querySelector('iframe');
+          if (!iframe || iframe.dataset.ttReady === '1') return;
+          iframe.title = 'Subscribe to Tried & Tooled';
+          iframe.setAttribute('scrolling', 'no');
+          if (!patched) {
+            try {
+              var url = new URL(iframe.src, window.location.href);
+              var changed = false;
+              Object.keys(utm).forEach(function (key) {
+                if (url.searchParams.get(key) !== utm[key]) {
+                  url.searchParams.set(key, utm[key]);
+                  changed = true;
+                }
+              });
+              if (changed) {
+                iframe.src = url.toString();
+                return;
+              }
+            } catch (err) {}
+          }
+          iframe.dataset.ttReady = '1';
+        });
+        observer.observe(root, { childList: true, subtree: true });
+      })();
+    </script>
+    <script is:inline async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form={FORM_ID}></script>
+  </div>
+  <small>Form not showing? <a href={fallbackUrl.href}>Subscribe on Beehiiv</a>.</small>
 </div>

@@ -42,13 +42,20 @@ a.card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,23,42
 .tag.tested { background: var(--accent-soft); color: #3f6212; border-color: #d9f99d; }
 .pillars { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .pillars .card h3 { display: flex; gap: 8px; align-items: center; }
-.newsletter { background: var(--brand); color: #fff; border-radius: 20px; padding: 32px; display: grid; gap: 16px; grid-template-columns: 1.2fr 1fr; align-items: center; }
+.newsletter { background: var(--brand); color: #fff; border-radius: 20px; padding: 32px; display: grid; gap: 16px; }
+.newsletter h2 { margin: 0; }
 .newsletter p { color: #cbd5e1; margin: 0; }
-.newsletter form { display: flex; gap: 8px; flex-wrap: wrap; }
-.newsletter input { flex: 1; min-width: 200px; padding: 12px 16px; border-radius: 999px; border: 1px solid #334155; background: #1e293b; color: #fff; font-size: 1rem; }
-.newsletter .btn { background: #a3e635; color: var(--ink); }
-.newsletter small { color: #94a3b8; grid-column: 1 / -1; }
-@media (max-width: 720px) { .newsletter { grid-template-columns: 1fr; } nav.main { display: none; } }
+/* Beehiiv's form is 400px plus 80px of its own padding on each side. */
+.newsletter-embed { width: min(100%, 560px); max-width: 100%; overflow: hidden; border-radius: 12px; line-height: 0; background: #fff; }
+.newsletter-embed iframe { width: 100% !important; max-width: 100%; border: 0 !important; display: block; overflow: hidden; }
+.newsletter small { color: #94a3b8; }
+.newsletter small a { color: #e2e8f0; }
+@media (max-width: 520px) {
+  .newsletter { width: calc(100% + 40px); margin-left: -20px; margin-right: -20px; border-radius: 0; padding: 24px 0 16px; }
+  .newsletter > div:first-child, .newsletter small { padding-left: 20px; padding-right: 20px; }
+  .newsletter-embed { width: 100%; border-radius: 0; }
+}
+@media (max-width: 720px) { nav.main { display: none; } }
 .picks { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 24px 0; }
 .pick { border-top: 4px solid var(--accent); }
 .pick.budget { border-top-color: #0ea5e9; }
