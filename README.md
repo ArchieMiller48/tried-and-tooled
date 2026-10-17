@@ -16,7 +16,6 @@ Requires Node >= 22.22 (Astro 7). On the box: `export PATH=$HOME/.local/node22/b
 - Rules: never fabricate test results. Keep `testStatus: pending` and `lastTested: null` until a real test has been run and its artefacts saved.
 
 ## Open TODOs
-- `TODO(beehiiv)` in `src/components/Newsletter.astro`: wire up the Beehiiv form or API.
 - `TODO(forms)` in `src/pages/submit.astro`: Tally or a Cloudflare Worker that opens a GitHub issue.
 - `TODO(contact)` in `src/pages/about.astro`: add a contact email.
 - Affiliate links: fill `affiliateUrl` per pick once programs are approved.
