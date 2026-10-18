@@ -1,10 +1,15 @@
 ---
 import '../styles/global.css';
 import { withBase } from '../lib/withBase';
+import listedOn from '../data/listed-on.json';
 interface Props { title?: string; description?: string; }
+interface Listing { name: string; url: string; badgeImg?: string; }
 const { title, description = 'Tested AI stacks for vibe coders, creators and builders. Which AI tool to use for which job, with verified pricing and honest test notes.' } = Astro.props;
 const fullTitle = title ? `${title} · Tried & Tooled` : 'Tried & Tooled · Tested AI stacks for vibe coders, creators and builders';
 const path = Astro.url.pathname;
+const pageUrl = new URL(path, Astro.site);
+const ogImage = new URL(`${import.meta.env.BASE_URL}brand/og.png`, Astro.site);
+const listings = (listedOn as Listing[]).filter((entry) => entry.name && entry.url);
 const nav = [
   { href: withBase('/use-cases/'), label: 'Use cases' },
   { href: withBase('/new/'), label: 'New this week' },
@@ -29,7 +34,11 @@ const isCurrent = (href: string) => {
     <meta name="description" content={description} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="canonical" href={pageUrl} />
   </head>
   <body>
     <header class="site">
@@ -49,6 +58,14 @@ const isCurrent = (href: string) => {
       <div class="wrap">
         <div>© {new Date().getFullYear()} Tried &amp; Tooled. Rankings are never for sale. Some links may be affiliate links; <a href={withBase('/about/#money')}>see how we make money</a>.</div>
         <div><a href={withBase('/about/')}>Editorial policy</a> · <a href={withBase('/submit/')}>Submit a tool</a></div>
+        {listings.length > 0 && (
+          <div class="listed-on">
+            <span class="label">Listed on</span>
+            {listings.map((entry) => (
+              <a href={entry.url}>{entry.badgeImg ? <img src={withBase(entry.badgeImg)} alt={entry.name} /> : entry.name}</a>
+            ))}
+          </div>
+        )}
       </div>
     </footer>
   </body>

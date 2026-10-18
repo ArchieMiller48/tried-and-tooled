@@ -77,6 +77,11 @@ form.stacked label { display: grid; gap: 6px; font-weight: 600; font-size: .95re
 form.stacked input, form.stacked textarea, form.stacked select { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
 footer.site { border-top: 1px solid var(--line); margin-top: 48px; padding: 32px 0; color: var(--muted); font-size: .9rem; }
 footer.site .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.listed-on { flex: 1 0 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: .8rem; }
+.listed-on .label { font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: .72rem; }
+.listed-on a { color: var(--ink); text-decoration: none; }
+.listed-on a:hover { text-decoration-color: var(--accent); }
+.listed-on img { height: 18px; width: auto; display: block; }
 .feed-item { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .feed-item time { font-family: var(--mono); font-size: .8rem; color: var(--muted); padding-top: 4px; }
 @media (max-width: 600px) { .feed-item { grid-template-columns: 1fr; gap: 4px; } }
