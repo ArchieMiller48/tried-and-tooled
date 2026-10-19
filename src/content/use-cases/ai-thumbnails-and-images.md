@@ -19,7 +19,7 @@ budgetPick:
   why: "The cheapest paid entry point for high-quality, stylised imagery. Use it for the background or hero image and add text in a design tool."
   pricing:
     summary: "Basic $10/mo ($8/mo billed annually), 3.3 fast GPU hrs. Standard $30/mo adds unlimited Relax mode."
-    sourceUrl: "https://docs.midjourney.com/docs/en/plans"
+    sourceUrl: "https://docs.midjourney.com/docs/plans"
     checked: 2026-10-17
   affiliateUrl: null
 avoid:
