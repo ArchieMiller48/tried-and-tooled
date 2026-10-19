@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Essentials $24/user/mo billed annually ($30 monthly); Team $48/user/mo annually ($60 monthly). Free for public repos."
     sourceUrl: "https://www.coderabbit.ai/pricing"
-    checked: 2026-10-17
+    checked: 2026-10-19
   affiliateUrl: null
 budgetPick:
   name: "Greptile (Starter)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Starter free (1 active developer, 50 credits/mo). Pro $30/seat/mo incl. 50 credits/seat, $1 per extra credit."
     sourceUrl: "https://www.greptile.com/pricing"
-    checked: 2026-10-17
+    checked: 2026-10-19
   affiliateUrl: null
 avoid:
   name: "Turning on org-wide Copilot code review for unlicensed users without a budget"
@@ -41,12 +41,19 @@ alsoConsidered:
     url: "https://github.com/features/copilot/plans"
     note: "Convenient if you already pay for Copilot; PR review is part of the plans and consumes AI credits."
     pricing:
-      summary: "Free (limited); Pro $10/mo; Pro+ $39/mo; Max $100/mo."
+      summary: "Free (limited); Pro $10/mo; Pro+ $39/mo; Max $100/mo. GitHub lists total monthly AI credits of $15 (Pro), $70 (Pro+) and $200 (Max), including a variable flex allotment."
       sourceUrl: "https://github.com/features/copilot/plans"
-      checked: 2026-10-17
+      checked: 2026-10-19
+  - name: "Cursor Bugbot"
+    url: "https://cursor.com/pricing"
+    note: "If you already pay for Cursor Premium or above, AI code reviews via Bugbot are included in the plan, so try it before adding another tool."
+    pricing:
+      summary: "Included from Premium $30/mo (not on Free or Plus). Third-party models billed separately at API list price."
+      sourceUrl: "https://cursor.com/pricing"
+      checked: 2026-10-19
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-17
+lastVerified: 2026-10-19
 testNotes: "Pending hands-on test. Planned standard task: open the same PR, containing 5 seeded bugs (an injection, a missing auth check, an off-by-one, a leaked secret, a race condition), against each reviewer and count true positives, false positives and the time to the first comment."
 ---
 

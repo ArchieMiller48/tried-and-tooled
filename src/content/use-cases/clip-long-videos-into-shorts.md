@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free $0 (watermark, 3-day export window). Starter $15/mo. Pro $29/mo."
     sourceUrl: "https://www.opus.pro/pricing"
-    checked: 2026-10-17
+    checked: 2026-10-19
   affiliateUrl: null
 budgetPick:
   name: "Descript (Hobbyist)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free (60 media min/mo, 720p). Hobbyist $16/mo billed annually ($24 monthly): 10 media hrs, 1080p watermark-free."
     sourceUrl: "https://www.descript.com/pricing"
-    checked: 2026-10-17
+    checked: 2026-10-19
   affiliateUrl: null
 avoid:
   name: "OpusClip Free, for clips you'll actually post"
@@ -42,7 +42,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-17
+lastVerified: 2026-10-19
 testNotes: "Pending hands-on test. Planned standard task: feed the same 30-minute interview into each tool, ask for 5 vertical clips under 60 seconds, and score clip selection (would a human pick these?), caption accuracy, reframing and total hands-on time."
 ---
 

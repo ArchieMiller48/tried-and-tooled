@@ -11,16 +11,16 @@ topPick:
   pricing:
     summary: "Free 10k credits/mo. Starter $6/mo (30k credits, commercial licence). Creator $22/mo (121k credits). 1 credit ≈ 1 character for TTS (multilingual models)."
     sourceUrl: "https://elevenlabs.io/pricing"
-    checked: 2026-10-17
+    checked: 2026-10-19
   affiliateUrl: null
 budgetPick:
   name: "Descript (Hobbyist)"
   url: "https://www.descript.com"
-  why: "If you already edit in Descript, AI Speech with custom voice clones and regenerate is included. That's ideal for patching words in your own recordings without paying for a separate voice tool."
+  why: "If you already edit in Descript, AI Speech with custom voice clones and regenerate is included. That's ideal for patching words in your own recordings without paying for a separate voice tool. Since Descript's 12 October 2026 release, AI Speech runs on ElevenLabs v4."
   pricing:
     summary: "Hobbyist $16/mo billed annually ($24 monthly), 400 AI credits/mo, includes AI Speech with custom voice clones."
     sourceUrl: "https://www.descript.com/pricing"
-    checked: 2026-10-17
+    checked: 2026-10-19
   affiliateUrl: null
 avoid:
   name: "ElevenLabs Free, for monetised content"
@@ -39,7 +39,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-17
+lastVerified: 2026-10-19
 testNotes: "Pending hands-on test. Planned standard task: voice the same 150-word explainer script with a stock voice and a cloned voice, then do a blind listen for naturalness and pronunciation of tech terms (e.g. 'Supabase', 'LLM'), and record the credits used."
 ---
 

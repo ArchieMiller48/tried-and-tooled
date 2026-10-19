@@ -7,11 +7,11 @@ category: "Build"
 topPick:
   name: "Lovable"
   url: "https://lovable.dev"
-  why: "Chat-to-app builder with hosting and a backend included. Paid plans unlock code editing, code download and custom domains, and Git sync is on every plan, so you aren't locked in."
+  why: "Chat-to-app builder with hosting and a backend included. Paid plans unlock code editing, code download and custom domains, and Git sync is on every plan, so you aren't locked in. Since 14 October 2026 it can also turn a goal like 'my first 100 signups' into a growth plan, with SEO fixes and Google or Meta ad campaigns you approve before any spend."
   pricing:
     summary: "Free: 5 build credits/day (max 30/month). Pro from $25/mo (100 credits) or $21/mo billed annually."
     sourceUrl: "https://docs.lovable.dev/introduction/subscription-plans"
-    checked: 2026-10-17
+    checked: 2026-10-19
   affiliateUrl: null
 budgetPick:
   name: "Bolt.new"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free: 300K tokens/day, 1M/month, Bolt branding. Pro $25/mo (from 10M tokens, custom domain)."
     sourceUrl: "https://bolt.new/pricing"
-    checked: 2026-10-17
+    checked: 2026-10-19
   affiliateUrl: null
 avoid:
   name: "Lovable Free plan, for anything you plan to ship"
@@ -46,17 +46,17 @@ alsoConsidered:
     pricing:
       summary: "Core $20/mo ($18/mo billed annually); Pro $100/mo ($90/mo annually)."
       sourceUrl: "https://replit.com/pricing"
-      checked: 2026-10-17
+      checked: 2026-10-19
   - name: "Cursor"
     url: "https://cursor.com"
     note: "An editor, not an app builder: best for the refine step once you have code. Plans are now sold through X subscription tiers."
     pricing:
       summary: "Free (limited); Plus $8/mo (Grok models only); Premium $30/mo; Super $100/mo; Ultra $200/mo. Third-party models billed at API list price."
       sourceUrl: "https://cursor.com/pricing"
-      checked: 2026-10-17
+      checked: 2026-10-19
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-17
+lastVerified: 2026-10-19
 testNotes: "Pending hands-on test. Planned standard task: 'Build a to-do app with email login, per-user data and a public URL', run on Lovable, Bolt.new and Replit. We'll record time to first working deploy, credits or tokens used, the number of fix-up prompts, and whether the exported code runs locally."
 ---
 
