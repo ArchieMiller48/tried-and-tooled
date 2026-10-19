@@ -11,16 +11,16 @@ topPick:
   pricing:
     summary: "Plus $15/mo billed annually ($20 monthly), 2,400 priority credits. Pro $42/mo annually ($60 monthly). Pay-as-you-go 1¢/credit."
     sourceUrl: "https://ideogram.ai/pricing"
-    checked: 2026-10-17
+    checked: 2026-10-19
   affiliateUrl: null
 budgetPick:
   name: "Midjourney (Basic)"
   url: "https://www.midjourney.com"
-  why: "The cheapest paid entry point for high-quality, stylised imagery. Use it for the background or hero image and add text in a design tool."
+  why: "The cheapest paid entry point for high-quality, stylised imagery. Use it for the background or hero image and add text in a design tool. Note that Stealth Mode (private images) is only on Pro and Mega, and companies with more than $1M a year in gross revenue must be on Pro or Mega."
   pricing:
     summary: "Basic $10/mo ($8/mo billed annually), 3.3 fast GPU hrs. Standard $30/mo adds unlimited Relax mode."
     sourceUrl: "https://docs.midjourney.com/docs/plans"
-    checked: 2026-10-17
+    checked: 2026-10-19
   affiliateUrl: null
 avoid:
   name: "Ideogram's free tier for unreleased or client work"
@@ -39,7 +39,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-17
+lastVerified: 2026-10-19
 testNotes: "Pending hands-on test. Planned standard task: generate a YouTube thumbnail for '5 AI tools I actually pay for' with the exact title text, then score text accuracy across 4 generations, visual punch at small size, and the cost per usable image."
 ---
 
