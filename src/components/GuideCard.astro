@@ -1,0 +1,19 @@
+---
+import { withBase } from '../lib/withBase';
+interface Props {
+  href: string;
+  kind: string;
+  title: string;
+  summary: string;
+  testStatus: 'pending' | 'tested';
+}
+const { href, kind, title, summary, testStatus } = Astro.props;
+---
+<a class="card" href={withBase(href)}>
+  <span class="tag">{kind}</span>
+  <h3 style="margin-top:10px">{title}</h3>
+  <p>{summary}</p>
+  <div class="meta">
+    <span class={`tag ${testStatus}`}>{testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span>
+  </div>
+</a>

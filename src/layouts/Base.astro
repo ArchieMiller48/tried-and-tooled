@@ -2,9 +2,10 @@
 import '../styles/global.css';
 import { withBase } from '../lib/withBase';
 import listedOn from '../data/listed-on.json';
-interface Props { title?: string; description?: string; }
+interface Props { title?: string; description?: string; jsonLd?: unknown; }
 interface Listing { name: string; url: string; badgeImg?: string; }
-const { title, description = 'Tested AI stacks for vibe coders, creators and builders. Which AI tool to use for which job, with verified pricing and honest test notes.' } = Astro.props;
+const { title, description = 'Tested AI stacks for vibe coders, creators and builders. Which AI tool to use for which job, with verified pricing and honest test notes.', jsonLd } = Astro.props;
+const jsonLdText = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : '';
 const fullTitle = title ? `${title} · Tried & Tooled` : 'Tried & Tooled · Tested AI stacks for vibe coders, creators and builders';
 const path = Astro.url.pathname;
 const pageUrl = new URL(path, Astro.site);
@@ -39,6 +40,7 @@ const isCurrent = (href: string) => {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <link rel="canonical" href={pageUrl} />
+    {jsonLdText && <script type="application/ld+json" set:html={jsonLdText} />}
   </head>
   <body>
     <header class="site">

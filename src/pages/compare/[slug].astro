@@ -1,0 +1,74 @@
+---
+import { getCollection, render } from 'astro:content';
+import GuidePage from '../../components/GuidePage.astro';
+import PriceLine from '../../components/PriceLine.astro';
+import SourceList from '../../components/SourceList.astro';
+import { outboundHref, outboundRel } from '../../lib/outbound';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('compare', ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+---
+<GuidePage
+  eyebrow="Compare"
+  title={d.title}
+  summary={d.summary}
+  testStatus={d.testStatus}
+  lastTested={d.lastTested}
+  lastVerified={d.lastVerified}
+  parent={d.parent}
+  faqs={d.faqs}
+  verdicts={d.verdicts}
+>
+  <div class="picks">
+    {d.tools.map((tool) => (
+      <div class="card">
+        <div class="meta" style="margin-top:0">
+          <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span>
+        </div>
+        <h2 style="font-size:1.3rem;margin-top:10px">{tool.name}</h2>
+        <p>{tool.blurb}</p>
+        <PriceLine summary={tool.pricing.summary} sourceUrl={tool.pricing.sourceUrl} checked={tool.pricing.checked} />
+        <SourceList sources={tool.sources} />
+        <p style="margin-top:12px"><a class="btn ghost" href={outboundHref(tool.url, tool.affiliateUrl)} rel={outboundRel(tool.affiliateUrl)} target="_blank">Visit {tool.name}</a></p>
+      </div>
+    ))}
+  </div>
+
+  <section>
+    <h2>Side by side</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Question</th>
+            {d.tools.map((tool) => <th>{tool.name}</th>)}
+            <th>Sources</th>
+          </tr>
+        </thead>
+        <tbody>
+          {d.rows.map((row) => (
+            <tr>
+              <td>{row.label}</td>
+              {row.cells.map((cell) => <td>{cell}</td>)}
+              <td>
+                {row.sources.map((source, i) => (
+                  <>
+                    {i > 0 && ' · '}
+                    <a href={source.url} rel="nofollow noopener" target="_blank">{source.label}</a>
+                  </>
+                ))}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="prose"><Content /></section>
+</GuidePage>

@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import GuideCard from './GuideCard.astro';
+import { withBase } from '../lib/withBase';
+interface Entry {
+  href: string;
+  kind: string;
+  title: string;
+  summary: string;
+  testStatus: 'pending' | 'tested';
+}
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  intro: string;
+  empty: string;
+  entries: Entry[];
+}
+const { title, description, eyebrow, intro, empty, entries } = Astro.props;
+---
+<Base title={title} description={description}>
+  <div class="wrap" data-pagefind-body>
+    <section class="hero" style="padding-bottom:16px">
+      <span class="eyebrow">{eyebrow}</span>
+      <h1>{title}</h1>
+      <p class="lead">{intro}</p>
+    </section>
+    {entries.length > 0 ? (
+      <section>
+        <div class="grid">
+          {entries.map((entry) => <GuideCard {...entry} />)}
+        </div>
+      </section>
+    ) : (
+      <section>
+        <p class="notice">{empty}</p>
+        <p><a href={withBase('/use-cases/')}>Browse use cases</a></p>
+      </section>
+    )}
+  </div>
+</Base>

@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import { listGuides } from '../../lib/guides';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -10,6 +12,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
+const related = (await listGuides()).filter((guide) => guide.parent === entry.id);
 const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 // Affiliate placeholder: use affiliateUrl if approved, otherwise the vendor URL. Never affects ranking.
 const go = (p: { url: string; affiliateUrl: string | null }) => p.affiliateUrl ?? p.url;
@@ -82,6 +85,14 @@ const go = (p: { url: string; affiliateUrl: string | null }) => p.affiliateUrl ?
     </section>
 
     <section class="prose"><Content /></section>
+
+    {related.length > 0 && (
+      <section>
+        <h2>Comparisons and shortlists</h2>
+        <p>Closer reads for this job. Same rules: sourced prices, and a pending label until the standard task has been run.</p>
+        <div class="grid">{related.map((guide) => <GuideCard {...guide} />)}</div>
+      </section>
+    )}
   </article>
   <div class="wrap"><section><Newsletter /></section></div>
 </Base>

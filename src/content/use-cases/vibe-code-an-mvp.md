@@ -11,16 +11,16 @@ topPick:
   pricing:
     summary: "Free: 5 build credits/day (max 30/month). Pro from $25/mo (100 credits) or $21/mo billed annually."
     sourceUrl: "https://docs.lovable.dev/introduction/subscription-plans"
-    checked: 2026-10-19
+    checked: 2026-10-20
   affiliateUrl: null
 budgetPick:
   name: "Bolt.new"
   url: "https://bolt.new"
   why: "Generous free tier for prototyping in the browser (1M tokens/month) with hosting and databases included. Upgrade only once you need a custom domain or want the branding removed."
   pricing:
-    summary: "Free: 300K tokens/day, 1M/month, Bolt branding. Pro $25/mo (from 10M tokens, custom domain)."
+    summary: "Free: 300K tokens/day, 1M/month, Bolt branding. Pro $18/month billed annually ($216/year; $300/year struck through on the card), from 10M tokens, custom domain."
     sourceUrl: "https://bolt.new/pricing"
-    checked: 2026-10-19
+    checked: 2026-10-20
   affiliateUrl: null
 avoid:
   name: "Lovable Free plan, for anything you plan to ship"
@@ -46,17 +46,17 @@ alsoConsidered:
     pricing:
       summary: "Core $20/mo ($18/mo billed annually); Pro $100/mo ($90/mo annually)."
       sourceUrl: "https://replit.com/pricing"
-      checked: 2026-10-19
+      checked: 2026-10-20
   - name: "Cursor"
     url: "https://cursor.com"
     note: "An editor, not an app builder: best for the refine step once you have code. Plans are now sold through X subscription tiers."
     pricing:
       summary: "Free (limited); Plus $8/mo (Grok models only); Premium $30/mo; Super $100/mo; Ultra $200/mo. Third-party models billed at API list price."
       sourceUrl: "https://cursor.com/pricing"
-      checked: 2026-10-19
+      checked: 2026-10-20
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-19
+lastVerified: 2026-10-20
 testNotes: "Pending hands-on test. Planned standard task: 'Build a to-do app with email login, per-user data and a public URL', run on Lovable, Bolt.new and Replit. We'll record time to first working deploy, credits or tokens used, the number of fix-up prompts, and whether the exported code runs locally."
 ---
 
@@ -69,3 +69,5 @@ Solo founders, indie hackers and creators who want a real, working product (logi
 - **You want to ship this week:** start in Lovable or Bolt.new, and connect GitHub straight away.
 - **You already write some code:** prototype in a builder, then move to an AI editor for the details.
 - **You're on £0:** Bolt.new's free tier gives the most room to prototype. Upgrade only when you need a custom domain.
+- **You want the head-to-head:** [Lovable vs Bolt.new](../../compare/lovable-vs-bolt/) lines up free limits, the first paid plan and getting the code out.
+- **You want the wider shortlist:** [AI app builders for non-coders](../../best/ai-app-builders-for-non-coders/) covers Lovable, Bolt.new, Replit and where Cursor fits.
