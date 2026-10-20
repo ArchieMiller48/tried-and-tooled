@@ -12,10 +12,12 @@ interface PersonaOption {
   id: string;
   label: string;
   detail?: string;
+  resultAs?: string;
 }
 
 interface PersonaBudget extends PersonaOption {
   maxMonthlyUsd?: number;
+  resultPhrase?: string;
 }
 
 interface PersonaTag {
@@ -183,7 +185,7 @@ function toCatalogTool(tool: ToolDraft): CatalogTool {
       }
     : null;
   if (price && !price.parsed && /[$€£]|\bfree\b/i.test(price.summary)) {
-    console.warn(`[find-your-stack] Could not read a free tier or monthly price from "${tool.name}": ${price.summary}`);
+    console.warn(`[find-your-tool] Could not read a free tier or monthly price from "${tool.name}": ${price.summary}`);
   }
   const href = tool.url ? outboundHref(tool.url, tool.affiliateUrl) : null;
   return {
@@ -241,7 +243,7 @@ export async function buildStackCatalog(): Promise<FinderCatalog> {
   for (const entry of useCases) {
     if (!personas.useCases[entry.id]) {
       throw new Error(
-        `Use case "${entry.id}" is not tagged in src/data/personas.json. Add roles, skills and goals so Find your stack stays complete.`,
+        `Use case "${entry.id}" is not tagged in src/data/personas.json. Add roles, skills and goals so Find your tool stays complete.`,
       );
     }
   }

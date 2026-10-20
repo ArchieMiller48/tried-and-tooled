@@ -12,7 +12,7 @@ const pageUrl = new URL(path, Astro.site);
 const ogImage = new URL(`${import.meta.env.BASE_URL}brand/og.png`, Astro.site);
 const listings = (listedOn as Listing[]).filter((entry) => entry.name && entry.url);
 const nav = [
-  { href: withBase('/find-your-stack/'), label: 'Find your stack' },
+  { href: withBase('/find-your-tool/'), label: 'Find your tool' },
   { href: withBase('/use-cases/'), label: 'Use cases' },
   { href: withBase('/new/'), label: 'New this week' },
   { href: withBase('/search/'), label: 'Search' },

@@ -1,0 +1,124 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { buildStackCatalog } from '../../lib/stackCatalog';
+
+const catalog = await buildStackCatalog();
+const catalogJson = JSON.stringify(catalog).replace(/</g, '\\u003c');
+const description =
+  'Find your tool. Four questions on your role, coding comfort, goals and budget. See the AI tools Tried & Tooled already tracks for those jobs, with sourced prices and no pay-to-rank.';
+const questions = [
+  {
+    id: 'role',
+    mode: 'single',
+    title: 'What do you do?',
+    help: 'Pick the closest fit.',
+    options: catalog.roles,
+  },
+  {
+    id: 'skill',
+    mode: 'single',
+    title: 'How comfortable are you with code?',
+    help: "This flags jobs tagged for more coding than you picked. It doesn't hide a job.",
+    options: catalog.skills,
+  },
+  {
+    id: 'goals',
+    mode: 'multi',
+    title: 'What do you want help with?',
+    help: 'Choose every job you want tools for.',
+    options: catalog.goals,
+  },
+  {
+    id: 'budget',
+    mode: 'single',
+    title: "What's your budget?",
+    help: 'Tools outside this budget stay on the page, folded away.',
+    options: catalog.budgets,
+  },
+] as const;
+---
+<Base title="Find your tool" description={description}>
+  <script is:inline>
+    (function () {
+      var q = location.search;
+      if (q.indexOf('role=') !== -1 && q.indexOf('skill=') !== -1 && q.indexOf('goals=') !== -1 && q.indexOf('budget=') !== -1) {
+        document.documentElement.classList.add('finder-shared');
+      }
+    })();
+  </script>
+  <article id="finder-panel" class="wrap finder-quiz" data-pagefind-body>
+    <h1 class="finder-title">Find your tool</h1>
+    <div id="finder-progress" class="progress" role="progressbar" aria-valuemin="1" aria-valuemax={questions.length} aria-valuenow="1" aria-valuetext="Question 1 of 4">
+      <div class="progress-label">Question 1 of 4</div>
+      <div class="progress-track"><div class="progress-bar" style="width:25%"></div></div>
+    </div>
+    <div id="finder-quiz">
+      {questions.map((question, index) => (
+        <div class="quiz-step" data-step={question.id} data-mode={question.mode} hidden={index > 0}>
+          <h2 tabindex="-1">{question.title}</h2>
+          <p class="quiz-help">{question.help}</p>
+          {question.mode === 'multi' && <p class="quiz-help" data-goal-count>0 selected</p>}
+          <div class="choice-grid">
+            {question.options.map((option) => (
+              <button type="button" class="choice" data-choice={option.id} aria-pressed="false">
+                <span class="choice-label">{option.label}</span>
+                {'detail' in option && option.detail && <span class="choice-detail">{option.detail}</span>}
+              </button>
+            ))}
+          </div>
+          <div class="quiz-nav">
+            {index > 0 && <button type="button" class="btn ghost" data-action="back">Back</button>}
+            {question.mode === 'multi' && <button type="button" class="btn" data-action="next" disabled>Next</button>}
+          </div>
+        </div>
+      ))}
+    </div>
+    <noscript>
+      <p class="notice">This quiz runs in your browser and needs JavaScript. You can still <a href={catalog.links.useCases}>browse use cases</a>.</p>
+    </noscript>
+  </article>
+
+  <div class="wrap finder-after" data-pagefind-ignore>
+    <div id="finder-loading" class="finder-loading" hidden>
+      <h1 tabindex="-1">Finding your tools…</h1>
+      <div class="loader-spin" aria-hidden="true"></div>
+      <ol class="loader-steps">
+        <li data-loader-step>Matching your role</li>
+        <li data-loader-step>Checking budgets</li>
+        <li data-loader-step>Ranking picks</li>
+      </ol>
+      <p id="finder-status" class="sr-only" role="status" aria-live="polite"></p>
+    </div>
+    <div id="finder-results" hidden>
+      <header class="stack-header">
+        <h1 id="results-heading" tabindex="-1"></h1>
+        <p id="results-subtitle" class="lead"></p>
+        <div class="cta-row">
+          <button type="button" class="btn" id="retake-quiz">Retake quiz</button>
+          <button type="button" class="btn ghost" id="copy-share-link">Copy share link</button>
+        </div>
+      </header>
+      <p id="results-status" class="sr-only" role="status" aria-live="polite"></p>
+      <div id="stack-notices"></div>
+      <div id="stack-results"></div>
+      <Newsletter variant="subtle" />
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      if (!document.documentElement.classList.contains('finder-shared')) return;
+      var panel = document.getElementById('finder-panel');
+      var loading = document.getElementById('finder-loading');
+      if (panel) panel.hidden = true;
+      if (loading) loading.hidden = false;
+    })();
+  </script>
+  <script type="application/json" id="stack-catalog" set:html={catalogJson}></script>
+  <script>
+    import { mountFinder } from '../../scripts/find-your-tool';
+    const node = document.getElementById('stack-catalog');
+    if (node?.textContent) mountFinder(JSON.parse(node.textContent));
+  </script>
+</Base>

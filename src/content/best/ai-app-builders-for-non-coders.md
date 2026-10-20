@@ -44,14 +44,16 @@ picks:
     url: "https://replit.com"
     fit: "You want a fuller workspace (chat, build and publish in one account) and you expect to pay once the app has to stay online."
     why: "Replit's docs describe building and publishing apps from chat. The free Starter plan is written up as at no cost, with one published app. That published link goes down after 30 days. Full build, third-party connectors and removing the Made with Replit badge require Core or Pro. Core on the pricing page is $18/month billed annually."
-    caveat: "Starter's daily Agent allowance is described, but the pages checked today do not give a number for it. This shortlist does not guess one. The pricing page itself lists Core and Pro, not a Starter price."
+    caveat: "Starter's daily Agent allowance is described, but the pages checked today do not give a number for it. This shortlist does not guess one. Starter at no cost is from the billing docs. The Core and Pro dollar figures are from the pricing page."
     pricing:
-      summary: "Core: $18/month billed annually, with $20 struck through on the card, and '$20 towards more powerful models'. Pro: $90/month billed annually, with $100 struck through, and '$100 towards most powerful models'."
-      sourceUrl: "https://replit.com/pricing"
+      summary: "Starter free, at no cost, with one published app that goes down after 30 days. Core $18/mo billed annually ($20 struck through). Pro $90/mo billed annually ($100 struck through)."
+      sourceUrl: "https://docs.replit.com/billing/plans"
       checked: 2026-10-20
     sources:
       - label: "Starter plan"
         url: "https://docs.replit.com/billing/plans"
+      - label: "Core and Pro prices"
+        url: "https://replit.com/pricing"
       - label: "Publishing: one free app, 30 days"
         url: "https://docs.replit.com/billing/deployment-pricing"
     affiliateUrl: null
@@ -92,4 +94,4 @@ The order above is a reading guide for non-coders. It is not a ranking from a sh
 
 Prices are in US dollars, as the vendors publish them. Nothing here is converted to pounds. Where a page shows an annual price with a monthly price struck through beside it, both figures are reported, and the billing period is named.
 
-Replit's help centre prints some plan facts as template placeholders rather than numbers. Those placeholders are not used. The Core and Pro dollar figures come from replit.com/pricing, which on 20 October 2026 had yearly billing selected: Core at $18 a month billed annually with $20 struck through, and Pro at $90 a month billed annually with $100 struck through.
+Replit's help centre prints some plan facts as template placeholders rather than numbers. Those placeholders are not used. Starter at no cost, with one published app, was confirmed the same day on the billing docs. The Core and Pro dollar figures come from replit.com/pricing, which on 20 October 2026 had yearly billing selected: Core at $18 a month billed annually with $20 struck through, and Pro at $90 a month billed annually with $100 struck through.

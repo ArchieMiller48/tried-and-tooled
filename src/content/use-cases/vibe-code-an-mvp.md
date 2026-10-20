@@ -44,8 +44,8 @@ alsoConsidered:
     url: "https://replit.com"
     note: "A strong all-in-one agent and IDE; better if you want a full dev environment rather than a chat-first builder."
     pricing:
-      summary: "Core $20/mo ($18/mo billed annually); Pro $100/mo ($90/mo annually)."
-      sourceUrl: "https://replit.com/pricing"
+      summary: "Starter free, at no cost, with one published app that goes down after 30 days. Core $18/mo billed annually ($20 struck through). Pro $90/mo billed annually ($100 struck through)."
+      sourceUrl: "https://docs.replit.com/billing/plans"
       checked: 2026-10-20
   - name: "Cursor"
     url: "https://cursor.com"
