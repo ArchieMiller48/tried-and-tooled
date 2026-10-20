@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from 'astro:content';
+import GuidePage from '../../components/GuidePage.astro';
+import { formatDate } from '../../lib/formatDate';
+import { hasGuideEntries } from '../../lib/guides';
+import { outboundHref, outboundRel } from '../../lib/outbound';
+
+export async function getStaticPaths() {
+  if (!hasGuideEntries('pricing')) return [];
+  const entries = await getCollection('pricing', ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+---
+<GuidePage
+  eyebrow="Pricing"
+  title={d.title}
+  summary={d.summary}
+  testStatus={d.testStatus}
+  lastTested={d.lastTested}
+  lastVerified={d.lastVerified}
+  parent={d.parent}
+  faqs={d.faqs}
+  verdicts={d.verdicts}
+>
+  <p>
+    <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span>
+  </p>
+  <p><a class="btn ghost" href={outboundHref(d.tool.url, d.tool.affiliateUrl)} rel={outboundRel(d.tool.affiliateUrl)} target="_blank">Visit {d.tool.name}</a></p>
+
+  <section>
+    <h2>Plans</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Plan</th><th>Price</th><th>What the vendor says is included</th><th>Source</th></tr>
+        </thead>
+        <tbody>
+          {d.plans.map((plan) => (
+            <tr>
+              <td>{plan.name}</td>
+              <td>{plan.price}</td>
+              <td>{plan.includes}</td>
+              <td><a href={plan.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, pricing checked {formatDate(plan.checked)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="prose"><Content /></section>
+</GuidePage>

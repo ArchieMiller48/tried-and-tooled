@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import GuideIndex from '../../components/GuideIndex.astro';
+import { hasGuideEntries } from '../../lib/guides';
+
+const entries = hasGuideEntries('alternatives')
+  ? (await getCollection('alternatives', ({ data }) => !data.draft))
+      .sort((a, b) => a.data.title.localeCompare(b.data.title))
+      .map((entry) => ({
+        href: `/alternatives/${entry.id}/`,
+        kind: 'Alternatives',
+        title: entry.data.title,
+        summary: entry.data.summary,
+        testStatus: entry.data.testStatus,
+      }))
+  : [];
+---
+<GuideIndex
+  title="Alternatives"
+  eyebrow="Alternatives"
+  description="Alternatives to individual AI tools, with sourced pricing. Pages are added as markdown files."
+  intro="When a page names one tool and the realistic swaps, it will be listed here. Each one stays tied to a use case."
+  empty="No alternatives pages yet. The first guides are the Lovable and Bolt comparison and the app-builder shortlist."
+  entries={entries}
+/>

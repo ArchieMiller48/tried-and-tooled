@@ -13,7 +13,8 @@ Requires Node >= 22.22 (Astro 7). On the box: `export PATH=$HOME/.local/node22/b
 ## Content
 - `src/content/use-cases/*.md`: one file per job. The schema is in `src/content.config.ts` (top/budget pick, avoid, stack, pricing with sourceUrl + checked date, testStatus, lastTested, lastVerified, testNotes, affiliateUrl placeholder).
 - `src/content/new/*.md`: "New this week" feed items (each needs a sourceUrl).
-- Rules: never fabricate test results. Keep `testStatus: pending` and `lastTested: null` until a real test has been run and its artefacts saved.
+- `src/content/compare/*.md`, `src/content/best/*.md`, `src/content/alternatives/*.md`, `src/content/pricing/*.md`: intent pages. One markdown file is a page. Set `parent` to a use-case slug. Keep `testStatus: pending` until a real test exists. Every price needs `sourceUrl` and `checked`.
+- Rules: never fabricate test results. Keep `testStatus: pending` and `lastTested: null` until a real test has been run and its artefacts saved. Do not write "we tested", "we tried" or "in our testing" on a pending page.
 
 ## Open TODOs
 - `TODO(forms)` in `src/pages/submit.astro`: Tally or a Cloudflare Worker that opens a GitHub issue.

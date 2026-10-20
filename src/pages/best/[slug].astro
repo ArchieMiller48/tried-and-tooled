@@ -1,0 +1,50 @@
+---
+import { getCollection, render } from 'astro:content';
+import GuidePage from '../../components/GuidePage.astro';
+import PriceLine from '../../components/PriceLine.astro';
+import SourceList from '../../components/SourceList.astro';
+import { outboundHref, outboundRel } from '../../lib/outbound';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('best', ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+---
+<GuidePage
+  eyebrow="Best"
+  title={d.title}
+  summary={d.summary}
+  testStatus={d.testStatus}
+  lastTested={d.lastTested}
+  lastVerified={d.lastVerified}
+  parent={d.parent}
+  faqs={d.faqs}
+  verdicts={d.verdicts}
+>
+  <section>
+    <h2>The shortlist</h2>
+    <p>Ordered as a reading guide for non-coders, from the vendor pages linked on each card. Not a tested ranking, and not a complete survey of the market.</p>
+    <div class="verdicts">
+      {d.picks.map((pick, index) => (
+        <article class="card">
+          <div class="meta" style="margin-top:0">
+            <span class="tag">{index + 1}</span>
+            <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span>
+          </div>
+          <h3 style="font-size:1.3rem;margin-top:10px">{pick.name}</h3>
+          <p><strong>Fit:</strong> {pick.fit}</p>
+          <p>{pick.why}</p>
+          {pick.caveat && <p class="caveat">{pick.caveat}</p>}
+          <PriceLine summary={pick.pricing.summary} sourceUrl={pick.pricing.sourceUrl} checked={pick.pricing.checked} />
+          <SourceList sources={pick.sources} />
+          <p style="margin-top:12px"><a class="btn ghost" href={outboundHref(pick.url, pick.affiliateUrl)} rel={outboundRel(pick.affiliateUrl)} target="_blank">Visit {pick.name}</a></p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="prose"><Content /></section>
+</GuidePage>

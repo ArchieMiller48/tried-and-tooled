@@ -1,0 +1,13 @@
+---
+import { formatDate } from '../lib/formatDate';
+interface Props {
+  summary: string;
+  sourceUrl: string;
+  checked: Date;
+}
+const { summary, sourceUrl, checked } = Astro.props;
+---
+<div class="price">
+  {summary}<br />
+  <a href={sourceUrl} rel="nofollow noopener" target="_blank">source</a>, pricing checked {formatDate(checked)}
+</div>

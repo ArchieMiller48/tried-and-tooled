@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import GuideIndex from '../../components/GuideIndex.astro';
+
+const entries = (await getCollection('best', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title))
+  .map((entry) => ({
+    href: `/best/${entry.id}/`,
+    kind: 'Best',
+    title: entry.data.title,
+    summary: entry.data.summary,
+    testStatus: entry.data.testStatus,
+  }));
+---
+<GuideIndex
+  title="Shortlists"
+  eyebrow="Best"
+  description="Shortlists of AI tools for one job, with sourced pricing and a pending-test label until a hands-on task has been run."
+  intro="Each shortlist is a reading guide for one job. The order is by who the tool is for, not a score, and every price links to the vendor."
+  empty="No shortlist pages yet."
+  entries={entries}
+/>

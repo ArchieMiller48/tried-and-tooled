@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import GuideIndex from '../../components/GuideIndex.astro';
+import { hasGuideEntries } from '../../lib/guides';
+
+const entries = hasGuideEntries('pricing')
+  ? (await getCollection('pricing', ({ data }) => !data.draft))
+      .sort((a, b) => a.data.title.localeCompare(b.data.title))
+      .map((entry) => ({
+        href: `/pricing/${entry.id}/`,
+        kind: 'Pricing',
+        title: entry.data.title,
+        summary: entry.data.summary,
+        testStatus: entry.data.testStatus,
+      }))
+  : [];
+---
+<GuideIndex
+  title="Pricing"
+  eyebrow="Pricing"
+  description="Vendor pricing, checked on a named date, for tools Tried and Tooled writes about."
+  intro="A pricing page repeats what the vendor charges, with the source link and the date it was checked. It does not invent a discount."
+  empty="No pricing pages yet. Prices already appear on each use case, comparison and shortlist."
+  entries={entries}
+/>

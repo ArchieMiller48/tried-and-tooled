@@ -1,0 +1,61 @@
+---
+import { getCollection, render } from 'astro:content';
+import GuidePage from '../../components/GuidePage.astro';
+import PriceLine from '../../components/PriceLine.astro';
+import SourceList from '../../components/SourceList.astro';
+import { hasGuideEntries } from '../../lib/guides';
+import { outboundHref, outboundRel } from '../../lib/outbound';
+
+export async function getStaticPaths() {
+  if (!hasGuideEntries('alternatives')) return [];
+  const entries = await getCollection('alternatives', ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const subject = d.subject;
+---
+<GuidePage
+  eyebrow="Alternatives"
+  title={d.title}
+  summary={d.summary}
+  testStatus={d.testStatus}
+  lastTested={d.lastTested}
+  lastVerified={d.lastVerified}
+  parent={d.parent}
+  faqs={d.faqs}
+  verdicts={d.verdicts}
+>
+  <div class="card">
+    <div class="meta" style="margin-top:0">
+      <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span>
+    </div>
+    <h2 style="font-size:1.3rem;margin-top:10px">{subject.name}</h2>
+    <p>{subject.blurb}</p>
+    <PriceLine summary={subject.pricing.summary} sourceUrl={subject.pricing.sourceUrl} checked={subject.pricing.checked} />
+    <SourceList sources={subject.sources} />
+    <p style="margin-top:12px"><a class="btn ghost" href={outboundHref(subject.url, subject.affiliateUrl)} rel={outboundRel(subject.affiliateUrl)} target="_blank">Visit {subject.name}</a></p>
+  </div>
+
+  <section>
+    <h2>Alternatives</h2>
+    <div class="verdicts">
+      {d.alternatives.map((tool) => (
+        <article class="card">
+          <div class="meta" style="margin-top:0">
+            <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span>
+          </div>
+          <h3 style="font-size:1.2rem;margin-top:10px">{tool.name}</h3>
+          <p>{tool.why}</p>
+          <p class="caveat">{tool.tradeoff}</p>
+          <PriceLine summary={tool.pricing.summary} sourceUrl={tool.pricing.sourceUrl} checked={tool.pricing.checked} />
+          <SourceList sources={tool.sources} />
+          <p style="margin-top:12px"><a class="btn ghost" href={outboundHref(tool.url, tool.affiliateUrl)} rel={outboundRel(tool.affiliateUrl)} target="_blank">Visit {tool.name}</a></p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="prose"><Content /></section>
+</GuidePage>

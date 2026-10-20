@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import Newsletter from './Newsletter.astro';
+import { getEntry } from 'astro:content';
+import { withBase } from '../lib/withBase';
+import { formatDate } from '../lib/formatDate';
+
+interface Faq { question: string; answer: string }
+interface Verdict { situation: string; guidance: string }
+interface Props {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  testStatus: 'pending' | 'tested';
+  lastTested: Date | null;
+  lastVerified: Date;
+  parent: string;
+  faqs: Faq[];
+  verdicts: Verdict[];
+}
+const page = Astro.props;
+const parent = await getEntry('use-cases', page.parent);
+if (!parent) throw new Error(`Guide "${page.title}" points at an unknown use case "${page.parent}".`);
+const fmt = formatDate;
+const statusLabel = page.testStatus === 'pending'
+  ? 'Pending hands-on test'
+  : `Tested ${page.lastTested ? fmt(page.lastTested) : ''}`.trim();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: page.faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+---
+<Base title={page.title} description={page.summary} jsonLd={jsonLd}>
+  <article class="wrap narrow" data-pagefind-body>
+    <section class="hero" style="padding-bottom:8px">
+      <span class="eyebrow">{page.eyebrow}</span>
+      <h1 style="font-size:clamp(2rem,4vw,2.8rem)">{page.title}</h1>
+      <p class="lead">{page.summary}</p>
+      <div class="meta">
+        <span class={`tag ${page.testStatus}`}>{statusLabel}</span>
+        <span class="tag">Facts last verified {fmt(page.lastVerified)}</span>
+      </div>
+    </section>
+
+    {page.testStatus === 'pending' && (
+      <p class="notice"><strong>Not hands-on tested yet.</strong> The notes below are based on vendor documentation and pricing checked on {fmt(page.lastVerified)}. A hands-on result will be added once the standard task has been run. This page does not publish made-up test results.</p>
+    )}
+
+    <slot />
+
+    <section>
+      <h2>Which should you pick</h2>
+      <p>This is guidance by situation, read from the vendor pages linked above. It is not a test result and not a score.</p>
+      <div class="verdicts">
+        {page.verdicts.map((verdict) => (
+          <div class="card">
+            <h3>{verdict.situation}</h3>
+            <p>{verdict.guidance}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <p class="back">Part of the use case <a href={withBase(`/use-cases/${parent.id}/`)}>{parent.data.title}</a>.</p>
+
+    <section>
+      <h2>FAQ</h2>
+      <ul class="faq">
+        {page.faqs.map((faq) => (
+          <li>
+            <h3>{faq.question}</h3>
+            <p>{faq.answer}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+  <div class="wrap"><section><Newsletter /></section></div>
+</Base>

@@ -1,8 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import UseCaseCard from '../../components/UseCaseCard.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import { listGuides } from '../../lib/guides';
+import { withBase } from '../../lib/withBase';
 import { getCollection } from 'astro:content';
 const all = (await getCollection('use-cases', ({ data }) => !data.draft)).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const guides = await listGuides();
 const groups = [
   { key: 'vibe-coders', label: 'For vibe coders' },
   { key: 'creators', label: 'For creators' },
@@ -25,5 +29,14 @@ const groups = [
         </section>
       );
     })}
+    {guides.length > 0 && (
+      <section>
+        <div class="section-head">
+          <h2>Comparisons and shortlists</h2>
+          <span><a href={withBase('/compare/')}>Comparisons</a> · <a href={withBase('/best/')}>Shortlists</a></span>
+        </div>
+        <div class="grid">{guides.map((guide) => <GuideCard {...guide} />)}</div>
+      </section>
+    )}
   </div>
 </Base>
