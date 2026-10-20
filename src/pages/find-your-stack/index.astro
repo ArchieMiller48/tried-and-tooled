@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { buildStackCatalog } from '../../lib/stackCatalog';
+
+const catalog = await buildStackCatalog();
+const catalogJson = JSON.stringify(catalog).replace(/</g, '\\u003c');
+const description =
+  'Four clicks on your role, coding comfort, goals and budget. Get the AI tools Tried & Tooled already tracks for those jobs, with sourced prices and no pay-to-rank.';
+const questions = [
+  {
+    id: 'role',
+    mode: 'single',
+    title: 'What do you do?',
+    help: 'Pick the closest fit. Jobs tagged for that role are marked as a usual match. Other still shows every job you pick.',
+    options: catalog.roles,
+  },
+  {
+    id: 'skill',
+    mode: 'single',
+    title: 'How comfortable are you with code?',
+    help: "This doesn't hide a job. It flags stacks tagged for more coding than you picked.",
+    options: catalog.skills,
+  },
+  {
+    id: 'goals',
+    mode: 'multi',
+    title: 'What do you want help with?',
+    help: 'Choose every job you want a stack for. You can pick more than one.',
+    options: catalog.goals,
+  },
+  {
+    id: 'budget',
+    mode: 'single',
+    title: "What's your budget?",
+    help: 'Read from the price lines already stored on each tool. Nothing is dropped: tools outside the budget are listed under the ones that fit.',
+    options: catalog.budgets,
+  },
+] as const;
+---
+<Base title="Find your AI stack" description={description}>
+  <article class="wrap finder" data-pagefind-body>
+    <section class="hero" style="padding-bottom:12px">
+      <span class="eyebrow">Find your stack</span>
+      <h1 style="font-size:clamp(2rem,4vw,2.8rem)">Find your stack</h1>
+      <p class="lead">Four questions, buttons only. We match your role, how comfortable you are with code, the jobs you care about and your budget to the AI tools this site already tracks. Each result keeps its editorial role (top pick, budget pick, and the rest), the sourced price, the date that price was checked, and a pending-test label until a hands-on test exists. Rankings are not for sale.</p>
+    </section>
+
+    <div id="finder-progress" class="progress" role="progressbar" aria-valuemin="1" aria-valuemax={questions.length} aria-valuenow="1" aria-valuetext="Question 1 of 4">
+      <div class="progress-label">Question 1 of 4</div>
+      <div class="progress-track"><div class="progress-bar" style="width:25%"></div></div>
+    </div>
+
+    <div id="finder-quiz">
+      {questions.map((question, index) => (
+        <div class="quiz-step" data-step={question.id} data-mode={question.mode} hidden={index > 0}>
+          <h2 tabindex="-1">{question.title}</h2>
+          <p class="quiz-help">{question.help}</p>
+          {question.mode === 'multi' && <p class="quiz-help" data-goal-count>0 selected</p>}
+          <div class="choice-grid">
+            {question.options.map((option) => (
+              <button type="button" class="choice" data-choice={option.id} aria-pressed="false">
+                <span class="choice-label">{option.label}</span>
+                {'detail' in option && option.detail && <span class="choice-detail">{option.detail}</span>}
+              </button>
+            ))}
+          </div>
+          <div class="quiz-nav">
+            {index > 0 && <button type="button" class="btn ghost" data-action="back">Back</button>}
+            {question.mode === 'multi' && <button type="button" class="btn" data-action="next" disabled>Next</button>}
+          </div>
+        </div>
+      ))}
+    </div>
+    <noscript>
+      <p class="notice">This quiz runs in your browser and needs JavaScript. You can still <a href={catalog.links.useCases}>browse use cases</a>.</p>
+    </noscript>
+  </article>
+
+  <div class="wrap finder" data-pagefind-ignore>
+    <div id="finder-results" hidden>
+      <h2 class="sr-only" tabindex="-1">Your stack</h2>
+      <div id="stack-summary"></div>
+      <div id="stack-results"></div>
+      <section>
+        <Newsletter variant="subtle" />
+      </section>
+    </div>
+
+    <section>
+      <h2>Jobs this quiz can match</h2>
+      <p>Tagged in the persona map and filled from the use cases, tool picks and feed at build time. A new use case shows up here once it is tagged.</p>
+      <ul class="job-index">
+        {catalog.needs.map((need) => (
+          <li>
+            <a href={need.href}>{need.title}</a>
+            <span>{need.job}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+
+  <script type="application/json" id="stack-catalog" set:html={catalogJson}></script>
+  <script>
+    import { mountFinder } from '../../scripts/find-your-stack';
+    const node = document.getElementById('stack-catalog');
+    if (node?.textContent) mountFinder(JSON.parse(node.textContent));
+  </script>
+</Base>
