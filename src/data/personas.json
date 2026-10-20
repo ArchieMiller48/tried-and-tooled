@@ -1,15 +1,15 @@
 {
-  "notes": "Tags each published use case for Find your stack. Tool names and prices are read from the content collections at build time — do not list them here. The role id \"other\" matches every tagged use case. Add a key when you publish a new use case; the build fails if a published use case is missing.",
+  "notes": "Tags each published use case for Find your tool. Tool names and prices are read from the content collections at build time — do not list them here. The role id \"other\" matches every tagged use case. resultAs and resultPhrase are results-page wording only. Add a key when you publish a new use case; the build fails if a published use case is missing.",
   "roles": [
-    { "id": "developer", "label": "Developer" },
-    { "id": "founder", "label": "Non-coder founder" },
-    { "id": "creator", "label": "Content creator / YouTuber" },
-    { "id": "marketer", "label": "Marketer" },
-    { "id": "designer", "label": "Designer" },
-    { "id": "small-business", "label": "Small business owner" },
-    { "id": "student", "label": "Student" },
-    { "id": "analyst", "label": "Analyst / finance pro" },
-    { "id": "other", "label": "Other" }
+    { "id": "developer", "label": "Developer", "resultAs": "a developer" },
+    { "id": "founder", "label": "Non-coder founder", "resultAs": "a non-coder founder" },
+    { "id": "creator", "label": "Content creator / YouTuber", "resultAs": "a creator" },
+    { "id": "marketer", "label": "Marketer", "resultAs": "a marketer" },
+    { "id": "designer", "label": "Designer", "resultAs": "a designer" },
+    { "id": "small-business", "label": "Small business owner", "resultAs": "a small business owner" },
+    { "id": "student", "label": "Student", "resultAs": "a student" },
+    { "id": "analyst", "label": "Analyst / finance pro", "resultAs": "an analyst" },
+    { "id": "other", "label": "Other", "resultAs": "another role" }
   ],
   "skills": [
     {
@@ -41,17 +41,20 @@
     {
       "id": "free",
       "label": "Free only",
+      "resultPhrase": "free budget",
       "detail": "Tools whose stored price line includes a free plan, a $0 price, or a self-hosted community edition."
     },
     {
       "id": "under-25",
       "label": "Under $25/mo",
       "maxMonthlyUsd": 25,
+      "resultPhrase": "a budget under $25 a month",
       "detail": "Free options, plus a lowest listed monthly price of $25 or less. Annual prices count as the monthly equivalent written in the price line. Tools above that still appear, listed separately."
     },
     {
       "id": "any",
       "label": "Any budget",
+      "resultPhrase": "any budget",
       "detail": "Every tool we currently track for the jobs you pick."
     }
   ],

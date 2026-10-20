@@ -9,5 +9,9 @@ export default defineConfig({
   output: 'static',
   // Directory URLs keep the trailing slash GitHub Pages serves for index.html.
   trailingSlash: 'always',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/find-your-stack'),
+    }),
+  ],
 });

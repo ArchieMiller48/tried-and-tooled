@@ -1,4 +1,17 @@
-import { matchStack, type CatalogTool, type FinderAnswers, type FinderCatalog, type MatchedNeed } from '../lib/stackMatch';
+import {
+  matchStack,
+  stackHeadline,
+  type CatalogTool,
+  type FinderAnswers,
+  type FinderCatalog,
+  type MatchedNeed,
+} from '../lib/stackMatch';
+
+const FULL_MS = 2800;
+const SHARED_MS = 1000;
+const REDUCED_FULL_MS = 400;
+const REDUCED_SHARED_MS = 200;
+const LOADER_LABELS = ['Matching your role', 'Checking budgets', 'Ranking picks'];
 
 function el(tag: string, attrs: Record<string, string | null | undefined> = {}): HTMLElement {
   const node = document.createElement(tag);
@@ -37,6 +50,15 @@ function fitNote(need: MatchedNeed): string {
 
 function hasId(options: { id: string }[], id: string): boolean {
   return options.some((option) => option.id === id);
+}
+
+function prefersReduced(): boolean {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function loadDuration(shared: boolean): number {
+  if (prefersReduced()) return shared ? REDUCED_SHARED_MS : REDUCED_FULL_MS;
+  return shared ? SHARED_MS : FULL_MS;
 }
 
 function readAnswers(catalog: FinderCatalog): FinderAnswers | null {
@@ -99,54 +121,71 @@ function applyAnswers(quiz: HTMLElement, answers: FinderAnswers): void {
   }
 }
 
-function priceBlock(tool: CatalogTool): HTMLElement | null {
-  if (!tool.price) return null;
-  const block = el('div', { class: 'price' });
-  block.append(document.createTextNode(tool.price.summary));
-  block.append(document.createElement('br'));
-  const source = el('a', { href: tool.price.sourceUrl, rel: 'nofollow noopener', target: '_blank' });
-  source.textContent = 'source';
-  block.append(source, document.createTextNode(`, pricing checked ${tool.price.checkedLabel}`));
-  return block;
+function clearAnswers(quiz: HTMLElement): void {
+  for (const button of quiz.querySelectorAll<HTMLElement>('[data-choice]')) {
+    button.setAttribute('aria-pressed', 'false');
+  }
+  for (const next of quiz.querySelectorAll<HTMLButtonElement>('[data-action="next"]')) {
+    next.disabled = true;
+  }
+  for (const count of quiz.querySelectorAll('[data-goal-count]')) {
+    count.textContent = '0 selected';
+  }
 }
 
-function renderTool(tool: CatalogTool, bucket: 'in' | 'out' | 'unknown', nameTag: 'h3' | 'h4'): HTMLElement {
-  const card = el('article', { class: 'card stack-tool' });
-  const meta = el('div', { class: 'meta', style: 'margin-top:0' });
+function priceLine(tool: CatalogTool): HTMLElement | null {
+  if (!tool.price) return null;
+  const line = el('p', { class: 'tool-price' });
+  line.append(document.createTextNode(`${tool.price.summary} `));
+  const source = el('a', { href: tool.price.sourceUrl, rel: 'nofollow noopener', target: '_blank' });
+  source.textContent = 'source';
+  line.append(source, document.createTextNode(`, pricing checked ${tool.price.checkedLabel}`));
+  return line;
+}
+
+function toolCard(tool: CatalogTool, variant: 'top' | 'budget' | 'compact', bucket: 'in' | 'unknown' | 'out'): HTMLElement {
+  const card = el('article', { class: `card tool-card ${variant}` });
+  const meta = el('div', { class: 'meta' });
   for (const kind of tool.kinds) meta.append(text('span', kind, { class: 'tag' }));
   if (tool.sponsored) meta.append(text('span', 'Sponsored', { class: 'tag sponsored' }));
-  if (bucket === 'out') meta.append(text('span', 'Outside this budget', { class: 'tag' }));
+  if (bucket === 'out') meta.append(text('span', 'Outside this budget', { class: 'tag out' }));
   if (bucket === 'unknown') meta.append(text('span', 'Budget unclear from the price line', { class: 'tag' }));
   card.append(meta);
-  card.append(text(nameTag, tool.name, { style: 'margin-top:10px' }));
-  if (tool.blurb) card.append(text('p', tool.blurb));
-  for (const note of tool.stackNotes) card.append(text('p', `In this stack: ${note}`));
-  const price = priceBlock(tool);
-  if (price) card.append(price);
-  if (tool.guides.length > 0) {
-    const guides = el('p', { class: 'stack-guides' });
-    guides.append(document.createTextNode('Also on: '));
-    tool.guides.forEach((guide, index) => {
-      if (index > 0) guides.append(document.createTextNode(' · '));
-      const link = el('a', { href: guide.href });
-      link.textContent = guide.label;
-      guides.append(link);
-    });
-    card.append(guides);
+  card.append(text('h3', tool.name));
+  if (tool.blurb && variant !== 'compact') card.append(text('p', tool.blurb));
+  if (variant === 'top') {
+    for (const note of tool.stackNotes) card.append(text('p', `In this stack: ${note}`));
   }
-  if (tool.feed.length > 0) {
-    const feed = el('ul', { class: 'stack-feed' });
-    for (const item of tool.feed.slice(0, 3)) {
-      const li = el('li');
-      const link = el('a', { href: item.href });
-      link.textContent = item.title;
-      li.append(document.createTextNode('From the feed: '), link, document.createTextNode(` (${item.spottedLabel})`));
-      feed.append(li);
+  const price = priceLine(tool);
+  if (price) card.append(price);
+  if (tool.guides.length > 0 || tool.feed.length > 0) {
+    const links = el('div', { class: 'tool-links' });
+    if (tool.guides.length > 0) {
+      const guides = el('p');
+      guides.append(document.createTextNode('Also on: '));
+      tool.guides.forEach((guide, index) => {
+        if (index > 0) guides.append(document.createTextNode(' · '));
+        const link = el('a', { href: guide.href });
+        link.textContent = guide.label;
+        guides.append(link);
+      });
+      links.append(guides);
     }
-    card.append(feed);
+    if (tool.feed.length > 0) {
+      const feed = el('ul');
+      for (const item of tool.feed.slice(0, 2)) {
+        const li = el('li');
+        const link = el('a', { href: item.href });
+        link.textContent = item.title;
+        li.append(document.createTextNode('From the feed: '), link, document.createTextNode(` (${item.spottedLabel})`));
+        feed.append(li);
+      }
+      links.append(feed);
+    }
+    card.append(links);
   }
   if (tool.href && tool.rel) {
-    const visit = el('p', { style: 'margin-top:12px' });
+    const visit = el('p');
     const link = el('a', { class: 'btn ghost', href: tool.href, rel: tool.rel, target: '_blank' });
     link.textContent = `Visit ${tool.name}`;
     visit.append(link);
@@ -155,18 +194,8 @@ function renderTool(tool: CatalogTool, bucket: 'in' | 'out' | 'unknown', nameTag
   return card;
 }
 
-function renderBucket(title: string, tools: CatalogTool[], bucket: 'in' | 'out' | 'unknown', nameTag: 'h3' | 'h4'): HTMLElement[] {
-  if (tools.length === 0) return [];
-  const nodes: HTMLElement[] = [];
-  if (title) nodes.push(text('h3', title, { class: 'bucket' }));
-  const list = el('div', { class: 'stack-tools' });
-  for (const tool of tools) list.append(renderTool(tool, bucket, nameTag));
-  nodes.push(list);
-  return nodes;
-}
-
 function renderNeed(need: MatchedNeed): HTMLElement {
-  const section = el('section', { class: 'stack-need' });
+  const section = el('section', { class: 'need-section' });
   const head = el('div', { class: 'meta' });
   if (need.goalLabels.length > 0) head.append(text('span', need.goalLabels.join(' · '), { class: 'tag' }));
   head.append(text('span', need.category, { class: 'tag' }));
@@ -178,31 +207,49 @@ function renderNeed(need: MatchedNeed): HTMLElement {
   titleLink.textContent = need.title;
   title.append(titleLink);
   section.append(title);
-  section.append(text('p', need.job, { class: 'lead stack-job' }));
-  section.append(text('p', fitNote(need)));
+  section.append(text('p', need.job, { class: 'need-job' }));
+  section.append(text('p', fitNote(need), { class: 'need-fit' }));
 
-  const buckets = [need.inBudget, need.unknownBudget, need.overBudget].filter((list) => list.length > 0);
-  const nameTag = buckets.length > 1 ? 'h4' : 'h3';
+  const top = need.inBudget.find((tool) => tool.kinds.includes('Top pick')) ?? null;
+  const budgetPick = need.inBudget.find((tool) => tool !== top && tool.kinds.includes('Budget pick')) ?? null;
+  const compactIn = need.inBudget.filter((tool) => tool !== top && tool !== budgetPick);
+
   if (need.inBudget.length === 0) {
     section.append(
       text(
         'p',
-        'Nothing in this stack has a stored price inside that budget. The tools are still listed below, and the use case page has the full write-up.',
+        'Nothing in this job has a stored price inside that budget. Those tools are folded below, and the use case page has the full write-up.',
       ),
     );
   }
-  section.append(
-    ...renderBucket(buckets.length > 1 ? 'In your budget' : '', need.inBudget, 'in', nameTag),
-    ...renderBucket(buckets.length > 1 ? 'Price not read as a monthly figure' : '', need.unknownBudget, 'unknown', nameTag),
-    ...renderBucket('Outside this budget', need.overBudget, 'out', nameTag),
-  );
 
-  const avoid = el('div', { class: 'card pick avoid' });
-  avoid.append(text('div', 'Avoid for this job', { class: 'label' }));
+  const list = el('div', { class: 'tool-list' });
+  if (top) list.append(toolCard(top, 'top', 'in'));
+  if (budgetPick) list.append(toolCard(budgetPick, 'budget', 'in'));
+  for (const tool of compactIn) list.append(toolCard(tool, 'compact', 'in'));
+  for (const tool of need.unknownBudget) list.append(toolCard(tool, 'compact', 'unknown'));
+  if (list.childElementCount > 0) section.append(list);
+
+  if (need.overBudget.length > 0) {
+    const details = el('details', { class: 'budget-more' });
+    if (need.inBudget.length === 0) details.setAttribute('open', '');
+    const summary = el('summary');
+    summary.textContent = `Outside this budget (${need.overBudget.length})`;
+    details.append(summary);
+    const overList = el('div', { class: 'tool-list' });
+    for (const tool of need.overBudget) overList.append(toolCard(tool, 'compact', 'out'));
+    details.append(overList);
+    section.append(details);
+  }
+
+  const avoid = el('details', { class: 'need-extra' });
+  const avoidSummary = el('summary');
+  avoidSummary.textContent = 'One to avoid';
+  avoid.append(avoidSummary);
   avoid.append(text('h3', need.avoid.name));
   avoid.append(text('p', need.avoid.reason));
   if (need.avoid.sourceUrl) {
-    const source = el('p');
+    const source = el('p', { class: 'tool-price' });
     const link = el('a', { href: need.avoid.sourceUrl, rel: 'nofollow noopener', target: '_blank' });
     link.textContent = 'source';
     source.append(link);
@@ -211,19 +258,22 @@ function renderNeed(need: MatchedNeed): HTMLElement {
   section.append(avoid);
 
   if (need.steps.length > 0) {
-    section.append(text('h3', 'How the stack fits together'));
+    const steps = el('details', { class: 'need-extra' });
+    const stepsSummary = el('summary');
+    stepsSummary.textContent = 'How these tools fit together';
+    steps.append(stepsSummary);
     const list = el('ol', { class: 'stack' });
     for (const step of need.steps) {
       const item = el('li');
       const body = el('div');
-      const strong = text('strong', `${step.step}: `);
-      body.append(strong, document.createTextNode(step.tool));
+      body.append(text('strong', `${step.step}: `), document.createTextNode(step.tool));
       body.append(document.createElement('br'));
       body.append(text('span', step.role, { style: 'color:var(--muted)' }));
       item.append(body);
       list.append(item);
     }
-    section.append(list);
+    steps.append(list);
+    section.append(steps);
   }
 
   const more = el('p', { class: 'back' });
@@ -234,37 +284,23 @@ function renderNeed(need: MatchedNeed): HTMLElement {
   return section;
 }
 
-function renderResults(catalog: FinderCatalog, answers: FinderAnswers, summary: HTMLElement, results: HTMLElement): void {
+function renderResults(
+  catalog: FinderCatalog,
+  answers: FinderAnswers,
+  heading: HTMLElement,
+  subtitle: HTMLElement,
+  notices: HTMLElement,
+  results: HTMLElement,
+): void {
   const match = matchStack(catalog, answers);
-  summary.replaceChildren();
+  heading.textContent = stackHeadline(catalog, answers);
+  subtitle.textContent = `${match.skillLabel}. ${formatList(match.goalLabels)}.`;
+  notices.replaceChildren();
   results.replaceChildren();
 
-  const chips = el('div', { class: 'meta' });
-  for (const label of [match.roleLabel, match.skillLabel, ...match.goalLabels, match.budgetLabel]) {
-    chips.append(text('span', label, { class: 'tag' }));
+  if (match.needs.length === 0) {
+    notices.append(text('p', 'No tagged job matched those goals.'));
   }
-  summary.append(chips);
-
-  const toolCount = match.needs.reduce(
-    (total, need) => total + need.inBudget.length + need.unknownBudget.length + need.overBudget.length,
-    0,
-  );
-  const jobs = match.needs.length === 1 ? '1 job' : `${match.needs.length} jobs`;
-  const tools = toolCount === 1 ? '1 tool' : `${toolCount} tools`;
-  summary.append(
-    text(
-      'p',
-      match.needs.length === 0
-        ? 'No tagged job matched those goals.'
-        : `${tools} across ${jobs}. Grouped by the job. Inside each job the order is the editorial role: top pick, budget pick, then the other mentions. An affiliate link, if we have one, is labelled Sponsored and does not move a tool.`,
-    ),
-  );
-  const policy = el('p');
-  const policyLink = el('a', { href: catalog.links.aboutMoney });
-  policyLink.textContent = 'How rankings and affiliate links work';
-  policy.append(policyLink);
-  summary.append(policy);
-
   if (match.unmatchedGoals.length > 0) {
     const notice = el('p', { class: 'notice' });
     notice.append(
@@ -275,36 +311,37 @@ function renderResults(catalog: FinderCatalog, answers: FinderAnswers, summary: 
     const browse = el('a', { href: catalog.links.useCases });
     browse.textContent = 'Browse use cases';
     notice.append(browse, document.createTextNode(' for everything currently on the site.'));
-    summary.append(notice);
+    notices.append(notice);
   }
-
-  const actions = el('div', { class: 'cta-row' });
-  const copy = el('button', { type: 'button', class: 'btn', id: 'copy-stack-link' });
-  copy.textContent = 'Copy results link';
-  const change = el('button', { type: 'button', class: 'btn ghost', id: 'change-stack-answers' });
-  change.textContent = 'Change answers';
-  actions.append(copy, change);
-  const share = el('p', { class: 'share-line' });
-  share.append(document.createTextNode('Shareable link: '));
-  const shareLink = el('a', { href: `?${searchFor(answers)}`, id: 'stack-share-link' });
-  shareLink.textContent = `?${searchFor(answers)}`;
-  share.append(shareLink);
-  summary.append(actions, share);
+  const policy = el('p', { class: 'tool-policy' });
+  const policyLink = el('a', { href: catalog.links.aboutMoney });
+  policyLink.textContent = 'How rankings and affiliate links work';
+  policy.append(policyLink);
+  notices.append(policy);
 
   for (const need of match.needs) results.append(renderNeed(need));
 }
 
 export function mountFinder(catalog: FinderCatalog): void {
+  const panel = document.getElementById('finder-panel');
   const quiz = document.getElementById('finder-quiz');
   const resultsWrap = document.getElementById('finder-results');
-  const summary = document.getElementById('stack-summary');
-  const results = document.getElementById('stack-results');
+  const loading = document.getElementById('finder-loading');
   const progress = document.getElementById('finder-progress');
-  if (!quiz || !resultsWrap || !summary || !results || !progress) return;
+  const heading = document.getElementById('results-heading');
+  const subtitle = document.getElementById('results-subtitle');
+  const notices = document.getElementById('stack-notices');
+  const results = document.getElementById('stack-results');
+  const loaderStatus = document.getElementById('finder-status');
+  const resultsStatus = document.getElementById('results-status');
+  if (!panel || !quiz || !resultsWrap || !loading || !progress) return;
+  if (!heading || !subtitle || !notices || !results || !loaderStatus || !resultsStatus) return;
 
   const steps = [...quiz.querySelectorAll<HTMLElement>('.quiz-step')];
+  const loaderSteps = [...loading.querySelectorAll<HTMLElement>('[data-loader-step]')];
   let stepIndex = 0;
-  let showingResults = false;
+  let loadToken = 0;
+  let copyTimer = 0;
 
   const showStep = (index: number, focus: boolean): void => {
     stepIndex = index;
@@ -320,34 +357,72 @@ export function mountFinder(catalog: FinderCatalog): void {
     const label = progress.querySelector('.progress-label');
     if (label) label.textContent = `Question ${value} of ${steps.length}`;
     if (focus) {
-      const heading = steps[index]?.querySelector('h2');
-      if (heading instanceof HTMLElement) heading.focus();
+      const question = steps[index]?.querySelector('h2');
+      if (question instanceof HTMLElement) question.focus();
     }
   };
 
-  const showQuiz = (index: number): void => {
-    showingResults = false;
+  const showQuiz = (index: number, focus: boolean): void => {
+    document.documentElement.classList.remove('finder-shared');
+    loading.hidden = true;
     resultsWrap.hidden = true;
-    quiz.hidden = false;
-    progress.hidden = false;
-    showStep(index, index > 0);
+    panel.hidden = false;
+    showStep(index, focus);
   };
 
-  const showResults = (answers: FinderAnswers, updateHistory: boolean): void => {
+  const markLoader = (index: number): void => {
+    loaderSteps.forEach((step, i) => {
+      step.classList.toggle('is-done', i < index);
+      step.classList.toggle('is-active', i === index);
+    });
+    loaderStatus.textContent = `Finding your tools. ${LOADER_LABELS[index] ?? LOADER_LABELS[0]}.`;
+  };
+
+  const waitForLoader = (token: number, duration: number): Promise<void> => {
+    markLoader(0);
+    const slice = duration / LOADER_LABELS.length;
+    return new Promise((resolve) => {
+      let index = 0;
+      const next = (): void => {
+        if (token !== loadToken) {
+          resolve();
+          return;
+        }
+        index += 1;
+        if (index >= LOADER_LABELS.length) {
+          resolve();
+          return;
+        }
+        markLoader(index);
+        window.setTimeout(next, slice);
+      };
+      window.setTimeout(next, slice);
+    });
+  };
+
+  const present = async (answers: FinderAnswers, shared: boolean, updateHistory: boolean): Promise<void> => {
+    const token = ++loadToken;
     applyAnswers(quiz, answers);
-    renderResults(catalog, answers, summary, results);
-    showingResults = true;
-    quiz.hidden = true;
-    progress.hidden = true;
-    resultsWrap.hidden = false;
+    panel.hidden = true;
+    resultsWrap.hidden = true;
+    loading.hidden = false;
+    loaderSteps.forEach((step) => {
+      step.classList.remove('is-done', 'is-active');
+    });
     const search = `?${searchFor(answers)}`;
     if (updateHistory && window.location.search !== search) {
       window.history.pushState({ finder: 'results' }, '', search);
     }
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    resultsWrap.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-    const heading = resultsWrap.querySelector('h2');
-    if (heading instanceof HTMLElement) heading.focus();
+    const loaderHeading = loading.querySelector('h1');
+    if (loaderHeading instanceof HTMLElement) loaderHeading.focus();
+    await waitForLoader(token, loadDuration(shared));
+    if (token !== loadToken) return;
+    renderResults(catalog, answers, heading, subtitle, notices, results);
+    loading.hidden = true;
+    resultsWrap.hidden = false;
+    resultsStatus.textContent = `${heading.textContent ?? 'Your tools'}. Your tools are ready.`;
+    heading.focus();
+    heading.scrollIntoView({ block: 'start', behavior: prefersReduced() ? 'auto' : 'smooth' });
   };
 
   const go = (delta: number): void => {
@@ -355,7 +430,7 @@ export function mountFinder(catalog: FinderCatalog): void {
     if (next < 0) return;
     if (next >= steps.length) {
       const answers = collectAnswers(catalog, quiz);
-      if (answers) showResults(answers, true);
+      if (answers) void present(answers, false, true);
       return;
     }
     showStep(next, true);
@@ -395,33 +470,39 @@ export function mountFinder(catalog: FinderCatalog): void {
   resultsWrap.addEventListener('click', async (event) => {
     const target = event.target instanceof Element ? event.target : null;
     if (!target) return;
-    if (target.closest('#change-stack-answers')) {
-      if (window.location.search) window.history.pushState({ finder: 'quiz' }, '', window.location.pathname);
-      showQuiz(steps.length - 1);
+    if (target.closest('#retake-quiz')) {
+      loadToken += 1;
+      clearAnswers(quiz);
+      window.history.pushState({ finder: 'quiz' }, '', window.location.pathname);
+      showQuiz(0, true);
       return;
     }
-    const copy = target.closest('#copy-stack-link');
+    const copy = target.closest('#copy-share-link');
     if (!(copy instanceof HTMLButtonElement)) return;
-    const link = document.getElementById('stack-share-link');
-    const href = link instanceof HTMLAnchorElement ? link.href : window.location.href;
+    const href = window.location.href;
     try {
       await navigator.clipboard.writeText(href);
       copy.textContent = 'Link copied';
     } catch {
-      copy.textContent = 'Copy the link below';
+      copy.textContent = 'Copy the address from the bar';
     }
-    window.setTimeout(() => {
-      copy.textContent = 'Copy results link';
+    window.clearTimeout(copyTimer);
+    copyTimer = window.setTimeout(() => {
+      copy.textContent = 'Copy share link';
     }, 2000);
   });
 
   window.addEventListener('popstate', () => {
+    loadToken += 1;
     const fromUrl = readAnswers(catalog);
-    if (fromUrl) showResults(fromUrl, false);
-    else showQuiz(showingResults ? steps.length - 1 : stepIndex);
+    if (fromUrl) {
+      void present(fromUrl, true, false);
+      return;
+    }
+    showQuiz(stepIndex, true);
   });
 
   const fromUrl = readAnswers(catalog);
-  if (fromUrl) showResults(fromUrl, false);
-  else showQuiz(0);
+  if (fromUrl) void present(fromUrl, true, false);
+  else showQuiz(0, false);
 }

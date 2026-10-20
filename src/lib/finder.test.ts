@@ -3,7 +3,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { assessPrice, classifyPrice } from './priceFit';
-import { matchStack, type FinderCatalog } from './stackMatch';
+import { matchStack, stackHeadline, type FinderCatalog } from './stackMatch';
 import { newsMatchesTool, textHasName } from './toolNames';
 
 const root = process.cwd();
@@ -79,6 +79,14 @@ test('budget gate follows the stored price line', () => {
   assert.equal(lovable.hasFree, true);
   assert.equal(classifyPrice(lovable, 'free'), 'in');
   assert.equal(classifyPrice(lovable, 'under-25', 25), 'in');
+
+  const starter = summaries.filter((entry) => entry.includes('Starter free') && entry.includes('published app'));
+  assert.ok(starter.length >= 2);
+  for (const summary of starter) {
+    const assessed = assessPrice(summary);
+    assert.equal(assessed.hasFree, true, summary);
+    assert.equal(classifyPrice(assessed, 'free'), 'in', summary);
+  }
 });
 
 test('tool names match the feed and stack lines without merging different products', () => {
@@ -168,4 +176,15 @@ test('matching keeps editorial order and does not promote a sponsored tool', () 
   assert.equal(free.needs[0].inBudget.length, 0);
   assert.equal(free.needs[0].overBudget.length, 3);
   assert.equal(free.needs[0].roleFit, true);
+});
+
+test('results headline names the role and the budget', () => {
+  const headline = stackHeadline(
+    {
+      roles: [{ id: 'creator', label: 'Content creator / YouTuber', resultAs: 'a creator' }],
+      budgets: [{ id: 'free', label: 'Free only', resultPhrase: 'free budget' }],
+    },
+    { role: 'creator', budget: 'free' },
+  );
+  assert.equal(headline, 'Your tools as a creator, free budget');
 });

@@ -4,10 +4,14 @@ export interface FinderOption {
   id: string;
   label: string;
   detail?: string;
+  /** Phrase after "Your tools as", for example "a creator". */
+  resultAs?: string;
 }
 
 export interface FinderBudget extends FinderOption {
   maxMonthlyUsd?: number;
+  /** Phrase after the role, for example "free budget". */
+  resultPhrase?: string;
 }
 
 export interface CatalogPrice {
@@ -201,4 +205,15 @@ export function matchStack(catalog: FinderCatalog, answers: FinderAnswers): Matc
     budgetLabel: labelFor(catalog.budgets, answers.budget),
     goalLabels: catalog.goals.filter((goal) => selected.has(goal.id)).map((goal) => goal.label),
   };
+}
+
+/** Short results title. Role and budget phrases come from the persona map. */
+export function stackHeadline(
+  catalog: Pick<FinderCatalog, 'roles' | 'budgets'>,
+  answers: Pick<FinderAnswers, 'role' | 'budget'>,
+): string {
+  const role = catalog.roles.find((option) => option.id === answers.role);
+  const budget = catalog.budgets.find((option) => option.id === answers.budget);
+  const asPhrase = role?.resultAs ?? 'your role';
+  return budget?.resultPhrase ? `Your tools as ${asPhrase}, ${budget.resultPhrase}` : `Your tools as ${asPhrase}`;
 }
