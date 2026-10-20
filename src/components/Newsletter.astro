@@ -9,6 +9,12 @@
  * first load. The form stores source, medium, and campaign. It has no
  * utm_content field; the path is still on the iframe URL.
  */
+interface Props {
+  variant?: 'subtle';
+}
+const { variant } = Astro.props;
+const subtle = variant === 'subtle';
+
 const FORM_ID = 'd293e9f8-7032-40a9-b09b-958e9f366204';
 const BEEHIIV_SUBSCRIBE = 'https://archies-newsletter-77bb75.beehiiv.com/subscribe';
 
@@ -23,10 +29,19 @@ const utm = {
 const fallbackUrl = new URL(BEEHIIV_SUBSCRIBE);
 for (const [key, value] of Object.entries(utm)) fallbackUrl.searchParams.set(key, value);
 ---
-<div class="newsletter" id="newsletter">
+<div class:list={['newsletter', { subtle }]} id="newsletter">
   <div>
-    <h2>The weekly: tools worth your time</h2>
-    <p>Every Tuesday: the best new AI tools for vibe coders, creators and builders, one full stack of the week, and one price change or "avoid" alert. Five minutes, no hype.</p>
+    {subtle ? (
+      <>
+        <h2>Price changes, once a week</h2>
+        <p>The Tuesday note: one stack, and an alert when a price or an avoid on a tool we track changes.</p>
+      </>
+    ) : (
+      <>
+        <h2>The weekly: tools worth your time</h2>
+        <p>Every Tuesday: the best new AI tools for vibe coders, creators and builders, one full stack of the week, and one price change or "avoid" alert. Five minutes, no hype.</p>
+      </>
+    )}
   </div>
   <div class="newsletter-embed">
     <script is:inline define:vars={{ utm }}>

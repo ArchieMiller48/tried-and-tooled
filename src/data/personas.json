@@ -1,0 +1,100 @@
+{
+  "notes": "Tags each published use case for Find your stack. Tool names and prices are read from the content collections at build time — do not list them here. The role id \"other\" matches every tagged use case. Add a key when you publish a new use case; the build fails if a published use case is missing.",
+  "roles": [
+    { "id": "developer", "label": "Developer" },
+    { "id": "founder", "label": "Non-coder founder" },
+    { "id": "creator", "label": "Content creator / YouTuber" },
+    { "id": "marketer", "label": "Marketer" },
+    { "id": "designer", "label": "Designer" },
+    { "id": "small-business", "label": "Small business owner" },
+    { "id": "student", "label": "Student" },
+    { "id": "analyst", "label": "Analyst / finance pro" },
+    { "id": "other", "label": "Other" }
+  ],
+  "skills": [
+    {
+      "id": "none",
+      "label": "I don't write code",
+      "detail": "Prompting and no-code tools. Jobs tagged for people who write code get a note."
+    },
+    {
+      "id": "some",
+      "label": "I can follow along",
+      "detail": "You've edited code, or used Git with some help."
+    },
+    {
+      "id": "comfortable",
+      "label": "I'm comfortable coding",
+      "detail": "You use an editor, Git and pull requests."
+    }
+  ],
+  "goals": [
+    { "id": "build-app", "label": "Build an app or MVP" },
+    { "id": "code-review", "label": "Code review" },
+    { "id": "video", "label": "Video" },
+    { "id": "images", "label": "Images and thumbnails" },
+    { "id": "music-audio", "label": "Music and audio" },
+    { "id": "automate", "label": "Automate admin" },
+    { "id": "writing", "label": "Writing" }
+  ],
+  "budgets": [
+    {
+      "id": "free",
+      "label": "Free only",
+      "detail": "Tools whose stored price line includes a free plan, a $0 price, or a self-hosted community edition."
+    },
+    {
+      "id": "under-25",
+      "label": "Under $25/mo",
+      "maxMonthlyUsd": 25,
+      "detail": "Free options, plus a lowest listed monthly price of $25 or less. Annual prices count as the monthly equivalent written in the price line. Tools above that still appear, listed separately."
+    },
+    {
+      "id": "any",
+      "label": "Any budget",
+      "detail": "Every tool we currently track for the jobs you pick."
+    }
+  ],
+  "useCases": {
+    "vibe-code-an-mvp": {
+      "roles": ["developer", "founder", "student", "small-business"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["build-app"]
+    },
+    "ai-code-review": {
+      "roles": ["developer", "founder", "student"],
+      "skills": ["some", "comfortable"],
+      "goals": ["code-review"]
+    },
+    "ai-video-generation": {
+      "roles": ["creator", "marketer", "designer", "founder", "small-business", "student"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["video"]
+    },
+    "clip-long-videos-into-shorts": {
+      "roles": ["creator", "marketer", "founder", "small-business", "student"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["video"]
+    },
+    "ai-thumbnails-and-images": {
+      "roles": ["creator", "marketer", "designer", "founder", "small-business", "student"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["images"]
+    },
+    "ai-music-for-videos": {
+      "roles": ["creator", "marketer", "designer", "founder", "small-business", "student"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["music-audio"]
+    },
+    "ai-voiceover": {
+      "roles": ["creator", "marketer", "founder", "small-business", "student"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["music-audio"]
+    },
+    "automate-small-business-admin": {
+      "roles": ["founder", "small-business", "marketer", "analyst", "student"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["automate"]
+    }
+  }
+}

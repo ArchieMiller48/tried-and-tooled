@@ -18,9 +18,19 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
       <h1>Tested AI stacks for<br />vibe coders, creators and builders.</h1>
       <p class="lead">Stop scrolling 50,000-tool directories. Pick a job, like shipping an MVP, clipping shorts or voicing a video, and get a top pick, a budget pick, one to avoid and the full stack. Every price links to its source and carries the date we checked it.</p>
       <div class="cta-row">
-        <a class="btn" href={withBase('/use-cases/')}>Browse use cases</a>
+        <a class="btn" href={withBase('/find-your-stack/')}>Find your stack</a>
+        <a class="btn ghost" href={withBase('/use-cases/')}>Browse use cases</a>
         <a class="btn ghost" href={withBase('/new/')}>What's new this week</a>
       </div>
+    </section>
+
+    <section class="finder-banner" aria-labelledby="finder-cta-title">
+      <div>
+        <span class="eyebrow">Start here</span>
+        <h2 id="finder-cta-title">Find your stack</h2>
+        <p>Four clicks: your role, how you feel about code, the jobs you care about and your budget. We'll line up the tools this site already tracks, with sourced prices and the same pending-test labels.</p>
+      </div>
+      <a class="btn" href={withBase('/find-your-stack/')}>Find your stack</a>
     </section>
 
     <section>
