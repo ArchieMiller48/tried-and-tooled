@@ -1,3 +1,6 @@
+# llms.txt: https://archiemiller48.github.io/tried-and-tooled/llms.txt
+# llms-full.txt: https://archiemiller48.github.io/tried-and-tooled/llms-full.txt
+
 User-agent: *
 Allow: /
 

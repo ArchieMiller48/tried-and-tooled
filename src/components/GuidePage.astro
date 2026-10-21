@@ -3,7 +3,9 @@ import Base from '../layouts/Base.astro';
 import Newsletter from './Newsletter.astro';
 import { getEntry } from 'astro:content';
 import { withBase } from '../lib/withBase';
-import { formatDate } from '../lib/formatDate';
+import { formatDate, isoDate } from '../lib/formatDate';
+import { clipMetaKeepingEnd } from '../lib/metaText';
+import { buildGuideJsonLd } from '../lib/schema';
 
 interface Faq { question: string; answer: string }
 interface Verdict { situation: string; guidance: string }
@@ -25,20 +27,32 @@ const fmt = formatDate;
 const statusLabel = page.testStatus === 'pending'
   ? 'Pending hands-on test'
   : `Tested ${page.lastTested ? fmt(page.lastTested) : ''}`.trim();
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: page.faqs.map((faq) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer,
-    },
-  })),
-};
+const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const sectionPath = Astro.url.pathname.replace(/[^/]+\/$/, '');
+const sectionUrl = new URL(sectionPath, Astro.site).href;
+const sectionName = page.eyebrow === 'Best' ? 'Shortlists' : page.eyebrow === 'Compare' ? 'Comparisons' : page.eyebrow;
+const descriptionEnding = page.testStatus === 'pending'
+  ? `Facts checked ${fmt(page.lastVerified)}. Not a hands-on test.`
+  : page.lastTested
+    ? `Facts checked ${fmt(page.lastVerified)}. Hands-on test ${fmt(page.lastTested)}.`
+    : `Facts checked ${fmt(page.lastVerified)}.`;
+const description = clipMetaKeepingEnd(page.summary, descriptionEnding);
+const jsonLd = buildGuideJsonLd({
+  title: page.title,
+  description,
+  pageUrl,
+  siteUrl,
+  dateModified: isoDate(page.lastVerified),
+  crumbs: [
+    { name: 'Home', url: siteUrl },
+    { name: sectionName, url: sectionUrl },
+    { name: page.title, url: pageUrl },
+  ],
+  faqs: page.faqs,
+});
 ---
-<Base title={page.title} description={page.summary} jsonLd={jsonLd}>
+<Base title={page.title} description={description} jsonLd={jsonLd}>
   <article class="wrap narrow" data-pagefind-body>
     <section class="hero" style="padding-bottom:8px">
       <span class="eyebrow">{page.eyebrow}</span>
@@ -46,7 +60,7 @@ const jsonLd = {
       <p class="lead">{page.summary}</p>
       <div class="meta">
         <span class={`tag ${page.testStatus}`}>{statusLabel}</span>
-        <span class="tag">Facts last verified {fmt(page.lastVerified)}</span>
+        <span class="tag">Facts last verified <time datetime={isoDate(page.lastVerified)}>{fmt(page.lastVerified)}</time></span>
       </div>
     </section>
 
@@ -71,7 +85,7 @@ const jsonLd = {
 
     <p class="back">Part of the use case <a href={withBase(`/use-cases/${parent.id}/`)}>{parent.data.title}</a>.</p>
 
-    <section>
+    <section id="faq">
       <h2>FAQ</h2>
       <ul class="faq">
         {page.faqs.map((faq) => (

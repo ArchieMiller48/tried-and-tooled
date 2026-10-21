@@ -1,19 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import GuideIndex from '../../components/GuideIndex.astro';
-import { hasGuideEntries } from '../../lib/guides';
+import { guideIndexEntries } from '../../lib/guides';
 
-const entries = hasGuideEntries('alternatives')
-  ? (await getCollection('alternatives', ({ data }) => !data.draft))
-      .sort((a, b) => a.data.title.localeCompare(b.data.title))
-      .map((entry) => ({
-        href: `/alternatives/${entry.id}/`,
-        kind: 'Alternatives',
-        title: entry.data.title,
-        summary: entry.data.summary,
-        testStatus: entry.data.testStatus,
-      }))
-  : [];
+const entries = await guideIndexEntries('alternatives');
 ---
 <GuideIndex
   title="Alternatives"

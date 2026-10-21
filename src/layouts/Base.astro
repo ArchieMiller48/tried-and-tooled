@@ -1,14 +1,18 @@
 ---
 import '../styles/global.css';
 import { withBase } from '../lib/withBase';
+import { clipMeta } from '../lib/metaText';
 import listedOn from '../data/listed-on.json';
 interface Props { title?: string; description?: string; jsonLd?: unknown; }
 interface Listing { name: string; url: string; badgeImg?: string; }
 const { title, description = 'Tested AI stacks for vibe coders, creators and builders. Which AI tool to use for which job, with verified pricing and honest test notes.', jsonLd } = Astro.props;
+const metaDescription = clipMeta(description);
 const jsonLdText = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : '';
 const fullTitle = title ? `${title} · Tried & Tooled` : 'Tried & Tooled · Tested AI stacks for vibe coders, creators and builders';
 const path = Astro.url.pathname;
-const pageUrl = new URL(path, Astro.site);
+const notFound = /\/404\/?$/.test(path);
+const pageUrl = notFound ? new URL(`${import.meta.env.BASE_URL}404.html`, Astro.site) : new URL(path, Astro.site);
+const robots = notFound ? 'noindex, max-image-preview:large' : 'max-image-preview:large';
 const ogImage = new URL(`${import.meta.env.BASE_URL}brand/og.png`, Astro.site);
 const listings = (listedOn as Listing[]).filter((entry) => entry.name && entry.url);
 const nav = [
@@ -33,9 +37,10 @@ const isCurrent = (href: string) => {
     <meta name="google-site-verification" content="uEpiyRTdYjuB-4--vrQe16Rws8kjLlXPB91qYV6Vlwg" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <title>{fullTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={metaDescription} />
+    <meta name="robots" content={robots} />
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
@@ -60,7 +65,7 @@ const isCurrent = (href: string) => {
     <footer class="site">
       <div class="wrap">
         <div>© {new Date().getFullYear()} Tried &amp; Tooled. Rankings are never for sale. Some links may be affiliate links; <a href={withBase('/about/#money')}>see how we make money</a>.</div>
-        <div><a href={withBase('/about/')}>Editorial policy</a> · <a href={withBase('/submit/')}>Submit a tool</a></div>
+        <div><a href={withBase('/about/')}>Editorial policy</a> · <a href={withBase('/submit/')}>Submit a tool</a> · <a href={withBase('/llms.txt')}>llms.txt</a></div>
         {listings.length > 0 && (
           <div class="listed-on">
             <span class="label">Listed on</span>

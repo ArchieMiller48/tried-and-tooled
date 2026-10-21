@@ -3,6 +3,10 @@ import Base from '../../layouts/Base.astro';
 import Newsletter from '../../components/Newsletter.astro';
 import GuideCard from '../../components/GuideCard.astro';
 import { listGuides } from '../../lib/guides';
+import { formatDate, isoDate } from '../../lib/formatDate';
+import { buildUseCaseJsonLd } from '../../lib/schema';
+import { buildFaqs, shortAnswer, siblingUseCases, useCaseMeta } from '../../lib/useCaseFacts';
+import { withBase } from '../../lib/withBase';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -13,49 +17,94 @@ const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
 const related = (await listGuides()).filter((guide) => guide.parent === entry.id);
-const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const siblings = siblingUseCases(entry, await getCollection('use-cases', ({ data }) => !data.draft));
+const meta = useCaseMeta(entry);
+const faqs = buildFaqs(entry);
+const answer = shortAnswer(entry);
+const verified = isoDate(d.lastVerified);
+const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const jsonLd = buildUseCaseJsonLd({
+  entry,
+  pageUrl,
+  siteUrl,
+  description: meta.description,
+  dateModified: verified,
+  crumbs: [
+    { name: 'Home', url: siteUrl },
+    { name: 'Use cases', url: new URL(withBase('/use-cases/'), Astro.site).href },
+    { name: d.title, url: pageUrl },
+  ],
+  faqs,
+});
 // Affiliate placeholder: use affiliateUrl if approved, otherwise the vendor URL. Never affects ranking.
 const go = (p: { url: string; affiliateUrl: string | null }) => p.affiliateUrl ?? p.url;
 ---
-<Base title={d.title} description={d.summary}>
+<Base title={meta.title} description={meta.description} jsonLd={jsonLd}>
   <article class="wrap narrow" data-pagefind-body>
     <section class="hero" style="padding-bottom:8px">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href={withBase('/')}>Home</a>
+        <span aria-hidden="true">/</span>
+        <a href={withBase('/use-cases/')}>Use cases</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{d.title}</span>
+      </nav>
       <span class="eyebrow">{d.category}</span>
       <h1 style="font-size:clamp(2rem,4vw,2.8rem)">{d.title}</h1>
       <p class="lead">{d.summary}</p>
       <div class="meta">
-        <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : `Tested ${d.lastTested ? fmt(d.lastTested) : ''}`}</span>
-        <span class="tag">Facts last verified {fmt(d.lastVerified)}</span>
+        <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : `Tested ${d.lastTested ? formatDate(d.lastTested) : ''}`}</span>
+        <span class="tag">Last updated <time datetime={verified}>{formatDate(d.lastVerified)}</time></span>
+        <span class="tag">Facts last verified <time datetime={verified}>{formatDate(d.lastVerified)}</time></span>
         {d.audience.map((a) => <span class="tag">{a.replace('-', ' ')}</span>)}
       </div>
     </section>
 
+    <section class="answer" aria-labelledby="short-answer">
+      <h2 id="short-answer">Short answer</h2>
+      <p>{answer.lead} {answer.pricesChecked}</p>
+      <ul class="answer-prices">
+        {answer.prices.map((price) => (
+          <li>
+            <strong>{price.name}:</strong> {price.summary}{' '}
+            <a href={price.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, pricing checked <time datetime={isoDate(price.checked)}>{formatDate(price.checked)}</time>
+          </li>
+        ))}
+      </ul>
+      <p class="answer-avoid"><strong>Avoid:</strong> {answer.avoidName}. {answer.avoidReason}{answer.avoidSourceUrl && <> <a href={answer.avoidSourceUrl} rel="nofollow noopener" target="_blank">source</a></>}</p>
+      <p>{answer.statusNote}</p>
+    </section>
+
     {d.testStatus === 'pending' && (
-      <p class="notice"><strong>Not hands-on tested yet.</strong> The picks below are based on vendor documentation and pricing we verified on {fmt(d.lastVerified)}. Test results will appear here once we've run our standard task. We don't publish made-up test results.</p>
+      <p class="notice"><strong>Not hands-on tested yet.</strong> The picks below are based on vendor documentation and pricing we verified on {formatDate(d.lastVerified)}. Test results will appear here once we've run our standard task. We don't publish made-up test results.</p>
     )}
 
-    <div class="picks">
-      <div class="card pick">
-        <div class="label">Top pick</div>
-        <h3>{d.topPick.name}</h3>
-        <p>{d.topPick.why}</p>
-        <div class="price">{d.topPick.pricing.summary}<br /><a href={d.topPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, checked {fmt(d.topPick.pricing.checked)}</div>
-        <p style="margin-top:12px"><a class="btn" href={go(d.topPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.topPick.name}</a></p>
+    <section>
+      <h2>The picks</h2>
+      <div class="picks">
+        <div class="card pick">
+          <div class="label">Top pick</div>
+          <h3>{d.topPick.name}</h3>
+          <p>{d.topPick.why}</p>
+          <div class="price">{d.topPick.pricing.summary}<br /><a href={d.topPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, checked {formatDate(d.topPick.pricing.checked)}</div>
+          <p style="margin-top:12px"><a class="btn" href={go(d.topPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.topPick.name}</a></p>
+        </div>
+        <div class="card pick budget">
+          <div class="label">Budget pick</div>
+          <h3>{d.budgetPick.name}</h3>
+          <p>{d.budgetPick.why}</p>
+          <div class="price">{d.budgetPick.pricing.summary}<br /><a href={d.budgetPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, checked {formatDate(d.budgetPick.pricing.checked)}</div>
+          <p style="margin-top:12px"><a class="btn ghost" href={go(d.budgetPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.budgetPick.name}</a></p>
+        </div>
+        <div class="card pick avoid">
+          <div class="label">Avoid for this job</div>
+          <h3>{d.avoid.name}</h3>
+          <p>{d.avoid.reason}</p>
+          {d.avoid.sourceUrl && <p><a href={d.avoid.sourceUrl} rel="nofollow noopener" target="_blank">source</a></p>}
+        </div>
       </div>
-      <div class="card pick budget">
-        <div class="label">Budget pick</div>
-        <h3>{d.budgetPick.name}</h3>
-        <p>{d.budgetPick.why}</p>
-        <div class="price">{d.budgetPick.pricing.summary}<br /><a href={d.budgetPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, checked {fmt(d.budgetPick.pricing.checked)}</div>
-        <p style="margin-top:12px"><a class="btn ghost" href={go(d.budgetPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.budgetPick.name}</a></p>
-      </div>
-      <div class="card pick avoid">
-        <div class="label">Avoid for this job</div>
-        <h3>{d.avoid.name}</h3>
-        <p>{d.avoid.reason}</p>
-        {d.avoid.sourceUrl && <p><a href={d.avoid.sourceUrl} rel="nofollow noopener" target="_blank">source</a></p>}
-      </div>
-    </div>
+    </section>
 
     <section style="padding-top:8px">
       <h2>The full stack</h2>
@@ -71,7 +120,7 @@ const go = (p: { url: string; affiliateUrl: string | null }) => p.affiliateUrl ?
           <thead><tr><th>Tool</th><th>Why it's not the pick</th><th>Pricing (verified)</th></tr></thead>
           <tbody>
             {d.alsoConsidered.map((t) => (
-              <tr><td><a href={t.url} rel="nofollow noopener" target="_blank">{t.name}</a></td><td>{t.note}</td><td>{t.pricing.summary} (<a href={t.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, {fmt(t.pricing.checked)})</td></tr>
+              <tr><td><a href={t.url} rel="nofollow noopener" target="_blank">{t.name}</a></td><td>{t.note}</td><td>{t.pricing.summary} (<a href={t.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, {formatDate(t.pricing.checked)})</td></tr>
             ))}
           </tbody>
         </table>
@@ -86,13 +135,45 @@ const go = (p: { url: string; affiliateUrl: string | null }) => p.affiliateUrl ?
 
     <section class="prose"><Content /></section>
 
-    {related.length > 0 && (
-      <section>
-        <h2>Comparisons and shortlists</h2>
-        <p>Closer reads for this job. Same rules: sourced prices, and a pending label until the standard task has been run.</p>
-        <div class="grid">{related.map((guide) => <GuideCard {...guide} />)}</div>
-      </section>
-    )}
+    <section>
+      <h2>Comparisons and shortlists</h2>
+      {related.length > 0 ? (
+        <>
+          <p>Closer reads for this job. Same rules: sourced prices, and a pending label until the standard task has been run. Browse <a href={withBase('/compare/')}>all comparisons</a> and <a href={withBase('/best/')}>all shortlists</a>.</p>
+          <div class="grid">{related.map((guide) => <GuideCard {...guide} />)}</div>
+        </>
+      ) : (
+        <p>No comparison or shortlist is published for this job yet. Browse <a href={withBase('/compare/')}>all comparisons</a> and <a href={withBase('/best/')}>all shortlists</a>.</p>
+      )}
+    </section>
+
+    <section id="related-use-cases">
+      <h2>Related use cases</h2>
+      <ul class="sibling-list">
+        {siblings.map((item) => (
+          <li><a href={withBase(`/use-cases/${item.id}/`)}>{item.data.title}</a> — {item.data.summary}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2>FAQ</h2>
+      <ul class="faq">
+        {faqs.map((faq) => (
+          <li>
+            <h3>{faq.question}</h3>
+            <p>
+              {faq.parts.map((part) => (
+                <>
+                  {part.text}
+                  {part.link && <> <a href={part.link.href} rel="nofollow noopener" target="_blank">{part.link.label}</a></>}
+                </>
+              ))}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
   </article>
   <div class="wrap"><section><Newsletter /></section></div>
 </Base>
