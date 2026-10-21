@@ -24,9 +24,11 @@ const linkScript = `(function () {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Find your tool · Tried &amp; Tooled</title>
+    <title>Opening Find your tool · Tried &amp; Tooled</title>
+    <meta name="description" content="This old address opens Find your tool. The quiz itself lives on that page." />
+    <meta property="og:title" content="Opening Find your tool · Tried & Tooled" />
     <link rel="canonical" href={canonical} />
-    <meta name="robots" content="noindex" />
+    <meta name="robots" content="noindex, max-image-preview:large" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <noscript>
       <meta http-equiv="refresh" content={`0;url=${target}`} />

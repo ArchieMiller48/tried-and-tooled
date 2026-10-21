@@ -7,3 +7,8 @@ export function formatDate(dt: Date): string {
     timeZone: 'UTC',
   });
 }
+
+/** ISO calendar date in UTC, matching {@link formatDate}'s day. */
+export function isoDate(dt: Date): string {
+  return dt.toLocaleDateString('en-CA', { timeZone: 'UTC' });
+}

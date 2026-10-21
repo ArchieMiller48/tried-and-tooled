@@ -1,16 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import GuideIndex from '../../components/GuideIndex.astro';
+import { guideIndexEntries } from '../../lib/guides';
 
-const entries = (await getCollection('best', ({ data }) => !data.draft))
-  .sort((a, b) => a.data.title.localeCompare(b.data.title))
-  .map((entry) => ({
-    href: `/best/${entry.id}/`,
-    kind: 'Best',
-    title: entry.data.title,
-    summary: entry.data.summary,
-    testStatus: entry.data.testStatus,
-  }));
+const entries = await guideIndexEntries('best');
 ---
 <GuideIndex
   title="Shortlists"

@@ -8,6 +8,8 @@ interface Entry {
   title: string;
   summary: string;
   testStatus: 'pending' | 'tested';
+  parentHref?: string;
+  parentTitle?: string;
 }
 interface Props {
   title: string;
@@ -29,7 +31,14 @@ const { title, description, eyebrow, intro, empty, entries } = Astro.props;
     {entries.length > 0 ? (
       <section>
         <div class="grid">
-          {entries.map((entry) => <GuideCard {...entry} />)}
+          {entries.map((entry) => (
+            <div>
+              <GuideCard href={entry.href} kind={entry.kind} title={entry.title} summary={entry.summary} testStatus={entry.testStatus} />
+              {entry.parentHref && entry.parentTitle && (
+                <p class="guide-parent">Part of <a href={withBase(entry.parentHref)}>{entry.parentTitle}</a></p>
+              )}
+            </div>
+          ))}
         </div>
       </section>
     ) : (
