@@ -1,13 +1,22 @@
 ---
 /**
- * Beehiiv inline embed (form builder v3).
- * Snippet: https://subscribe-forms.beehiiv.com/v3/loader.js
- *   data-beehiiv-form="<uuid>"
- * The loader builds an iframe and resizes it from the form. It copies
- * utm_source / utm_medium / utm_campaign from the parent page, and skips
- * utm_content. This page writes all four onto the iframe URL before the
- * first load. The form stores source, medium, and campaign. It has no
- * utm_content field; the path is still on the iframe URL.
+ * Inline signup for the Beehiiv publication.
+ *
+ * The previous card loaded subscribe-forms.beehiiv.com/v3/loader.js, which
+ * injects a cross-origin iframe. That hosted form is a max-content document
+ * with 80px of padding and a long subtitle. The card clipped it to 560px
+ * with overflow hidden, so on a narrow screen the email field sat outside
+ * the visible box. When the loader is blocked (common for newsletter
+ * scripts), nothing is injected and the only control left is the small
+ * fallback link.
+ *
+ * This form posts straight to the publication subscribe page's no-JS
+ * endpoint, the same fields as https://archies-newsletter-77bb75.beehiiv.com/subscribe
+ * when JavaScript has not rewritten the form:
+ *   POST /create
+ *   email, sent_from_orchid, double_opt, auto_login_enabled,
+ *   signup_flow_id, automation_ids, and the success/error messages.
+ * No API key. Beehiiv responds in the browser with its confirmation page.
  */
 interface Props {
   variant?: 'subtle';
@@ -15,7 +24,7 @@ interface Props {
 const { variant } = Astro.props;
 const subtle = variant === 'subtle';
 
-const FORM_ID = 'd293e9f8-7032-40a9-b09b-958e9f366204';
+const BEEHIIV_CREATE = 'https://archies-newsletter-77bb75.beehiiv.com/create';
 const BEEHIIV_SUBSCRIBE = 'https://archies-newsletter-77bb75.beehiiv.com/subscribe';
 
 const pagePath = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
@@ -26,8 +35,12 @@ const utm = {
   utm_content: pagePath,
 };
 
+const action = new URL(BEEHIIV_CREATE);
 const fallbackUrl = new URL(BEEHIIV_SUBSCRIBE);
-for (const [key, value] of Object.entries(utm)) fallbackUrl.searchParams.set(key, value);
+for (const [key, value] of Object.entries(utm)) {
+  action.searchParams.set(key, value);
+  fallbackUrl.searchParams.set(key, value);
+}
 ---
 <div class:list={['newsletter', { subtle }]} id="newsletter">
   <div>
@@ -43,64 +56,19 @@ for (const [key, value] of Object.entries(utm)) fallbackUrl.searchParams.set(key
       </>
     )}
   </div>
-  <div class="newsletter-embed">
-    <script is:inline define:vars={{ utm }}>
-      (function () {
-        var patched = false;
-        try {
-          var desc = Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype, 'src');
-          if (desc && desc.set && desc.configurable) {
-            var orig = desc.set;
-            Object.defineProperty(HTMLIFrameElement.prototype, 'src', {
-              configurable: true,
-              enumerable: desc.enumerable,
-              get: desc.get,
-              set: function (value) {
-                try {
-                  var url = new URL(value, window.location.href);
-                  if (url.hostname === 'subscribe-forms.beehiiv.com') {
-                    Object.keys(utm).forEach(function (key) {
-                      url.searchParams.set(key, utm[key]);
-                    });
-                    value = url.toString();
-                  }
-                } catch (err) {}
-                return orig.call(this, value);
-              }
-            });
-            patched = true;
-          }
-        } catch (err) {}
-
-        var root = document.currentScript && document.currentScript.parentNode;
-        if (!root) return;
-        var observer = new MutationObserver(function () {
-          var iframe = root.querySelector('iframe');
-          if (!iframe || iframe.dataset.ttReady === '1') return;
-          iframe.title = 'Subscribe to Tried & Tooled';
-          iframe.setAttribute('scrolling', 'no');
-          if (!patched) {
-            try {
-              var url = new URL(iframe.src, window.location.href);
-              var changed = false;
-              Object.keys(utm).forEach(function (key) {
-                if (url.searchParams.get(key) !== utm[key]) {
-                  url.searchParams.set(key, utm[key]);
-                  changed = true;
-                }
-              });
-              if (changed) {
-                iframe.src = url.toString();
-                return;
-              }
-            } catch (err) {}
-          }
-          iframe.dataset.ttReady = '1';
-        });
-        observer.observe(root, { childList: true, subtree: true });
-      })();
-    </script>
-    <script is:inline async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form={FORM_ID}></script>
-  </div>
-  <small>Form not showing? <a href={fallbackUrl.href}>Subscribe on Beehiiv</a>.</small>
+  <form class="newsletter-form" method="post" action={action.href} accept-charset="UTF-8">
+    <input type="hidden" name="subscribe_error_message" value="Oops, something went wrong." />
+    <input type="hidden" name="subscribe_success_message" value="Subscribed!" />
+    <input type="hidden" name="sent_from_orchid" value="true" />
+    <input type="hidden" name="signup_flow_id" value="" />
+    <input type="hidden" name="automation_ids" value="" />
+    <input type="hidden" name="double_opt" value="false" />
+    <input type="hidden" name="auto_login_enabled" value="true" />
+    <label>
+      <span class="sr-only">Email address</span>
+      <input type="email" name="email" required autocomplete="email" placeholder="you@email.com" inputmode="email" />
+    </label>
+    <button type="submit">Subscribe free</button>
+  </form>
+  <small>Or <a href={fallbackUrl.href}>subscribe on Beehiiv</a>.</small>
 </div>
