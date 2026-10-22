@@ -18,6 +18,8 @@
  *   signup_flow_id, automation_ids, and the success/error messages.
  * No API key. Beehiiv responds in the browser with its confirmation page.
  */
+import { withBase } from '../lib/withBase';
+
 interface Props {
   variant?: 'subtle';
 }
@@ -28,6 +30,7 @@ const BEEHIIV_CREATE = 'https://archies-newsletter-77bb75.beehiiv.com/create';
 const BEEHIIV_SUBSCRIBE = 'https://archies-newsletter-77bb75.beehiiv.com/subscribe';
 
 const pagePath = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
+const onArchive = /^\/newsletter\/?$/.test(pagePath);
 const utm = {
   utm_source: 'tried-and-tooled',
   utm_medium: 'site',
@@ -70,5 +73,8 @@ for (const [key, value] of Object.entries(utm)) {
     </label>
     <button type="submit">Subscribe free</button>
   </form>
-  <small>Or <a href={fallbackUrl.href}>subscribe on Beehiiv</a>.</small>
+  <small>
+    Or <a href={fallbackUrl.href}>subscribe on Beehiiv</a>.
+    {!onArchive && <> <a href={withBase('/newsletter/')}>Read past issues</a>.</>}
+  </small>
 </div>

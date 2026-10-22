@@ -86,6 +86,20 @@ table { width: 100%; border-collapse: collapse; font-size: .95rem; }
 th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .prose h2 { margin-top: 32px; }
 .prose p, .prose li { color: #292524; }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
+.prose .btn { margin: 4px 0; }
+.callout {
+  background: #f5f5f4;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin: 16px 0;
+}
+.callout > :first-child { margin-top: 0; }
+.callout > :last-child { margin-bottom: 0; }
+.callout li p { margin: 0.15em 0; }
+.issue-list h2 { font-size: 1.2rem; margin: 8px 0 4px; }
+.issue-list .feed-item p { margin: 4px 0 0; color: var(--muted); }
 form.stacked { display: grid; gap: 14px; }
 form.stacked label { display: grid; gap: 6px; font-weight: 600; font-size: .95rem; }
 form.stacked input, form.stacked textarea, form.stacked select { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }

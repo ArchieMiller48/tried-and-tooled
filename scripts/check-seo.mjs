@@ -171,6 +171,40 @@ for (const file of htmlFiles) {
     if (apps.length < 2) fail(`${path} ItemList has ${apps.length} tools`);
   }
 
+  if (/\/newsletter\/[^/]+\/$/.test(path)) {
+    const raw = blocks.map((block) => block[1]).join('\n');
+    if (!raw.includes('BlogPosting')) fail(`${path} JSON-LD is missing BlogPosting`);
+    if (!html.includes('Read this issue on Beehiiv')) fail(`${path} is missing the Beehiiv link`);
+    if (levels[0] !== 1 || levels.filter((level) => level === 1).length !== 1) {
+      fail(`${path} heading outline does not start with a single h1`);
+    }
+    for (let i = 1; i < levels.length; i += 1) {
+      if (levels[i] > levels[i - 1] + 1) fail(`${path} skips from h${levels[i - 1]} to h${levels[i]}`);
+    }
+    let article;
+    try {
+      const graph = blocks.flatMap((block) => {
+        const data = JSON.parse(block[1]);
+        return data['@graph'] ?? [data];
+      });
+      article = graph.find((node) => node['@type'] === 'BlogPosting');
+    } catch {
+      article = undefined;
+    }
+    if (!article?.datePublished) fail(`${path} BlogPosting is missing datePublished`);
+    else if (!html.includes(`datetime="${article.datePublished}"`)) {
+      fail(`${path} datePublished ${article.datePublished} is not visible`);
+    }
+    if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
+  }
+
+  if (path === `${base}/newsletter/`) {
+    if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
+    if (!html.includes(`${base}/newsletter/issue-1/`) || !html.includes(`${base}/newsletter/issue-2/`)) {
+      fail(`${path} does not link to both issues`);
+    }
+  }
+
   if (path === `${base}/` || path === `${base}`) {
     const raw = blocks.map((block) => block[1]).join('\n');
     if (!raw.includes('"@type":"WebSite"') && !raw.includes('"@type": "WebSite"')) fail('Home JSON-LD is missing WebSite');
@@ -211,8 +245,12 @@ if (existsSync(llms) && existsSync(full)) {
     if (!index.includes(path)) fail(`llms.txt is missing ${path}`);
     if (!expanded.includes(path)) fail(`llms-full.txt is missing ${path}`);
   }
-  for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/']) {
+  for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
     if (!index.includes(`${base}${needle}`)) fail(`llms.txt is missing ${needle}`);
+  }
+  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`]) {
+    if (!index.includes(issuePath)) fail(`llms.txt is missing ${issuePath}`);
+    if (!expanded.includes(issuePath)) fail(`llms-full.txt is missing ${issuePath}`);
   }
   if (!expanded.includes('Source:') || !expanded.includes('Checked:')) fail('llms-full.txt is missing sourced prices');
   if (!/Pending hands-on test/.test(expanded)) fail('llms-full.txt dropped the pending-test label');
@@ -223,6 +261,16 @@ if (!robots.includes(`${origin}${base}/llms.txt`)) fail('robots.txt does not men
 if (!robots.includes(`${origin}${base}/llms-full.txt`)) fail('robots.txt does not mention llms-full.txt');
 const home = readFileSync(join(dist, 'index.html'), 'utf8');
 if (!home.includes(`${base}/llms.txt`)) fail('The footer does not link to llms.txt');
+if (!home.includes(`${base}/newsletter/`)) fail('The site does not link to the newsletter archive');
+
+const sitemap = walk(dist)
+  .filter((file) => file.endsWith('.xml') && file.includes('sitemap'))
+  .map((file) => readFileSync(file, 'utf8'))
+  .join('\n');
+for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`]) {
+  if (!existsSync(pathToFile(page))) fail(`built page is missing ${page}`);
+  if (!sitemap.includes(`${origin}${page}`)) fail(`sitemap is missing ${page}`);
+}
 
 if (errors.length > 0) {
   console.error(errors.join('\n'));
