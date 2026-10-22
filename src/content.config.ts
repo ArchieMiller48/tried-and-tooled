@@ -166,6 +166,24 @@ const pricingPages = defineCollection({
   }),
 });
 
+/**
+ * One file per weekly issue. Body is the issue itself (HTML inside Markdown).
+ * Beehiiv-only nodes are converted before they land here: a callout, a button
+ * link, a horizontal rule, and no emoji. Wording, prices and links stay as sent.
+ */
+const newsletter = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/newsletter' }),
+  schema: z.object({
+    issue: z.number().int().positive(),
+    title: z.string(),
+    subtitle: z.string().optional(),
+    date: z.coerce.date(),
+    beehiivUrl: z.string().url(),
+    summary: z.string(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   'use-cases': useCases,
   news,
@@ -173,4 +191,5 @@ export const collections = {
   best,
   alternatives,
   pricing: pricingPages,
+  newsletter,
 };

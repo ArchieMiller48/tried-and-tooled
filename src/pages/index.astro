@@ -12,12 +12,13 @@ const useCases = (await getCollection('use-cases', ({ data }) => !data.draft)).s
 const guides = await listGuides();
 const allNews = (await getCollection('news')).sort((a, b) => b.data.spotted.valueOf() - a.data.spotted.valueOf());
 const news = allNews.slice(0, 4);
+const newsletterDates = (await getCollection('newsletter', ({ data }) => !data.draft)).map((entry) => entry.data.date);
 const guideDates: Date[] = [];
 for (const folder of ['compare', 'best', 'alternatives', 'pricing'] as const) {
   if (!hasGuideEntries(folder)) continue;
   for (const entry of await getCollection(folder, ({ data }) => !data.draft)) guideDates.push(entry.data.lastVerified);
 }
-const latest = [...useCases.map((entry) => entry.data.lastVerified), ...allNews.map((entry) => entry.data.spotted), ...guideDates]
+const latest = [...useCases.map((entry) => entry.data.lastVerified), ...allNews.map((entry) => entry.data.spotted), ...guideDates, ...newsletterDates]
   .reduce((max, date) => (date > max ? date : max));
 const description = 'Job-first AI tool picks for vibe coders, creators and builders, with a budget option, one to avoid, and sourced prices.';
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;

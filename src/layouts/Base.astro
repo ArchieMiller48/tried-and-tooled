@@ -58,14 +58,14 @@ const isCurrent = (href: string) => {
         <nav class="main" aria-label="Main">
           {nav.map((n) => <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>)}
         </nav>
-        <a class="btn" href={withBase('/#newsletter')}>Get the weekly</a>
+        <a class="btn" href={path.includes('/newsletter/') ? '#newsletter' : withBase('/newsletter/')}>Get the weekly</a>
       </div>
     </header>
     <main><slot /></main>
     <footer class="site">
       <div class="wrap">
         <div>© {new Date().getFullYear()} Tried &amp; Tooled. Rankings are never for sale. Some links may be affiliate links; <a href={withBase('/about/#money')}>see how we make money</a>.</div>
-        <div><a href={withBase('/about/')}>Editorial policy</a> · <a href={withBase('/submit/')}>Submit a tool</a> · <a href={withBase('/llms.txt')}>llms.txt</a></div>
+        <div><a href={withBase('/newsletter/')}>Newsletter</a> · <a href={withBase('/about/')}>Editorial policy</a> · <a href={withBase('/submit/')}>Submit a tool</a> · <a href={withBase('/llms.txt')}>llms.txt</a></div>
         {listings.length > 0 && (
           <div class="listed-on">
             <span class="label">Listed on</span>

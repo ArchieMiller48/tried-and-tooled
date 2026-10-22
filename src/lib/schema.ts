@@ -184,3 +184,116 @@ export function buildGuideJsonLd(input: {
     ],
   };
 }
+
+export function buildNewsletterIndexJsonLd(input: {
+  pageUrl: string;
+  siteUrl: string;
+  description: string;
+  dateModified: string;
+  posts: { title: string; url: string; datePublished: string }[];
+}): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': input.pageUrl,
+        url: input.pageUrl,
+        name: 'Newsletter',
+        description: input.description,
+        dateModified: input.dateModified,
+        inLanguage: 'en-GB',
+        isPartOf: {
+          '@type': 'WebSite',
+          name: 'Tried & Tooled',
+          url: input.siteUrl,
+        },
+        mainEntity: { '@id': `${input.pageUrl}#blog` },
+      },
+      {
+        '@type': 'Blog',
+        '@id': `${input.pageUrl}#blog`,
+        url: input.pageUrl,
+        name: 'Tried & Tooled newsletter',
+        description: input.description,
+        dateModified: input.dateModified,
+        inLanguage: 'en-GB',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Tried & Tooled',
+          url: input.siteUrl,
+        },
+        blogPost: input.posts.map((post) => ({
+          '@type': 'BlogPosting',
+          headline: post.title,
+          url: post.url,
+          datePublished: post.datePublished,
+          mainEntityOfPage: post.url,
+        })),
+      },
+    ],
+  };
+}
+
+export function buildNewsletterIssueJsonLd(input: {
+  title: string;
+  description: string;
+  pageUrl: string;
+  siteUrl: string;
+  archiveUrl: string;
+  datePublished: string;
+  crumbs: Crumb[];
+}): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': input.pageUrl,
+        url: input.pageUrl,
+        name: input.title,
+        description: input.description,
+        dateModified: input.datePublished,
+        inLanguage: 'en-GB',
+        isPartOf: {
+          '@type': 'WebSite',
+          name: 'Tried & Tooled',
+          url: input.siteUrl,
+        },
+        breadcrumb: { '@id': `${input.pageUrl}#breadcrumb` },
+        mainEntity: { '@id': `${input.pageUrl}#article` },
+      },
+      {
+        '@type': 'BlogPosting',
+        '@id': `${input.pageUrl}#article`,
+        headline: input.title,
+        description: input.description,
+        datePublished: input.datePublished,
+        dateModified: input.datePublished,
+        inLanguage: 'en-GB',
+        mainEntityOfPage: { '@id': input.pageUrl },
+        url: input.pageUrl,
+        isPartOf: {
+          '@type': 'Blog',
+          name: 'Tried & Tooled newsletter',
+          url: input.archiveUrl,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Tried & Tooled',
+          url: input.siteUrl,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${input.pageUrl}#breadcrumb`,
+        itemListElement: input.crumbs.map((crumb, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: crumb.name,
+          item: crumb.url,
+        })),
+      },
+    ],
+  };
+}

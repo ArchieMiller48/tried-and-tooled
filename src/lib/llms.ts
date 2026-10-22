@@ -59,7 +59,7 @@ const INTRO = [
 ].join('\n');
 
 export async function buildLlmsTxt(site: URL): Promise<string> {
-  const [useCases, guides] = await Promise.all([publishedUseCases(), publishedGuides()]);
+  const [useCases, guides, issues] = await Promise.all([publishedUseCases(), publishedGuides(), publishedNewsletter()]);
   const lines = [
     INTRO,
     '',
@@ -92,6 +92,15 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
     link('All pricing pages', pageUrl(site, '/pricing/'), 'Vendor prices repeated with the source link and the date they were checked.'),
     ...guides.pricing.map((entry) => link(entry.data.title, pageUrl(site, `/pricing/${entry.id}/`), entry.data.summary)),
     '',
+    '## Newsletter',
+    '',
+    link('Newsletter', pageUrl(site, '/newsletter/'), 'Past weekly issues. One stack, the week\'s changes, and prices taken from the vendor\'s own page. Picks are pending a hands-on test.'),
+    ...issues.map((entry) => link(
+      entry.data.title,
+      pageUrl(site, `/newsletter/${entry.id}/`),
+      `${entry.data.summary.replace(/[.!?]$/, '')}. Sent ${formatDate(entry.data.date)}.`,
+    )),
+    '',
     '## About',
     '',
     link('How we test', pageUrl(site, '/about/'), 'How Tried & Tooled tests AI tools, how the site makes money, and why rankings are never for sale.'),
@@ -108,7 +117,7 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
 }
 
 export async function buildLlmsFull(site: URL): Promise<string> {
-  const [useCases, guides] = await Promise.all([publishedUseCases(), publishedGuides()]);
+  const [useCases, guides, issues] = await Promise.all([publishedUseCases(), publishedGuides(), publishedNewsletter()]);
   const titles = new Map(useCases.map((entry) => [entry.id, entry.data.title]));
   const sections = [
     INTRO,
@@ -120,6 +129,7 @@ export async function buildLlmsFull(site: URL): Promise<string> {
     ...guides.best.flatMap((entry) => renderBest(site, entry, titles)),
     ...guides.alternatives.flatMap((entry) => renderAlternatives(site, entry, titles)),
     ...guides.pricing.flatMap((entry) => renderPricing(site, entry, titles)),
+    ...issues.flatMap((entry) => renderNewsletter(site, entry)),
     '',
     '## How we test',
     '',
@@ -128,6 +138,55 @@ export async function buildLlmsFull(site: URL): Promise<string> {
     '',
   ];
   return `${sections.join('\n').replace(/\n{3,}/g, '\n\n')}\n`;
+}
+
+async function publishedNewsletter() {
+  const entries = await getCollection('newsletter', ({ data }) => !data.draft);
+  return entries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() || b.data.issue - a.data.issue);
+}
+
+function renderNewsletter(site: URL, entry: CollectionEntry<'newsletter'>): string[] {
+  const data = entry.data;
+  const url = pageUrl(site, `/newsletter/${entry.id}/`);
+  const body = htmlToText(entryBody(entry));
+  return [
+    `## Newsletter: ${data.title}`,
+    '',
+    `URL: ${url}`,
+    `Issue: ${data.issue}`,
+    `Sent: ${formatDate(data.date)}`,
+    `Summary: ${oneLine(data.summary)}`,
+    ...(data.subtitle ? [`Subtitle: ${oneLine(data.subtitle)}`] : []),
+    `Beehiiv: ${data.beehiivUrl}`,
+    'Pending hands-on test. This issue does not add test results.',
+    '',
+    ...(body ? [body, ''] : []),
+  ];
+}
+
+/** Keep the issue wording and every URL, without Beehiiv editor tags. */
+function htmlToText(html: string): string {
+  const withLinks = html.replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (_, href: string, text: string) => {
+    const label = text.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    return label ? `${label} (${href})` : href;
+  });
+  const blocked = withLinks
+    .replace(/<hr\b[^>]*>/gi, '\n\n---\n\n')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<h2[^>]*>/gi, '\n\n## ')
+    .replace(/<\/h2>/gi, '\n\n')
+    .replace(/<li[^>]*>/gi, '\n- ')
+    .replace(/<\/(p|div|ul|ol|li)>/gi, '\n')
+    .replace(/<[^>]+>/g, '');
+  return blocked
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/[ \t]+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
 }
 
 async function publishedUseCases() {
