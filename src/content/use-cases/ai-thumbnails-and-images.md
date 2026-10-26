@@ -2,8 +2,8 @@
 title: "AI thumbnails and social images"
 job: "Create YouTube thumbnails, cover art and social graphics with readable text, fast"
 summary: "Thumbnails need striking images and legible text, and most image models struggle with the text. Here's the stack that handles both."
-audience: ["creators", "builders"]
-category: "Images"
+audience: ["creators", "marketers", "designers"]
+category: "Design"
 topPick:
   name: "Ideogram"
   url: "https://ideogram.ai"

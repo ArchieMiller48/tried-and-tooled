@@ -7,6 +7,7 @@ import { withBase } from '../lib/withBase';
 import { hasGuideEntries, listGuides } from '../lib/guides';
 import { isoDate } from '../lib/formatDate';
 import { buildHomeJsonLd } from '../lib/schema';
+import { USE_CASE_GROUPS } from '../lib/useCaseGroups';
 import { getCollection } from 'astro:content';
 const useCases = (await getCollection('use-cases', ({ data }) => !data.draft)).sort((a, b) => a.data.title.localeCompare(b.data.title));
 const guides = await listGuides();
@@ -20,7 +21,7 @@ for (const folder of ['compare', 'best', 'alternatives', 'pricing'] as const) {
 }
 const latest = [...useCases.map((entry) => entry.data.lastVerified), ...allNews.map((entry) => entry.data.spotted), ...guideDates, ...newsletterDates]
   .reduce((max, date) => (date > max ? date : max));
-const description = 'Job-first AI tool picks for vibe coders, creators and builders, with a budget option, one to avoid, and sourced prices.';
+const description = 'The right AI tool for any job: a top pick, a budget pick and one to avoid, with sourced prices.';
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;
 const jsonLd = buildHomeJsonLd({
   siteUrl,
@@ -33,9 +34,9 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
 <Base description={description} jsonLd={jsonLd}>
   <div class="wrap">
     <section class="hero">
-      <span class="eyebrow">For vibe coders · creators · builders</span>
-      <h1>Tested AI stacks for<br />vibe coders, creators and builders.</h1>
-      <p class="lead">Stop scrolling 50,000-tool directories. Pick a job, like shipping an MVP, clipping shorts or voicing a video, and get a top pick, a budget pick, one to avoid and the full stack. Every price links to its source and carries the date we checked it.</p>
+      <span class="eyebrow">For any job · curated picks</span>
+      <h1>The right AI tool<br />for any job.</h1>
+      <p class="lead">A directory organised by the job, not by who you are. Pick research, marketing, design, admin, study or building an app. Each page names a top pick, a budget pick and one to avoid. Every price links to its source and shows the date we checked it.</p>
       <div class="cta-row">
         <a class="btn" href={withBase('/find-your-tool/')}>Find your tool</a>
         <a class="btn ghost" href={withBase('/use-cases/')}>Browse use cases</a>
@@ -56,15 +57,23 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
       <div class="pillars">
         <div class="card"><h3>🎯 Job first</h3><p>Every page answers one job you actually have, not "top 100 AI tools".</p></div>
         <div class="card"><h3>🧪 Proof over hype</h3><p>Test notes, verified pricing with sources, and a "last verified" date on every page. Untested means labelled untested.</p></div>
-        <div class="card"><h3>🧱 Full stacks</h3><p>We show how tools fit together, from the first prompt to shipping or posting.</p></div>
+        <div class="card"><h3>🧱 Full stacks</h3><p>We show how tools fit together, from the first prompt to the finished job.</p></div>
         <div class="card"><h3>🚫 Never pay-to-rank</h3><p>Sponsors and affiliate deals never change a ranking. <a href={withBase('/about/')}>Read the policy</a>.</p></div>
       </div>
     </section>
 
-    <section>
-      <div class="section-head"><h2>Use cases</h2><a href={withBase('/use-cases/')}>All use cases →</a></div>
-      <div class="grid">{useCases.map((e) => <UseCaseCard entry={e} />)}</div>
-    </section>
+    {USE_CASE_GROUPS.map((group, index) => {
+      const items = useCases.filter((entry) => entry.data.category === group.category);
+      return items.length > 0 && (
+        <section>
+          <div class="section-head">
+            <h2>{group.label}</h2>
+            {index === 0 && <a href={withBase('/use-cases/')}>All use cases →</a>}
+          </div>
+          <div class="grid">{items.map((entry) => <UseCaseCard entry={entry} />)}</div>
+        </section>
+      );
+    })}
 
     {guides.length > 0 && (
       <section>

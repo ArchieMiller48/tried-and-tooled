@@ -2,8 +2,8 @@
 title: "AI video generation for B-roll, ads and shorts"
 job: "Generate short video clips from a prompt or a reference image: B-roll, product shots, ad scenes and visual hooks"
 summary: "When you need a shot you can't film, like a product in a dream setting, a cinematic establishing shot or a hook for a short, generate it instead. Here's where to start without wasting credits."
-audience: ["creators", "builders"]
-category: "Video"
+audience: ["creators", "marketers", "small-business"]
+category: "Create content"
 topPick:
   name: "Runway"
   url: "https://runway.com"

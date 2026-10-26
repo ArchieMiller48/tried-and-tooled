@@ -2,8 +2,8 @@
 title: "Vibe-code an MVP web app"
 job: "Go from an idea to a deployed web app with auth and a database, mostly by prompting"
 summary: "The fastest way for a non-specialist or a solo builder to ship a working MVP with login, data and a live URL, without getting stuck in a tool you can't leave."
-audience: ["vibe-coders", "builders"]
-category: "Build"
+audience: ["coders", "founders", "students", "small-business"]
+category: "Build & code"
 topPick:
   name: "Lovable"
   url: "https://lovable.dev"

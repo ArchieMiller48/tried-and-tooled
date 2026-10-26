@@ -5,10 +5,10 @@ import { clipMeta } from '../lib/metaText';
 import listedOn from '../data/listed-on.json';
 interface Props { title?: string; description?: string; jsonLd?: unknown; }
 interface Listing { name: string; url: string; badgeImg?: string; }
-const { title, description = 'Tested AI stacks for vibe coders, creators and builders. Which AI tool to use for which job, with verified pricing and honest test notes.', jsonLd } = Astro.props;
+const { title, description = 'Curated AI tool picks for any job, with a top pick, a budget pick, one to avoid and sourced prices.', jsonLd } = Astro.props;
 const metaDescription = clipMeta(description);
 const jsonLdText = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : '';
-const fullTitle = title ? `${title} · Tried & Tooled` : 'Tried & Tooled · Tested AI stacks for vibe coders, creators and builders';
+const fullTitle = title ? `${title} · Tried & Tooled` : 'Tried & Tooled · The right AI tool for any job';
 const path = Astro.url.pathname;
 const notFound = /\/404\/?$/.test(path);
 const pageUrl = notFound ? new URL(`${import.meta.env.BASE_URL}404.html`, Astro.site) : new URL(path, Astro.site);

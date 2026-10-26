@@ -93,6 +93,9 @@ const SEARCH_TITLES: Record<string, (year: number) => string> = {
   'write-posts-and-emails': (year) => `Best AI tools to write posts and emails (${year})`,
   'make-a-slide-deck': (year) => `Best AI tools for a slide deck (${year})`,
   'transcribe-meetings-and-interviews': (year) => `Best AI tools to transcribe meetings (${year})`,
+  'research-and-summarise-sources': (year) => `Best AI tools to summarise sources (${year})`,
+  'run-marketing-campaigns': (year) => `Best AI tools to schedule social posts (${year})`,
+  'design-logos-and-graphics': (year) => `Best AI tools for a logo and graphics (${year})`,
 };
 
 /** Fact sentences for the meta description. The checked date and test status are appended from frontmatter. */
@@ -112,6 +115,9 @@ const SEARCH_BLURBS: Record<string, string> = {
   'write-posts-and-emails': 'Claude Pro for client drafts; ChatGPT Free for daily chats. Skip Claude Free for a week of client work.',
   'make-a-slide-deck': 'Gamma Plus for exportable decks; Claude Slides on the free plan. ChatGPT Slides needs Pro or above.',
   'transcribe-meetings-and-interviews': 'Fireflies for live meetings; Descript Free for a recording. Avoid Fireflies Free as a transcript archive.',
+  'research-and-summarise-sources': 'Consensus Pro for cited papers; Elicit Basic is free. Avoid Consensus Free for a long review.',
+  'run-marketing-campaigns': 'Buffer Essentials schedules the campaign; Metricool Free covers 20 posts a month. Buffer Free queues 10.',
+  'design-logos-and-graphics': 'Canva Pro for logos and graphics; Looka Brand Kit is $96/year. Skip Canva Business when you work solo.',
 };
 
 export function textMentionsFree(text: string): boolean {
@@ -336,13 +342,13 @@ export function siblingUseCases<T extends UseCaseEntry>(current: T, all: readonl
 }
 
 export const APPLICATION_CATEGORY: Record<string, string> = {
-  Build: 'BusinessApplication',
-  'Code quality': 'DeveloperApplication',
-  Video: 'MultimediaApplication',
-  Images: 'DesignApplication',
-  Audio: 'MultimediaApplication',
-  Writing: 'BusinessApplication',
-  Presentations: 'BusinessApplication',
+  'Build & code': 'DeveloperApplication',
+  'Create content': 'MultimediaApplication',
+  'Business & admin': 'BusinessApplication',
+  Marketing: 'BusinessApplication',
+  'Study & research': 'EducationalApplication',
+  Design: 'DesignApplication',
+  Productivity: 'BusinessApplication',
 };
 
 export function applicationCategory(category: string): string {

@@ -2,8 +2,8 @@
 title: "Make a slide deck with AI"
 job: "Turn notes, a doc or a rough outline into a presentation you can edit and export, without rebuilding every slide by hand"
 summary: "A deck is a layout problem as much as a writing problem. Use a tool that exports to the format you actually present from, and don't start in ChatGPT Slides unless your plan includes it."
-audience: ["builders", "creators"]
-category: "Presentations"
+audience: ["everyday", "students", "founders", "marketers"]
+category: "Productivity"
 topPick:
   name: "Gamma"
   url: "https://gamma.app"

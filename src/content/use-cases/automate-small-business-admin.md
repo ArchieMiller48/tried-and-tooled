@@ -2,8 +2,8 @@
 title: "Automate small-business admin with AI workflows"
 job: "Hand repetitive admin (new leads, follow-up emails, invoices, social posts) to AI-powered workflows and agents that run without you"
 summary: "Most small businesses lose hours a week copying data between apps and writing the same emails. Connect the apps, add an AI step and keep a human check where money or customers are involved."
-audience: ["builders", "vibe-coders"]
-category: "Build"
+audience: ["small-business", "founders", "everyday"]
+category: "Business & admin"
 topPick:
   name: "Zapier"
   url: "https://zapier.com"

@@ -23,7 +23,7 @@ function entry(partial: Partial<UseCaseEntry> & { id: string }): UseCaseEntry {
       title: partial.data?.title ?? 'Sample job',
       job: partial.data?.job ?? 'Do the sample job',
       summary: partial.data?.summary ?? 'A short summary of the job.',
-      category: partial.data?.category ?? 'Build',
+      category: partial.data?.category ?? 'Build & code',
       audience: partial.data?.audience ?? ['builders'],
       topPick: partial.data?.topPick ?? {
         name: 'Top',
