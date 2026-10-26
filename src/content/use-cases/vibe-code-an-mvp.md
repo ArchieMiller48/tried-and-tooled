@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free: 5 build credits/day (max 30/month). Pro from $25/mo (100 credits) or $21/mo billed annually."
     sourceUrl: "https://docs.lovable.dev/introduction/subscription-plans"
-    checked: 2026-10-20
+    checked: 2026-10-26
   affiliateUrl: null
 budgetPick:
   name: "Bolt.new"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free: 300K tokens/day, 1M/month, Bolt branding. Pro $18/month billed annually ($216/year; $300/year struck through on the card), from 10M tokens, custom domain."
     sourceUrl: "https://bolt.new/pricing"
-    checked: 2026-10-20
+    checked: 2026-10-26
   affiliateUrl: null
 avoid:
   name: "Lovable Free plan, for anything you plan to ship"
@@ -46,17 +46,17 @@ alsoConsidered:
     pricing:
       summary: "Starter free, at no cost, with one published app that goes down after 30 days. Core $18/mo billed annually ($20 struck through). Pro $90/mo billed annually ($100 struck through)."
       sourceUrl: "https://docs.replit.com/billing/plans"
-      checked: 2026-10-20
+      checked: 2026-10-26
   - name: "Cursor"
     url: "https://cursor.com"
     note: "An editor, not an app builder: best for the refine step once you have code. Plans are now sold through X subscription tiers."
     pricing:
       summary: "Free (limited); Plus $8/mo (Grok models only); Premium $30/mo; Super $100/mo; Ultra $200/mo. Third-party models billed at API list price."
       sourceUrl: "https://cursor.com/pricing"
-      checked: 2026-10-20
+      checked: 2026-10-26
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-20
+lastVerified: 2026-10-26
 testNotes: "Pending hands-on test. Planned standard task: 'Build a to-do app with email login, per-user data and a public URL', run on Lovable, Bolt.new and Replit. We'll record time to first working deploy, credits or tokens used, the number of fix-up prompts, and whether the exported code runs locally."
 ---
 

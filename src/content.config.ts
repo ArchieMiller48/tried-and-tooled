@@ -25,7 +25,7 @@ const useCases = defineCollection({
     job: z.string(), // the use case, phrased as a job to be done
     summary: z.string(),
     audience: z.array(z.enum(['vibe-coders', 'creators', 'builders'])).min(1),
-    category: z.enum(['Build', 'Code quality', 'Video', 'Images', 'Audio']),
+    category: z.enum(['Build', 'Code quality', 'Video', 'Images', 'Audio', 'Writing', 'Presentations']),
     topPick: pick,
     budgetPick: pick,
     avoid: z.object({
