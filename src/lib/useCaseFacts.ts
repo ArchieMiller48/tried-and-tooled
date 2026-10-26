@@ -90,6 +90,9 @@ const SEARCH_TITLES: Record<string, (year: number) => string> = {
   'ai-video-generation': (year) => `Best AI video tools for B-roll (${year})`,
   'automate-small-business-admin': (year) => `Best AI workflow tools for admin (${year})`,
   'clip-long-videos-into-shorts': (year) => `Best AI tools for Shorts and Reels (${year})`,
+  'write-posts-and-emails': (year) => `Best AI tools to write posts and emails (${year})`,
+  'make-a-slide-deck': (year) => `Best AI tools for a slide deck (${year})`,
+  'transcribe-meetings-and-interviews': (year) => `Best AI tools to transcribe meetings (${year})`,
 };
 
 /** Fact sentences for the meta description. The checked date and test status are appended from frontmatter. */
@@ -106,6 +109,9 @@ const SEARCH_BLURBS: Record<string, string> = {
   'ai-video-generation': 'Runway for several video models on one plan; Google Flow to try clips on free daily credits.',
   'automate-small-business-admin': 'Zapier for no-code app coverage; n8n bills per workflow run rather than per step.',
   'clip-long-videos-into-shorts': 'OpusClip for vertical clips; Descript if you also edit the long video. OpusClip Free is watermarked.',
+  'write-posts-and-emails': 'Claude Pro for client drafts; ChatGPT Free for daily chats. Skip Claude Free for a week of client work.',
+  'make-a-slide-deck': 'Gamma Plus for exportable decks; Claude Slides on the free plan. ChatGPT Slides needs Pro or above.',
+  'transcribe-meetings-and-interviews': 'Fireflies for live meetings; Descript Free for a recording. Avoid Fireflies Free as a transcript archive.',
 };
 
 export function textMentionsFree(text: string): boolean {
@@ -335,6 +341,8 @@ export const APPLICATION_CATEGORY: Record<string, string> = {
   Video: 'MultimediaApplication',
   Images: 'DesignApplication',
   Audio: 'MultimediaApplication',
+  Writing: 'BusinessApplication',
+  Presentations: 'BusinessApplication',
 };
 
 export function applicationCategory(category: string): string {

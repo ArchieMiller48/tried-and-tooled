@@ -11,21 +11,21 @@ topPick:
   pricing:
     summary: "Essentials $24/user/mo billed annually ($30 monthly); Team $48/user/mo annually ($60 monthly). Free for public repos."
     sourceUrl: "https://www.coderabbit.ai/pricing"
-    checked: 2026-10-19
+    checked: 2026-10-26
   affiliateUrl: null
 budgetPick:
   name: "Greptile (Starter)"
   url: "https://www.greptile.com"
   why: "A free tier for a single developer, with unlimited repos and 50 review credits a month (a base review costs 1 credit). Enough for a solo builder's private projects."
   pricing:
-    summary: "Starter free (1 active developer, 50 credits/mo). Pro $30/seat/mo incl. 50 credits/seat, $1 per extra credit."
+    summary: "Starter free (1 active developer, 50 credits/mo, unlimited repos). Pro has no seat fee: $1 per credit, shared across the org. A base review costs 1 credit."
     sourceUrl: "https://www.greptile.com/pricing"
-    checked: 2026-10-19
+    checked: 2026-10-26
   affiliateUrl: null
 avoid:
   name: "Turning on org-wide Copilot code review for unlicensed users without a budget"
-  reason: "GitHub can review PRs from users without a Copilot licence, but that usage is billed to the organisation as AI credits, and since 1 June 2026 review workflows also use Actions minutes. Set budgets first."
-  sourceUrl: "https://github.com/features/copilot/plans"
+  reason: "Owners can let people without a Copilot licence request reviews. Those reviews are billed to the organisation as AI credits, and the agentic part of a review also uses GitHub Actions minutes. Set a budget before you turn that on."
+  sourceUrl: "https://docs.github.com/en/copilot/concepts/agents/code-review"
 stack:
   - step: "Write"
     tool: "Your AI coding agent or builder"
@@ -43,17 +43,17 @@ alsoConsidered:
     pricing:
       summary: "Free (limited); Pro $10/mo; Pro+ $39/mo; Max $100/mo. GitHub lists total monthly AI credits of $15 (Pro), $70 (Pro+) and $200 (Max), including a variable flex allotment."
       sourceUrl: "https://github.com/features/copilot/plans"
-      checked: 2026-10-19
+      checked: 2026-10-26
   - name: "Cursor Bugbot"
     url: "https://cursor.com/pricing"
     note: "If you already pay for Cursor Premium or above, AI code reviews via Bugbot are included in the plan, so try it before adding another tool."
     pricing:
       summary: "Included from Premium $30/mo (not on Free or Plus). Third-party models billed separately at API list price."
       sourceUrl: "https://cursor.com/pricing"
-      checked: 2026-10-19
+      checked: 2026-10-26
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-19
+lastVerified: 2026-10-26
 testNotes: "Pending hands-on test. Planned standard task: open the same PR, containing 5 seeded bugs (an injection, a missing auth check, an off-by-one, a leaked secret, a race condition), against each reviewer and count true positives, false positives and the time to the first comment."
 ---
 

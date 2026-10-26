@@ -9,9 +9,9 @@ topPick:
   url: "https://elevenlabs.io"
   why: "A broad voice library and voice cloning: Instant Voice Cloning from Starter, Professional Voice Cloning from Creator. It also includes dubbing, and paid plans come with a commercial licence."
   pricing:
-    summary: "Free 10k credits/mo. Starter $6/mo (30k credits, commercial licence). Creator $22/mo (121k credits). 1 credit ≈ 1 character for TTS (multilingual models)."
+    summary: "Free 10k credits/mo. Starter $6/mo (first month $1 until 1 Nov 2026), 30k credits, commercial licence. Creator $22/mo (first month $11 until 1 Nov 2026), 121k credits. 1 credit ≈ 1 character on multilingual v2 models."
     sourceUrl: "https://elevenlabs.io/pricing"
-    checked: 2026-10-19
+    checked: 2026-10-26
   affiliateUrl: null
 budgetPick:
   name: "Descript (Hobbyist)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Hobbyist $16/mo billed annually ($24 monthly), 400 AI credits/mo, includes AI Speech with custom voice clones."
     sourceUrl: "https://www.descript.com/pricing"
-    checked: 2026-10-19
+    checked: 2026-10-26
   affiliateUrl: null
 avoid:
   name: "ElevenLabs Free, for monetised content"
@@ -39,7 +39,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-19
+lastVerified: 2026-10-26
 testNotes: "Pending hands-on test. Planned standard task: voice the same 150-word explainer script with a stock voice and a cloned voice, then do a blind listen for naturalness and pronunciation of tech terms (e.g. 'Supabase', 'LLM'), and record the credits used."
 ---
 

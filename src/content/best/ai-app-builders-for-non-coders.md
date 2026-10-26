@@ -1,6 +1,6 @@
 ---
 title: "Best AI app builders for non-coders (2026)"
-summary: "A shortlist of AI app builders for people who do not want to start in a code editor: Lovable, Bolt.new and Replit, plus Cursor for the editing step afterwards. Every price was checked on the vendor's own site on 20 October 2026."
+summary: "A shortlist of AI app builders for people who do not want to start in a code editor: Lovable, Bolt.new and Replit, plus Cursor for the editing step afterwards. Every price was checked on the vendor's own site on 26 October 2026."
 targetQuery: "best ai app builder"
 secondaryQueries:
   - "best vibe coding tools"
@@ -8,7 +8,7 @@ secondaryQueries:
 parent: "vibe-code-an-mvp"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-20
+lastVerified: 2026-10-26
 picks:
   - name: "Lovable"
     url: "https://lovable.dev"
@@ -18,7 +18,7 @@ picks:
     pricing:
       summary: "Free: 5 build credits/day, capped at 30/month. Pro from $25/month for 100 credits, or $250/year ($21/month)."
       sourceUrl: "https://docs.lovable.dev/introduction/subscription-plans"
-      checked: 2026-10-20
+      checked: 2026-10-26
     sources:
       - label: "What free and paid include"
         url: "https://lovable.dev/pricing"
@@ -33,7 +33,7 @@ picks:
     pricing:
       summary: "Free: $0, 1M tokens/month, 300K tokens/day, Bolt branding. Pro: $18/month billed annually ($216/year; $300/year struck through on the card), from 10M tokens, custom domain, branding removed."
       sourceUrl: "https://bolt.new/pricing"
-      checked: 2026-10-20
+      checked: 2026-10-26
     sources:
       - label: "What Bolt is"
         url: "https://support.bolt.new/get-started/intro-bolt"
@@ -47,11 +47,11 @@ picks:
     caveat: "Starter's daily Agent allowance is described, but the pages checked today do not give a number for it. This shortlist does not guess one. Starter at no cost is from the billing docs. The Core and Pro dollar figures are from the pricing page."
     pricing:
       summary: "Starter free, at no cost, with one published app that goes down after 30 days. Core $18/mo billed annually ($20 struck through). Pro $90/mo billed annually ($100 struck through)."
-      sourceUrl: "https://docs.replit.com/billing/plans"
-      checked: 2026-10-20
+      sourceUrl: "https://replit.com/pricing"
+      checked: 2026-10-26
     sources:
       - label: "Starter plan"
-        url: "https://docs.replit.com/billing/plans"
+        url: "https://docs.replit.com/billing/plans/starter-plan"
       - label: "Core and Pro prices"
         url: "https://replit.com/pricing"
       - label: "Publishing: one free app, 30 days"
@@ -65,7 +65,7 @@ picks:
     pricing:
       summary: "Free (limited agent and chat). Plus $8/month, Grok models only. Premium $30/month. Super $100/month. Ultra $200/month. Third-party models at API list price from Premium, billed separately."
       sourceUrl: "https://cursor.com/pricing"
-      checked: 2026-10-20
+      checked: 2026-10-26
     sources: []
     affiliateUrl: null
 verdicts:
@@ -87,11 +87,11 @@ faqs:
   - question: "Which free plan is the wrong one to launch on?"
     answer: "Lovable Free, if you need to edit or download code, remove the badge, or use your own domain. Replit Starter, if the app has to stay up: the published link expires after 30 days, and full build, connectors and badge removal need Core or Pro. Bolt Free will keep hosting on a bolt.host address, with branding and the request cap described in Bolt's billing docs."
   - question: "Why are other app builders missing?"
-    answer: "This shortlist only includes tools already covered on the site whose pricing could be read on the vendor's own pages on 20 October 2026. It is not a survey of every AI builder. A tool with no checked price is left off, rather than given a guessed one."
+    answer: "This shortlist only includes tools already covered on the site whose pricing could be read on the vendor's own pages on 26 October 2026. It is not a survey of every AI builder. A tool with no checked price is left off, rather than given a guessed one."
 ---
 
 The order above is a reading guide for non-coders. It is not a ranking from a shared task. The standard task for this job, on the parent use case, is still to come: a to-do app with email login, per-user data and a public URL.
 
 Prices are in US dollars, as the vendors publish them. Nothing here is converted to pounds. Where a page shows an annual price with a monthly price struck through beside it, both figures are reported, and the billing period is named.
 
-Replit's help centre prints some plan facts as template placeholders rather than numbers. Those placeholders are not used. Starter at no cost, with one published app, was confirmed the same day on the billing docs. The Core and Pro dollar figures come from replit.com/pricing, which on 20 October 2026 had yearly billing selected: Core at $18 a month billed annually with $20 struck through, and Pro at $90 a month billed annually with $100 struck through.
+Replit's help centre prints some plan facts as template placeholders rather than numbers. Those placeholders are not used. Starter at no cost, with one published app, was confirmed the same day on the billing docs. The Core and Pro dollar figures come from replit.com/pricing, which on 26 October 2026 had yearly billing selected: Core at $18 a month billed annually with $20 struck through, and Pro at $90 a month billed annually with $100 struck through.

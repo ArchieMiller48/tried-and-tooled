@@ -35,7 +35,9 @@
     { "id": "images", "label": "Images and thumbnails" },
     { "id": "music-audio", "label": "Music and audio" },
     { "id": "automate", "label": "Automate admin" },
-    { "id": "writing", "label": "Writing" }
+    { "id": "writing", "label": "Writing" },
+    { "id": "slides", "label": "Slide decks" },
+    { "id": "meetings", "label": "Meetings and transcripts" }
   ],
   "budgets": [
     {
@@ -98,6 +100,21 @@
       "roles": ["founder", "small-business", "marketer", "analyst", "student"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["automate"]
+    },
+    "write-posts-and-emails": {
+      "roles": ["founder", "creator", "marketer", "small-business", "student", "analyst"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["writing"]
+    },
+    "make-a-slide-deck": {
+      "roles": ["founder", "creator", "marketer", "small-business", "student", "analyst"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["slides"]
+    },
+    "transcribe-meetings-and-interviews": {
+      "roles": ["founder", "creator", "marketer", "small-business", "student", "analyst"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["meetings"]
     }
   }
 }

@@ -1,6 +1,6 @@
 ---
 title: "Lovable vs Bolt.new (2026): which to use for an MVP"
-summary: "Lovable and Bolt.new compared for an MVP: free limits, the first paid plan, custom domains, and how you get the code out. Prices were read from each vendor on 20 October 2026. This is not a hands-on test."
+summary: "Lovable and Bolt.new compared for an MVP: free limits, the first paid plan, custom domains, and how you get the code out. Prices were read from each vendor on 26 October 2026. This is not a hands-on test."
 targetQuery: "lovable vs bolt"
 secondaryQueries:
   - "bolt.new vs lovable"
@@ -8,7 +8,7 @@ secondaryQueries:
 parent: "vibe-code-an-mvp"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-20
+lastVerified: 2026-10-26
 tools:
   - name: "Lovable"
     url: "https://lovable.dev"
@@ -16,7 +16,7 @@ tools:
     pricing:
       summary: "Free: 5 build credits/day, capped at 30/month. Pro from $25/month for 100 credits, or $250/year ($21/month)."
       sourceUrl: "https://docs.lovable.dev/introduction/subscription-plans"
-      checked: 2026-10-20
+      checked: 2026-10-26
     sources:
       - label: "Git sync on all plans"
         url: "https://docs.lovable.dev/tips-tricks/external-deployment-hosting"
@@ -29,12 +29,12 @@ tools:
     pricing:
       summary: "Free: $0, 1M tokens/month, 300K tokens/day, Bolt branding. Pro: $18/month billed annually ($216/year; $300/year struck through on the card), from 10M tokens, custom domain, branding removed."
       sourceUrl: "https://bolt.new/pricing"
-      checked: 2026-10-20
+      checked: 2026-10-26
     sources:
       - label: "Free plan limits, including hosting"
         url: "https://support.bolt.new/account/billing"
       - label: "Download a project"
-        url: "https://support.bolt.new/building/using-bolt/projects-files"
+        url: "https://support.bolt.new/managing-projects/projects-files"
       - label: "GitHub sync"
         url: "https://support.bolt.new/integrations/git"
     affiliateUrl: null
@@ -74,7 +74,7 @@ rows:
       - label: "Lovable export"
         url: "https://docs.lovable.dev/tips-tricks/external-deployment-hosting"
       - label: "Bolt download"
-        url: "https://support.bolt.new/building/using-bolt/projects-files"
+        url: "https://support.bolt.new/managing-projects/projects-files"
       - label: "Bolt GitHub"
         url: "https://support.bolt.new/integrations/git"
   - label: "Hosting"
@@ -112,7 +112,7 @@ faqs:
   - question: "Bolt.new vs Lovable: can I build the MVP on the free plan?"
     answer: "You can start on both free plans. Lovable Free is capped at 30 build credits a month and does not include code editing, code download or a custom domain. Bolt Free includes 1 million tokens a month and hosting, with Bolt branding and no custom domain. Bolt's billing docs also say a Supabase database needs Pro or Teams."
   - question: "Lovable or Bolt for an MVP: which is cheaper once I pay?"
-    answer: "On 20 October 2026, Lovable's first Pro tier is $25 a month for 100 credits, or $250 a year ($21 a month). Bolt Pro is listed at $18 a month billed annually, $216 for the year, starting at 10 million tokens. Bolt's billing docs describe a $25 Pro 10M monthly plan, which was not printed on the pricing cards. The units differ, so the smaller invoice is not the same thing as the cheaper build."
+    answer: "On 26 October 2026, Lovable's first Pro tier is $25 a month for 100 credits, or $250 a year ($21 a month). Bolt Pro is listed at $18 a month billed annually, $216 for the year, starting at 10 million tokens. Bolt's billing docs describe a $25 Pro 10M monthly plan, which was not printed on the pricing cards. The units differ, so the smaller invoice is not the same thing as the cheaper build."
   - question: "Can I export my code from Lovable or Bolt.new?"
     answer: "Lovable: Git sync to GitHub, GitLab or Bitbucket is on every plan, and downloading the codebase is on paid plans. Bolt: the docs describe Export then Download for a zip, and a GitHub integration that syncs commits both ways. Those Bolt pages do not say the feature is paid-only. None of this has been checked hands-on."
   - question: "Do I need to know how to code?"
@@ -121,7 +121,7 @@ faqs:
 
 A Lovable credit and a Bolt token are different units. Neither company publishes a conversion, so the free allowances above are not a shared budget you can subtract one from the other.
 
-The dollar figures for Lovable are the Pro tier table in Lovable's subscription-plans doc, which labels them as prices in USD. The marketing page at lovable.dev/pricing confirms the free grant (5 build credits a day, up to 30 a month, plus 20 Cloud credits and 4 AI credits) but did not include that dollar table in the HTML fetched on 20 October 2026.
+The dollar figures for Lovable are the Pro tier table in Lovable's subscription-plans doc, which labels them as prices in USD. The marketing page at lovable.dev/pricing confirms the free grant (5 build credits a day, up to 30 a month, plus 20 Cloud credits and 4 AI credits) but did not include that dollar table in the HTML fetched on 26 October 2026.
 
 Bolt's pricing page loads with yearly billing selected. The Pro card reads $18 a month, billed annually, total $216, with $300 a year struck through, and a note that prices are plus applicable taxes. The monthly tab's prices were not in that HTML. Separately, Bolt's billing doc uses a "$25 Pro 10M monthly plan" and a Pro 10M annual plan at $216 a year as worked examples. Those examples match the struck-through $300 (12 × $25) and the $216 annual total, but they are examples in a help article, not the price printed on the card.
 

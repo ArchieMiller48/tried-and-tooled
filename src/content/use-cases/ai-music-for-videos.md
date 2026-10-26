@@ -11,16 +11,16 @@ topPick:
   pricing:
     summary: "Free: 50 credits/day, no song downloads, no commercial rights. Pro $8/mo on annual billing (Suno says this saves $24 a year compared with monthly), 2,500 credits/mo, 20 downloads/mo. Premier $24/mo on annual billing, 10,000 credits/mo, 60 downloads/mo."
     sourceUrl: "https://suno.com/pricing"
-    checked: 2026-10-19
+    checked: 2026-10-26
   affiliateUrl: null
 budgetPick:
   name: "ElevenLabs (Eleven Music)"
   url: "https://elevenlabs.io"
   why: "If you already pay for ElevenLabs for voiceover, music comes out of the same credit pool. Eleven Music costs about 900 credits a minute, and commercial use of music is listed from Starter, so Starter's 30k credits would cover roughly 33 minutes of music if you spent them on nothing else."
   pricing:
-    summary: "Free 10k credits/mo (no commercial licence). Starter $6/mo, 30k credits/mo, includes music commercial use. Eleven Music ≈ 900 credits per minute."
+    summary: "Free 10k credits/mo (no commercial licence). Starter $6/mo (first month $1 until 1 Nov 2026), 30k credits/mo, includes music commercial use. Eleven Music ≈ 900 credits per minute."
     sourceUrl: "https://elevenlabs.io/pricing"
-    checked: 2026-10-19
+    checked: 2026-10-26
   affiliateUrl: null
 avoid:
   name: "Suno Free, for anything you'll publish"
@@ -46,10 +46,10 @@ alsoConsidered:
     pricing:
       summary: "Google AI Plus $4.99/mo (3,000 Flow Music credits/mo); Google AI Pro $19.99/mo (10,000/mo). US prices."
       sourceUrl: "https://one.google.com/about/google-ai-plans/"
-      checked: 2026-10-19
+      checked: 2026-10-26
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-19
+lastVerified: 2026-10-26
 testNotes: "Pending hands-on test. Planned standard task: generate a 60-second lo-fi instrumental bed and a 15-second jingle with lyrics from identical prompts in each tool, then score prompt adherence, audible artefacts and how well the bed sits under speech. We'll record the credits used and the licence terms that apply on each plan."
 ---
 
