@@ -2,8 +2,8 @@
 title: "AI code review for your pull requests"
 job: "Get every PR reviewed automatically for bugs, security issues and AI-generated slop before merging"
 summary: "A second pair of (AI) eyes on every pull request. This matters most when most of your code is written by an agent."
-audience: ["vibe-coders", "builders"]
-category: "Code quality"
+audience: ["coders", "founders", "students"]
+category: "Build & code"
 topPick:
   name: "CodeRabbit"
   url: "https://www.coderabbit.ai"
@@ -57,7 +57,7 @@ lastVerified: 2026-10-26
 testNotes: "Pending hands-on test. Planned standard task: open the same PR, containing 5 seeded bugs (an injection, a missing auth check, an off-by-one, a leaked secret, a race condition), against each reviewer and count true positives, false positives and the time to the first comment."
 ---
 
-## Why this matters for vibe coders
+## Why this matters
 
 AI agents write plausible code quickly, and that includes plausible bugs. An automated reviewer on every PR is the cheapest insurance you can buy.
 

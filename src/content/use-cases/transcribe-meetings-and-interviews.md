@@ -2,8 +2,8 @@
 title: "Transcribe meetings and interviews"
 job: "Get a transcript and notes from a live call or a recording you already have, so you can edit, quote or clip it"
 summary: "Typing up a call is the part nobody wants. Send a notetaker to the meeting, or drop the file into the editor you already use, and know what the free plan actually keeps."
-audience: ["creators", "builders"]
-category: "Audio"
+audience: ["everyday", "students", "researchers", "founders"]
+category: "Productivity"
 topPick:
   name: "Fireflies"
   url: "https://fireflies.ai"

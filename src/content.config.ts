@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { AUDIENCES, USE_CASE_CATEGORIES } from './lib/useCaseGroups';
 
 /** A verified price point. Every price must carry a source URL and the date it was checked. */
 const pricing = z.object({
@@ -24,8 +25,8 @@ const useCases = defineCollection({
     title: z.string(),
     job: z.string(), // the use case, phrased as a job to be done
     summary: z.string(),
-    audience: z.array(z.enum(['vibe-coders', 'creators', 'builders'])).min(1),
-    category: z.enum(['Build', 'Code quality', 'Video', 'Images', 'Audio', 'Writing', 'Presentations']),
+    audience: z.array(z.enum(AUDIENCES)).min(1),
+    category: z.enum(USE_CASE_CATEGORIES),
     topPick: pick,
     budgetPick: pick,
     avoid: z.object({

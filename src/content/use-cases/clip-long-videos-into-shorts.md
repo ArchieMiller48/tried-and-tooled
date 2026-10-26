@@ -2,8 +2,8 @@
 title: "Turn long videos into short-form clips"
 job: "Repurpose a podcast, stream or YouTube video into captioned vertical clips for Shorts, TikTok and Reels"
 summary: "Get from one long recording to a week of captioned vertical clips, without spending your evenings in a timeline editor."
-audience: ["creators"]
-category: "Video"
+audience: ["creators", "marketers"]
+category: "Create content"
 topPick:
   name: "OpusClip"
   url: "https://www.opus.pro"

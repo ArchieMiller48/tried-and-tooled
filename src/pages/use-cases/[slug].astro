@@ -5,6 +5,7 @@ import GuideCard from '../../components/GuideCard.astro';
 import { listGuides } from '../../lib/guides';
 import { formatDate, isoDate } from '../../lib/formatDate';
 import { buildUseCaseJsonLd } from '../../lib/schema';
+import { audienceLabel } from '../../lib/useCaseGroups';
 import { buildFaqs, shortAnswer, siblingUseCases, useCaseMeta } from '../../lib/useCaseFacts';
 import { withBase } from '../../lib/withBase';
 import { getCollection, render } from 'astro:content';
@@ -57,7 +58,7 @@ const go = (p: { url: string; affiliateUrl: string | null }) => p.affiliateUrl ?
         <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : `Tested ${d.lastTested ? formatDate(d.lastTested) : ''}`}</span>
         <span class="tag">Last updated <time datetime={verified}>{formatDate(d.lastVerified)}</time></span>
         <span class="tag">Facts last verified <time datetime={verified}>{formatDate(d.lastVerified)}</time></span>
-        {d.audience.map((a) => <span class="tag">{a.replace('-', ' ')}</span>)}
+        {d.audience.map((a) => <span class="tag">{audienceLabel(a)}</span>)}
       </div>
     </section>
 

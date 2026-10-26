@@ -1,6 +1,6 @@
 # Tried & Tooled: week-1 MVP
 
-Tested AI stacks for vibe coders, creators and builders. Static Astro site with markdown content collections and Pagefind search.
+The right AI tool for any job. A curated, use-case-first directory: a top pick, a budget pick and one to avoid, with sourced prices. Static Astro site with markdown content collections and Pagefind search.
 
 ## Run
 Requires Node >= 22.22 (Astro 7). On the box: `export PATH=$HOME/.local/node22/bin:$PATH`.
@@ -11,7 +11,7 @@ Requires Node >= 22.22 (Astro 7). On the box: `export PATH=$HOME/.local/node22/b
     npm run preview   # serve dist/ locally
 
 ## Content
-- `src/content/use-cases/*.md`: one file per job. The schema is in `src/content.config.ts` (top/budget pick, avoid, stack, pricing with sourceUrl + checked date, testStatus, lastTested, lastVerified, testNotes, affiliateUrl placeholder).
+- `src/content/use-cases/*.md`: one file per job. The schema is in `src/content.config.ts` (top/budget pick, avoid, stack, pricing with sourceUrl + checked date, testStatus, lastTested, lastVerified, testNotes, affiliateUrl placeholder). The use-case index groups pages by `category`: Build & code, Create content, Business & admin, Marketing, Study & research, Design, Productivity.
 - `src/data/personas.json`: tags each use case for Find your tool (role, coding comfort, goal). The build fails if a published use case is missing. Do not put tool names or prices in that file; the quiz reads them from the content collections.
 - `src/content/new/*.md`: "New this week" feed items (each needs a sourceUrl).
 - `src/content/compare/*.md`, `src/content/best/*.md`, `src/content/alternatives/*.md`, `src/content/pricing/*.md`: intent pages. One markdown file is a page. Set `parent` to a use-case slug. Keep `testStatus: pending` until a real test exists. Every price needs `sourceUrl` and `checked`.

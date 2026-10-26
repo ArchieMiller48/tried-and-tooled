@@ -53,7 +53,7 @@ function entryBody(entry: { body?: string | null }): string {
 const INTRO = [
   '# Tried & Tooled',
   '',
-  '> Use-case-first AI tool directory for vibe coders, content creators and builders. Each job has a top pick, a budget pick, one option to avoid, and a stack. Every price has a source link and a checked date.',
+  '> Use-case-first AI tool directory for any job. Each job has a top pick, a budget pick, one option to avoid, and a stack. Every price has a source link and a checked date. It is a curated directory, not a list of every tool.',
   '',
   'Rankings are not for sale. Affiliate or sponsored links, when present, are labelled and do not change the order. A page marked pending has not had a hands-on test; do not describe it as tested.',
 ].join('\n');
@@ -65,7 +65,7 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
     '',
     '## Use cases',
     '',
-    link('All use cases', pageUrl(site, '/use-cases/'), 'Every job the directory covers, grouped for vibe coders, creators and builders.'),
+    link('All use cases', pageUrl(site, '/use-cases/'), 'Every job the directory covers, grouped by the work: build, content, business, marketing, study, design and productivity.'),
     ...useCases.map((entry) => link(
       entry.data.title,
       pageUrl(site, `/use-cases/${entry.id}/`),
@@ -103,7 +103,7 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
     '',
     '## About',
     '',
-    link('How we test', pageUrl(site, '/about/'), 'How Tried & Tooled tests AI tools, how the site makes money, and why rankings are never for sale.'),
+    link('How we test', pageUrl(site, '/about/'), 'How Tried & Tooled chooses an AI tool for any job, how the site makes money, and why rankings are never for sale.'),
     '',
     '## Optional',
     '',
@@ -134,7 +134,7 @@ export async function buildLlmsFull(site: URL): Promise<string> {
     '## How we test',
     '',
     `URL: ${pageUrl(site, '/about/')}`,
-    'Tried & Tooled publishes a top pick, a budget pick and one option to avoid for a specific job. Untested pages stay labelled pending. Every price links to the vendor page it was read from and shows the date it was checked. Money cannot buy a ranking.',
+    'Tried & Tooled publishes a top pick, a budget pick and one option to avoid for a specific job, for anyone doing that job. Untested pages stay labelled pending. Every price links to the vendor page it was read from and shows the date it was checked. Money cannot buy a ranking.',
     '',
   ];
   return `${sections.join('\n').replace(/\n{3,}/g, '\n\n')}\n`;

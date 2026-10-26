@@ -2,8 +2,8 @@
 title: "AI music and soundtracks for your videos"
 job: "Generate background music, jingles or full songs you're allowed to use in monetised videos, podcasts and ads"
 summary: "Stock music libraries get repetitive and copyright claims kill monetisation. Generate a track that fits the mood instead, on a plan that actually lets you use it."
-audience: ["creators", "builders"]
-category: "Audio"
+audience: ["creators", "marketers", "small-business"]
+category: "Create content"
 topPick:
   name: "Suno (Pro)"
   url: "https://suno.com"

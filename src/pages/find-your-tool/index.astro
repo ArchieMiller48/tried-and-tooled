@@ -6,13 +6,13 @@ import { buildStackCatalog } from '../../lib/stackCatalog';
 const catalog = await buildStackCatalog();
 const catalogJson = JSON.stringify(catalog).replace(/</g, '\\u003c');
 const description =
-  'Find your tool. Four questions on your role, coding comfort, goals and budget. See the AI tools Tried & Tooled already tracks for those jobs, with sourced prices and no pay-to-rank.';
+  'Answer four questions and see AI tools for that job. Roles include students, marketers, researchers and designers.';
 const questions = [
   {
     id: 'role',
     mode: 'single',
     title: 'What do you do?',
-    help: 'Pick the closest fit.',
+    help: 'Students, marketers, researchers, designers, founders and everyday work. Pick the closest fit.',
     options: catalog.roles,
   },
   {

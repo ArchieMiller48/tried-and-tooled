@@ -2,8 +2,8 @@
 title: "Write posts, emails and landing copy with AI"
 job: "Draft a blog post, a customer email or a landing-page section in a voice you can reuse, then edit it before it goes out"
 summary: "A blank page is the slow part. Keep a short voice guide in one place, draft in a tool with a real free tier, and don't expect the free allowance to cover a week of client work."
-audience: ["creators", "builders", "vibe-coders"]
-category: "Writing"
+audience: ["marketers", "creators", "founders", "everyday", "students"]
+category: "Create content"
 topPick:
   name: "Claude"
   url: "https://claude.com"

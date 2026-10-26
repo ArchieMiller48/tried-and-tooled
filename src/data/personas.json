@@ -1,13 +1,15 @@
 {
   "notes": "Tags each published use case for Find your tool. Tool names and prices are read from the content collections at build time — do not list them here. The role id \"other\" matches every tagged use case. resultAs and resultPhrase are results-page wording only. Add a key when you publish a new use case; the build fails if a published use case is missing.",
   "roles": [
-    { "id": "developer", "label": "Developer", "resultAs": "a developer" },
-    { "id": "founder", "label": "Non-coder founder", "resultAs": "a non-coder founder" },
-    { "id": "creator", "label": "Content creator / YouTuber", "resultAs": "a creator" },
+    { "id": "everyday", "label": "Everyday productivity", "resultAs": "an everyday user" },
+    { "id": "student", "label": "Student", "resultAs": "a student" },
+    { "id": "researcher", "label": "Researcher", "resultAs": "a researcher" },
+    { "id": "small-business", "label": "Small business owner", "resultAs": "a small business owner" },
     { "id": "marketer", "label": "Marketer", "resultAs": "a marketer" },
     { "id": "designer", "label": "Designer", "resultAs": "a designer" },
-    { "id": "small-business", "label": "Small business owner", "resultAs": "a small business owner" },
-    { "id": "student", "label": "Student", "resultAs": "a student" },
+    { "id": "creator", "label": "Content creator", "resultAs": "a creator" },
+    { "id": "developer", "label": "Coder / developer", "resultAs": "a coder" },
+    { "id": "founder", "label": "Non-coder founder", "resultAs": "a non-coder founder" },
     { "id": "analyst", "label": "Analyst / finance pro", "resultAs": "an analyst" },
     { "id": "other", "label": "Other", "resultAs": "another role" }
   ],
@@ -29,15 +31,18 @@
     }
   ],
   "goals": [
-    { "id": "build-app", "label": "Build an app or MVP" },
-    { "id": "code-review", "label": "Code review" },
-    { "id": "video", "label": "Video" },
-    { "id": "images", "label": "Images and thumbnails" },
-    { "id": "music-audio", "label": "Music and audio" },
-    { "id": "automate", "label": "Automate admin" },
     { "id": "writing", "label": "Writing" },
+    { "id": "research", "label": "Research and summaries" },
+    { "id": "marketing", "label": "Marketing and social" },
+    { "id": "logos", "label": "Logos and graphics" },
+    { "id": "images", "label": "Images and thumbnails" },
+    { "id": "video", "label": "Video" },
+    { "id": "music-audio", "label": "Music and audio" },
     { "id": "slides", "label": "Slide decks" },
-    { "id": "meetings", "label": "Meetings and transcripts" }
+    { "id": "meetings", "label": "Meetings and transcripts" },
+    { "id": "automate", "label": "Automate admin" },
+    { "id": "build-app", "label": "Build an app or MVP" },
+    { "id": "code-review", "label": "Code review" }
   ],
   "budgets": [
     {
@@ -62,7 +67,7 @@
   ],
   "useCases": {
     "vibe-code-an-mvp": {
-      "roles": ["developer", "founder", "student", "small-business"],
+      "roles": ["developer", "founder", "student", "small-business", "everyday"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["build-app"]
     },
@@ -97,24 +102,39 @@
       "goals": ["music-audio"]
     },
     "automate-small-business-admin": {
-      "roles": ["founder", "small-business", "marketer", "analyst", "student"],
+      "roles": ["founder", "small-business", "marketer", "analyst", "student", "everyday"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["automate"]
     },
     "write-posts-and-emails": {
-      "roles": ["founder", "creator", "marketer", "small-business", "student", "analyst"],
+      "roles": ["founder", "creator", "marketer", "small-business", "student", "analyst", "researcher", "everyday"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["writing"]
     },
     "make-a-slide-deck": {
-      "roles": ["founder", "creator", "marketer", "small-business", "student", "analyst"],
+      "roles": ["founder", "creator", "marketer", "small-business", "student", "analyst", "researcher", "everyday", "designer"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["slides"]
     },
     "transcribe-meetings-and-interviews": {
-      "roles": ["founder", "creator", "marketer", "small-business", "student", "analyst"],
+      "roles": ["founder", "creator", "marketer", "small-business", "student", "analyst", "researcher", "everyday"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["meetings"]
+    },
+    "research-and-summarise-sources": {
+      "roles": ["student", "researcher", "everyday", "analyst", "founder"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["research"]
+    },
+    "run-marketing-campaigns": {
+      "roles": ["marketer", "small-business", "founder", "creator", "everyday"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["marketing"]
+    },
+    "design-logos-and-graphics": {
+      "roles": ["designer", "small-business", "marketer", "founder", "creator", "everyday"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["logos"]
     }
   }
 }

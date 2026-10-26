@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 const items = (await getCollection('news')).sort((a, b) => b.data.spotted.valueOf() - a.data.spotted.valueOf());
 const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
-<Base title="New this week" description="New AI tool releases and changes that matter to vibe coders, creators and builders, each with a source link.">
+<Base title="New this week" description="New AI tool releases and pricing changes, each with a source link. Not a tested recommendation.">
   <div class="wrap narrow" data-pagefind-body>
     <section class="hero" style="padding-bottom:8px">
       <span class="eyebrow">Feed</span>

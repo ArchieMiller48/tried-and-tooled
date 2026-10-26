@@ -2,8 +2,8 @@
 title: "AI voiceover for videos"
 job: "Generate natural voiceovers or a clone of your own voice for YouTube, ads and explainers"
 summary: "Voice a video without a microphone session, or fix a flubbed line in your own cloned voice, with a commercial licence sorted."
-audience: ["creators", "builders"]
-category: "Audio"
+audience: ["creators", "marketers", "everyday"]
+category: "Create content"
 topPick:
   name: "ElevenLabs"
   url: "https://elevenlabs.io"
