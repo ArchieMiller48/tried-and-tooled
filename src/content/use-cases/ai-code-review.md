@@ -25,7 +25,7 @@ budgetPick:
 avoid:
   name: "Turning on org-wide Copilot code review for unlicensed users without a budget"
   reason: "Owners can let people without a Copilot licence request reviews. Those reviews are billed to the organisation as AI credits, and the agentic part of a review also uses GitHub Actions minutes. Set a budget before you turn that on."
-  sourceUrl: "https://docs.github.com/en/copilot/concepts/agents/code-review"
+  sourceUrl: "https://docs.github.com/en/copilot/concepts/agent-capabilities/agent-powered-workflows-and-operations/code-review"
 stack:
   - step: "Write"
     tool: "Your AI coding agent or builder"
@@ -66,3 +66,5 @@ AI agents write plausible code quickly, and that includes plausible bugs. An aut
 - **Public or open-source repo:** CodeRabbit is free.
 - **Solo, private repos, £0 budget:** Greptile Starter.
 - **Small team that ships daily:** CodeRabbit Essentials or Team.
+- **You want the head-to-head:** [CodeRabbit vs Greptile](../../compare/coderabbit-vs-greptile/) lines up free limits, the first paid plan and what a review costs.
+- **You want the wider shortlist:** [Best AI code review tools](../../best/ai-code-review-tools/) covers CodeRabbit, Greptile, GitHub Copilot code review, Cursor Bugbot and the other reviewers whose prices could be read on the vendor's own page.
