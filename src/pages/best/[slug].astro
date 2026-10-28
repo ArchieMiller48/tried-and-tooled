@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import GuidePage from '../../components/GuidePage.astro';
+import Newsletter from '../../components/Newsletter.astro';
 import PriceLine from '../../components/PriceLine.astro';
 import SourceList from '../../components/SourceList.astro';
 import { outboundHref, outboundRel } from '../../lib/outbound';
@@ -12,6 +13,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
+const ogImage = new URL(`${import.meta.env.BASE_URL}og/best/${entry.id}.png`, Astro.site).href;
 ---
 <GuidePage
   eyebrow="Best"
@@ -23,6 +25,9 @@ const { Content } = await render(entry);
   parent={d.parent}
   faqs={d.faqs}
   verdicts={d.verdicts}
+  ogImage={ogImage}
+  newsletterInSlot
+  tools={d.picks.map((pick) => ({ name: pick.name, url: pick.url, description: pick.why, pricing: pick.pricing }))}
 >
   <section>
     <h2>The shortlist</h2>
@@ -45,6 +50,8 @@ const { Content } = await render(entry);
       ))}
     </div>
   </section>
+
+  <section class="signup"><Newsletter /></section>
 
   <section class="prose"><Content /></section>
 </GuidePage>

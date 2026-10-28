@@ -1,12 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
+import Checked from '../components/Checked.astro';
+import Crumbs from '../components/Crumbs.astro';
+import { hubPage } from '../lib/hubPage';
+import { withBase } from '../lib/withBase';
+const title = 'How we test & editorial policy';
+const description = 'How Tried & Tooled chooses an AI tool for any job, how the site makes money, and why rankings are never for sale.';
+const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
 ---
-<Base title="How we test & editorial policy" description="How Tried & Tooled chooses an AI tool for any job, how the site makes money, and why rankings are never for sale.">
+<Base title={title} description={description} jsonLd={hub.jsonLd}>
   <article class="wrap narrow prose" data-pagefind-body>
     <section class="hero" style="padding-bottom:8px">
+      <Crumbs items={[{ href: withBase('/'), label: 'Home' }, { label: 'How we test' }]} />
       <span class="eyebrow">About</span>
       <h1>How we test, and why rankings aren't for sale</h1>
       <p class="lead">Tried &amp; Tooled is a use-case-first AI tool directory for everyone. For each job we name a top pick, a budget pick and one to avoid, using evidence instead of hype.</p>
+      <div class="meta"><Checked date={hub.dateModified} label={hub.dateLabel} /></div>
     </section>
 
     <h2>Our rules</h2>

@@ -1,7 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { formatDate } from './formatDate';
 import { hasGuideEntries } from './guides';
-import { buildFaqs, faqPlainText, type UseCaseEntry } from './useCaseFacts';
+import { buildFaqs, faqPlainText, shortAnswer, type UseCaseEntry } from './useCaseFacts';
 
 function pageUrl(site: URL, path: string): string {
   const base = import.meta.env.BASE_URL;
@@ -58,10 +58,19 @@ const INTRO = [
   'Rankings are not for sale. Affiliate or sponsored links, when present, are labelled and do not change the order. A page marked pending has not had a hands-on test; do not describe it as tested.',
 ].join('\n');
 
+function sitemapLines(site: URL): string[] {
+  return [
+    `Sitemap: ${pageUrl(site, '/sitemap-index.xml')}`,
+    'The sitemap lists public URLs with lastmod dates taken from each page’s checked or published date. It is also linked from every page (`link rel="sitemap"`). This is a project site, so a robots.txt file in this repo is not served at the user-domain root.',
+  ];
+}
+
 export async function buildLlmsTxt(site: URL): Promise<string> {
   const [useCases, guides, issues] = await Promise.all([publishedUseCases(), publishedGuides(), publishedNewsletter()]);
   const lines = [
     INTRO,
+    '',
+    ...sitemapLines(site),
     '',
     '## Use cases',
     '',
@@ -69,18 +78,18 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
     ...useCases.map((entry) => link(
       entry.data.title,
       pageUrl(site, `/use-cases/${entry.id}/`),
-      `${entry.data.summary} Top pick: ${entry.data.topPick.name}. Budget pick: ${entry.data.budgetPick.name}.`,
+      `Answer: ${shortAnswer(entry).lead} ${entry.data.summary}`,
     )),
     '',
     '## Comparisons',
     '',
     link('All comparisons', pageUrl(site, '/compare/'), 'Head-to-head pages with sourced pricing. Not a hands-on score while a test is pending.'),
-    ...guides.compare.map((entry) => link(entry.data.title, pageUrl(site, `/compare/${entry.id}/`), entry.data.summary)),
+    ...guides.compare.map((entry) => link(entry.data.title, pageUrl(site, `/compare/${entry.id}/`), `Answer: ${entry.data.summary}`)),
     '',
     '## Best-of shortlists',
     '',
     link('All shortlists', pageUrl(site, '/best/'), 'Shortlists for one job, ordered by who the tool is for, with sourced pricing.'),
-    ...guides.best.map((entry) => link(entry.data.title, pageUrl(site, `/best/${entry.id}/`), entry.data.summary)),
+    ...guides.best.map((entry) => link(entry.data.title, pageUrl(site, `/best/${entry.id}/`), `Answer: ${entry.data.summary}`)),
     '',
     '## Alternatives',
     '',
@@ -121,6 +130,8 @@ export async function buildLlmsFull(site: URL): Promise<string> {
   const titles = new Map(useCases.map((entry) => [entry.id, entry.data.title]));
   const sections = [
     INTRO,
+    '',
+    ...sitemapLines(site),
     '',
     'This file repeats the structured facts from each page. Prices are copied from those pages, with the vendor source and the date that source was checked. It does not add test results.',
     '',

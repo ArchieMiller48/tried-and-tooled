@@ -1,14 +1,25 @@
 ---
+import { getCollection, getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Checked from './Checked.astro';
+import Crumbs from './Crumbs.astro';
 import Newsletter from './Newsletter.astro';
-import { getEntry } from 'astro:content';
-import { withBase } from '../lib/withBase';
 import { formatDate, isoDate } from '../lib/formatDate';
+import { guideDocumentTitle } from '../lib/guideMeta';
+import { listGuides } from '../lib/guides';
 import { clipMetaKeepingEnd } from '../lib/metaText';
 import { buildGuideJsonLd } from '../lib/schema';
+import { applicationCategory, siblingUseCases } from '../lib/useCaseFacts';
+import { withBase } from '../lib/withBase';
 
 interface Faq { question: string; answer: string }
 interface Verdict { situation: string; guidance: string }
+interface PricedTool {
+  name: string;
+  url: string;
+  description: string;
+  pricing: { summary: string; sourceUrl: string; checked: Date };
+}
 interface Props {
   eyebrow: string;
   title: string;
@@ -19,6 +30,10 @@ interface Props {
   parent: string;
   faqs: Faq[];
   verdicts: Verdict[];
+  tools?: PricedTool[];
+  ogImage?: string;
+  /** The page renders the signup inside its own body, after the picks. */
+  newsletterInSlot?: boolean;
 }
 const page = Astro.props;
 const parent = await getEntry('use-cases', page.parent);
@@ -27,41 +42,74 @@ const fmt = formatDate;
 const statusLabel = page.testStatus === 'pending'
   ? 'Pending hands-on test'
   : `Tested ${page.lastTested ? fmt(page.lastTested) : ''}`.trim();
+const statusNote = page.testStatus === 'pending'
+  ? 'Hands-on test still pending. This is not a test score.'
+  : page.lastTested
+    ? `Hands-on test dated ${fmt(page.lastTested)}.`
+    : 'Hands-on test recorded on this page.';
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const sectionPath = Astro.url.pathname.replace(/[^/]+\/$/, '');
 const sectionUrl = new URL(sectionPath, Astro.site).href;
 const sectionName = page.eyebrow === 'Best' ? 'Shortlists' : page.eyebrow === 'Compare' ? 'Comparisons' : page.eyebrow;
+const verified = isoDate(page.lastVerified);
 const descriptionEnding = page.testStatus === 'pending'
   ? `Facts checked ${fmt(page.lastVerified)}. Not a hands-on test.`
   : page.lastTested
     ? `Facts checked ${fmt(page.lastVerified)}. Hands-on test ${fmt(page.lastTested)}.`
     : `Facts checked ${fmt(page.lastVerified)}.`;
 const description = clipMetaKeepingEnd(page.summary, descriptionEnding);
+const documentTitle = guideDocumentTitle(page.title, page.lastVerified.getUTCFullYear());
+const guides = await listGuides();
+const here = Astro.url.pathname.replace(/\/+$/, '');
+const relatedGuides = guides.filter((guide) => guide.parent === page.parent && withBase(guide.href).replace(/\/+$/, '') !== here);
+const siblings = siblingUseCases(parent, await getCollection('use-cases', ({ data }) => !data.draft));
 const jsonLd = buildGuideJsonLd({
-  title: page.title,
+  title: documentTitle,
   description,
   pageUrl,
   siteUrl,
-  dateModified: isoDate(page.lastVerified),
+  dateModified: verified,
   crumbs: [
     { name: 'Home', url: siteUrl },
     { name: sectionName, url: sectionUrl },
     { name: page.title, url: pageUrl },
   ],
   faqs: page.faqs,
+  tools: page.tools,
+  applicationCategory: page.tools?.length ? applicationCategory(parent.data.category) : undefined,
 });
 ---
-<Base title={page.title} description={description} jsonLd={jsonLd}>
+<Base title={documentTitle} description={description} jsonLd={jsonLd} ogImage={page.ogImage} ogAlt={`Tried & Tooled: ${page.title}`} hasNewsletter>
   <article class="wrap narrow" data-pagefind-body>
     <section class="hero" style="padding-bottom:8px">
+      <Crumbs items={[
+        { href: withBase('/'), label: 'Home' },
+        { href: sectionPath, label: sectionName },
+        { label: page.title },
+      ]} />
       <span class="eyebrow">{page.eyebrow}</span>
       <h1 style="font-size:clamp(2rem,4vw,2.8rem)">{page.title}</h1>
-      <p class="lead">{page.summary}</p>
       <div class="meta">
         <span class={`tag ${page.testStatus}`}>{statusLabel}</span>
-        <span class="tag">Facts last verified <time datetime={isoDate(page.lastVerified)}>{fmt(page.lastVerified)}</time></span>
+        <Checked date={verified} />
       </div>
+    </section>
+
+    <section class="answer" aria-labelledby="short-answer">
+      <h2 id="short-answer">Short answer</h2>
+      <p>{page.summary}</p>
+      {page.tools && page.tools.length > 0 && (
+        <ul class="answer-prices">
+          {page.tools.map((tool) => (
+            <li>
+              <strong>{tool.name}:</strong> {tool.pricing.summary}{' '}
+              <a href={tool.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, pricing checked <time datetime={isoDate(tool.pricing.checked)}>{fmt(tool.pricing.checked)}</time>
+            </li>
+          ))}
+        </ul>
+      )}
+      <p>{statusNote}</p>
     </section>
 
     {page.testStatus === 'pending' && (
@@ -83,7 +131,19 @@ const jsonLd = buildGuideJsonLd({
       </div>
     </section>
 
-    <p class="back">Part of the use case <a href={withBase(`/use-cases/${parent.id}/`)}>{parent.data.title}</a>.</p>
+    <section id="related">
+      <h2>Related pages</h2>
+      <ul class="sibling-list">
+        <li>Use case: <a href={withBase(`/use-cases/${parent.id}/`)}>{parent.data.title}</a></li>
+        {relatedGuides.map((guide) => (
+          <li><a href={withBase(guide.href)}>{guide.kind}: {guide.title}</a></li>
+        ))}
+        {siblings.map((item) => (
+          <li><a href={withBase(`/use-cases/${item.id}/`)}>{item.data.title}</a></li>
+        ))}
+      </ul>
+      <p>Browse <a href={withBase('/compare/')}>all comparisons</a>, <a href={withBase('/best/')}>all shortlists</a> and <a href={withBase('/use-cases/')}>all use cases</a>.</p>
+    </section>
 
     <section id="faq">
       <h2>FAQ</h2>
@@ -97,5 +157,5 @@ const jsonLd = buildGuideJsonLd({
       </ul>
     </section>
   </article>
-  <div class="wrap"><section><Newsletter /></section></div>
+  {!page.newsletterInSlot && <div class="wrap"><section class="signup"><Newsletter /></section></div>}
 </Base>

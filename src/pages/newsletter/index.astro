@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
 import Newsletter from '../../components/Newsletter.astro';
 import { getCollection } from 'astro:content';
 import { formatDate, isoDate } from '../../lib/formatDate';
@@ -25,9 +26,10 @@ const jsonLd = buildNewsletterIndexJsonLd({
   })),
 });
 ---
-<Base title="Newsletter" description={description} jsonLd={jsonLd}>
+<Base title="Newsletter" description={description} jsonLd={jsonLd} hasNewsletter>
   <div class="wrap narrow" data-pagefind-body>
     <section class="hero" style="padding-bottom:8px">
+      <Crumbs items={[{ href: withBase('/'), label: 'Home' }, { label: 'Newsletter' }]} />
       <span class="eyebrow">Weekly</span>
       <h1>Newsletter</h1>
       <p class="lead">A weekly note for anyone choosing an AI tool. Each issue has one job, what changed, and the prices checked on the vendor's own page. Every pick is pending a hands-on test. Nobody pays to rank.</p>

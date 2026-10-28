@@ -3,7 +3,7 @@ import {
   faqPlainText,
   offerFromPrice,
   type FaqBlock,
-  type NamedPick,
+  type PriceFact,
   type UseCaseEntry,
 } from './useCaseFacts';
 
@@ -32,6 +32,25 @@ export function buildHomeJsonLd(input: {
         dateModified: input.dateModified,
         inLanguage: 'en-GB',
         publisher: { '@id': orgId },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${input.siteUrl}#webpage`,
+        url: input.siteUrl,
+        name: 'Tried & Tooled',
+        description: input.description,
+        dateModified: input.dateModified,
+        inLanguage: 'en-GB',
+        isPartOf: { '@id': websiteId },
+        breadcrumb: { '@id': `${input.siteUrl}#breadcrumb` },
+        publisher: { '@id': orgId },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${input.siteUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: input.siteUrl },
+        ],
       },
       {
         '@type': 'Organization',
@@ -120,25 +139,27 @@ export function buildUseCaseJsonLd(input: {
   };
 }
 
-function softwareApp(tool: NamedPick, category: string): Record<string, unknown> {
+function softwareApp(
+  tool: { name: string; url: string; why?: string; description?: string; pricing: PriceFact },
+  category: string,
+): Record<string, unknown> {
   return {
     '@type': 'SoftwareApplication',
     name: tool.name,
     url: tool.url,
     applicationCategory: category,
-    description: tool.why,
+    description: tool.why ?? tool.description ?? tool.name,
     offers: offerFromPrice(tool.pricing),
   };
 }
 
-export function buildGuideJsonLd(input: {
+export function buildWebPageJsonLd(input: {
   title: string;
   description: string;
   pageUrl: string;
   siteUrl: string;
   dateModified: string;
   crumbs: Crumb[];
-  faqs: { question: string; answer: string }[];
 }): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
@@ -158,30 +179,87 @@ export function buildGuideJsonLd(input: {
         },
         breadcrumb: { '@id': `${input.pageUrl}#breadcrumb` },
       },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${input.pageUrl}#breadcrumb`,
-        itemListElement: input.crumbs.map((crumb, index) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          name: crumb.name,
-          item: crumb.url,
-        })),
-      },
-      {
-        '@type': 'FAQPage',
-        '@id': `${input.pageUrl}#faq`,
-        dateModified: input.dateModified,
-        mainEntity: input.faqs.map((faq) => ({
-          '@type': 'Question',
-          name: faq.question,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: faq.answer,
-          },
-        })),
-      },
+      breadcrumbList(input.pageUrl, input.crumbs),
     ],
+  };
+}
+
+function breadcrumbList(pageUrl: string, crumbs: Crumb[]): Record<string, unknown> {
+  return {
+    '@type': 'BreadcrumbList',
+    '@id': `${pageUrl}#breadcrumb`,
+    itemListElement: crumbs.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
+  };
+}
+
+export function buildGuideJsonLd(input: {
+  title: string;
+  description: string;
+  pageUrl: string;
+  siteUrl: string;
+  dateModified: string;
+  crumbs: Crumb[];
+  faqs: { question: string; answer: string }[];
+  tools?: { name: string; url: string; description: string; pricing: PriceFact }[];
+  applicationCategory?: string;
+}): Record<string, unknown> {
+  const page: Record<string, unknown> = {
+    '@type': 'WebPage',
+    '@id': input.pageUrl,
+    url: input.pageUrl,
+    name: input.title,
+    description: input.description,
+    dateModified: input.dateModified,
+    inLanguage: 'en-GB',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Tried & Tooled',
+      url: input.siteUrl,
+    },
+    breadcrumb: { '@id': `${input.pageUrl}#breadcrumb` },
+  };
+  const graph: Record<string, unknown>[] = [
+    page,
+    breadcrumbList(input.pageUrl, input.crumbs),
+  ];
+  if (input.tools?.length) {
+    if (!input.applicationCategory) throw new Error(`Guide "${input.title}" needs an applicationCategory for its tool list.`);
+    page.mainEntity = { '@id': `${input.pageUrl}#tools` };
+    graph.push({
+      '@type': 'ItemList',
+      '@id': `${input.pageUrl}#tools`,
+      name: input.title,
+      itemListOrder: 'https://schema.org/ItemListOrderAscending',
+      numberOfItems: input.tools.length,
+      itemListElement: input.tools.map((tool, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: tool.name,
+        item: softwareApp({ ...tool, why: tool.description }, input.applicationCategory as string),
+      })),
+    });
+  }
+  graph.push({
+    '@type': 'FAQPage',
+    '@id': `${input.pageUrl}#faq`,
+    dateModified: input.dateModified,
+    mainEntity: input.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  });
+  return {
+    '@context': 'https://schema.org',
+    '@graph': graph,
   };
 }
 
@@ -209,6 +287,15 @@ export function buildNewsletterIndexJsonLd(input: {
           url: input.siteUrl,
         },
         mainEntity: { '@id': `${input.pageUrl}#blog` },
+        breadcrumb: { '@id': `${input.pageUrl}#breadcrumb` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${input.pageUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: input.siteUrl },
+          { '@type': 'ListItem', position: 2, name: 'Newsletter', item: input.pageUrl },
+        ],
       },
       {
         '@type': 'Blog',

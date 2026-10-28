@@ -1,0 +1,7 @@
+---
+import { formatDate } from '../lib/formatDate';
+interface Props { date: string; label?: string }
+const { date, label = 'Last checked' } = Astro.props;
+const formatted = formatDate(new Date(`${date}T00:00:00.000Z`));
+---
+<span class="tag">{label} <time datetime={date}>{formatted}</time></span>

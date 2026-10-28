@@ -1,23 +1,32 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Checked from '../../components/Checked.astro';
+import Crumbs from '../../components/Crumbs.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import { formatDate, isoDate } from '../../lib/formatDate';
+import { hubPage } from '../../lib/hubPage';
+import { withBase } from '../../lib/withBase';
 import { getCollection } from 'astro:content';
 const items = (await getCollection('news')).sort((a, b) => b.data.spotted.valueOf() - a.data.spotted.valueOf());
-const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const title = 'New this week';
+const description = 'New AI tool releases and pricing changes, each with a source link. Not a tested recommendation.';
+const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
 ---
-<Base title="New this week" description="New AI tool releases and pricing changes, each with a source link. Not a tested recommendation.">
+<Base title={title} description={description} jsonLd={hub.jsonLd} hasNewsletter>
   <div class="wrap narrow" data-pagefind-body>
     <section class="hero" style="padding-bottom:8px">
+      <Crumbs items={[{ href: withBase('/'), label: 'Home' }, { label: title }]} />
       <span class="eyebrow">Feed</span>
       <h1>New this week</h1>
       <p class="lead">Releases, launches and pricing changes worth knowing about. Each one gets a one-line "who it's for" and a link to the source. Nothing here is a tested recommendation yet.</p>
+      <div class="meta"><Checked date={hub.dateModified} label="Updated" /></div>
     </section>
     {items.map((n) => (
       <div class="feed-item" id={n.id}>
-        <time datetime={n.data.spotted.toISOString()}>{fmt(n.data.spotted)}</time>
+        <time datetime={isoDate(n.data.spotted)}>{formatDate(n.data.spotted)}</time>
         <div>
           <span class="tag">{n.data.tool}</span>
-          <h3 style="margin-top:8px">{n.data.title}</h3>
+          <h2 style="margin-top:8px;font-size:1.15rem">{n.data.title}</h2>
           <p style="margin:4px 0">{n.data.summary}</p>
           <p style="margin:4px 0;color:var(--muted)"><strong>Who it's for:</strong> {n.data.whoFor}</p>
           <a href={n.data.sourceUrl} rel="nofollow noopener" target="_blank">Source →</a>
@@ -26,5 +35,5 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
       </div>
     ))}
   </div>
-  <div class="wrap"><section><Newsletter /></section></div>
+  <div class="wrap"><section class="signup"><Newsletter /></section></div>
 </Base>

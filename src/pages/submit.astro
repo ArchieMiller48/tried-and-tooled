@@ -1,15 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
+import Checked from '../components/Checked.astro';
+import Crumbs from '../components/Crumbs.astro';
+import { hubPage } from '../lib/hubPage';
+import { withBase } from '../lib/withBase';
 // TODO(forms): connect to Tally (free) or a Cloudflare Worker that opens a GitHub issue in the content repo.
 // Until then the form doesn't submit anywhere and no data is collected.
 const SUBMIT_FORM_ACTION = ''; // TODO(forms): fill in
+const title = 'Submit a tool';
+const description = 'Suggest an AI tool for a specific job. Submissions are free and never buy a ranking.';
+const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
 ---
-<Base title="Submit a tool" description="Suggest an AI tool for a specific job. Submissions are free and never buy a ranking.">
+<Base title={title} description={description} jsonLd={hub.jsonLd}>
   <div class="wrap narrow">
     <section class="hero" style="padding-bottom:8px">
+      <Crumbs items={[{ href: withBase('/'), label: 'Home' }, { label: title }]} />
       <span class="eyebrow">Submit</span>
       <h1>Submit a tool</h1>
       <p class="lead">Know a tool that does one job well? Tell us about it. Submissions are free and go into our research queue. A submission doesn't guarantee a listing and never buys a ranking.</p>
+      <div class="meta"><Checked date={hub.dateModified} label={hub.dateLabel} /></div>
     </section>
     <form class="stacked card" method="post" action={SUBMIT_FORM_ACTION || undefined} onsubmit={!SUBMIT_FORM_ACTION ? "event.preventDefault(); this.querySelector('button').textContent='Submissions open soon ✓';" : undefined}>
       <label>Tool name<input name="name" required /></label>
@@ -22,7 +31,7 @@ const SUBMIT_FORM_ACTION = ''; // TODO(forms): fill in
       <label>Pricing page URL<input name="pricing" type="url" placeholder="https://" /></label>
       <label>Free tier or trial for testing?<input name="trial" placeholder="e.g. 14-day trial, free plan, test credits available" /></label>
       <label>Anything else we should know?<textarea name="notes" rows="4"></textarea></label>
-      <label>Your email<input name="email" type="email" /></label>
+      <label>Your email<input name="email" type="email" autocomplete="email" /></label>
       <button class="btn" type="submit">Submit tool</button>
       <small style="color:var(--muted)">Placeholder form. Submissions open soon, and nothing is stored yet.</small>
     </form>
