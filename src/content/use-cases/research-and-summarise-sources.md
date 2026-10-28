@@ -50,7 +50,7 @@ stack:
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-10-26
-testNotes: "Pending hands-on test. Planned standard task: from the same research question and the same five PDFs, produce a 300-word summary in each tool, then score how many claims link to a real passage in those sources, how many claims are not in the sources, and what the published plan costs for that one task."
+testNotes: "Hands-on note, 26 Oct 2026: a free Consensus account gave 10 Pro searches a month. A test query returned a cited answer and a Consensus Meter in about 25 seconds, and a full report in about 60 seconds. Elicit was not part of this check. The standard task is still pending: from the same research question and the same five PDFs, produce a 300-word summary in each tool, then score how many claims link to a real passage in those sources, how many claims are not in the sources, and what the published plan costs for that one task."
 ---
 
 ## Who this is for
@@ -63,7 +63,7 @@ Students, researchers and anyone else who has to read a pile of sources and say 
 - **You already have the papers and you are not paying yet:** Elicit Basic.
 - **The sources are your own files, not a literature search:** Gemini Notebook's free plan, within the notebook and source caps on [Google's help page](https://support.google.com/notebooklm/answer/16206866?hl=en).
 
-Consensus's guide says the product searches scholarly articles and writes an answer where each sentence links to a paper. This page has not run that task. Read the guide at [docs.consensus.app](https://docs.consensus.app/get-started/what-is-consensus), then check the paper yourself.
+Consensus's guide says the product searches scholarly articles and writes an answer where each sentence links to a paper. Test notes record one dated Consensus check from 26 Oct 2026. The standard task on this page has not been run. Read the guide at [docs.consensus.app](https://docs.consensus.app/get-started/what-is-consensus), then check the paper yourself.
 
 ## Where this goes next
 

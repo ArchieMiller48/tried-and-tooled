@@ -1,12 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Checked from '../../components/Checked.astro';
+import Crumbs from '../../components/Crumbs.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import { hubPage } from '../../lib/hubPage';
 import { buildStackCatalog } from '../../lib/stackCatalog';
+import { withBase } from '../../lib/withBase';
 
 const catalog = await buildStackCatalog();
 const catalogJson = JSON.stringify(catalog).replace(/</g, '\\u003c');
+const title = 'Find your tool';
 const description =
   'Answer four questions and see AI tools for that job. Roles include students, marketers, researchers and designers.';
+const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
 const questions = [
   {
     id: 'role',
@@ -38,7 +44,7 @@ const questions = [
   },
 ] as const;
 ---
-<Base title="Find your tool" description={description}>
+<Base title={title} description={description} jsonLd={hub.jsonLd}>
   <script is:inline>
     (function () {
       var q = location.search;
@@ -48,7 +54,9 @@ const questions = [
     })();
   </script>
   <article id="finder-panel" class="wrap finder-quiz" data-pagefind-body>
+    <Crumbs items={[{ href: withBase('/'), label: 'Home' }, { label: title }]} />
     <h1 class="finder-title">Find your tool</h1>
+    <p class="meta"><Checked date={hub.dateModified} label={hub.dateLabel} /></p>
     <div id="finder-progress" class="progress" role="progressbar" aria-valuemin="1" aria-valuemax={questions.length} aria-valuenow="1" aria-valuetext="Question 1 of 4">
       <div class="progress-label">Question 1 of 4</div>
       <div class="progress-track"><div class="progress-bar" style="width:25%"></div></div>

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import GuidePage from '../../components/GuidePage.astro';
+import Newsletter from '../../components/Newsletter.astro';
 import PriceLine from '../../components/PriceLine.astro';
 import SourceList from '../../components/SourceList.astro';
 import { outboundHref, outboundRel } from '../../lib/outbound';
@@ -12,6 +13,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
+const ogImage = new URL(`${import.meta.env.BASE_URL}og/compare/${entry.id}.png`, Astro.site).href;
 ---
 <GuidePage
   eyebrow="Compare"
@@ -23,6 +25,9 @@ const { Content } = await render(entry);
   parent={d.parent}
   faqs={d.faqs}
   verdicts={d.verdicts}
+  ogImage={ogImage}
+  newsletterInSlot
+  tools={d.tools.map((tool) => ({ name: tool.name, url: tool.url, description: tool.blurb, pricing: tool.pricing }))}
 >
   <div class="picks">
     {d.tools.map((tool) => (
@@ -38,6 +43,8 @@ const { Content } = await render(entry);
       </div>
     ))}
   </div>
+
+  <section class="signup"><Newsletter /></section>
 
   <section>
     <h2>Side by side</h2>

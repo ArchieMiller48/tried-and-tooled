@@ -1,11 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import Checked from '../components/Checked.astro';
 import Newsletter from '../components/Newsletter.astro';
 import UseCaseCard from '../components/UseCaseCard.astro';
 import GuideCard from '../components/GuideCard.astro';
 import { withBase } from '../lib/withBase';
 import { hasGuideEntries, listGuides } from '../lib/guides';
-import { isoDate } from '../lib/formatDate';
+import { formatDate, isoDate } from '../lib/formatDate';
 import { buildHomeJsonLd } from '../lib/schema';
 import { USE_CASE_GROUPS } from '../lib/useCaseGroups';
 import { getCollection } from 'astro:content';
@@ -29,14 +30,14 @@ const jsonLd = buildHomeJsonLd({
   description,
   dateModified: isoDate(latest),
 });
-const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
-<Base description={description} jsonLd={jsonLd}>
+<Base description={description} jsonLd={jsonLd} hasNewsletter>
   <div class="wrap">
     <section class="hero">
       <span class="eyebrow">For any job · curated picks</span>
       <h1>The right AI tool<br />for any job.</h1>
       <p class="lead">A directory organised by the job, not by who you are. Pick research, marketing, design, admin, study or building an app. Each page names a top pick, a budget pick and one to avoid. Every price links to its source and shows the date we checked it.</p>
+      <div class="meta"><Checked date={isoDate(latest)} /></div>
       <div class="cta-row">
         <a class="btn" href={withBase('/find-your-tool/')}>Find your tool</a>
         <a class="btn ghost" href={withBase('/use-cases/')}>Browse use cases</a>
@@ -55,10 +56,10 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
 
     <section>
       <div class="pillars">
-        <div class="card"><h3>🎯 Job first</h3><p>Every page answers one job you actually have, not "top 100 AI tools".</p></div>
-        <div class="card"><h3>🧪 Proof over hype</h3><p>Test notes, verified pricing with sources, and a "last verified" date on every page. Untested means labelled untested.</p></div>
-        <div class="card"><h3>🧱 Full stacks</h3><p>We show how tools fit together, from the first prompt to the finished job.</p></div>
-        <div class="card"><h3>🚫 Never pay-to-rank</h3><p>Sponsors and affiliate deals never change a ranking. <a href={withBase('/about/')}>Read the policy</a>.</p></div>
+        <div class="card"><h3><span aria-hidden="true">🎯</span> Job first</h3><p>Every page answers one job you actually have, not "top 100 AI tools".</p></div>
+        <div class="card"><h3><span aria-hidden="true">🧪</span> Proof over hype</h3><p>Test notes, verified pricing with sources, and a "last verified" date on every page. Untested means labelled untested.</p></div>
+        <div class="card"><h3><span aria-hidden="true">🧱</span> Full stacks</h3><p>We show how tools fit together, from the first prompt to the finished job.</p></div>
+        <div class="card"><h3><span aria-hidden="true">🚫</span> Never pay-to-rank</h3><p>Sponsors and affiliate deals never change a ranking. <a href={withBase('/about/')}>Read the policy</a>.</p></div>
       </div>
     </section>
 
@@ -93,7 +94,7 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
             <span class="tag">{n.data.tool}</span>
             <h3 style="margin-top:10px">{n.data.title}</h3>
             <p>{n.data.summary}</p>
-            <div class="meta"><span class="tag">Spotted {fmt(n.data.spotted)}</span></div>
+            <div class="meta"><span class="tag">Spotted <time datetime={isoDate(n.data.spotted)}>{formatDate(n.data.spotted)}</time></span></div>
           </a>
         ))}
       </div>

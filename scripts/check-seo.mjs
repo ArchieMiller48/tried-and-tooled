@@ -109,7 +109,11 @@ for (const file of htmlFiles) {
     if (raw.includes('aggregateRating') || raw.includes('reviewCount') || raw.includes('"review"')) {
       fail(`${path} JSON-LD includes a rating or review`);
     }
+    const shownDates = new Set();
     walkNodes(data, (node) => {
+      for (const key of ['dateModified', 'datePublished']) {
+        if (typeof node[key] === 'string') shownDates.add(node[key]);
+      }
       if (node['@type'] === 'SoftwareApplication') {
         for (const key of ['name', 'url', 'applicationCategory']) {
           if (typeof node[key] !== 'string' || node[key].length === 0) fail(`${path} SoftwareApplication is missing ${key}`);
@@ -124,9 +128,72 @@ for (const file of htmlFiles) {
         }
       }
     });
+    for (const day of shownDates) {
+      if (!html.includes(`datetime="${day}"`)) fail(`${path} does not show structured date ${day}`);
+    }
   }
 
   const levels = headingLevels(html);
+  for (let i = 1; i < levels.length; i += 1) {
+    if (levels[i] > levels[i - 1] + 1) fail(`${path} skips from h${levels[i - 1]} to h${levels[i]}`);
+  }
+  if (!html.includes('rel="sitemap"')) fail(`${path} is missing the sitemap link`);
+  for (const image of html.matchAll(/<img\b([^>]*)>/g)) {
+    if (!/\balt=/.test(image[1])) fail(`${path} has an image without alt text`);
+  }
+
+  const intent = path.match(/\/(compare|best)\/([^/]+)\/$/);
+  if (intent) {
+    if (levels[0] !== 1 || levels.filter((level) => level === 1).length !== 1) fail(`${path} heading outline does not start with a single h1`);
+    if (!html.includes('id="short-answer"')) fail(`${path} is missing the short answer`);
+    if (!html.includes('Last checked')) fail(`${path} is missing Last checked`);
+    if (!html.includes('id="faq"')) fail(`${path} is missing the FAQ`);
+    if (!html.includes(`${base}/use-cases/`) || !html.includes(`${base}/compare/`) || !html.includes(`${base}/best/`)) {
+      fail(`${path} does not link to use cases, comparisons and shortlists`);
+    }
+    if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
+    const og = attr(html, /<meta property="og:image" content="([^"]*)"/);
+    if (!og.includes(`/og/${intent[1]}/${intent[2]}.png`)) fail(`${path} is missing its own Open Graph image`);
+    else if (!existsSync(pathToFile(new URL(og).pathname))) fail(`${path} Open Graph image was not built`);
+    const faqHtml = html.split('id="faq"')[1]?.split('</section>')[0] ?? '';
+    const visibleQuestions = [...faqHtml.matchAll(/<h3>([^<]*)<\/h3>/g)].map((match) => decode(match[1]));
+    if (visibleQuestions.length < 3) fail(`${path} FAQ has ${visibleQuestions.length} questions`);
+    const graph = blocks.flatMap((block) => {
+      try {
+        const data = JSON.parse(block[1]);
+        return data['@graph'] ?? [data];
+      } catch {
+        return [];
+      }
+    });
+    const types = new Set(graph.map((node) => node['@type']));
+    for (const type of ['WebPage', 'BreadcrumbList', 'ItemList', 'FAQPage']) {
+      if (!types.has(type)) fail(`${path} JSON-LD is missing ${type}`);
+    }
+    const pageNode = graph.find((node) => node['@type'] === 'WebPage');
+    if (!pageNode?.dateModified) fail(`${path} JSON-LD is missing dateModified`);
+    else if (!html.includes(`datetime="${pageNode.dateModified}"`)) fail(`${path} dateModified ${pageNode.dateModified} is not visible`);
+    const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
+    const schemaQuestions = (faqNode?.mainEntity ?? []).map((question) => question.name);
+    if (schemaQuestions.join('|') !== visibleQuestions.join('|')) {
+      fail(`${path} FAQ JSON-LD questions do not match the visible questions`);
+    }
+    const list = graph.find((node) => node['@type'] === 'ItemList');
+    const apps = [];
+    walkNodes(list, (node) => {
+      if (node['@type'] === 'SoftwareApplication') apps.push(node);
+    });
+    if (apps.length < 2) fail(`${path} ItemList has ${apps.length} tools`);
+  }
+
+  if (/\/use-cases\/[^/]+\/$/.test(path)) {
+    const og = attr(html, /<meta property="og:image" content="([^"]*)"/);
+    const slug = path.split('/').filter(Boolean).at(-1);
+    if (!og.includes(`/og/use-cases/${slug}.png`)) fail(`${path} is missing its own Open Graph image`);
+    else if (!existsSync(pathToFile(new URL(og).pathname))) fail(`${path} Open Graph image was not built`);
+    if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
+  }
+
   if (path.includes('/use-cases/') && path !== `${base}/use-cases/`) {
     if (levels[0] !== 1 || levels.filter((level) => level === 1).length !== 1) fail(`${path} heading outline does not start with a single h1`);
     for (let i = 1; i < levels.length; i += 1) {
@@ -244,7 +311,20 @@ if (existsSync(llms) && existsSync(full)) {
   for (const path of useCasePages) {
     if (!index.includes(path)) fail(`llms.txt is missing ${path}`);
     if (!expanded.includes(path)) fail(`llms-full.txt is missing ${path}`);
+    const listed = index.slice(index.indexOf(path), index.indexOf(path) + 500);
+    if (!listed.includes(': Answer: Top pick')) fail(`llms.txt answer for ${path} does not lead with the picks`);
   }
+  const guidePages = htmlFiles
+    .map(publicPath)
+    .filter((path) => /\/(?:compare|best)\/[^/]+\/$/.test(path));
+  for (const path of guidePages) {
+    if (!index.includes(path)) fail(`llms.txt is missing ${path}`);
+    if (!expanded.includes(path)) fail(`llms-full.txt is missing ${path}`);
+    const listed = index.slice(index.indexOf(path), index.indexOf(path) + 500);
+    if (!listed.includes(': Answer:')) fail(`llms.txt answer for ${path} is not answer-first`);
+  }
+  if (!index.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms.txt does not advertise the sitemap');
+  if (!expanded.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms-full.txt does not advertise the sitemap');
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
     if (!index.includes(`${base}${needle}`)) fail(`llms.txt is missing ${needle}`);
   }
@@ -270,6 +350,21 @@ const sitemap = walk(dist)
 for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`]) {
   if (!existsSync(pathToFile(page))) fail(`built page is missing ${page}`);
   if (!sitemap.includes(`${origin}${page}`)) fail(`sitemap is missing ${page}`);
+}
+const sitemapUrls = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
+if (sitemapUrls.length < 32) fail(`sitemap lists ${sitemapUrls.length} URLs`);
+for (const block of sitemapUrls) {
+  const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] ?? '';
+  const lastmod = block.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1] ?? '';
+  if (!lastmod) fail(`sitemap URL has no lastmod: ${loc}`);
+  else if (!/^\d{4}-\d{2}-\d{2}/.test(lastmod)) fail(`sitemap lastmod for ${loc} is not a date: ${lastmod}`);
+}
+const research = readFileSync(pathToFile(`${base}/use-cases/research-and-summarise-sources/`), 'utf8');
+for (const phrase of ['26 Oct 2026', '10 Pro searches a month', 'Consensus Meter', '25 seconds', '60 seconds', 'free Consensus account']) {
+  if (!research.includes(phrase)) fail(`research page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!research.includes('Standard task still pending') || !research.includes('standard task')) {
+  fail('research page does not keep the standard task pending');
 }
 
 if (errors.length > 0) {

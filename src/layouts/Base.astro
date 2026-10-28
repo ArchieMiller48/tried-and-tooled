@@ -3,9 +3,23 @@ import '../styles/global.css';
 import { withBase } from '../lib/withBase';
 import { clipMeta } from '../lib/metaText';
 import listedOn from '../data/listed-on.json';
-interface Props { title?: string; description?: string; jsonLd?: unknown; }
+interface Props {
+  title?: string;
+  description?: string;
+  jsonLd?: unknown;
+  ogImage?: string;
+  ogAlt?: string;
+  hasNewsletter?: boolean;
+}
 interface Listing { name: string; url: string; badgeImg?: string; }
-const { title, description = 'Curated AI tool picks for any job, with a top pick, a budget pick, one to avoid and sourced prices.', jsonLd } = Astro.props;
+const {
+  title,
+  description = 'Curated AI tool picks for any job, with a top pick, a budget pick, one to avoid and sourced prices.',
+  jsonLd,
+  ogImage: ogImageProp,
+  ogAlt = 'Tried & Tooled',
+  hasNewsletter = false,
+} = Astro.props;
 const metaDescription = clipMeta(description);
 const jsonLdText = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : '';
 const fullTitle = title ? `${title} · Tried & Tooled` : 'Tried & Tooled · The right AI tool for any job';
@@ -13,7 +27,9 @@ const path = Astro.url.pathname;
 const notFound = /\/404\/?$/.test(path);
 const pageUrl = notFound ? new URL(`${import.meta.env.BASE_URL}404.html`, Astro.site) : new URL(path, Astro.site);
 const robots = notFound ? 'noindex, max-image-preview:large' : 'max-image-preview:large';
-const ogImage = new URL(`${import.meta.env.BASE_URL}brand/og.png`, Astro.site);
+const ogImage = ogImageProp ?? new URL(`${import.meta.env.BASE_URL}brand/og.png`, Astro.site);
+const sitemapUrl = new URL(`${import.meta.env.BASE_URL}sitemap-index.xml`, Astro.site);
+const weeklyHref = hasNewsletter ? '#newsletter' : withBase('/newsletter/');
 const listings = (listedOn as Listing[]).filter((entry) => entry.name && entry.url);
 const nav = [
   { href: withBase('/find-your-tool/'), label: 'Find your tool' },
@@ -36,6 +52,7 @@ const isCurrent = (href: string) => {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="google-site-verification" content="uEpiyRTdYjuB-4--vrQe16Rws8kjLlXPB91qYV6Vlwg" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href={sitemapUrl} />
     <title>{fullTitle}</title>
     <meta name="description" content={metaDescription} />
     <meta name="robots" content={robots} />
@@ -43,8 +60,13 @@ const isCurrent = (href: string) => {
     <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogAlt} />
     <link rel="canonical" href={pageUrl} />
     {jsonLdText && <script type="application/ld+json" set:html={jsonLdText} />}
   </head>
@@ -58,7 +80,7 @@ const isCurrent = (href: string) => {
         <nav class="main" aria-label="Main">
           {nav.map((n) => <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>)}
         </nav>
-        <a class="btn" href={path.includes('/newsletter/') ? '#newsletter' : withBase('/newsletter/')}>Get the weekly</a>
+        <a class="btn" href={weeklyHref}>Get the weekly</a>
       </div>
     </header>
     <main><slot /></main>
