@@ -138,6 +138,9 @@ for (const file of htmlFiles) {
     if (levels[i] > levels[i - 1] + 1) fail(`${path} skips from h${levels[i - 1]} to h${levels[i]}`);
   }
   if (!html.includes('rel="sitemap"')) fail(`${path} is missing the sitemap link`);
+  if (html.includes('Every Tuesday') || html.includes('The Tuesday note')) {
+    fail(`${path} still says the newsletter goes out on Tuesday`);
+  }
   for (const image of html.matchAll(/<img\b([^>]*)>/g)) {
     if (!/\balt=/.test(image[1])) fail(`${path} has an image without alt text`);
   }
@@ -263,13 +266,18 @@ for (const file of htmlFiles) {
       fail(`${path} datePublished ${article.datePublished} is not visible`);
     }
     if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
+    if (html.includes('{{') || html.includes('first_name')) fail(`${path} still has a Beehiiv merge tag`);
   }
 
   if (path === `${base}/newsletter/`) {
     if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
-    if (!html.includes(`${base}/newsletter/issue-1/`) || !html.includes(`${base}/newsletter/issue-2/`)) {
-      fail(`${path} does not link to both issues`);
+    for (const issue of ['issue-1', 'issue-2', 'issue-3']) {
+      if (!html.includes(`${base}/newsletter/${issue}/`)) fail(`${path} does not link to ${issue}`);
     }
+    const issue3At = html.indexOf(`${base}/newsletter/issue-3/`);
+    const issue2At = html.indexOf(`${base}/newsletter/issue-2/`);
+    const issue1At = html.indexOf(`${base}/newsletter/issue-1/`);
+    if (!(issue3At < issue2At && issue2At < issue1At)) fail(`${path} does not list issue 3 first`);
   }
 
   if (path === `${base}/` || path === `${base}`) {
@@ -328,7 +336,7 @@ if (existsSync(llms) && existsSync(full)) {
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
     if (!index.includes(`${base}${needle}`)) fail(`llms.txt is missing ${needle}`);
   }
-  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`]) {
+  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`]) {
     if (!index.includes(issuePath)) fail(`llms.txt is missing ${issuePath}`);
     if (!expanded.includes(issuePath)) fail(`llms-full.txt is missing ${issuePath}`);
   }
@@ -347,7 +355,7 @@ const sitemap = walk(dist)
   .filter((file) => file.endsWith('.xml') && file.includes('sitemap'))
   .map((file) => readFileSync(file, 'utf8'))
   .join('\n');
-for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`]) {
+for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`]) {
   if (!existsSync(pathToFile(page))) fail(`built page is missing ${page}`);
   if (!sitemap.includes(`${origin}${page}`)) fail(`sitemap is missing ${page}`);
 }
