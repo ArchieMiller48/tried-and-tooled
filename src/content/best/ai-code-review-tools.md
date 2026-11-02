@@ -1,6 +1,6 @@
 ---
 title: "Best AI code review tools (2026)"
-summary: "A shortlist of AI code review tools for pull requests: CodeRabbit, Greptile, GitHub Copilot, Cursor Bugbot and other reviewers with a price on the vendor's own page. Every price was checked on 27 October 2026. This is not a hands-on test."
+summary: "A shortlist of AI code review tools for pull requests: CodeRabbit, Greptile, GitHub Copilot, Cursor Bugbot and other reviewers with a price on the vendor's own page. Every price was checked on 2 November 2026. This is not a hands-on test."
 targetQuery: "best ai code review tools"
 secondaryQueries:
   - "ai pr review tool"
@@ -8,7 +8,7 @@ secondaryQueries:
 parent: "ai-code-review"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-27
+lastVerified: 2026-11-02
 picks:
   - name: "CodeRabbit"
     url: "https://www.coderabbit.ai"
@@ -18,7 +18,7 @@ picks:
     pricing:
       summary: "Annual prices on the pricing page: Essentials $24/user/mo, Team $48/user/mo, Advanced $72/user/mo. FAQ month-to-month: Essentials $30, Team $60. Public repositories: free reviews forever."
       sourceUrl: "https://www.coderabbit.ai/pricing"
-      checked: 2026-10-27
+      checked: 2026-11-02
     sources:
       - label: "Free plan, hourly limits, Advanced at $90 month-to-month"
         url: "https://docs.coderabbit.ai/management/plans"
@@ -31,7 +31,7 @@ picks:
     pricing:
       summary: "Starter free (1 active developer, 50 credits/month, unlimited repositories). Pro has no seat fee: $1 per credit, shared across the organisation. Base review 1 credit, Plus 3, Apex 10."
       sourceUrl: "https://www.greptile.com/pricing"
-      checked: 2026-10-27
+      checked: 2026-11-02
     sources:
       - label: "Reviews pause at a zero balance"
         url: "https://www.greptile.com/docs/code-review-bot/billing-seats"
@@ -44,7 +44,7 @@ picks:
     pricing:
       summary: "Free $0. Pro $10/month. Pro+ $39/month. Max $100/month. Plans page lists total GitHub AI Credits of $15/month (Pro), $70 (Pro+) and $200 (Max). 1 AI credit = $0.01."
       sourceUrl: "https://github.com/features/copilot/plans"
-      checked: 2026-10-27
+      checked: 2026-11-02
     sources:
       - label: "Business $19, Enterprise $39, and who gets code review"
         url: "https://docs.github.com/en/copilot/get-started/plans"
@@ -59,7 +59,7 @@ picks:
     pricing:
       summary: "Bugbot is on the pricing table from Premium at $30/month, not on Free or Plus. Super $100/month. Ultra $200/month. Teams from $30/user/month. Third-party models at API list price, billed separately."
       sourceUrl: "https://cursor.com/pricing"
-      checked: 2026-10-27
+      checked: 2026-11-02
     sources:
       - label: "Average Bugbot run and usage billing"
         url: "https://cursor.com/help/account-and-billing/bugbot-usage-based-billing"
@@ -72,18 +72,18 @@ picks:
     pricing:
       summary: "Open source free on public repos. Pro $12/developer/month billed annually ($15 month-to-month, per the FAQ). Team $24 annually ($30 month-to-month). 14-day Team trial, no card."
       sourceUrl: "https://www.sourcery.ai/pricing"
-      checked: 2026-10-27
+      checked: 2026-11-02
     sources: []
     affiliateUrl: null
   - name: "Graphite"
     url: "https://graphite.com"
     fit: "You want stacked pull requests and AI review in the same GitHub workflow, and you can pay annually."
     why: "Graphite's pricing page, with annual billing selected, lists Hobby as Free for personal-account repos, including a CLI for stacked PRs and limited AI reviews. Starter is $20 per user per month billed annually and includes GitHub organisation repos. Team is $40 per user per month billed annually and lists unlimited AI reviews, review customisation, automations and a merge queue. Enterprise is Custom. The page says annual billing is 20% off."
-    caveat: "The page does not say how many reviews 'limited' is, on Hobby or on Starter (Starter includes the Hobby tier). The monthly price was not in the HTML on 27 October 2026, so this card does not invent one from the 20% line. The billing docs describe a 30-day Team trial. That length is not printed on the pricing card, which only says 'Start free trial'."
+    caveat: "The page does not say how many reviews 'limited' is, on Hobby or on Starter (Starter includes the Hobby tier). The monthly price was not in the HTML on 2 November 2026, so this card does not invent one from the 20% line. The billing docs describe a 30-day Team trial. That length is not printed on the pricing card, which only says 'Start free trial'."
     pricing:
       summary: "Hobby free, with limited AI reviews and no count given. Starter $20/user/month billed annually. Team $40/user/month billed annually, with unlimited AI reviews. Enterprise custom. Monthly prices were not in the page HTML."
       sourceUrl: "https://graphite.com/pricing"
-      checked: 2026-10-27
+      checked: 2026-11-02
     sources:
       - label: "30-day Team trial"
         url: "https://graphite.com/docs/billing-plans"
@@ -96,7 +96,7 @@ picks:
     pricing:
       summary: "No seat fee. $100 free usage for a new workspace. GitHub correctness review from $0.025/KB (Budget, $0.25 minimum) to $0.20/KB (Ultra, $2 minimum). Balanced default is $0.05/KB, $0.50 minimum."
       sourceUrl: "https://docs.macroscope.com/pricing"
-      checked: 2026-10-27
+      checked: 2026-11-02
     sources: []
     affiliateUrl: null
 verdicts:
@@ -112,11 +112,11 @@ verdicts:
     guidance: "Greptile Pro is $1 per credit with no seat fee, and reviews pause when prepaid credits run out unless automatic recharge is on. Macroscope has no seat fee either: a Balanced review is $0.05 per KB with a $0.50 minimum, and the pricing doc tells you to set a monthly spend limit because in-progress work can still bill as overage. Do not enable Copilot code review for organisation members who have no Copilot licence unless the organisation has a budget. Those reviews are billed as paid AI credits, plus GitHub Actions minutes on private repositories."
 faqs:
   - question: "What are the best AI code review tools?"
-    answer: "For a dedicated pull-request reviewer, this site's parent use case names CodeRabbit, which is free on public repositories and $24 per user per month billed annually for Essentials. For a £0 private repo, it names Greptile Starter: 50 credits a month and a base review at 1 credit. If you already pay for Copilot or Cursor Premium, those products include a reviewer and the prices are the plan prices above. Sourcery, Graphite and Macroscope are on this page because their own pricing pages could be read on 27 October 2026. This is not a hands-on ranking."
+    answer: "For a dedicated pull-request reviewer, this site's parent use case names CodeRabbit, which is free on public repositories and $24 per user per month billed annually for Essentials. For a £0 private repo, it names Greptile Starter: 50 credits a month and a base review at 1 credit. If you already pay for Copilot or Cursor Premium, those products include a reviewer and the prices are the plan prices above. Sourcery, Graphite and Macroscope are on this page because their own pricing pages could be read on 2 November 2026. This is not a hands-on ranking."
   - question: "What is a good AI PR review tool if the code already lives on GitHub?"
     answer: "Copilot code review runs on the pull request in GitHub, and automatic reviews are available on Pro, Pro+, Max, Business and Enterprise. CodeRabbit's open-source signup is GitHub or GitLab. Graphite's pricing page is written around GitHub repositories, including GitHub Enterprise Server on Enterprise. Macroscope's pricing doc measures GitHub diffs. Greptile's Starter and Pro sections do not name a git host. The Enterprise section names GitHub Enterprise, GitLab, Bitbucket, Gitea and Perforce. None of this has been checked by opening a pull request."
   - question: "What does automated code review with AI cost?"
-    answer: "It depends which unit the vendor sells. On 27 October 2026: CodeRabbit Essentials is $24 per user per month billed annually, then $0.25 per reviewed file past the hourly allowance. Greptile Pro is $1 per credit (1, 3 or 10 credits by review tier) with no seat. Sourcery Pro is $12 per developer per month billed annually. Graphite Starter is $20 per user per month billed annually. Copilot Pro is $10 a month, and GitHub estimates a single review at about $0.05 to $1 of AI credits on Lite or $0.25 to $5 on Balanced, plus Actions minutes. Macroscope's default Balanced rate is $0.05 per KB, minimum $0.50. Cursor's pricing page does not price a Bugbot run. Its help page says the average run costs $1.00 to $1.50."
+    answer: "It depends which unit the vendor sells. On 2 November 2026: CodeRabbit Essentials is $24 per user per month billed annually, then $0.25 per reviewed file past the hourly allowance. Greptile Pro is $1 per credit (1, 3 or 10 credits by review tier) with no seat. Sourcery Pro is $12 per developer per month billed annually. Graphite Starter is $20 per user per month billed annually. Copilot Pro is $10 a month. Macroscope's default Balanced rate is $0.05 per KB, minimum $0.50. Cursor's pricing page does not price a Bugbot run. GitHub's estimate for one review, and Cursor's help-page range of $1.00 to $1.50, were read on 27 October 2026 and were not re-opened."
   - question: "Which free plan is the wrong one to rely on?"
     answer: "CodeRabbit Free, if you wanted pull-request reviews on a private repository: the plans doc says that plan is PR summarisation only. Copilot Free, if you wanted Copilot to review pull requests: the code-review doc says Free does not include it, and letting unlicensed teammates request reviews bills the organisation. Graphite Hobby, if you needed a known number of AI reviews: the pricing page says they are limited and does not say how many. Macroscope's $100 is a starting credit, and Auto Refill is on by default."
   - question: "Why are other AI code review tools missing?"

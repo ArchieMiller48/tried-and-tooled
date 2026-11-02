@@ -96,6 +96,10 @@ const SEARCH_TITLES: Record<string, (year: number) => string> = {
   'research-and-summarise-sources': (year) => `Best AI tools to summarise sources (${year})`,
   'run-marketing-campaigns': (year) => `Best AI tools to schedule social posts (${year})`,
   'design-logos-and-graphics': (year) => `Best AI tools for a logo and graphics (${year})`,
+  'analyse-a-spreadsheet': (year) => `Best AI tools to check a spreadsheet (${year})`,
+  'answer-customer-questions': (year) => `Best AI tools for a customer chat (${year})`,
+  'translate-a-document': (year) => `Best AI tools to translate a document (${year})`,
+  'proofread-and-edit': (year) => `Best AI tools to proofread writing (${year})`,
 };
 
 /** Fact sentences for the meta description. The checked date and test status are appended from frontmatter. */
@@ -118,6 +122,10 @@ const SEARCH_BLURBS: Record<string, string> = {
   'research-and-summarise-sources': 'Consensus Pro for cited papers; Elicit Basic is free. Avoid Consensus Free for a long review.',
   'run-marketing-campaigns': 'Buffer Essentials schedules the campaign; Metricool Free covers 20 posts a month. Buffer Free queues 10.',
   'design-logos-and-graphics': 'Canva Pro for logos and graphics; Looka Brand Kit is $96/year. Skip Canva Business when you work solo.',
+  'analyse-a-spreadsheet': 'Google AI Pro cites web cells in Sheets. Claude Free includes code execution. Plus does not list Sheets.',
+  'answer-customer-questions': 'Tidio Lyro from $32.50/mo for site answers. Tidio Free is $0. The 50 free Lyro chats do not refresh.',
+  'translate-a-document': 'DeepL Individual is €7.49/mo yearly for documents. Free caps at 50,000 characters and one file.',
+  'proofread-and-edit': 'Grammarly Pro lists full-sentence rewrites. LanguageTool Free checks 2,000 characters.',
 };
 
 export function textMentionsFree(text: string): boolean {

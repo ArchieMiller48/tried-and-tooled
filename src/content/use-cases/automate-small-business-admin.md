@@ -9,9 +9,9 @@ topPick:
   url: "https://zapier.com"
   why: "The no-code option with the widest app coverage (9,000+ apps). Copilot drafts Zaps from a chat, paid plans add AI by Zapier steps without needing your own API key, and Agents and Chatbots have free tiers to start with."
   pricing:
-    summary: "Free: 100 tasks/mo, two-step Zaps only. Professional from $19.99/mo billed annually ($29.99 monthly) for 750 tasks/mo. Agents are billed separately in 'activities' (Free 400/mo)."
+    summary: "Free: $0, 100 tasks/mo, two-step Zaps only. Professional from $19.99/mo. A yearly toggle is labelled Save 33%. A separate $29.99 monthly figure was not in the page HTML on 2 Nov 2026. Agents Free: 400 activities/mo."
     sourceUrl: "https://zapier.com/pricing"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 budgetPick:
   name: "n8n"
@@ -20,11 +20,11 @@ budgetPick:
   pricing:
     summary: "Cloud Starter €20/mo billed annually (1,600 Assistant credits/mo). Pro €50/mo billed annually. Self-hosted Community Edition available on GitHub."
     sourceUrl: "https://n8n.io/pricing/"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 avoid:
-  name: "Zapier pay-per-task on a monthly plan, with no limit in mind"
-  reason: "If you go over your task limit with pay-per-task turned on, Zapier bills the extra tasks at 2.5× your base rate on monthly self-serve plans (1.25× on annual), and only stops once usage reaches 3× your subscription. A looping AI workflow can get expensive fast. Choose annual billing, use flood protection, or turn pay-per-task off."
+  name: "Zapier Free, for a workflow with more than two steps"
+  reason: "The Free card lists two-step Zaps only, at 100 tasks a month. Professional is the plan that lists multi-step Zaps, from $19.99/mo. A lead, an AI draft and a send is already three steps. The pricing page names pay-per-task billing, but the HTML read on 2 Nov 2026 did not include the overage rate."
   sourceUrl: "https://zapier.com/pricing"
 stack:
   - step: "Map the process"
@@ -45,7 +45,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-26
+lastVerified: 2026-11-02
 testNotes: "Pending hands-on test. Planned standard task: build 'new website enquiry → AI-drafted reply saved as a draft + CRM row + Slack alert' in each tool. We'll record build time, the tasks or executions used per run, the cost per 100 enquiries, and what happens when a step fails."
 ---
 

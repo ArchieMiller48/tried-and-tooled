@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Pro $20/mo, or $144/year ($12/mo billed annually). Includes unlimited Pro messages and 15 Deep reviews a month."
     sourceUrl: "https://help.consensus.app/en/articles/10087865-subscription-plans"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 budgetPick:
   name: "Elicit Basic"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Basic: Free. Limited Research Agent and Research Reports. Unlimited search across more than 138 million papers, unlimited summaries, and unlimited chat with full-text papers."
     sourceUrl: "https://elicit.com/pricing"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 avoid:
   name: "Consensus Free, for a long literature review"
@@ -33,7 +33,7 @@ alsoConsidered:
     pricing:
       summary: "Free with a Gmail account. 100 notebooks per user and 50 sources per notebook."
       sourceUrl: "https://support.google.com/notebooklm/answer/16206866?hl=en"
-      checked: 2026-10-26
+      checked: 2026-11-02
 stack:
   - step: "Question"
     tool: "A sentence you write"
@@ -49,7 +49,7 @@ stack:
     role: "Keep quotes and links next to the summary. If the same notes have to become a post or a deck, use the pages linked below."
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-26
+lastVerified: 2026-11-02
 testNotes: "Hands-on note, 26 Oct 2026: a free Consensus account gave 10 Pro searches a month. A test query returned a cited answer and a Consensus Meter in about 25 seconds, and a full report in about 60 seconds. Elicit was not part of this check. The standard task is still pending: from the same research question and the same five PDFs, produce a 300-word summary in each tool, then score how many claims link to a real passage in those sources, how many claims are not in the sources, and what the published plan costs for that one task."
 ---
 
