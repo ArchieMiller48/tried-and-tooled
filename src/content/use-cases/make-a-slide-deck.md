@@ -7,11 +7,11 @@ category: "Productivity"
 topPick:
   name: "Gamma"
   url: "https://gamma.app"
-  why: "Gamma's pricing page is built around presentations: Free includes export to PDF, PPTX, PNG and Google Slides, with up to 10 slides per prompt. Plus removes Gamma branding, raises that cap to 100 slides per prompt and includes 1,000 credits a month."
+  why: "Gamma's help centre lists Plus at 1,500 credits a month, with Gamma branding removed and up to 100 slides per prompt. Free lists up to 10 slides per prompt, and AI credits that do not refresh. A new account starts with 400 credits. The help centre says those initial credits do not expire."
   pricing:
-    summary: "Free: 400 starter credits at signup (they do not refill), up to 10 slides per prompt. Plus $9/seat/month billed annually ($108/seat/year), 1,000 credits/month, branding removed."
-    sourceUrl: "https://gamma.app/pricing"
-    checked: 2026-10-26
+    summary: "Free: 400 credits at signup; they do not refresh. Plus: 1,500 credits/month, branding removed, up to 100 slides per prompt. The help centre says annual billing is discounted against monthly. gamma.app/pricing returned HTTP 403 on 2 Nov 2026, so this line does not repeat a dollar price."
+    sourceUrl: "https://help.gamma.app/en/articles/8077107-how-can-i-upgrade-my-gamma-subscription"
+    checked: 2026-11-02
   affiliateUrl: null
 budgetPick:
   name: "Claude (Free)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free $0, and Claude Slides is listed on Free. Pro $20/mo, or $17/mo billed annually ($200 up front)."
     sourceUrl: "https://claude.com/pricing"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 avoid:
   name: "ChatGPT Free, Go or Plus, for ChatGPT Slides"
@@ -42,7 +42,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-26
+lastVerified: 2026-11-02
 testNotes: "Pending hands-on test. Planned standard task: turn the same 8-point outline into a 10-slide deck in each tool, then score whether every point landed on its own slide, whether numbers were invented, how long the export took, and whether the file opened in PowerPoint or Google Slides."
 ---
 
@@ -59,4 +59,5 @@ Founders and creators who have the story already, in notes or a doc, and need a 
 ## Sources
 
 - What Claude Slides can export: the help centre says PowerPoint or PDF ([What are artifacts?](https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them)). Claude's academy tutorial also describes export to Google Slides ([Making slides with Claude](https://academy.claude.com/tutorials/using-claude-design-for-presentations-and-slide-decks)). Both checked 26 Oct 2026.
-- ChatGPT Space is listed on Pro and not on Free, Go or Plus: [ChatGPT pricing](https://openai.com/chatgpt/pricing/), checked 26 Oct 2026. That page did not print dollar prices in the HTML we read.
+- ChatGPT Space is listed on Pro and not on Free, Go or Plus: [ChatGPT pricing](https://openai.com/chatgpt/pricing/), checked 2 Nov 2026. That page did not print dollar prices for Plus or Pro in the text we read.
+- Gamma's dollar price was not repeated: [gamma.app/pricing](https://gamma.app/pricing) returned HTTP 403 on 2 Nov 2026. Credit counts are from [Gamma's upgrade guide](https://help.gamma.app/en/articles/8077107-how-can-i-upgrade-my-gamma-subscription), checked the same day.

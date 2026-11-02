@@ -42,7 +42,10 @@
     { "id": "meetings", "label": "Meetings and transcripts" },
     { "id": "automate", "label": "Automate admin" },
     { "id": "build-app", "label": "Build an app or MVP" },
-    { "id": "code-review", "label": "Code review" }
+    { "id": "code-review", "label": "Code review" },
+    { "id": "spreadsheets", "label": "Spreadsheets" },
+    { "id": "support", "label": "Customer questions" },
+    { "id": "translate", "label": "Translation" }
   ],
   "budgets": [
     {
@@ -135,6 +138,26 @@
       "roles": ["designer", "small-business", "marketer", "founder", "creator", "everyday"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["logos"]
+    },
+    "analyse-a-spreadsheet": {
+      "roles": ["analyst", "small-business", "student", "founder", "everyday", "researcher"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["spreadsheets"]
+    },
+    "answer-customer-questions": {
+      "roles": ["small-business", "founder", "marketer", "everyday"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["support"]
+    },
+    "translate-a-document": {
+      "roles": ["everyday", "student", "small-business", "marketer", "researcher"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["translate"]
+    },
+    "proofread-and-edit": {
+      "roles": ["student", "researcher", "everyday", "marketer", "founder"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["writing"]
     }
   }
 }

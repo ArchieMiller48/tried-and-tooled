@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free $0 (chat, Claude Docs, up to 5 projects). Pro $20/mo, or $17/mo billed annually ($200 up front)."
     sourceUrl: "https://claude.com/pricing"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 budgetPick:
   name: "ChatGPT (Free)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free: $0. Unlimited everyday text chats with GPT-6, subject to abuse guardrails. Uploads, memory and deep research are limited."
     sourceUrl: "https://openai.com/chatgpt/pricing/"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 avoid:
   name: "Claude Free, for a week of client copy"
@@ -42,7 +42,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-26
+lastVerified: 2026-11-02
 testNotes: "Pending hands-on test. Planned standard task: from the same one-page brief, draft a 500-word blog post and a 120-word customer email in each tool, then score how well the draft follows the voice guide, how many factual inventions appear, and how many edits a human still has to make."
 ---
 

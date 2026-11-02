@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Essentials $5/mo per channel, billed yearly ($60/year for 1 channel). Annual billing is 20% off the monthly price."
     sourceUrl: "https://buffer.com/pricing"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 budgetPick:
   name: "Metricool Free"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free plan, at no cost. 1 brand, up to 20 published posts per calendar month, and 5 AI text-generator credits a month. No credit card."
     sourceUrl: "https://help.metricool.com/main-differences-between-free-and-paid-plans-bl0v9"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 avoid:
   name: "Buffer Free, for a daily campaign"
@@ -42,7 +42,7 @@ stack:
     role: "Confirm the account, the date and the final text before the queue goes out."
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-26
+lastVerified: 2026-11-02
 testNotes: "Pending hands-on test. Planned standard task: schedule the same 12-post, two-week campaign to one Instagram account and one Facebook page in each tool, including one AI-drafted caption per tool, then record whether every post stayed queued, what the published plan costs for those two channels, and which networks the plan cannot connect."
 ---
 

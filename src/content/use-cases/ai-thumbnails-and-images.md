@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Plus $15/mo billed annually ($20 monthly), 2,400 priority credits. Pro $42/mo annually ($60 monthly). Pay-as-you-go 1¢/credit."
     sourceUrl: "https://ideogram.ai/pricing"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 budgetPick:
   name: "Midjourney (Basic)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Basic $10/mo ($8/mo billed annually), 3.3 fast GPU hrs. Standard $30/mo adds unlimited Relax mode."
     sourceUrl: "https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 avoid:
   name: "Ideogram's free tier for unreleased or client work"
@@ -39,7 +39,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-26
+lastVerified: 2026-11-02
 testNotes: "Pending hands-on test. Planned standard task: generate a YouTube thumbnail for '5 AI tools I actually pay for' with the exact title text, then score text accuracy across 4 generations, visual punch at small size, and the cost per usable image."
 ---
 

@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Pro $12/mo per person billed yearly ($144/year), or $18/mo month-to-month. US prices. Up to 5 Brand Kits."
     sourceUrl: "https://www.canva.com/learn/canva-pro-vs-canva-enterprise/"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 budgetPick:
   name: "Looka Brand Kit"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Brand Kit $96/year, billed annually. 300+ branded templates generated from the logo, colours and fonts."
     sourceUrl: "https://help.looka.com/en/articles/4636515-what-is-the-brand-kit"
-    checked: 2026-10-26
+    checked: 2026-11-02
   affiliateUrl: null
 avoid:
   name: "Canva Business, when you are the only designer"
@@ -42,7 +42,7 @@ stack:
     role: "Download the files before you publish. Looka's page says you keep the logo rights after the subscription ends."
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-10-26
+lastVerified: 2026-11-02
 testNotes: "Pending hands-on test. Planned standard task: from the same one-paragraph brief, produce a logo and a 1080×1080 social graphic in each tool, then score whether the name is spelled correctly, whether the files can be downloaded on that plan, and the published price for a single user."
 ---
 
