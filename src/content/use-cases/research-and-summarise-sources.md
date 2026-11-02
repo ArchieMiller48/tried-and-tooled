@@ -34,6 +34,13 @@ alsoConsidered:
       summary: "Free with a Gmail account. 100 notebooks per user and 50 sources per notebook."
       sourceUrl: "https://support.google.com/notebooklm/answer/16206866?hl=en"
       checked: 2026-11-02
+  - name: "Perplexity (Free)"
+    url: "https://www.perplexity.ai"
+    note: "A cited answer from the web, not a search of the scholarly index. On 2 Nov 2026 a free account (email code, no card) answered one evidence question in Search mode. Every model in the picker was locked, and the prompt box had no Deep Research or Pro Search control."
+    pricing:
+      summary: "Free $0/month. Pro $17/month when billed annually. Max $167/month when billed annually."
+      sourceUrl: "https://www.perplexity.ai/hub/pricing"
+      checked: 2026-11-02
 stack:
   - step: "Question"
     tool: "A sentence you write"
@@ -50,7 +57,7 @@ stack:
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-11-02
-testNotes: "Hands-on note, 26 Oct 2026: a free Consensus account gave 10 Pro searches a month. A test query returned a cited answer and a Consensus Meter in about 25 seconds, and a full report in about 60 seconds. Elicit was not part of this check. The standard task is still pending: from the same research question and the same five PDFs, produce a 300-word summary in each tool, then score how many claims link to a real passage in those sources, how many claims are not in the sources, and what the published plan costs for that one task."
+testNotes: "Hands-on note, 26 Oct 2026: a free Consensus account gave 10 Pro searches a month. A test query returned a cited answer and a Consensus Meter in about 25 seconds, and a full report in about 60 seconds. Elicit was not part of this check. Hands-on note, 2 Nov 2026: Perplexity Free, signed in with an email code and no card, was asked whether creatine improves cognition in healthy adults. The Search answer finished within about 9 seconds, with 10 journal, PMC or regulator sources (no news or blogs) and an inline citation on each claim. Xu et al. 2024 (Frontiers in Nutrition) and an EFSA health-claim page supported the claims that were opened. Prokopidis 2023 was not checked (publisher wall). A follow-up on which studies were randomised controlled trials finished in about 10 seconds (the page said Finished 3s), named two primary RCTs, added a small-sample caveat, and was not checked against the sources. Every model in the picker was locked. Deep Research and Pro Search were not shown. A banner read: Pro · Free preview of advanced search enabled. Computer sat next to Search. No usage limit appeared on these two queries. Elicit and Gemini Notebook were not part of this check. The standard task is still pending: from the same research question and the same five PDFs, produce a 300-word summary in each tool, then score how many claims link to a real passage in those sources, how many claims are not in the sources, and what the published plan costs for that one task."
 ---
 
 ## Who this is for
@@ -62,8 +69,9 @@ Students, researchers and anyone else who has to read a pile of sources and say 
 - **You need papers you do not already have:** Consensus Pro, then open the cited paper.
 - **You already have the papers and you are not paying yet:** Elicit Basic.
 - **The sources are your own files, not a literature search:** Gemini Notebook's free plan, within the notebook and source caps on [Google's help page](https://support.google.com/notebooklm/answer/16206866?hl=en).
+- **You want a cited answer from the open web, not a paper index:** Perplexity Free. On 2 Nov 2026 the model list was locked.
 
-Consensus's guide says the product searches scholarly articles and writes an answer where each sentence links to a paper. Test notes record one dated Consensus check from 26 Oct 2026. The standard task on this page has not been run. Read the guide at [docs.consensus.app](https://docs.consensus.app/get-started/what-is-consensus), then check the paper yourself.
+Consensus's guide says the product searches scholarly articles and writes an answer where each sentence links to a paper. Test notes record one dated Consensus check from 26 Oct 2026 and a Perplexity Free check from 2 Nov 2026. The standard task on this page has not been run. Read the guide at [docs.consensus.app](https://docs.consensus.app/get-started/what-is-consensus), then check the paper yourself.
 
 ## Where this goes next
 

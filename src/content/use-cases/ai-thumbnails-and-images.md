@@ -40,10 +40,12 @@ alsoConsidered: []
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-11-02
-testNotes: "Pending hands-on test. Planned standard task: generate a YouTube thumbnail for '5 AI tools I actually pay for' with the exact title text, then score text accuracy across 4 generations, visual punch at small size, and the cost per usable image."
+testNotes: "Pending hands-on test. On 2 Nov 2026 Ideogram's login page stated that email accounts don't include free credits and that free credits require a Google or Apple sign-in. No account was created and nothing was generated. Planned standard task: generate a YouTube thumbnail for '5 AI tools I actually pay for' with the exact title text, then score text accuracy across 4 generations, visual punch at small size, and the cost per usable image."
 ---
 
 ## How to choose
 
 - **The text has to be right:** Ideogram.
 - **You want the most striking art for the least money:** Midjourney Basic, then add text yourself.
+
+Ideogram's login page states that email accounts don't include free credits. Free credits require a Google or Apple sign-in. This pick is still pending a hands-on generation.
