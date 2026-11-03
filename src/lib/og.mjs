@@ -12,6 +12,7 @@ const KINDS = [
   { folder: 'use-cases', kicker: 'USE CASE', footer: 'Top pick  ·  budget pick  ·  one to avoid' },
   { folder: 'compare', kicker: 'COMPARE', footer: 'Head-to-head  ·  sourced prices' },
   { folder: 'best', kicker: 'BEST OF', footer: 'Shortlist  ·  sourced prices' },
+  { folder: 'alternatives', kicker: 'ALTERNATIVES', footer: 'One tool  ·  the realistic swaps' },
 ];
 
 function esc(value) {

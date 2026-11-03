@@ -145,7 +145,7 @@ for (const file of htmlFiles) {
     if (!/\balt=/.test(image[1])) fail(`${path} has an image without alt text`);
   }
 
-  const intent = path.match(/\/(compare|best)\/([^/]+)\/$/);
+  const intent = path.match(/\/(compare|best|alternatives)\/([^/]+)\/$/);
   if (intent) {
     if (levels[0] !== 1 || levels.filter((level) => level === 1).length !== 1) fail(`${path} heading outline does not start with a single h1`);
     if (!html.includes('id="short-answer"')) fail(`${path} is missing the short answer`);
@@ -324,7 +324,7 @@ if (existsSync(llms) && existsSync(full)) {
   }
   const guidePages = htmlFiles
     .map(publicPath)
-    .filter((path) => /\/(?:compare|best)\/[^/]+\/$/.test(path));
+    .filter((path) => /\/(?:compare|best|alternatives)\/[^/]+\/$/.test(path));
   for (const path of guidePages) {
     if (!index.includes(path)) fail(`llms.txt is missing ${path}`);
     if (!expanded.includes(path)) fail(`llms-full.txt is missing ${path}`);

@@ -94,7 +94,7 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
     '## Alternatives',
     '',
     link('All alternatives', pageUrl(site, '/alternatives/'), 'Pages that name one tool and the realistic swaps, each tied to a use case.'),
-    ...guides.alternatives.map((entry) => link(entry.data.title, pageUrl(site, `/alternatives/${entry.id}/`), entry.data.summary)),
+    ...guides.alternatives.map((entry) => link(entry.data.title, pageUrl(site, `/alternatives/${entry.id}/`), `Answer: ${entry.data.summary}`)),
     '',
     '## Pricing',
     '',
