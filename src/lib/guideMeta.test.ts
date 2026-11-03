@@ -13,7 +13,7 @@ function titleOf(folder: string, name: string): string {
 
 test('comparison and shortlist titles stay keyworded, dated and inside the snippet limit', () => {
   const seen = new Set<string>();
-  for (const folder of ['compare', 'best']) {
+  for (const folder of ['compare', 'best', 'alternatives']) {
     const names = readdirSync(join('src/content', folder)).filter((name) => name.endsWith('.md'));
     assert.ok(names.length >= 1, folder);
     for (const name of names) {

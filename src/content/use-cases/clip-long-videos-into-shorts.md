@@ -52,6 +52,7 @@ Podcasters, streamers and YouTubers who want a steady flow of shorts without hir
 
 ## How to choose
 
-- **Clipping is the whole job:** OpusClip.
-- **You also edit the long version:** Descript covers both, and its Hobbyist plan is cheaper over a year.
+- **Clipping is the whole job:** OpusClip. The sourced swaps are on [OpusClip alternatives](../../alternatives/opusclip/).
+- **You also edit the long version:** Descript covers both. Hobbyist is $16/mo billed annually, which is not less than OpusClip Starter at $15/mo. It is the pick because one subscription edits the long video and cuts the shorts.
+- **You want the wider shortlist:** [Best AI tools to turn videos into shorts](../../best/ai-tools-to-turn-videos-into-shorts/) covers OpusClip, Descript and the other clippers whose prices could be read on the vendor's own page.
 - **You need the words before you clip:** [Transcribe meetings and interviews](../../use-cases/transcribe-meetings-and-interviews/) covers Fireflies for a live call and Descript for a file you already have.
