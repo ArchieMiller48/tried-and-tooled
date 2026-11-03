@@ -22,6 +22,8 @@ budgetPick:
     sourceUrl: "https://www.deepl.com/en/pro"
     checked: 2026-11-02
   affiliateUrl: null
+  handsOn: 2026-11-03
+  handsOnSummary: "Signed out, with no account: a 319-character English customer email into French. The French appeared on its own within a few seconds and was not timed. File translation was not tested."
 avoid:
   name: "DeepL Free, for a long or repeat file"
   reason: "Free is 50,000 characters and 1 file translation a month, up to 5 MB. Individual is 300,000 characters and 3 files, up to 30 MB. A contract, a slide deck or a second file in the same month does not fit the free row. The paid rows are also the ones marked as not used to train DeepL's models."
@@ -42,8 +44,8 @@ stack:
     role: "Check names, prices and dates. A fluent translation can still invent a number."
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-02
-testNotes: "Pending hands-on test. Planned standard task: translate the same 800-word page and the same 5-page PDF in each plan, then score how many product names and prices survive, whether the file stayed within the published file cap, and what the plan costs for that month."
+lastVerified: 2026-11-03
+testNotes: "Hands-on note, 3 Nov 2026: DeepL Free only, signed out and with no account, translated a 319-character English customer email into French. The source was detected as English. The French appeared on its own after the paste, with no button, and the full output was showing within a few seconds. It was not timed. The facts in the email were kept: two working days, 14 days, a photo, a replacement or a full refund, and Monday to Friday 9h–17h. French typography was applied, including a space before the semicolon and \"9 h à 17 h\". The formal \"vous\" was used throughout. The last sentence is a fairly literal rendering. Formality, Style profiles and Style rules were greyed out with a Pro badge. The Glossaries toggle was visible without a Pro badge and was not used. No character limit or counter was shown at 319 characters. Longer text was not tested. File translation was not tested. The files tab says a free DeepL account is required, and the free limit stated there is 1 entire PDF, Word (.docx) or PowerPoint (.pptx) file a month. DeepL Pro Individual was not part of this check. The standard task is still pending: translate the same 800-word page and the same 5-page PDF in each plan, then score how many product names and prices survive, whether the file stayed within the published file cap, and what the plan costs for that month."
 ---
 
 ## Who this is for
@@ -56,7 +58,21 @@ Anyone who has to send a document in another language: a student with a source, 
 - **One short text, under 50,000 characters:** DeepL Free.
 - **You need the words checked by a person anyway:** translate first, then read the result. This page does not score translation quality.
 
+The note below is a signed-out text translation on DeepL Free, dated 3 Nov 2026. File translation was not tested. DeepL Pro Individual has not been run.
+
 DeepL's Pro FAQ says that for Pro subscribers the text is not used to train its models. That line is the vendor's own.
+
+## Hands-on test (3 Nov 2026)
+
+This note is for DeepL Free, the budget pick, signed out and with no account. DeepL Pro Individual was not part of it.
+
+A 319-character English customer email was translated into French. The source was detected as English. The French appeared on its own within a few seconds, with no button. It was not timed, so this page does not state an exact time. The facts in the email were kept: two working days, 14 days, a photo, a replacement or a full refund, and Monday to Friday 9h–17h. French typography was applied, including a space before the semicolon and "9 h à 17 h". The formal "vous" was used throughout. The last sentence is a fairly literal rendering.
+
+Formality, Style profiles and Style rules were greyed out with a Pro badge. The Glossaries toggle was visible without a Pro badge and was not used.
+
+File translation was not tested. The files tab says a free DeepL account is required, and the free limit stated there is 1 entire PDF, Word (.docx) or PowerPoint (.pptx) file a month.
+
+No character limit or counter was shown at 319 characters. Longer text was not tested. The standard task on this page, the same 800-word page and the same 5-page PDF in each plan, has not been run.
 
 ## Where this goes next
 

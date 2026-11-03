@@ -17,6 +17,17 @@ const pick = z.object({
   pricing,
   /** Affiliate link placeholder. Leave null until an affiliate program is approved; never changes ranking. */
   affiliateUrl: z.string().url().nullable().default(null),
+  /**
+   * Date of a hands-on check of this pick alone.
+   * The page stays `pending` until the standard task has been run.
+   */
+  handsOn: z.coerce.date().nullable().default(null),
+  /** Scope line shown on the pick. Set only together with `handsOn`. */
+  handsOnSummary: z.string().nullable().default(null),
+}).superRefine((value, ctx) => {
+  if (value.handsOnSummary && !value.handsOn) {
+    ctx.addIssue({ code: 'custom', message: 'handsOnSummary requires handsOn', path: ['handsOnSummary'] });
+  }
 });
 
 const useCases = defineCollection({

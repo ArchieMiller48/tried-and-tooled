@@ -24,6 +24,12 @@ const meta = useCaseMeta(entry);
 const faqs = buildFaqs(entry);
 const answer = shortAnswer(entry);
 const verified = isoDate(d.lastVerified);
+const pricingVerified = [d.topPick, d.budgetPick, ...d.alsoConsidered]
+  .map((tool) => tool.pricing.checked)
+  .reduce((latest, day) => (day > latest ? day : latest));
+const handsOnPicks = [d.topPick, d.budgetPick].filter((pick) => pick.handsOn);
+const pendingPicks = [d.topPick, d.budgetPick].filter((pick) => !pick.handsOn);
+const mixed = d.testStatus === 'pending' && handsOnPicks.length > 0;
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const jsonLd = buildUseCaseJsonLd({
@@ -58,7 +64,14 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
       <h1 style="font-size:clamp(2rem,4vw,2.8rem)">{d.title}</h1>
       <p class="lead">{d.summary}</p>
       <div class="meta">
-        <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : `Tested ${d.lastTested ? formatDate(d.lastTested) : ''}`}</span>
+        {mixed ? (
+          <>
+            {pendingPicks.map((pick) => <span class="tag pending">{pick.name}: Pending hands-on test</span>)}
+            {handsOnPicks.map((pick) => pick.handsOn && <span class="tag tested">{pick.name}: Hands-on test {formatDate(pick.handsOn)}</span>)}
+          </>
+        ) : (
+          <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : `Tested ${d.lastTested ? formatDate(d.lastTested) : ''}`}</span>
+        )}
         <span class="tag">Last updated <time datetime={verified}>{formatDate(d.lastVerified)}</time></span>
         <Checked date={verified} />
         {d.audience.map((a) => <span class="tag">{audienceLabel(a)}</span>)}
@@ -81,9 +94,9 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
     </section>
 
     {d.testStatus === 'pending' && (datedNote ? (
-      <p class="notice"><strong>Standard task still pending.</strong> Test notes include a dated hands-on check. The picks below still come from vendor documentation and pricing we verified on {formatDate(d.lastVerified)}. We don't publish made-up test results.</p>
+      <p class="notice"><strong>Standard task still pending.</strong> Test notes include a dated hands-on check. The picks below still come from vendor documentation and pricing we verified on {formatDate(pricingVerified)}. We don't publish made-up test results.</p>
     ) : (
-      <p class="notice"><strong>Not hands-on tested yet.</strong> The picks below are based on vendor documentation and pricing we verified on {formatDate(d.lastVerified)}. Test results will appear here once we've run our standard task. We don't publish made-up test results.</p>
+      <p class="notice"><strong>Not hands-on tested yet.</strong> The picks below are based on vendor documentation and pricing we verified on {formatDate(pricingVerified)}. Test results will appear here once we've run our standard task. We don't publish made-up test results.</p>
     ))}
 
     <section>
@@ -91,14 +104,26 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
       <div class="picks">
         <div class="card pick">
           <div class="label">Top pick</div>
+          {d.topPick.handsOn ? (
+            <p class="meta" style="margin-top:8px"><span class="tag tested">Hands-on test {formatDate(d.topPick.handsOn)}</span></p>
+          ) : mixed ? (
+            <p class="meta" style="margin-top:8px"><span class="tag pending">Pending hands-on test</span></p>
+          ) : null}
           <h3>{d.topPick.name}</h3>
+          {d.topPick.handsOnSummary && <p>{d.topPick.handsOnSummary}</p>}
           <p>{d.topPick.why}</p>
           <div class="price">{d.topPick.pricing.summary}<br /><a href={d.topPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, checked {formatDate(d.topPick.pricing.checked)}</div>
           <p style="margin-top:12px"><a class="btn" href={go(d.topPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.topPick.name}</a></p>
         </div>
         <div class="card pick budget">
           <div class="label">Budget pick</div>
+          {d.budgetPick.handsOn ? (
+            <p class="meta" style="margin-top:8px"><span class="tag tested">Hands-on test {formatDate(d.budgetPick.handsOn)}</span></p>
+          ) : mixed ? (
+            <p class="meta" style="margin-top:8px"><span class="tag pending">Pending hands-on test</span></p>
+          ) : null}
           <h3>{d.budgetPick.name}</h3>
+          {d.budgetPick.handsOnSummary && <p>{d.budgetPick.handsOnSummary}</p>}
           <p>{d.budgetPick.why}</p>
           <div class="price">{d.budgetPick.pricing.summary}<br /><a href={d.budgetPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, checked {formatDate(d.budgetPick.pricing.checked)}</div>
           <p style="margin-top:12px"><a class="btn ghost" href={go(d.budgetPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.budgetPick.name}</a></p>
@@ -137,7 +162,19 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
 
     <section>
       <h2>Test notes</h2>
-      <p><span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span></p>
+      {mixed ? (
+        <>
+          {handsOnPicks.map((pick) => pick.handsOn && (
+            <p><span class="tag tested">Hands-on test {formatDate(pick.handsOn)}</span> {pick.name}</p>
+          ))}
+          <p>
+            <span class="tag pending">Pending hands-on test</span>
+            {' '}{pendingPicks.length > 0 ? `${pendingPicks.map((pick) => pick.name).join(' and ')}. ` : ''}The standard task on this page has not been run.
+          </p>
+        </>
+      ) : (
+        <p><span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span></p>
+      )}
       <p>{d.testNotes}</p>
     </section>
 
