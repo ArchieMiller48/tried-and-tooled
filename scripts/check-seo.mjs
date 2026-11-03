@@ -374,6 +374,32 @@ for (const phrase of ['26 Oct 2026', '10 Pro searches a month', 'Consensus Meter
 if (!research.includes('Standard task still pending') || !research.includes('standard task')) {
   fail('research page does not keep the standard task pending');
 }
+const translate = readFileSync(pathToFile(`${base}/use-cases/translate-a-document/`), 'utf8');
+for (const phrase of [
+  'Hands-on test (3 Nov 2026)',
+  '319-character',
+  'File translation was not tested',
+  'vous',
+  'Formality',
+  'Style profiles',
+  'Style rules',
+  '1 entire PDF',
+  'not timed',
+]) {
+  if (!translate.includes(phrase)) fail(`translate page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!translate.includes('datetime="2026-11-03"')) fail('translate page does not show 3 Nov 2026 as dateModified');
+const topCard = translate.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const budgetCard = translate.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!topCard.includes('DeepL Pro Individual') || !topCard.includes('Pending hands-on test')) {
+  fail('DeepL Pro Individual lost its pending hands-on label');
+}
+if (topCard.includes('Hands-on test 3 Nov')) fail('DeepL Pro Individual was marked as hands-on tested');
+if (!budgetCard.includes('DeepL Free') || !budgetCard.includes('Hands-on test 3 Nov 2026')) {
+  fail('DeepL Free card is missing its hands-on label');
+}
+if (budgetCard.includes('Pending hands-on test')) fail('DeepL Free card still has a pending hands-on label');
+if (!budgetCard.includes('File translation was not tested')) fail('DeepL Free card does not say file translation was not tested');
 
 if (errors.length > 0) {
   console.error(errors.join('\n'));

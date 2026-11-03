@@ -231,6 +231,8 @@ export function shortAnswer(entry: UseCaseEntry): ShortAnswer {
     statusNote = `Hands-on test dated ${formatDate(data.lastTested)}.`;
   } else if (data.testStatus === 'tested') {
     statusNote = 'Hands-on test recorded on this page.';
+  } else if (data.testNotes.startsWith('Hands-on note')) {
+    statusNote = 'A dated hands-on note is on this page. The standard task is still pending. This is not a test score.';
   }
   return {
     lead: `Top pick ${data.topPick.name}, budget pick ${data.budgetPick.name}, avoid ${data.avoid.name}.`,
