@@ -60,6 +60,7 @@ Grammarly's page says it is trusted by over 40 million people. That is the compa
 
 ## Where this goes next
 
+- Swaps with prices re-read on 4 Nov 2026 are on [Grammarly alternatives](../../alternatives/grammarly/).
 - If you are still gathering sources, start with [Research and summarise sources](../../use-cases/research-and-summarise-sources/).
-- If the text has to change language first, see [Translate a document](../../use-cases/translate-a-document/).
+- If the text has to change language first, see [Translate a document](../../use-cases/translate-a-document/) and the [translation shortlist](../../best/ai-translation-tools/).
 - If the checked text has to be presented, see [Make a slide deck](../../use-cases/make-a-slide-deck/).

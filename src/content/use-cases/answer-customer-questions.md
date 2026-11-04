@@ -67,6 +67,7 @@ Tidio says its customers average a 75% resolution rate with Lyro. That figure is
 
 ## Where this goes next
 
+- This job sits with the other small-business jobs on [AI tools for a small business](../../best/ai-tools-for-small-business/).
 - Draft the help-page answers on [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/).
 - If the same answers should also go out as scheduled posts, see [Run a marketing campaign](../../use-cases/run-marketing-campaigns/).
 - For moving data between the shop and the inbox, see [Automate small-business admin](../../use-cases/automate-small-business-admin/).

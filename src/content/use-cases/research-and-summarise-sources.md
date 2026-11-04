@@ -75,6 +75,7 @@ Consensus's guide says the product searches scholarly articles and writes an ans
 
 ## Where this goes next
 
+- The 26 Oct and 2 Nov notes are listed with the other hands-on checks on [Tested by us](../../tested/).
 - Turn the checked summary into a post or an email on [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/).
 - If a source is a recording, start with [Transcribe meetings and interviews](../../use-cases/transcribe-meetings-and-interviews/).
 - If the same notes have to be presented, see [Make a slide deck](../../use-cases/make-a-slide-deck/).

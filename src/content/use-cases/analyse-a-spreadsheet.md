@@ -67,6 +67,7 @@ Google says, in that Workspace post, that a 95-person internal study found Fill 
 
 ## Where this goes next
 
+- This job sits with the other small-business jobs on [AI tools for a small business](../../best/ai-tools-for-small-business/).
 - If the sources are papers rather than a sheet, start with [Research and summarise sources](../../use-cases/research-and-summarise-sources/).
 - Turn a checked table into a post on [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/).
 - If the same numbers have to be presented, see [Make a slide deck](../../use-cases/make-a-slide-deck/).

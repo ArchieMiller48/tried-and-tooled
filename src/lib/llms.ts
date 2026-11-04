@@ -1,6 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { formatDate } from './formatDate';
 import { hasGuideEntries } from './guides';
+import { assertHandsOnCoverage, handsOnNotes } from './handsOnNotes';
 import { buildFaqs, faqPlainText, shortAnswer, type UseCaseEntry } from './useCaseFacts';
 
 function pageUrl(site: URL, path: string): string {
@@ -67,6 +68,7 @@ function sitemapLines(site: URL): string[] {
 
 export async function buildLlmsTxt(site: URL): Promise<string> {
   const [useCases, guides, issues] = await Promise.all([publishedUseCases(), publishedGuides(), publishedNewsletter()]);
+  assertHandsOnCoverage(useCases);
   const lines = [
     INTRO,
     '',
@@ -114,6 +116,10 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
     '',
     link('How we test', pageUrl(site, '/about/'), 'How Tried & Tooled chooses an AI tool for any job, how the site makes money, and why rankings are never for sale.'),
     '',
+    '## Hands-on notes',
+    '',
+    link('Tested by us', pageUrl(site, '/tested/'), 'Answer: the only hands-on notes are Consensus Free (26 Oct 2026), Perplexity Free (2 Nov 2026) and DeepL Free (3 Nov 2026). Standard tasks are still pending.'),
+    '',
     '## Optional',
     '',
     link('Find your tool', pageUrl(site, '/find-your-tool/'), 'Four questions that line up tools the site already tracks for the jobs you pick.'),
@@ -141,6 +147,7 @@ export async function buildLlmsFull(site: URL): Promise<string> {
     ...guides.alternatives.flatMap((entry) => renderAlternatives(site, entry, titles)),
     ...guides.pricing.flatMap((entry) => renderPricing(site, entry, titles)),
     ...issues.flatMap((entry) => renderNewsletter(site, entry)),
+    ...renderHandsOn(site, useCases),
     '',
     '## How we test',
     '',
@@ -403,6 +410,30 @@ function verdictsAndFaqs(
   for (const verdict of verdicts) lines.push(`- ${verdict.situation}: ${oneLine(verdict.guidance)}`);
   lines.push('', '### FAQ', '');
   for (const faq of faqs) lines.push(`Q: ${faq.question}`, `A: ${oneLine(faq.answer)}`, '');
+  return lines;
+}
+
+function renderHandsOn(site: URL, useCases: CollectionEntry<'use-cases'>[]): string[] {
+  assertHandsOnCoverage(useCases);
+  const titles = new Map(useCases.map((entry) => [entry.id, entry.data.title]));
+  const lines = [
+    '## Hands-on notes',
+    '',
+    `URL: ${pageUrl(site, '/tested/')}`,
+    'These are the only hands-on notes in the directory. A note is not a completed standard task. The use-case page stays pending.',
+    '',
+  ];
+  for (const note of handsOnNotes) {
+    const title = titles.get(note.useCaseSlug) ?? note.useCaseSlug;
+    lines.push(
+      `### ${note.tool}`,
+      `Date: ${formatDate(new Date(`${note.date}T00:00:00.000Z`))}`,
+      `Use case: ${title} (${pageUrl(site, `/use-cases/${note.useCaseSlug}/`)})`,
+      oneLine(note.tested),
+      oneLine(note.limits),
+      '',
+    );
+  }
   return lines;
 }
 

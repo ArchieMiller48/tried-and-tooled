@@ -132,6 +132,11 @@ const best = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/best' }),
   schema: z.object({
     ...intent,
+    /**
+     * A hub that spans several jobs should not copy every pick onto the one
+     * parent use case in Find your tool. Related links still use `parent`.
+     */
+    inFinder: z.boolean().default(true),
     picks: z
       .array(
         namedTool.extend({

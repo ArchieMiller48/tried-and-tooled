@@ -277,7 +277,7 @@ export async function buildStackCatalog(): Promise<FinderCatalog> {
       });
     }
 
-    for (const guide of best.filter((item) => item.data.parent === entry.id)) {
+    for (const guide of best.filter((item) => item.data.parent === entry.id && item.data.inFinder)) {
       const guideHref = withBase(`/best/${guide.id}/`);
       for (const pick of guide.data.picks) {
         addTool(tools, pick.name, pick.url, pick.affiliateUrl, pick.pricing, {

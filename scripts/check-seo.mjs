@@ -401,6 +401,41 @@ if (!budgetCard.includes('DeepL Free') || !budgetCard.includes('Hands-on test 3 
 if (budgetCard.includes('Pending hands-on test')) fail('DeepL Free card still has a pending hands-on label');
 if (!budgetCard.includes('File translation was not tested')) fail('DeepL Free card does not say file translation was not tested');
 
+for (const page of [
+  `${base}/best/ai-translation-tools/`,
+  `${base}/best/ai-tools-for-small-business/`,
+  `${base}/alternatives/grammarly/`,
+  `${base}/tested/`,
+]) {
+  if (!existsSync(pathToFile(page))) fail(`built page is missing ${page}`);
+  if (!sitemap.includes(`${origin}${page}`)) fail(`sitemap is missing ${page}`);
+}
+const tested = readFileSync(pathToFile(`${base}/tested/`), 'utf8');
+for (const phrase of ['Consensus Free', 'Perplexity Free', 'DeepL Free', '26 Oct 2026', '2 Nov 2026', '3 Nov 2026', 'File translation was not tested', 'id="newsletter"']) {
+  if (!tested.includes(phrase)) fail(`tested page is missing ${phrase}`);
+}
+if (!/standard task/i.test(tested) || !tested.includes('has not been run')) {
+  fail('tested page does not keep the standard tasks pending');
+}
+const translation = readFileSync(pathToFile(`${base}/best/ai-translation-tools/`), 'utf8');
+if (!translation.includes(`${base}/use-cases/translate-a-document/`)) fail('translation shortlist does not link to the use case');
+if (!translation.includes(`${base}/tested/`)) fail('translation shortlist does not link to the tested page');
+if (!translation.includes('checked 4 Nov 2026') && !translation.includes('4 Nov 2026')) fail('translation shortlist is missing the checked date');
+const grammarly = readFileSync(pathToFile(`${base}/alternatives/grammarly/`), 'utf8');
+if (!grammarly.includes(`${base}/use-cases/proofread-and-edit/`)) fail('Grammarly alternatives does not link to the use case');
+const smallBusiness = readFileSync(pathToFile(`${base}/best/ai-tools-for-small-business/`), 'utf8');
+for (const slug of [
+  'automate-small-business-admin',
+  'answer-customer-questions',
+  'analyse-a-spreadsheet',
+  'run-marketing-campaigns',
+  'write-posts-and-emails',
+]) {
+  if (!smallBusiness.includes(`use-cases/${slug}/`)) fail(`small-business hub does not link to ${slug}`);
+}
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
+if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
+
 if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exit(1);

@@ -58,3 +58,11 @@ Solo founders, freelancers and small teams who want the busywork to run on its o
 - **You want no-code and the most app connections:** Zapier.
 - **You run lots of multi-step or AI-heavy workflows, or you're happy to self-host:** n8n.
 - **Anything that emails customers or moves money:** keep a human approval step, whichever tool you use.
+
+## Where this goes next
+
+- The other small-business jobs, with prices re-read on 4 Nov 2026, are on [AI tools for a small business](../../best/ai-tools-for-small-business/).
+- Customer chat is on [Answer customer questions](../../use-cases/answer-customer-questions/).
+- A sheet you already have is on [Check a spreadsheet](../../use-cases/analyse-a-spreadsheet/).
+- A social calendar is on [Run a marketing campaign](../../use-cases/run-marketing-campaigns/).
+- The words for those posts are on [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/).
