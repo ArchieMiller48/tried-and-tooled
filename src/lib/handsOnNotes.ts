@@ -43,9 +43,18 @@ export const handsOnNotes: HandsOnNote[] = [
     tested: 'DeepL Free, signed out and with no account, translated a 319-character English customer email into French. The source was detected as English. The French appeared on its own within a few seconds and was not timed. The facts in the email were kept: two working days, 14 days, a photo, a replacement or a full refund, and Monday to Friday 9h–17h. File translation was not tested.',
     limits: 'DeepL Pro Individual was not part of this check. Longer text was not tested. The standard task on the translate page has not been run.',
   },
+  {
+    id: 'languagetool-basic-2026-11-04',
+    date: '2026-11-04',
+    tool: 'LanguageTool Basic',
+    useCaseSlug: 'proofread-and-edit',
+    anchor: '8 planted errors',
+    tested: 'LanguageTool Basic, signed out with no account, no card and no Google sign-in, checked a short business email on the homepage editor, default English. The text was typed, not pasted: 8 planted errors, plus a lowercase friday. All 8 planted errors were caught at least partly. In "Me and the team has", Me was flagged with a suggestion of I and a note to put yourself second. The has agreement error in "Me and the team has" was missed. The editor did not suggest "The team and I have". friday was flagged as a spelling mistake, with Friday as the first suggestion. One arguable false positive: a suggested comma before and, joining two independent clauses. The full list, 10 flags, appeared within a few seconds. The exact time was not measured. The counter read Characters 246/2000. The page showed Paraphrasing 0/3. No Premium locks were seen in this check.',
+    limits: 'Grammarly Pro and Grammarly Free were not part of this check. The paraphrase tab was not used. Picky Mode was not opened. A longer document was not tested. The standard task on the proofread page has not been run.',
+  },
 ];
 
-const COVERED = ['research-and-summarise-sources', 'translate-a-document'];
+const COVERED = ['research-and-summarise-sources', 'translate-a-document', 'proofread-and-edit'];
 
 function pageText(entry: CollectionEntry<'use-cases'>): string {
   return `${entry.data.testNotes}\n${entry.body ?? ''}`;

@@ -83,7 +83,7 @@ faqs:
   - question: "Which page should you open first?"
     answer: "The job page, not this hub. Admin automation, customer questions, the spreadsheet, the marketing calendar and the writing page each keep a top pick, a budget pick and one option to avoid. This page links them and repeats only the prices that could be read on the vendor's site on 4 Nov 2026."
   - question: "Have these small-business tools been tested?"
-    answer: "No. None of the five use-case pages has a hands-on note. The only hands-on notes on the site are Consensus Free, Perplexity Free and DeepL Free, and they are listed on the tested page. The standard tasks on the five job pages have not been run."
+    answer: "No. None of the five use-case pages has a hands-on note. The only hands-on notes on the site are Consensus Free, Perplexity Free, DeepL Free and LanguageTool Basic, and they are listed on the tested page. The standard tasks on the five job pages have not been run."
   - question: "Why is there no ChatGPT price?"
     answer: "The writing page names ChatGPT Free as the budget pick. On 4 Nov 2026 the ChatGPT pricing page said the free version is available to everyone and that paid plans are priced per user per month. It did not print a dollar amount for Go, Plus or Pro. That amount is left out rather than guessed."
   - question: "What price was left out besides ChatGPT?"
