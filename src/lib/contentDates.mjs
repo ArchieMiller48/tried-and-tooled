@@ -100,6 +100,10 @@ export function contentLastmods() {
   }
   if (spotted.length) consider(dates, `${BASE}/new/`, spotted.sort().at(-1));
 
+  // The tested index is a list of notes already in use-case pages. 4 Nov 2026 is when that list was published.
+  consider(dates, `${BASE}/tested/`, '2026-11-04');
+  all.push('2026-11-04');
+
   const latest = all.sort().at(-1);
   if (latest) {
     consider(dates, `${BASE}/`, latest);

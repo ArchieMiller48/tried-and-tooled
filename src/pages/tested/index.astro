@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Checked from '../../components/Checked.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { formatDate } from '../../lib/formatDate';
+import { handsOnNotes, assertHandsOnCoverage } from '../../lib/handsOnNotes';
+import { hubPage } from '../../lib/hubPage';
+import { withBase } from '../../lib/withBase';
+
+const entries = await getCollection('use-cases', ({ data }) => !data.draft);
+assertHandsOnCoverage(entries);
+const titles = new Map(entries.map((entry) => [entry.id, entry.data.title]));
+const title = 'Tested by us';
+const description = 'Hands-on notes that exist: Consensus Free, Perplexity Free, DeepL Free and LanguageTool Basic, with the date and what was tried.';
+const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
+const notes = [...handsOnNotes].sort((a, b) => b.date.localeCompare(a.date));
+---
+<Base title={title} description={description} jsonLd={hub.jsonLd} hasNewsletter>
+  <article class="wrap narrow" data-pagefind-body>
+    <section class="hero" style="padding-bottom:8px">
+      <Crumbs items={[{ href: withBase('/'), label: 'Home' }, { label: title }]} />
+      <span class="eyebrow">Hands-on notes</span>
+      <h1>Tested by us</h1>
+      <p class="lead">These are the only hands-on notes written on the site. Each one names the date, the tool, and what was actually tried. A shorter check does not turn the use-case page into a completed test.</p>
+      <div class="meta"><Checked date={hub.dateModified} label={hub.dateLabel} /></div>
+    </section>
+
+    <section class="answer" aria-labelledby="short-answer">
+      <h2 id="short-answer">Short answer</h2>
+      <p>Four notes exist. Consensus Free on 26 Oct 2026 and Perplexity Free on 2 Nov 2026 are on the research page. DeepL Free on 3 Nov 2026 is on the translate page. LanguageTool Basic on 4 Nov 2026 is on the proofread page. No other tool on this site has a hands-on note.</p>
+    </section>
+
+    <section>
+      <h2>The notes</h2>
+      <div class="verdicts">
+        {notes.map((note) => {
+          const useCaseTitle = titles.get(note.useCaseSlug);
+          if (!useCaseTitle) throw new Error(`Missing title for ${note.useCaseSlug}`);
+          return (
+            <article class="card">
+              <div class="meta" style="margin-top:0">
+                <span class="tag tested">Hands-on note <time datetime={note.date}>{formatDate(new Date(`${note.date}T00:00:00.000Z`))}</time></span>
+              </div>
+              <h3 style="font-size:1.2rem;margin-top:10px">{note.tool}</h3>
+              <p>{note.tested}</p>
+              <p class="caveat">{note.limits}</p>
+              <p><a href={withBase(`/use-cases/${note.useCaseSlug}/`)}>{useCaseTitle}</a></p>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2>What this page is not</h2>
+      <p>The research page, the translate page and the proofread page stay marked pending. Their standard tasks have not been run. Consensus Pro, Elicit, Gemini Notebook, DeepL Pro Individual, Grammarly Pro and every pick that is not named above have no hands-on note.</p>
+      <p>Prices elsewhere on the site are vendor figures with a source and a checked date. They are not measurements from these notes.</p>
+      <p>Browse <a href={withBase('/use-cases/')}>all use cases</a>, <a href={withBase('/best/')}>all shortlists</a> and <a href={withBase('/about/')}>how we test</a>.</p>
+    </section>
+
+    <section class="signup"><Newsletter /></section>
+  </article>
+</Base>

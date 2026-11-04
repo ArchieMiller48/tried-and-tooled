@@ -76,6 +76,8 @@ No character limit or counter was shown at 319 characters. Longer text was not t
 
 ## Where this goes next
 
+- The wider shortlist, with API allowances and the same DeepL prices re-read on 4 Nov 2026, is [AI translation tools](../../best/ai-translation-tools/).
+- The 3 Nov 2026 note is also listed on [Tested by us](../../tested/).
 - After the translation, edit the voice on [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/).
 - If the translated page is a post, schedule it on [Run a marketing campaign](../../use-cases/run-marketing-campaigns/).
 - If it has to be presented, see [Make a slide deck](../../use-cases/make-a-slide-deck/).

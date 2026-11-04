@@ -30,6 +30,7 @@ const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
     <h2>How we test</h2>
     <p>Every use case has a standard task, for example "summarise a set of sources and check each claim against the original", "build a to-do app with auth and deploy it" or "turn a 30-minute podcast into five vertical clips". We run the same task on each tool, save the outputs, and score them on output quality, speed, real cost for the task, ease of use and lock-in. Tools we couldn't test (no trial, enterprise-only) are marked as such.</p>
     <p>Parts of our research and drafting are done by AI agents: discovering new tools, collecting pricing, and drafting pages. A human reviews top picks and anything with a commercial relationship before it's published.</p>
+    <p>The checks that have actually been run are listed on <a href={withBase('/tested/')}>Tested by us</a>. A use-case page stays pending until its standard task has been run, even when a smaller dated note exists.</p>
 
     <h2 id="money">How we make money</h2>
     <ul>

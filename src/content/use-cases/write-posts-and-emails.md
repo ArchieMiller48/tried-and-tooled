@@ -55,3 +55,9 @@ Founders, creators and small teams who write the same kinds of posts and emails 
 - **You write for clients most days:** Claude Pro, with the voice guide in a project.
 - **You need a draft and you are not paying yet:** ChatGPT Free's everyday text chats.
 - **The same story has to become a deck:** [Make a slide deck](../../use-cases/make-a-slide-deck/) covers Gamma and Claude Slides. ChatGPT Slides is not on the free plan.
+
+## Where this goes next
+
+- This job sits with the other small-business jobs on [AI tools for a small business](../../best/ai-tools-for-small-business/).
+- After the draft, catch the mistakes on [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/).
+- Put the approved posts on a calendar on [Run a marketing campaign](../../use-cases/run-marketing-campaigns/).

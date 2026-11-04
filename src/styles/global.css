@@ -197,7 +197,8 @@ html.finder-shared #finder-panel { display: none !important; }
   .newsletter.subtle { width: auto; margin-left: 0; margin-right: 0; border-radius: 20px; padding: 24px; }
   .newsletter.subtle > div:first-child, .newsletter.subtle small, .newsletter.subtle .newsletter-form { padding-left: 0; padding-right: 0; }
 }
-.table-scroll { overflow-x: auto; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+.prose .table-scroll { margin: 16px 0 24px; }
 .verdicts { display: grid; gap: 12px; }
 .faq { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .faq li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }

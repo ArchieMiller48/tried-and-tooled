@@ -428,6 +428,7 @@ if (!proofread.includes('datetime="2026-11-04"')) fail('proofread page does not 
 if (!proofread.includes('Standard task still pending') || !proofread.includes('standard task')) {
   fail('proofread page does not keep the standard task pending');
 }
+if (!proofread.includes(`${base}/tested/`)) fail('proofread page does not link to the tested page');
 const proofTop = proofread.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
 const proofBudget = proofread.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
 const proofAvoid = proofread.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
@@ -441,6 +442,65 @@ if (!proofBudget.includes('LanguageTool Basic') || !proofBudget.includes('Hands-
 if (proofBudget.includes('Pending hands-on test')) fail('LanguageTool Basic card still has a pending hands-on label');
 if (!proofBudget.includes('No Premium locks in this check')) fail('LanguageTool Basic card omits the Premium-lock result');
 if (proofAvoid.includes('Hands-on test 4 Nov')) fail('Grammarly Free was marked as hands-on tested');
+
+for (const page of [
+  `${base}/best/ai-translation-tools/`,
+  `${base}/best/ai-tools-for-small-business/`,
+  `${base}/alternatives/grammarly/`,
+  `${base}/tested/`,
+]) {
+  if (!existsSync(pathToFile(page))) fail(`built page is missing ${page}`);
+  if (!sitemap.includes(`${origin}${page}`)) fail(`sitemap is missing ${page}`);
+}
+const tested = readFileSync(pathToFile(`${base}/tested/`), 'utf8');
+for (const phrase of [
+  'Consensus Free',
+  'Perplexity Free',
+  'DeepL Free',
+  'LanguageTool Basic',
+  '26 Oct 2026',
+  '2 Nov 2026',
+  '3 Nov 2026',
+  '4 Nov 2026',
+  'File translation was not tested',
+  'signed out',
+  '8 planted errors',
+  'has agreement error',
+  'One arguable false positive',
+  'id="newsletter"',
+]) {
+  if (!tested.includes(phrase)) fail(`tested page is missing ${phrase}`);
+}
+if (!/standard task/i.test(tested) || !tested.includes('has not been run')) {
+  fail('tested page does not keep the standard tasks pending');
+}
+const translation = readFileSync(pathToFile(`${base}/best/ai-translation-tools/`), 'utf8');
+if (!translation.includes(`${base}/use-cases/translate-a-document/`)) fail('translation shortlist does not link to the use case');
+if (!translation.includes(`${base}/tested/`)) fail('translation shortlist does not link to the tested page');
+if (!translation.includes('checked 4 Nov 2026') && !translation.includes('4 Nov 2026')) fail('translation shortlist is missing the checked date');
+const grammarly = readFileSync(pathToFile(`${base}/alternatives/grammarly/`), 'utf8');
+if (!grammarly.includes(`${base}/use-cases/proofread-and-edit/`)) fail('Grammarly alternatives does not link to the use case');
+if (!grammarly.includes(`${base}/tested/`)) fail('Grammarly alternatives does not link to the tested page');
+if (grammarly.includes('No hands-on test has been run')) fail('Grammarly alternatives still says no hands-on test has been run');
+const smallBusiness = readFileSync(pathToFile(`${base}/best/ai-tools-for-small-business/`), 'utf8');
+for (const slug of [
+  'automate-small-business-admin',
+  'answer-customer-questions',
+  'analyse-a-spreadsheet',
+  'run-marketing-campaigns',
+  'write-posts-and-emails',
+]) {
+  if (!smallBusiness.includes(`use-cases/${slug}/`)) fail(`small-business hub does not link to ${slug}`);
+}
+if (!smallBusiness.includes('LanguageTool Basic')) fail('small-business hub omits the LanguageTool Basic hands-on note');
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
+  fail('llms.txt omits the LanguageTool Basic hands-on note');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
+  fail('llms-full.txt omits the LanguageTool agreement-error result');
+}
 
 if (errors.length > 0) {
   console.error(errors.join('\n'));
