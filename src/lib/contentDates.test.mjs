@@ -7,6 +7,7 @@ test('content dates cover published guides and fall back only where a page has n
   assert.equal(normalisePath('https://archiemiller48.github.io/tried-and-tooled/compare/lovable-vs-bolt/'), '/tried-and-tooled/compare/lovable-vs-bolt/');
   assert.equal(dates.get('/tried-and-tooled/use-cases/research-and-summarise-sources/'), '2026-11-02');
   assert.equal(dates.get('/tried-and-tooled/use-cases/translate-a-document/'), '2026-11-03');
+  assert.equal(dates.get('/tried-and-tooled/use-cases/proofread-and-edit/'), '2026-11-04');
   assert.equal(dates.get('/tried-and-tooled/compare/coderabbit-vs-greptile/'), '2026-11-02');
   assert.equal(dates.get('/tried-and-tooled/best/ai-app-builders-for-non-coders/'), '2026-11-02');
   assert.equal(dates.get('/tried-and-tooled/newsletter/issue-1/'), '2026-10-19');

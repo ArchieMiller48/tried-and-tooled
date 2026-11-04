@@ -342,6 +342,12 @@ if (existsSync(llms) && existsSync(full)) {
   }
   if (!expanded.includes('Source:') || !expanded.includes('Checked:')) fail('llms-full.txt is missing sourced prices');
   if (!/Pending hands-on test/.test(expanded)) fail('llms-full.txt dropped the pending-test label');
+  if (!expanded.includes('Hands-on note, 4 Nov 2026') || !expanded.includes('LanguageTool Basic only')) {
+    fail('llms-full.txt is missing the LanguageTool Basic hands-on note');
+  }
+  if (!expanded.includes('Grammarly Pro and Grammarly Free were not part of this check')) {
+    fail('llms-full.txt drops the untested Grammarly picks from the LanguageTool note');
+  }
 }
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8');
@@ -400,6 +406,41 @@ if (!budgetCard.includes('DeepL Free') || !budgetCard.includes('Hands-on test 3 
 }
 if (budgetCard.includes('Pending hands-on test')) fail('DeepL Free card still has a pending hands-on label');
 if (!budgetCard.includes('File translation was not tested')) fail('DeepL Free card does not say file translation was not tested');
+
+const proofread = readFileSync(pathToFile(`${base}/use-cases/proofread-and-edit/`), 'utf8');
+for (const phrase of [
+  'Hands-on test (4 Nov 2026)',
+  'no account',
+  '8 planted errors',
+  'friday',
+  'Me and the team has',
+  'The team and I have',
+  'One arguable false positive',
+  'exact time was not measured',
+  'Characters 246/2000',
+  'Paraphrasing 0/3',
+  'No Premium locks',
+  'Picky Mode was not opened',
+]) {
+  if (!proofread.includes(phrase)) fail(`proofread page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!proofread.includes('datetime="2026-11-04"')) fail('proofread page does not show 4 Nov 2026 as dateModified');
+if (!proofread.includes('Standard task still pending') || !proofread.includes('standard task')) {
+  fail('proofread page does not keep the standard task pending');
+}
+const proofTop = proofread.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const proofBudget = proofread.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const proofAvoid = proofread.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!proofTop.includes('Grammarly Pro') || !proofTop.includes('Pending hands-on test')) {
+  fail('Grammarly Pro lost its pending hands-on label');
+}
+if (proofTop.includes('Hands-on test 4 Nov')) fail('Grammarly Pro was marked as hands-on tested');
+if (!proofBudget.includes('LanguageTool Basic') || !proofBudget.includes('Hands-on test 4 Nov 2026')) {
+  fail('LanguageTool Basic card is missing its hands-on label');
+}
+if (proofBudget.includes('Pending hands-on test')) fail('LanguageTool Basic card still has a pending hands-on label');
+if (!proofBudget.includes('No Premium locks in this check')) fail('LanguageTool Basic card omits the Premium-lock result');
+if (proofAvoid.includes('Hands-on test 4 Nov')) fail('Grammarly Free was marked as hands-on tested');
 
 if (errors.length > 0) {
   console.error(errors.join('\n'));
