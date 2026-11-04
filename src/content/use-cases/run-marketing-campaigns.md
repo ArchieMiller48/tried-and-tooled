@@ -60,6 +60,7 @@ Buffer's pricing page says scheduled posts are unlimited. Its help page says tha
 
 ## Where this goes next
 
+- This job sits with the other small-business jobs on [AI tools for a small business](../../best/ai-tools-for-small-business/).
 - Draft the words on [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/).
 - Make the picture on [Design a logo and graphics](../../use-cases/design-logos-and-graphics/) or [AI thumbnails and social images](../../use-cases/ai-thumbnails-and-images/).
 - If a post is a clip from a longer video, see [Turn long videos into short-form clips](../../use-cases/clip-long-videos-into-shorts/).
