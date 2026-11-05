@@ -271,13 +271,14 @@ for (const file of htmlFiles) {
 
   if (path === `${base}/newsletter/`) {
     if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
-    for (const issue of ['issue-1', 'issue-2', 'issue-3']) {
+    for (const issue of ['issue-1', 'issue-2', 'issue-3', 'issue-4']) {
       if (!html.includes(`${base}/newsletter/${issue}/`)) fail(`${path} does not link to ${issue}`);
     }
+    const issue4At = html.indexOf(`${base}/newsletter/issue-4/`);
     const issue3At = html.indexOf(`${base}/newsletter/issue-3/`);
     const issue2At = html.indexOf(`${base}/newsletter/issue-2/`);
     const issue1At = html.indexOf(`${base}/newsletter/issue-1/`);
-    if (!(issue3At < issue2At && issue2At < issue1At)) fail(`${path} does not list issue 3 first`);
+    if (!(issue4At < issue3At && issue3At < issue2At && issue2At < issue1At)) fail(`${path} does not list issue 4 first`);
   }
 
   if (path === `${base}/` || path === `${base}`) {
@@ -336,7 +337,7 @@ if (existsSync(llms) && existsSync(full)) {
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
     if (!index.includes(`${base}${needle}`)) fail(`llms.txt is missing ${needle}`);
   }
-  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`]) {
+  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`]) {
     if (!index.includes(issuePath)) fail(`llms.txt is missing ${issuePath}`);
     if (!expanded.includes(issuePath)) fail(`llms-full.txt is missing ${issuePath}`);
   }
@@ -361,9 +362,45 @@ const sitemap = walk(dist)
   .filter((file) => file.endsWith('.xml') && file.includes('sitemap'))
   .map((file) => readFileSync(file, 'utf8'))
   .join('\n');
-for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`]) {
+for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`]) {
   if (!existsSync(pathToFile(page))) fail(`built page is missing ${page}`);
   if (!sitemap.includes(`${origin}${page}`)) fail(`sitemap is missing ${page}`);
+}
+const issue4Path = pathToFile(`${base}/newsletter/issue-4/`);
+const issue4 = issue4Path && existsSync(issue4Path) ? readFileSync(issue4Path, 'utf8') : '';
+if (!issue4) fail('built page is missing issue 4');
+else for (const phrase of [
+  'what we actually tested this week',
+  'datetime="2026-11-05"',
+  'tried-tooled-4-what-we-actually-tested-this-week',
+  '8 planted errors',
+  'Me and the team has',
+  '1 arguable false positive',
+  'Characters 246/2000',
+  'No Premium locks',
+  'The page stays pending',
+  '2,000 characters',
+  `${base}/tested/`,
+  `${base}/find-your-tool/`,
+  `${base}/use-cases/translate-a-document/`,
+  `${base}/use-cases/proofread-and-edit/`,
+  `${base}/use-cases/analyse-a-spreadsheet/`,
+  `${base}/use-cases/answer-customer-questions/`,
+  `${base}/best/ai-translation-tools/`,
+  `${base}/alternatives/grammarly/`,
+  `${base}/best/ai-tools-for-small-business/`,
+  `${base}/alternatives/opusclip/`,
+  `${base}/best/ai-tools-to-turn-videos-into-shorts/`,
+  `${base}/newsletter/`,
+  `${base}/submit/`,
+  `${base}/new/`,
+  'No pay-to-rank and no sponsors in this issue',
+  'None in this issue are',
+]) {
+  if (!issue4.includes(phrase)) fail(`issue 4 is missing ${phrase}`);
+}
+if (issue4.includes('rel="sponsored"') || issue4.includes('{{') || issue4.includes('first_name')) {
+  fail('issue 4 has a sponsored link or a Beehiiv merge tag');
 }
 const sitemapUrls = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
 if (sitemapUrls.length < 32) fail(`sitemap lists ${sitemapUrls.length} URLs`);
