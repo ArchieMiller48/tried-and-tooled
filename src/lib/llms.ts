@@ -118,7 +118,7 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
     '',
     '## Hands-on notes',
     '',
-    link('Tested by us', pageUrl(site, '/tested/'), 'Answer: the only hands-on notes are Consensus Free (26 Oct 2026), Perplexity Free (2 Nov 2026), DeepL Free (3 Nov 2026) and LanguageTool Basic (4 Nov 2026). Standard tasks are still pending.'),
+    link('Tested by us', pageUrl(site, '/tested/'), 'Answer: the only hands-on notes are Consensus Free (26 Oct 2026), Perplexity Free (2 Nov 2026), DeepL Free (3 Nov 2026), LanguageTool Basic (4 Nov 2026) and Looka Brand Kit (5 Nov 2026). Standard tasks are still pending.'),
     '',
     '## Optional',
     '',
