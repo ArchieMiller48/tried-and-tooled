@@ -480,6 +480,51 @@ if (proofBudget.includes('Pending hands-on test')) fail('LanguageTool Basic card
 if (!proofBudget.includes('No Premium locks in this check')) fail('LanguageTool Basic card omits the Premium-lock result');
 if (proofAvoid.includes('Hands-on test 4 Nov')) fail('Grammarly Free was marked as hands-on tested');
 
+const logos = readFileSync(pathToFile(`${base}/use-cases/design-logos-and-graphics/`), 'utf8');
+for (const phrase of [
+  'Hands-on test (5 Nov 2026)',
+  'Hollow Oak Bakery',
+  '15 to 20 seconds',
+  '6 of the first 6',
+  'no garbled',
+  '9 swatches',
+  'Symbols 0',
+  'Every download is paid',
+  '$20',
+  '$65',
+  '$96',
+  '$129',
+  'US dollars',
+  'no pound price',
+  'no file was downloaded',
+  '1080×1080',
+  'Canva Pro was not part of it',
+  'paid Brand Kit was not bought',
+]) {
+  if (!logos.includes(phrase)) fail(`logo page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!logos.includes('datetime="2026-11-05"')) fail('logo page does not show 5 Nov 2026 as dateModified');
+if (!logos.includes('Standard task still pending') || !logos.includes('has not been run')) {
+  fail('logo page does not keep the standard task pending');
+}
+if (!logos.includes(`${base}/tested/`)) fail('logo page does not link to the tested page');
+const logoTop = logos.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const logoBudget = logos.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const logoAvoid = logos.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!logoTop.includes('Canva Pro') || !logoTop.includes('Pending hands-on test')) {
+  fail('Canva Pro lost its pending hands-on label');
+}
+if (logoTop.includes('Hands-on test 5 Nov')) fail('Canva Pro was marked as hands-on tested');
+if (!logoBudget.includes('Looka Brand Kit') || !logoBudget.includes('Hands-on test 5 Nov 2026')) {
+  fail('Looka Brand Kit card is missing its hands-on label');
+}
+if (logoBudget.includes('Pending hands-on test')) fail('Looka Brand Kit card still has a pending hands-on label');
+if (!logoBudget.includes('no file was downloaded')) fail('Looka Brand Kit card does not say no file was downloaded');
+if (!logoBudget.includes('1080×1080 social graphic was not made')) {
+  fail('Looka Brand Kit card does not keep the social graphic untested');
+}
+if (logoAvoid.includes('Hands-on test 5 Nov')) fail('Canva Business was marked as hands-on tested');
+
 for (const page of [
   `${base}/best/ai-translation-tools/`,
   `${base}/best/ai-tools-for-small-business/`,
@@ -495,10 +540,15 @@ for (const phrase of [
   'Perplexity Free',
   'DeepL Free',
   'LanguageTool Basic',
+  'Looka Brand Kit',
   '26 Oct 2026',
   '2 Nov 2026',
   '3 Nov 2026',
   '4 Nov 2026',
+  '5 Nov 2026',
+  'no file was downloaded',
+  '1080×1080',
+  'Canva Pro',
   'File translation was not tested',
   'signed out',
   '8 planted errors',
@@ -530,13 +580,20 @@ for (const slug of [
   if (!smallBusiness.includes(`use-cases/${slug}/`)) fail(`small-business hub does not link to ${slug}`);
 }
 if (!smallBusiness.includes('LanguageTool Basic')) fail('small-business hub omits the LanguageTool Basic hands-on note');
+if (!smallBusiness.includes('Looka Brand Kit')) fail('small-business hub omits the Looka Brand Kit hands-on note');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
   fail('llms.txt omits the LanguageTool Basic hands-on note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Looka Brand Kit (5 Nov 2026)')) {
+  fail('llms.txt omits the Looka Brand Kit hands-on note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Hollow Oak Bakery') || !readFileSync(full, 'utf8').includes('Canva Pro was not part of this check'))) {
+  fail('llms-full.txt omits the Looka hands-on note or marks Canva Pro as part of it');
 }
 
 if (errors.length > 0) {

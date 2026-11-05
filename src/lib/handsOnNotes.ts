@@ -52,9 +52,18 @@ export const handsOnNotes: HandsOnNote[] = [
     tested: 'LanguageTool Basic, signed out with no account, no card and no Google sign-in, checked a short business email on the homepage editor, default English. The text was typed, not pasted: 8 planted errors, plus a lowercase friday. All 8 planted errors were caught at least partly. In "Me and the team has", Me was flagged with a suggestion of I and a note to put yourself second. The has agreement error in "Me and the team has" was missed. The editor did not suggest "The team and I have". friday was flagged as a spelling mistake, with Friday as the first suggestion. One arguable false positive: a suggested comma before and, joining two independent clauses. The full list, 10 flags, appeared within a few seconds. The exact time was not measured. The counter read Characters 246/2000. The page showed Paraphrasing 0/3. No Premium locks were seen in this check.',
     limits: 'Grammarly Pro and Grammarly Free were not part of this check. The paraphrase tab was not used. Picky Mode was not opened. A longer document was not tested. The standard task on the proofread page has not been run.',
   },
+  {
+    id: 'looka-brand-kit-2026-11-05',
+    date: '2026-11-05',
+    tool: 'Looka Brand Kit',
+    useCaseSlug: 'design-logos-and-graphics',
+    anchor: 'Hollow Oak Bakery',
+    tested: 'Looka Brand Kit, on the free path only: signed out, with no account, no card and no payment, on the logo maker. The brief was Hollow Oak Bakery, industry Bakery, slogan Baked in Bath since 2026. No email or account was asked for before the logos appeared. The first logo appeared about 15 to 20 seconds after the brief was submitted. The clock readings are about five seconds either way. About 23 logos were on the page, with a Load more logos button. The name was spelled correctly on 6 of the first 6 logos, with no garbled or misspelt text. The colour step offered 9 swatches and no brown or cream. The early symbols were abstract, not bakery symbols. The editor and the mockup previews opened signed out. Every download is paid. The checkout page, in US dollars only, listed Basic Logo Package at $20 one-time for one low-res file and no transparent file, Premium Logo Package at $65 one-time, Brand Kit Subscription at $96 a year billed annually, and Brand Kit Web Subscription at $129 a year billed annually.',
+    limits: 'The paid Brand Kit was not bought. No templates were generated from a paid kit, and no file was downloaded. A 1080×1080 social graphic was not made. An edit was not saved, and fonts were not tried. Canva Pro was not part of this check. The standard task on the logo page has not been run.',
+  },
 ];
 
-const COVERED = ['research-and-summarise-sources', 'translate-a-document', 'proofread-and-edit'];
+const COVERED = ['research-and-summarise-sources', 'translate-a-document', 'proofread-and-edit', 'design-logos-and-graphics'];
 
 function pageText(entry: CollectionEntry<'use-cases'>): string {
   return `${entry.data.testNotes}\n${entry.body ?? ''}`;
