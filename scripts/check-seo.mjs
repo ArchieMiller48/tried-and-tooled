@@ -525,6 +525,54 @@ if (!logoBudget.includes('1080×1080 social graphic was not made')) {
 }
 if (logoAvoid.includes('Hands-on test 5 Nov')) fail('Canva Business was marked as hands-on tested');
 
+const images = decode(readFileSync(pathToFile(`${base}/use-cases/check-if-an-image-is-ai/`), 'utf8'));
+for (const phrase of [
+  'Hands-on test (6 Nov 2026)',
+  'Likely real',
+  '96%',
+  '97%',
+  'AI-generated',
+  'SynthID watermark and OpenAI\'s signature',
+  'None found',
+  'No AI tags',
+  'No AI found',
+  'Not needed',
+  'no sign-up',
+  'No paywall',
+  '8 to 12 seconds',
+  'about 2 seconds',
+  'Heatmap',
+  'over 99%',
+  'vendor',
+  'not a signature-free',
+  'Pixel analysis is unavailable right now',
+  'Gemini example tile was not run',
+  'has not been run',
+]) {
+  if (!images.includes(phrase)) fail(`image-check page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!images.includes('datetime="2026-11-06"')) fail('image-check page does not show 6 Nov 2026 as dateModified');
+if (!images.includes('Standard task still pending') || !images.includes('standard task')) {
+  fail('image-check page does not keep the standard task pending');
+}
+if (!images.includes(`${base}/tested/`)) fail('image-check page does not link to the tested page');
+const imageTop = images.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const imageBudget = images.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const imageAvoid = images.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!imageTop.includes('Phrasly AI Image Detector') || !imageTop.includes('Hands-on test 6 Nov 2026')) {
+  fail('Phrasly top card is missing its hands-on label');
+}
+if (imageTop.includes('Pending hands-on test')) fail('Phrasly top card still has a pending hands-on label');
+if (!imageTop.includes('over 99%') || !imageTop.includes("vendor's claims")) {
+  fail('Phrasly top card does not label the over 99% figure as the vendor\'s claim');
+}
+if (!imageBudget.includes('no account') || !imageBudget.includes('Hands-on test 6 Nov 2026')) {
+  fail('Phrasly budget card is missing its hands-on label');
+}
+if (imageBudget.includes('Pending hands-on test')) fail('Phrasly budget card still has a pending hands-on label');
+if (!imageBudget.includes('was not measured')) fail('Phrasly budget card does not keep the accuracy figure unmeasured');
+if (imageAvoid.includes('Hands-on test 6 Nov')) fail('The eye-only avoid was marked as hands-on tested');
+
 for (const page of [
   `${base}/best/ai-translation-tools/`,
   `${base}/best/ai-tools-for-small-business/`,
@@ -541,6 +589,9 @@ for (const phrase of [
   'DeepL Free',
   'LanguageTool Basic',
   'Looka Brand Kit',
+  'Phrasly AI Image Detector',
+  '6 Nov 2026',
+  'Likely real',
   '26 Oct 2026',
   '2 Nov 2026',
   '3 Nov 2026',
@@ -588,12 +639,18 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Looka Brand Kit (5 Nov 2026)')) {
   fail('llms.txt omits the Looka Brand Kit hands-on note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Phrasly AI Image Detector (6 Nov 2026)')) {
+  fail('llms.txt omits the Phrasly AI Image Detector hands-on note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
 }
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Hollow Oak Bakery') || !readFileSync(full, 'utf8').includes('Canva Pro was not part of this check'))) {
   fail('llms-full.txt omits the Looka hands-on note or marks Canva Pro as part of it');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Likely real') || !readFileSync(full, 'utf8').includes('not a signature-free'))) {
+  fail('llms-full.txt omits the Phrasly hands-on note or its signature-free limit');
 }
 
 if (errors.length > 0) {

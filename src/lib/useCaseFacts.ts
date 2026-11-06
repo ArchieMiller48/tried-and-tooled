@@ -100,6 +100,7 @@ const SEARCH_TITLES: Record<string, (year: number) => string> = {
   'answer-customer-questions': (year) => `Best AI tools for a customer chat (${year})`,
   'translate-a-document': (year) => `Best AI tools to translate a document (${year})`,
   'proofread-and-edit': (year) => `Best AI tools to proofread writing (${year})`,
+  'check-if-an-image-is-ai': (year) => `Best AI tools to check if an image is AI (${year})`,
 };
 
 /** Fact sentences for the meta description. The checked date and test status are appended from frontmatter. */
@@ -126,6 +127,7 @@ const SEARCH_BLURBS: Record<string, string> = {
   'answer-customer-questions': 'Tidio Lyro from $32.50/mo for site answers. Tidio Free is $0. The 50 free Lyro chats do not refresh.',
   'translate-a-document': 'DeepL Individual is €7.49/mo yearly for documents. Free caps at 50,000 characters and one file.',
   'proofread-and-edit': 'Grammarly Pro lists full-sentence rewrites. LanguageTool Free checks 2,000 characters.',
+  'check-if-an-image-is-ai': "Phrasly's image detector is free with no sign-up. Its over 99% figure is the vendor's claim.",
 };
 
 export function textMentionsFree(text: string): boolean {

@@ -158,6 +158,11 @@
       "roles": ["student", "researcher", "everyday", "marketer", "founder"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["writing"]
+    },
+    "check-if-an-image-is-ai": {
+      "roles": ["student", "researcher", "everyday", "designer", "creator"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["images"]
     }
   }
 }
