@@ -573,6 +573,49 @@ if (imageBudget.includes('Pending hands-on test')) fail('Phrasly budget card sti
 if (!imageBudget.includes('was not measured')) fail('Phrasly budget card does not keep the accuracy figure unmeasured');
 if (imageAvoid.includes('Hands-on test 6 Nov')) fail('The eye-only avoid was marked as hands-on tested');
 
+const sheet = readFileSync(pathToFile(`${base}/use-cases/analyse-a-spreadsheet/`), 'utf8');
+for (const phrase of [
+  'Hands-on test (7 Nov 2026)',
+  '20 rows · not saved',
+  '20 records / 3 Product',
+  'about 3.3 seconds',
+  'Total units 102',
+  'Avg unit price 3.55',
+  'Product (distinct) 3',
+  'Croissant 45',
+  'Sourdough loaf 33',
+  'Cinnamon bun 24',
+  'Bath 60',
+  '58.8%',
+  'about 3.13',
+  '€2.20',
+  'Unit price gbp',
+  'Export disabled',
+  'Sign up to export',
+  'Made with Datastripes',
+  '€19',
+  'not checked by network inspection',
+  'Google Sheets, Claude and ChatGPT were not part of it',
+  'has not been run',
+]) {
+  if (!sheet.includes(phrase)) fail(`spreadsheet page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!sheet.includes('datetime="2026-11-07"')) fail('spreadsheet page does not show 7 Nov 2026 as dateModified');
+if (!sheet.includes('Standard task still pending') || !sheet.includes('standard task')) {
+  fail('spreadsheet page does not keep the standard task pending');
+}
+if (!sheet.includes(`${base}/tested/`)) fail('spreadsheet page does not link to the tested page');
+if (!sheet.includes('Pending hands-on test')) fail('spreadsheet page lost its pending hands-on label');
+const sheetTop = sheet.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const sheetBudget = sheet.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!sheetTop.includes('Google Sheets') || sheetTop.includes('Hands-on test')) {
+  fail('Google Sheets was marked as hands-on tested');
+}
+if (!sheetBudget.includes('Claude') || sheetBudget.includes('Hands-on test')) {
+  fail('Claude was marked as hands-on tested');
+}
+if (sheet.includes('Hands-on test 7 Nov')) fail('A spreadsheet pick was marked as hands-on tested on 7 Nov');
+
 for (const page of [
   `${base}/best/ai-translation-tools/`,
   `${base}/best/ai-tools-for-small-business/`,
@@ -590,6 +633,11 @@ for (const phrase of [
   'LanguageTool Basic',
   'Looka Brand Kit',
   'Phrasly AI Image Detector',
+  'Datastripes',
+  '7 Nov 2026',
+  '20 rows · not saved',
+  'Total units 102',
+  'not network-verified',
   '6 Nov 2026',
   'Likely real',
   '26 Oct 2026',
@@ -632,6 +680,10 @@ for (const slug of [
 }
 if (!smallBusiness.includes('LanguageTool Basic')) fail('small-business hub omits the LanguageTool Basic hands-on note');
 if (!smallBusiness.includes('Looka Brand Kit')) fail('small-business hub omits the Looka Brand Kit hands-on note');
+if (!smallBusiness.includes('Datastripes')) fail('small-business hub omits the Datastripes hands-on note');
+if (smallBusiness.includes('None of the five use-case pages has a hands-on note')) {
+  fail('small-business hub still says the spreadsheet page has no hands-on note');
+}
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
   fail('llms.txt omits the LanguageTool Basic hands-on note');
@@ -642,6 +694,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Looka Brand Kit (5
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Phrasly AI Image Detector (6 Nov 2026)')) {
   fail('llms.txt omits the Phrasly AI Image Detector hands-on note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Datastripes (7 Nov 2026)')) {
+  fail('llms.txt omits the Datastripes hands-on note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -651,6 +706,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Hollow Oak Bakery
 }
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Likely real') || !readFileSync(full, 'utf8').includes('not a signature-free'))) {
   fail('llms-full.txt omits the Phrasly hands-on note or its signature-free limit');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('20 rows · not saved') || !readFileSync(full, 'utf8').includes('Google Sheets, Claude and ChatGPT were not part of this check'))) {
+  fail('llms-full.txt omits the Datastripes hands-on note or marks the other picks as part of it');
 }
 
 if (errors.length > 0) {

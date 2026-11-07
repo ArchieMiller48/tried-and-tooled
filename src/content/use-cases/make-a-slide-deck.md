@@ -43,7 +43,7 @@ alsoConsidered: []
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-11-02
-testNotes: "Pending hands-on test. Planned standard task: turn the same 8-point outline into a 10-slide deck in each tool, then score whether every point landed on its own slide, whether numbers were invented, how long the export took, and whether the file opened in PowerPoint or Google Slides."
+testNotes: "Pending hands-on test. Planned standard task: turn the same 8-point outline into a 10-slide deck in each tool, then score whether every point landed on its own slide, whether numbers were invented, how long the export took, and whether the file opened in PowerPoint or Google Slides. On 7 Nov 2026 an email signup reached the password step and was not completed. No deck was generated."
 ---
 
 ## Who this is for
