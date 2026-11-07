@@ -13,7 +13,7 @@ const entries = await getCollection('use-cases', ({ data }) => !data.draft);
 assertHandsOnCoverage(entries);
 const titles = new Map(entries.map((entry) => [entry.id, entry.data.title]));
 const title = 'Tested by us';
-const description = 'Hands-on notes: Consensus Free, Perplexity Free, DeepL Free, LanguageTool Basic, Looka Brand Kit and Phrasly, with the date and what was tried.';
+const description = 'Hands-on notes: Consensus Free, Perplexity Free, DeepL Free, LanguageTool Basic, Looka Brand Kit, Phrasly and Datastripes, with the date and what was tried.';
 const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
 const notes = [...handsOnNotes].sort((a, b) => b.date.localeCompare(a.date));
 ---
@@ -29,7 +29,7 @@ const notes = [...handsOnNotes].sort((a, b) => b.date.localeCompare(a.date));
 
     <section class="answer" aria-labelledby="short-answer">
       <h2 id="short-answer">Short answer</h2>
-      <p>Six notes exist. Consensus Free on 26 Oct 2026 and Perplexity Free on 2 Nov 2026 are on the research page. DeepL Free on 3 Nov 2026 is on the translate page. LanguageTool Basic on 4 Nov 2026 is on the proofread page. Looka Brand Kit on 5 Nov 2026 is on the logo page. Phrasly AI Image Detector on 6 Nov 2026 is on the image-check page. No other tool on this site has a hands-on note.</p>
+      <p>Seven notes exist. Consensus Free on 26 Oct 2026 and Perplexity Free on 2 Nov 2026 are on the research page. DeepL Free on 3 Nov 2026 is on the translate page. LanguageTool Basic on 4 Nov 2026 is on the proofread page. Looka Brand Kit on 5 Nov 2026 is on the logo page. Phrasly AI Image Detector on 6 Nov 2026 is on the image-check page. Datastripes on 7 Nov 2026 is on the spreadsheet page. No other tool on this site has a hands-on note.</p>
     </section>
 
     <section>
@@ -55,7 +55,7 @@ const notes = [...handsOnNotes].sort((a, b) => b.date.localeCompare(a.date));
 
     <section class="prose">
       <h2>What this page is not</h2>
-      <p>The research page, the translate page, the proofread page, the logo page and the image-check page stay marked pending. Their standard tasks have not been run. Consensus Pro, Elicit, Gemini Notebook, DeepL Pro Individual, Grammarly Pro, Canva Pro and every pick that is not named above have no hands-on note. The Looka Brand Kit note is the free logo maker, the editor, the mockup previews and the checkout prices. The paid kit was not bought, no file was downloaded, and a 1080×1080 social graphic was not made. The Phrasly note is five images on the free detector, signed out: two real photos read Likely real, two AI JPEGs were caught by a signature in the file, and the ChatGPT ramen example showed a SynthID watermark and OpenAI's signature. Pixel detection did not run on those AI files. Phrasly's over 99% accuracy figure is the vendor's claim and was not measured. A separate signature-free Midjourney-style file was not tested.</p>
+      <p>The research page, the translate page, the proofread page, the logo page, the image-check page and the spreadsheet page stay marked pending. Their standard tasks have not been run. Consensus Pro, Elicit, Gemini Notebook, DeepL Pro Individual, Grammarly Pro, Canva Pro, Google Sheets, Claude, ChatGPT and every pick that is not named above have no hands-on note. The Looka Brand Kit note is the free logo maker, the editor, the mockup previews and the checkout prices. The paid kit was not bought, no file was downloaded, and a 1080×1080 social graphic was not made. The Phrasly note is five images on the free detector, signed out: two real photos read Likely real, two AI JPEGs were caught by a signature in the file, and the ChatGPT ramen example showed a SynthID watermark and OpenAI's signature. Pixel detection did not run on those AI files. Phrasly's over 99% accuracy figure is the vendor's claim and was not measured. A separate signature-free Midjourney-style file was not tested. The Datastripes note is one signed-out upload of a 20-row CSV. Export and saving need a sign-up. The privacy line on the page, that rows stay in the browser, was not checked by network inspection.</p>
       <p>Prices elsewhere on the site are vendor figures with a source and a checked date. They are not measurements from these notes.</p>
       <p>Browse <a href={withBase('/use-cases/')}>all use cases</a>, <a href={withBase('/best/')}>all shortlists</a> and <a href={withBase('/about/')}>how we test</a>.</p>
     </section>
