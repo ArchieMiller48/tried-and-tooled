@@ -635,6 +635,14 @@ for (const phrase of [
   'Phrasly AI Image Detector',
   'Datastripes',
   '7 Nov 2026',
+  'Eight notes exist',
+  'nixm',
+  '8 Nov 2026',
+  'introducing our weekend pastry box',
+  'every saturday',
+  'signing an account is needed to generate images',
+  '20 CREDITS ON US',
+  'Those claims were not verified',
   '20 rows · not saved',
   'Total units 102',
   'not network-verified',
@@ -697,6 +705,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Phrasly AI Image D
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Datastripes (7 Nov 2026)')) {
   fail('llms.txt omits the Datastripes hands-on note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('nixm (8 Nov 2026)')) {
+  fail('llms.txt omits the nixm hands-on note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -709,6 +720,72 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Likely real') || 
 }
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('20 rows · not saved') || !readFileSync(full, 'utf8').includes('Google Sheets, Claude and ChatGPT were not part of this check'))) {
   fail('llms-full.txt omits the Datastripes hands-on note or marks the other picks as part of it');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('introducing our weekend pastry box') || !readFileSync(full, 'utf8').includes('The write-posts page\'s standard task'))) {
+  fail('llms-full.txt omits the nixm hands-on note or its unrun standard task');
+}
+if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
+
+const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');
+for (const phrase of [
+  'Pending hands-on test',
+  'Hands-on test (8 Nov 2026)',
+  'introducing our weekend pastry box',
+  'every saturday',
+  'signing an account is needed to generate images',
+  'No shareable NIXM URL appeared',
+  'Unfortunately, Claude is not available to new users right now',
+  'archie.miller@mail.grokbot.com',
+  'no draft was generated in Claude',
+  'not a quality score',
+  'has not been run',
+  `${base}/tested/`,
+  'datetime="2026-11-08"',
+]) {
+  if (!writing.includes(phrase)) fail(`writing page is missing the hands-on note phrase: ${phrase}`);
+}
+const writingTop = writing.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const writingBudget = writing.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!writingTop.includes('Claude') || writingTop.includes('Hands-on test')) {
+  fail('Claude was marked as hands-on tested on the writing page');
+}
+if (!writingBudget.includes('ChatGPT') || writingBudget.includes('Hands-on test')) {
+  fail('ChatGPT was marked as hands-on tested on the writing page');
+}
+
+const slides = readFileSync(pathToFile(`${base}/use-cases/make-a-slide-deck/`), 'utf8');
+for (const phrase of [
+  'Pending hands-on test',
+  'password step',
+  'No deck was generated',
+  'Unfortunately, Claude is not available to new users right now',
+  'no deck was generated in Claude',
+  'not a quality score',
+]) {
+  if (!slides.includes(phrase)) fail(`slide-deck page is missing: ${phrase}`);
+}
+const slidesBudget = slides.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!slidesBudget.includes('Claude') || slidesBudget.includes('Hands-on test')) {
+  fail('Claude Free was marked as hands-on tested on the slide-deck page');
+}
+
+const vibe = readFileSync(pathToFile(`${base}/use-cases/vibe-code-an-mvp/`), 'utf8');
+for (const phrase of [
+  'Pending hands-on test',
+  '11:09:09.983',
+  'Verify you are human',
+  'No preview, Deploy button or public URL appeared',
+  'Signup was not completed',
+]) {
+  if (!vibe.includes(phrase)) fail(`vibe-code page is missing: ${phrase}`);
+}
+const vibeTop = vibe.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const vibeBudget = vibe.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!vibeTop.includes('Lovable') || vibeTop.includes('Hands-on test')) {
+  fail('Lovable was marked as hands-on tested');
+}
+if (!vibeBudget.includes('Bolt.new') || vibeBudget.includes('Hands-on test')) {
+  fail('Bolt.new was marked as hands-on tested');
 }
 
 if (errors.length > 0) {

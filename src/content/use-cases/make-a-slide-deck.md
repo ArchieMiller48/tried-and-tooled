@@ -43,7 +43,7 @@ alsoConsidered: []
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-11-02
-testNotes: "Pending hands-on test. Planned standard task: turn the same 8-point outline into a 10-slide deck in each tool, then score whether every point landed on its own slide, whether numbers were invented, how long the export took, and whether the file opened in PowerPoint or Google Slides. On 7 Nov 2026 an email signup reached the password step and was not completed. No deck was generated."
+testNotes: "Pending hands-on test. Planned standard task: turn the same 8-point outline into a 10-slide deck in each tool, then score whether every point landed on its own slide, whether numbers were invented, how long the export took, and whether the file opened in PowerPoint or Google Slides. On 7 Nov 2026 an email signup reached the password step and was not completed. No deck was generated. On 8 Nov 2026 an email signup for Claude Free, the budget pick, at https://claude.ai/login (Continue with email, archie.miller@mail.grokbot.com) was refused with: \"Unfortunately, Claude is not available to new users right now. We're working hard to expand our availability soon.\" No code, password or phone step appeared and no deck was generated in Claude. Claude Free remains the budget pick. This is availability for a new user that day, not a quality score."
 ---
 
 ## Who this is for

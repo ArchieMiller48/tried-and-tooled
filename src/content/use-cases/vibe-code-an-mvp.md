@@ -57,7 +57,7 @@ alsoConsidered:
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-11-02
-testNotes: "Pending hands-on test. Planned standard task: 'Build a to-do app with email login, per-user data and a public URL', run on Lovable, Bolt.new and Replit. We'll record time to first working deploy, credits or tokens used, the number of fix-up prompts, and whether the exported code runs locally."
+testNotes: "Pending hands-on test. Planned standard task: 'Build a to-do app with email login, per-user data and a public URL', run on Lovable, Bolt.new and Replit. We'll record time to first working deploy, credits or tokens used, the number of fix-up prompts, and whether the exported code runs locally. On 8 Nov 2026 Bolt.new, the budget pick, was opened signed out at https://bolt.new/. The prompt box was available and this prompt was submitted at 11:09:09.983 UTC: \"Build a simple to-do web app. Requirements: email login, each user only sees their own to-dos, add/complete/delete tasks, and a public URL I can open. Use a clean, minimal UI. Do not add extra features.\" Bolt immediately opened a Create account dialog (Sign up with Google, GitHub, email and password, or SSO). The email form required Email, Username and Password and showed a Cloudflare \"Verify you are human\" checkbox. No preview, Deploy button or public URL appeared. Signup was not completed."
 ---
 
 ## Who this is for
