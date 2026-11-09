@@ -57,6 +57,8 @@ Designers, small businesses and anyone else who needs a logo and a few graphics 
 - **You will keep making posts, decks and other layouts:** Canva Pro. The US price is on [Canva's plan comparison](https://www.canva.com/learn/canva-pro-vs-canva-enterprise/).
 - **You want the logo plus a set of branded templates, and a lower yearly price than Canva Pro:** Looka Brand Kit at $96/year on [Looka's help page](https://help.looka.com/en/articles/4636515-what-is-the-brand-kit).
 - **The graphic is a YouTube thumbnail with a title on it:** use [AI thumbnails and social images](../../use-cases/ai-thumbnails-and-images/) instead of a logo tool.
+- **The job is a product cutout, not a logo:** [Cut out a product photo](../../use-cases/cut-out-a-product-photo/).
+- **The job is one app screen:** [Design an app screen](../../use-cases/design-an-app-screen/).
 
 Prices above are the figures those pages showed when checked. Canva says its guide is US pricing and that other regions should use the [pricing page](https://www.canva.com/pricing/).
 

@@ -9,9 +9,9 @@ topPick:
   url: "https://gamma.app"
   why: "Gamma's help centre lists Plus at 1,500 credits a month, with Gamma branding removed and up to 100 slides per prompt. Free lists up to 10 slides per prompt, and AI credits that do not refresh. A new account starts with 400 credits. The help centre says those initial credits do not expire."
   pricing:
-    summary: "Free: 400 credits at signup; they do not refresh. Plus: 1,500 credits/month, branding removed, up to 100 slides per prompt. The help centre says annual billing is discounted against monthly. gamma.app/pricing returned HTTP 403 on 2 Nov 2026, so this line does not repeat a dollar price."
+    summary: "Free: 400 credits at signup; they do not refresh. Plus: 1,500 credits/month, branding removed, up to 100 slides per prompt. The help centre says annual billing is discounted against monthly. gamma.app/pricing timed out on 9 Nov 2026, so this line does not repeat a dollar price."
     sourceUrl: "https://help.gamma.app/en/articles/8077107-how-can-i-upgrade-my-gamma-subscription"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 budgetPick:
   name: "Claude (Free)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free $0, and Claude Slides is listed on Free. Pro $20/mo, or $17/mo billed annually ($200 up front)."
     sourceUrl: "https://claude.com/pricing"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 avoid:
   name: "ChatGPT Free, Go or Plus, for ChatGPT Slides"
@@ -42,7 +42,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-02
+lastVerified: 2026-11-09
 testNotes: "Pending hands-on test. Planned standard task: turn the same 8-point outline into a 10-slide deck in each tool, then score whether every point landed on its own slide, whether numbers were invented, how long the export took, and whether the file opened in PowerPoint or Google Slides. On 7 Nov 2026 an email signup reached the password step and was not completed. No deck was generated. On 8 Nov 2026 an email signup for Claude Free, the budget pick, at https://claude.ai/login (Continue with email, archie.miller@mail.grokbot.com) was refused with: \"Unfortunately, Claude is not available to new users right now. We're working hard to expand our availability soon.\" No code, password or phone step appeared and no deck was generated in Claude. Claude Free remains the budget pick. This is availability for a new user that day, not a quality score."
 ---
 

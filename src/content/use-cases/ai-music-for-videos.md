@@ -11,16 +11,16 @@ topPick:
   pricing:
     summary: "Free: 50 credits/day, no song downloads, no commercial rights. Pro $8/mo on annual billing (Suno says this saves $24 a year compared with monthly), 2,500 credits/mo, 20 downloads/mo. Premier $24/mo on annual billing, 10,000 credits/mo, 60 downloads/mo."
     sourceUrl: "https://suno.com/pricing"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 budgetPick:
   name: "ElevenLabs (Eleven Music)"
   url: "https://elevenlabs.io"
   why: "If you already pay for ElevenLabs for voiceover, music comes out of the same credit pool. Eleven Music costs about 900 credits a minute, and commercial use of music is listed from Starter, so Starter's 30k credits would cover roughly 33 minutes of music if you spent them on nothing else."
   pricing:
-    summary: "Free 10k credits/mo (no commercial licence). Starter $6/mo (the page on 2 Nov 2026 still showed a first month at $1, countdown at 0 days), 30k credits/mo, includes music commercial use. Eleven Music ≈ 900 credits per minute."
+    summary: "Free 10k credits/mo (no commercial licence). Starter $6/mo (the page on 9 Nov 2026 still showed a first month at $1, countdown at 0 days), 30k credits/mo, includes music commercial use. Eleven Music ≈ 900 credits per minute."
     sourceUrl: "https://elevenlabs.io/pricing"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 avoid:
   name: "Suno Free, for anything you'll publish"
@@ -44,12 +44,12 @@ alsoConsidered:
     url: "https://one.google.com/about/google-ai-plans/"
     note: "Included with Google AI plans, which is handy if you already pay for one. We haven't verified Google's commercial-use terms for Flow Music tracks, so check them before you publish."
     pricing:
-      summary: "Google AI Plus $4.99/mo (3,000 Flow Music credits/mo); Google AI Pro $19.99/mo (10,000/mo). US prices."
+      summary: "Google AI Pro $19.99/mo monthly, and the savings block lists Annual ($199.99). The plans table still lists Flow Music credits of 3,000/mo in the first paid column and 10,000/mo in the next. A Plus dollar amount was not in the HTML; the $4.99 figure from 2 Nov 2026 is not repeated."
       sourceUrl: "https://one.google.com/about/google-ai-plans/"
-      checked: 2026-11-02
+      checked: 2026-11-09
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-02
+lastVerified: 2026-11-09
 testNotes: "Pending hands-on test. Planned standard task: generate a 60-second lo-fi instrumental bed and a 15-second jingle with lyrics from identical prompts in each tool, then score prompt adherence, audible artefacts and how well the bed sits under speech. We'll record the credits used and the licence terms that apply on each plan."
 ---
 

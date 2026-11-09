@@ -1,6 +1,6 @@
 ---
 title: "Best AI tools to turn videos into shorts (2026)"
-summary: "AI tools to turn long videos into shorts: OpusClip, or Descript if you also edit the long video. Prices checked 3 Nov 2026. Not a hands-on test."
+summary: "AI tools to turn long videos into shorts: OpusClip, or Descript if you also edit the long video. OpusClip's price was re-read on 9 Nov 2026. The other prices were last checked 3 Nov 2026. Not a hands-on test."
 targetQuery: "ai tool to turn long videos into shorts"
 secondaryQueries:
   - "best ai video clipping tool"
@@ -8,7 +8,7 @@ secondaryQueries:
 parent: "clip-long-videos-into-shorts"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-03
+lastVerified: 2026-11-09
 picks:
   - name: "OpusClip"
     url: "https://www.opus.pro"
@@ -16,9 +16,9 @@ picks:
     why: "This is the top pick on the parent use case, read from OpusClip's own pages, not from a hands-on score. The pricing page lists Free at $0, Starter at $15/mo, Pro at $29/mo and Business as custom. Starter is watermark-free, adds a virality score, and still exports 9:16 only, with media expiring after 29 days. Pro adds the social scheduler, bulk export, 1:1 and 16:9, 100 GB storage, and AI video B-roll. The help doc puts the allowances at 60 processing minutes a month on Free, 150 on Starter, and 300 a month on Pro, or 3,600 a year if Pro is billed yearly."
     caveat: "Free is the plan to avoid for clips you will post. Watermark-free export is marked off, MP4 export has a 3-day limit at up to 1080p, and media expires after 3 days. The pricing page does not show a yearly dollar price for Pro. The help doc says Pro is the only plan on a monthly or yearly cycle, and it does not give that yearly price either. Auto import from a verified YouTube account is listed from Starter up. The Free row says local video, while the help doc says Free can import YouTube and local files. Both sentences are on OpusClip's own pages."
     pricing:
-      summary: "Free $0. Starter $15/mo. Pro $29/mo. Business is custom. Help doc: Free 60 processing min/mo, Starter 150, Pro 300/mo or 3,600/year. No yearly dollar price on the pricing page."
+      summary: "Free $0. Starter $15/mo, monthly only. Pro $29/mo, or $14.50/mo ($174 billed annually). Business is custom. A help doc read on 3 Nov 2026 listed Free 60 processing min/mo, Starter 150, Pro 300/mo or 3,600/year. That help doc was not re-read on 9 Nov."
       sourceUrl: "https://www.opus.pro/pricing"
-      checked: 2026-11-03
+      checked: 2026-11-09
     sources:
       - label: "Processing minutes, YouTube import on Free, and yearly Pro"
         url: "https://help.opus.pro/docs/article/plans-and-credits"

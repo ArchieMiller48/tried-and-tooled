@@ -11,16 +11,16 @@ topPick:
   pricing:
     summary: "Free: 5 build credits/day (max 30/month). Pro from $25/mo (100 credits) or $21/mo billed annually."
     sourceUrl: "https://docs.lovable.dev/introduction/subscription-plans"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 budgetPick:
   name: "Bolt.new"
   url: "https://bolt.new"
   why: "Generous free tier for prototyping in the browser (1M tokens/month) with hosting and databases included. Upgrade only once you need a custom domain or want the branding removed."
   pricing:
-    summary: "Free: 300K tokens/day, 1M/month, Bolt branding. Pro $25/month billed monthly, from 10M tokens, custom domain, branding removed. The card's asterisk says plus applicable taxes."
+    summary: "Free: 300K tokens/day, 1M/month, Bolt branding. Pro $25/month billed monthly, from 10M tokens, custom domain, branding removed. A Yearly control says save up to 28%. No yearly dollar amount and no tax asterisk were in the HTML."
     sourceUrl: "https://bolt.new/pricing"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 avoid:
   name: "Lovable Free plan, for anything you plan to ship"
@@ -42,21 +42,21 @@ stack:
 alsoConsidered:
   - name: "Replit"
     url: "https://replit.com"
-    note: "A strong all-in-one agent and IDE; better if you want a full dev environment rather than a chat-first builder."
+    note: "A strong all-in-one agent and IDE; better if you want a full dev environment rather than a chat-first builder. Dollar prices were read on replit.com/pricing. The starter docs, re-read the same day, still say the one published app goes down after 30 days: https://docs.replit.com/billing/plans/starter-plan"
     pricing:
       summary: "Starter free, at no cost, with one published app that goes down after 30 days. Core $18/mo billed annually ($20 struck through). Pro $90/mo billed annually ($100 struck through)."
-      sourceUrl: "https://docs.replit.com/billing/plans"
-      checked: 2026-11-02
+      sourceUrl: "https://replit.com/pricing"
+      checked: 2026-11-09
   - name: "Cursor"
     url: "https://cursor.com"
     note: "An editor, not an app builder: best for the refine step once you have code. Plans are now sold through X subscription tiers."
     pricing:
       summary: "Free (limited); Plus $8/mo (Grok models only); Premium $30/mo; Super $100/mo; Ultra $200/mo. Third-party models billed at API list price."
       sourceUrl: "https://cursor.com/pricing"
-      checked: 2026-11-02
+      checked: 2026-11-09
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-02
+lastVerified: 2026-11-09
 testNotes: "Pending hands-on test. Planned standard task: 'Build a to-do app with email login, per-user data and a public URL', run on Lovable, Bolt.new and Replit. We'll record time to first working deploy, credits or tokens used, the number of fix-up prompts, and whether the exported code runs locally. On 8 Nov 2026 Bolt.new, the budget pick, was opened signed out at https://bolt.new/. The prompt box was available and this prompt was submitted at 11:09:09.983 UTC: \"Build a simple to-do web app. Requirements: email login, each user only sees their own to-dos, add/complete/delete tasks, and a public URL I can open. Use a clean, minimal UI. Do not add extra features.\" Bolt immediately opened a Create account dialog (Sign up with Google, GitHub, email and password, or SSO). The email form required Email, Username and Password and showed a Cloudflare \"Verify you are human\" checkbox. No preview, Deploy button or public URL appeared. Signup was not completed."
 ---
 

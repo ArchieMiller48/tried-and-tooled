@@ -1,6 +1,6 @@
 ---
 title: "Best AI tools for a small business (2026)"
-summary: "By job: Zapier, Tidio Lyro, Google AI Pro, Buffer Essentials and Claude. Prices checked 4 Nov 2026. Not a hands-on test."
+summary: "By job: Zapier, Tidio Lyro, Google AI Pro, Buffer Essentials and Claude. Zapier and Google AI plans re-read 9 Nov 2026. The other prices were last checked 4 Nov 2026. Not a hands-on test."
 targetQuery: "best ai tools for small business"
 secondaryQueries:
   - "ai tools for a small business"
@@ -9,17 +9,17 @@ parent: "automate-small-business-admin"
 inFinder: false
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-04
+lastVerified: 2026-11-09
 picks:
   - name: "Zapier"
     url: "https://zapier.com"
     fit: "Admin that copies itself between apps: a new enquiry, a draft reply, a CRM row. This is the top pick on the admin page."
-    why: "The pricing page lists Free at 100 tasks a month and two-step Zaps only. Professional is the plan that lists multi-step Zaps. The self-serve table lists the 750-task tier at $19.99/mo on the annual column and $29.99/mo on the monthly column. The Agents row says the tools work across 9,000+ apps. Copilot is listed with a daily message limit on Free and unlimited messages on paid plans."
+    why: "The pricing page, re-read on 9 Nov 2026, lists Free at 100 tasks a month and two-step Zaps only. Professional is the plan that lists multi-step Zaps, starting from $19.99/mo. A yearly toggle is labelled Save 33%. A $29.99 monthly figure was not in the HTML. The Agents row says the tools work across 9,000+ apps."
     caveat: "A lead, an AI draft and a send is already three steps, so Free's two-step cap is the avoid on the admin page. The page describes pay-per-task billing and says the rate depends on the plan. It does not print that overage rate in the HTML read today. This hub does not change the admin page's picks."
     pricing:
-      summary: "Free: 100 tasks/mo and two-step Zaps. Professional at 750 tasks is $19.99/mo billed annually or $29.99/mo billed monthly."
+      summary: "Free: 100 tasks/mo and two-step Zaps. Professional from $19.99/mo. A $29.99 monthly figure was not in the HTML on 9 Nov 2026."
       sourceUrl: "https://zapier.com/pricing"
-      checked: 2026-11-04
+      checked: 2026-11-09
     sources: []
     affiliateUrl: null
   - name: "Tidio Lyro"
@@ -36,12 +36,12 @@ picks:
   - name: "Google Sheets on Google AI Pro"
     url: "https://www.google.com/sheets/about/"
     fit: "A sheet you already have, when the cells have to be filled inside Sheets. This is the top pick on the spreadsheet page."
-    why: "The Google AI plans comparison lists Google AI Pro at $19.99/mo. The savings block on the same page lists Monthly ($19.99) and Annual ($199.99) for the Pro bundle. The Pro card lists Gemini in Gmail, Docs and Sheets. Plus is listed at $4.99/mo, and its card lists Gemini in Gmail for proofreading. It does not list Sheets."
+    why: "The Google AI plans comparison, re-read on 9 Nov 2026, lists Google AI Pro at $19.99/mo. The savings block lists Monthly ($19.99) and Annual ($199.99). The Pro card lists Gemini in Gmail, Docs and Sheets. The Plus card lists Gemini in Gmail for proofreading and does not list Sheets. A Plus dollar amount was not in that HTML. The $4.99 figure from 2 Nov 2026 is not repeated."
     caveat: "Plus is the avoid on the spreadsheet page for work inside Sheets, because the card does not list Sheets. This page does not repeat the citation-rollout claims from that use case. Those sit on the spreadsheet page with their own source. No sheet has been filled for this hub."
     pricing:
       summary: "Google AI Pro $19.99/mo. The savings block also lists Annual ($199.99). The Pro card lists Gemini in Docs and Sheets."
       sourceUrl: "https://one.google.com/about/google-ai-plans/"
-      checked: 2026-11-04
+      checked: 2026-11-09
     sources: []
     affiliateUrl: null
   - name: "Buffer Essentials"
@@ -70,11 +70,11 @@ picks:
     affiliateUrl: null
 verdicts:
   - situation: "The busywork is copying leads, drafts and rows between apps."
-    guidance: "Open the admin page. Its top pick is still Zapier, and the price read on 4 Nov 2026 is Professional at $19.99/mo billed annually or $29.99/mo billed monthly for 750 tasks. Free stops at two steps. The budget pick on that page is n8n, at €20/mo billed annually for Cloud Starter."
+    guidance: "Open the admin page. Its top pick is still Zapier. On 9 Nov 2026 Professional starts at $19.99/mo, and a $29.99 monthly figure was not in the HTML. Free stops at two steps. The budget pick on that page is n8n, at €20/mo billed annually for Cloud Starter."
   - situation: "The same customer questions arrive on the site."
     guidance: "Open the customer-questions page. Its top pick is still Tidio Lyro, from $32.50/mo on the annual view. Free is $0/mo for a person replying. The 50 starting Lyro conversations do not refresh monthly until you pay."
   - situation: "You already have the spreadsheet."
-    guidance: "Open the spreadsheet page. Its top pick is still Google AI Pro at $19.99/mo, the plan whose card lists Sheets. Plus at $4.99/mo does not list Sheets. Claude Free, at $0, is the budget pick there because code execution is listed on Free."
+    guidance: "Open the spreadsheet page. Its top pick is still Google AI Pro at $19.99/mo, the plan whose card lists Sheets. The Plus card does not list Sheets. A Plus dollar amount was not in the HTML on 9 Nov 2026. Claude Free, at $0, is the budget pick there because code execution is listed on Free."
   - situation: "The posts have to go on a calendar, or the words still have to be drafted."
     guidance: "Scheduling stays on the marketing page: Buffer Essentials at $5/month for one channel, $60 billed yearly. Drafting stays on the writing page: Claude Pro at $17/mo billed annually or $20/mo billed monthly. This hub does not replace those picks."
 faqs:
