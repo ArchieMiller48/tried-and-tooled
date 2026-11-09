@@ -635,7 +635,6 @@ for (const phrase of [
   'Phrasly AI Image Detector',
   'Datastripes',
   '7 Nov 2026',
-  'Eight notes exist',
   'nixm',
   '8 Nov 2026',
   'introducing our weekend pastry box',
@@ -643,6 +642,14 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
+  'Nine notes exist',
+  'Dessn',
+  '9 Nov 2026',
+  'Baked this morning on Mill Lane',
+  '£10.10',
+  '1 action failed',
+  'This first one is on us',
+  '20 credits remaining',
   '20 rows · not saved',
   'Total units 102',
   'not network-verified',
@@ -708,6 +715,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Datastripes (7 Nov
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('nixm (8 Nov 2026)')) {
   fail('llms.txt omits the nixm hands-on note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Dessn (9 Nov 2026)')) {
+  fail('llms.txt omits the Dessn hands-on note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -724,7 +734,11 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('20 rows · not sa
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('introducing our weekend pastry box') || !readFileSync(full, 'utf8').includes('The write-posts page\'s standard task'))) {
   fail('llms-full.txt omits the nixm hands-on note or its unrun standard task');
 }
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Baked this morning on Mill Lane') || !readFileSync(full, 'utf8').includes('The app-screen page\'s standard task'))) {
+  fail('llms-full.txt omits the Dessn hands-on note or its unrun standard task');
+}
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
+if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
 
 const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');
 for (const phrase of [
@@ -787,6 +801,37 @@ if (!vibeTop.includes('Lovable') || vibeTop.includes('Hands-on test')) {
 if (!vibeBudget.includes('Bolt.new') || vibeBudget.includes('Hands-on test')) {
   fail('Bolt.new was marked as hands-on tested');
 }
+
+const screen = readFileSync(pathToFile(`${base}/use-cases/design-an-app-screen/`), 'utf8');
+for (const phrase of [
+  'Pending hands-on test',
+  'Hands-on test (9 Nov 2026)',
+  'Baked this morning on Mill Lane',
+  '£10.10',
+  '1 action failed',
+  'This first one is on us',
+  'about 2 minutes 6 seconds',
+  '11:13:50.109',
+  'Figma and v0 were not part of this check',
+  'No export or download control was seen',
+  'has not been run',
+  `${base}/tested/`,
+  'datetime="2026-11-09"',
+]) {
+  if (!screen.includes(phrase)) fail(`app-screen page is missing the hands-on note phrase: ${phrase}`);
+}
+const screenTop = screen.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const screenBudget = screen.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!screenTop.includes('Figma Professional') || screenTop.includes('Hands-on test')) {
+  fail('Figma Professional was marked as hands-on tested');
+}
+if (!screenBudget.includes('Figma Starter') || screenBudget.includes('Hands-on test')) {
+  fail('Figma Starter was marked as hands-on tested');
+}
+if (screen.includes('Hands-on test 9 Nov')) fail('A design-page pick was marked as hands-on tested on 9 Nov');
+const considered = screen.split('<h2>Also considered</h2>')[1]?.split('<h2>Test notes</h2>')[0] ?? '';
+if (!considered.includes('Dessn')) fail('Dessn is missing from Also considered');
+if (considered.includes('Pending hands-on test')) fail('Dessn is still labelled pending');
 
 if (errors.length > 0) {
   console.error(errors.join('\n'));
