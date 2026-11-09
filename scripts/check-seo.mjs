@@ -431,7 +431,7 @@ for (const phrase of [
 ]) {
   if (!translate.includes(phrase)) fail(`translate page is missing the hands-on note phrase: ${phrase}`);
 }
-if (!translate.includes('datetime="2026-11-03"')) fail('translate page does not show 3 Nov 2026 as dateModified');
+if (!translate.includes('datetime="2026-11-09"')) fail('translate page does not show 9 Nov 2026 as dateModified');
 const topCard = translate.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
 const budgetCard = translate.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
 if (!topCard.includes('DeepL Pro Individual') || !topCard.includes('Pending hands-on test')) {
@@ -461,7 +461,7 @@ for (const phrase of [
 ]) {
   if (!proofread.includes(phrase)) fail(`proofread page is missing the hands-on note phrase: ${phrase}`);
 }
-if (!proofread.includes('datetime="2026-11-04"')) fail('proofread page does not show 4 Nov 2026 as dateModified');
+if (!proofread.includes('datetime="2026-11-09"')) fail('proofread page does not show 9 Nov 2026 as dateModified');
 if (!proofread.includes('Standard task still pending') || !proofread.includes('standard task')) {
   fail('proofread page does not keep the standard task pending');
 }
@@ -600,7 +600,7 @@ for (const phrase of [
 ]) {
   if (!sheet.includes(phrase)) fail(`spreadsheet page is missing the hands-on note phrase: ${phrase}`);
 }
-if (!sheet.includes('datetime="2026-11-07"')) fail('spreadsheet page does not show 7 Nov 2026 as dateModified');
+if (!sheet.includes('datetime="2026-11-09"')) fail('spreadsheet page does not show 9 Nov 2026 as dateModified');
 if (!sheet.includes('Standard task still pending') || !sheet.includes('standard task')) {
   fail('spreadsheet page does not keep the standard task pending');
 }
@@ -740,7 +740,7 @@ for (const phrase of [
   'not a quality score',
   'has not been run',
   `${base}/tested/`,
-  'datetime="2026-11-08"',
+  'datetime="2026-11-09"',
 ]) {
   if (!writing.includes(phrase)) fail(`writing page is missing the hands-on note phrase: ${phrase}`);
 }

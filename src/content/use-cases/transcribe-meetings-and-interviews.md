@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free $0: unlimited transcription on the card (asterisk on the page), 400 minutes of storage per team, limited AI summaries. Pro $18/seat/month, or $10/seat/month billed annually."
     sourceUrl: "https://fireflies.ai/pricing"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 budgetPick:
   name: "Descript (Free)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free: 60 media minutes/month, transcription in 25 languages. Hobbyist $16/mo billed annually ($24 monthly) if you need the paid editor."
     sourceUrl: "https://www.descript.com/pricing"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 avoid:
   name: "Fireflies Free, as a transcript archive"
@@ -46,10 +46,10 @@ alsoConsidered:
     pricing:
       summary: "Basic free: 300 transcription minutes/month and 3 lifetime audio/video imports. Pro $16.99/user/month, or $8.49/user/month on the annual card (save 50%). A comparison strip on the same page lists $8.33/user/month."
       sourceUrl: "https://otter.ai/pricing"
-      checked: 2026-11-02
+      checked: 2026-11-09
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-02
+lastVerified: 2026-11-09
 testNotes: "Pending hands-on test. Planned standard task: transcribe the same 20-minute two-speaker interview, once from a live-style upload and once as a file, then score speaker labels, tech-term accuracy (names, product names) and how long it takes to get a file you can edit."
 ---
 

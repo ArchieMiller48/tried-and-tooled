@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free $0 (chat, Claude Docs, up to 5 projects). Pro $20/mo, or $17/mo billed annually ($200 up front)."
     sourceUrl: "https://claude.com/pricing"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 budgetPick:
   name: "ChatGPT (Free)"
@@ -49,7 +49,7 @@ alsoConsidered:
       checked: 2026-11-08
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-08
+lastVerified: 2026-11-09
 testNotes: "Hands-on note, 8 Nov 2026: nixm only, a signed-out chat draft. It is not the standard task. Pending hands-on test. Planned standard task: from the same one-page brief, draft a 500-word blog post and a 120-word customer email in each tool, then score how well the draft follows the voice guide, how many factual inventions appear, and how many edits a human still has to make. On 8 Nov 2026 an email signup at https://claude.ai/login (Continue with email, archie.miller@mail.grokbot.com) was refused with: \"Unfortunately, Claude is not available to new users right now. We're working hard to expand our availability soon.\" No code, password or phone step appeared and no draft was generated in Claude. Claude remains the top pick. This is availability for new users that day, not a quality score."
 ---
 

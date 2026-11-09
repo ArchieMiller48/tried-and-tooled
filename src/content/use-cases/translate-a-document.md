@@ -11,16 +11,16 @@ topPick:
   pricing:
     summary: "Individual €7.49/mo billed annually, VAT included. 300,000 characters/month and 3 file translations."
     sourceUrl: "https://www.deepl.com/en/pro"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 budgetPick:
   name: "DeepL Free"
   url: "https://www.deepl.com/en/translator"
-  why: "The same comparison table lists the free version at 50,000 characters a month and 1 file translation, with a 5 MB file cap. Enough for a short email or one small file. The monthly price of Individual was not printed next to the annual figure on the page read on 2 Nov 2026."
+  why: "The same comparison table lists the free version at 50,000 characters a month and 1 file translation, with a 5 MB file cap. Enough for a short email or one small file. The monthly price of Individual was not printed next to the annual figure on the page read on 9 Nov 2026."
   pricing:
     summary: "Free: 50,000 characters/month and 1 file translation. File size up to 5 MB."
     sourceUrl: "https://www.deepl.com/en/pro"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
   handsOn: 2026-11-03
   handsOnSummary: "Signed out, with no account: a 319-character English customer email into French. The French appeared on its own within a few seconds and was not timed. File translation was not tested."
@@ -44,7 +44,7 @@ stack:
     role: "Check names, prices and dates. A fluent translation can still invent a number."
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-03
+lastVerified: 2026-11-09
 testNotes: "Hands-on note, 3 Nov 2026: DeepL Free only, signed out and with no account, translated a 319-character English customer email into French. The source was detected as English. The French appeared on its own after the paste, with no button, and the full output was showing within a few seconds. It was not timed. The facts in the email were kept: two working days, 14 days, a photo, a replacement or a full refund, and Monday to Friday 9h–17h. French typography was applied, including a space before the semicolon and \"9 h à 17 h\". The formal \"vous\" was used throughout. The last sentence is a fairly literal rendering. Formality, Style profiles and Style rules were greyed out with a Pro badge. The Glossaries toggle was visible without a Pro badge and was not used. No character limit or counter was shown at 319 characters. Longer text was not tested. File translation was not tested. The files tab says a free DeepL account is required, and the free limit stated there is 1 entire PDF, Word (.docx) or PowerPoint (.pptx) file a month. DeepL Pro Individual was not part of this check. The standard task is still pending: translate the same 800-word page and the same 5-page PDF in each plan, then score how many product names and prices survive, whether the file stayed within the published file cap, and what the plan costs for that month."
 ---
 

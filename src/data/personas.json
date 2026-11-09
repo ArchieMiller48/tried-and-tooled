@@ -45,7 +45,10 @@
     { "id": "code-review", "label": "Code review" },
     { "id": "spreadsheets", "label": "Spreadsheets" },
     { "id": "support", "label": "Customer questions" },
-    { "id": "translate", "label": "Translation" }
+    { "id": "translate", "label": "Translation" },
+    { "id": "screens", "label": "App screens" },
+    { "id": "product-photos", "label": "Product photos" },
+    { "id": "money", "label": "Spending" }
   ],
   "budgets": [
     {
@@ -163,6 +166,21 @@
       "roles": ["student", "researcher", "everyday", "designer", "creator"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["images"]
+    },
+    "design-an-app-screen": {
+      "roles": ["designer", "founder", "student", "developer", "everyday"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["screens"]
+    },
+    "cut-out-a-product-photo": {
+      "roles": ["small-business", "marketer", "designer", "founder", "creator"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["product-photos"]
+    },
+    "see-where-the-money-went": {
+      "roles": ["everyday", "student", "small-business", "analyst"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["money"]
     }
   }
 }

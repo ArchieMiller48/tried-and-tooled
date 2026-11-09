@@ -1,21 +1,21 @@
 ---
 title: "OpusClip alternatives (2026): free swaps"
-summary: "OpusClip alternatives with vendor prices: Descript, Vizard, Klap and Submagic. Prices checked 3 Nov 2026. Not a hands-on test."
+summary: "OpusClip alternatives with vendor prices: Descript, Vizard, Klap and Submagic. OpusClip's price was re-read on 9 Nov 2026. The other prices were last checked 3 Nov 2026. Not a hands-on test."
 targetQuery: "opus clip alternatives"
 secondaryQueries:
   - "opusclip alternative free"
 parent: "clip-long-videos-into-shorts"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-03
+lastVerified: 2026-11-09
 subject:
   name: "OpusClip"
   url: "https://www.opus.pro"
   blurb: "This is the top pick on the parent use case for clipping as the whole job. The pricing page lists Free at $0, Starter at $15/mo, Pro at $29/mo and Business as custom. Free exports are not watermark-free, MP4 export has a 3-day limit, and media expires after 3 days. Starter adds watermark-free export and a virality score, still at 9:16 only, and media expires after 29 days. Pro adds the scheduler, bulk export, 1:1 and 16:9, and AI video B-roll. The help doc, not the pricing card, is where the minute allowances are written."
   pricing:
-    summary: "Free $0. Starter $15/mo. Pro $29/mo. Business is custom. Help doc: Free 60 processing min/mo, Starter 150, Pro 300/mo or 3,600/year. No yearly dollar price on the pricing page."
+    summary: "Free $0. Starter $15/mo, monthly only. Pro $29/mo, or $14.50/mo ($174 billed annually). Business is custom. A help doc read on 3 Nov 2026 listed Free 60 processing min/mo, Starter 150, Pro 300/mo or 3,600/year. That help doc was not re-read on 9 Nov."
     sourceUrl: "https://www.opus.pro/pricing"
-    checked: 2026-11-03
+    checked: 2026-11-09
   sources:
     - label: "Processing minutes, and Pro as the only monthly-or-yearly plan"
       url: "https://help.opus.pro/docs/article/plans-and-credits"

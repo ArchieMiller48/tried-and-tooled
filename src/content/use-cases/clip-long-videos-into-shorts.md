@@ -7,11 +7,11 @@ category: "Create content"
 topPick:
   name: "OpusClip"
   url: "https://www.opus.pro"
-  why: "Built specifically for clipping. It does AI clip selection with a virality score, auto captions, reframing to 9:16 and social posting, and Pro adds a scheduler and bulk export."
+  why: "Built specifically for clipping. It does AI clip selection with a virality score, auto captions, reframing to 9:16 and social posting, and Pro adds a scheduler and bulk export. OpusClip's 2 November 2026 post says version 4.0 can also auto-edit a raw talking video, with speech cleanup, captions and B-roll, and still clips. That post is not a hands-on test of the edit."
   pricing:
-    summary: "Free $0 (watermark, 3-day export window). Starter $15/mo. Pro $29/mo."
+    summary: "Free $0 (watermark, 3-day export window). Starter $15/mo, monthly only. Pro $29/mo, or $14.50/mo ($174 billed annually)."
     sourceUrl: "https://www.opus.pro/pricing"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 budgetPick:
   name: "Descript (Hobbyist)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free (60 media min/mo, 720p). Hobbyist $16/mo billed annually ($24 monthly): 10 media hrs, 1080p watermark-free."
     sourceUrl: "https://www.descript.com/pricing"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 avoid:
   name: "OpusClip Free, for clips you'll actually post"
@@ -42,7 +42,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-02
+lastVerified: 2026-11-09
 testNotes: "Pending hands-on test. Planned standard task: feed the same 30-minute interview into each tool, ask for 5 vertical clips under 60 seconds, and score clip selection (would a human pick these?), caption accuracy, reframing and total hands-on time."
 ---
 
@@ -52,7 +52,7 @@ Podcasters, streamers and YouTubers who want a steady flow of shorts without hir
 
 ## How to choose
 
-- **Clipping is the whole job:** OpusClip. The sourced swaps are on [OpusClip alternatives](../../alternatives/opusclip/).
+- **Clipping is the whole job:** OpusClip. The [2 November 2026 post](https://www.opus.pro/blog/opusclip-4-0) says 4.0 can also auto-edit a raw talking video. Clipping is still the job on this page. The sourced swaps are on [OpusClip alternatives](../../alternatives/opusclip/).
 - **You also edit the long version:** Descript covers both. Hobbyist is $16/mo billed annually, which is not less than OpusClip Starter at $15/mo. It is the pick because one subscription edits the long video and cuts the shorts.
 - **You want the wider shortlist:** [Best AI tools to turn videos into shorts](../../best/ai-tools-to-turn-videos-into-shorts/) covers OpusClip, Descript and the other clippers whose prices could be read on the vendor's own page.
 - **You need the words before you clip:** [Transcribe meetings and interviews](../../use-cases/transcribe-meetings-and-interviews/) covers Fireflies for a live call and Descript for a file you already have.

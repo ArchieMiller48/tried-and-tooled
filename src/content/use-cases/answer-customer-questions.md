@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Lyro AI Agent starts at $32.50/mo, from 50 Lyro conversations a month. The plan table also lists Starter at $24.17/mo. Annual billing is described as 2 months free."
     sourceUrl: "https://www.tidio.com/pricing/"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 budgetPick:
   name: "Tidio Free"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free $0/mo. 50 billable conversations. The first 50 Lyro conversations are free for the life of the account."
     sourceUrl: "https://www.tidio.com/pricing/"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 avoid:
   name: "Tidio's 50 lifetime Lyro conversations, as the ongoing bot"
@@ -33,7 +33,7 @@ alsoConsidered:
     pricing:
       summary: "Free $0. Then $45, $95 and $295 per month per workspace."
       sourceUrl: "https://crisp.chat/en/pricing/"
-      checked: 2026-11-02
+      checked: 2026-11-09
 stack:
   - step: "Answers"
     tool: "The pages you already have"
@@ -49,7 +49,7 @@ stack:
     role: "Anything about a refund, a complaint or a price that is not on the page goes to a person."
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-02
+lastVerified: 2026-11-09
 testNotes: "Pending hands-on test. Planned standard task: add the same 10-question help page to each tool, ask those 10 questions plus 5 that are not on the page, then score how many answers match the page, how many invent a policy, and what the published plan costs for that month."
 ---
 

@@ -9,9 +9,9 @@ topPick:
   url: "https://www.google.com/sheets/about/"
   why: "Google's 28 October Workspace update says Fill with Gemini shows the web source inside each generated cell, in Sheets on the web, and that one request can cover up to 3,000 cells. The Google AI plans page lists Gemini in Sheets on Pro. The Plus card lists Gemini in Gmail for proofreading and does not list Sheets."
   pricing:
-    summary: "Google AI Pro $19.99/mo (US). The plan card lists Gemini in Docs and Sheets."
+    summary: "Google AI Pro $19.99/mo monthly (US). The savings block also lists Annual ($199.99). The plan card lists Gemini in Docs and Sheets."
     sourceUrl: "https://one.google.com/about/google-ai-plans/"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 budgetPick:
   name: "Claude (Free)"
@@ -20,11 +20,11 @@ budgetPick:
   pricing:
     summary: "Free $0. Code execution is listed on Free. Pro $20/mo, or $17/mo billed annually ($200 up front)."
     sourceUrl: "https://claude.com/pricing"
-    checked: 2026-11-02
+    checked: 2026-11-09
   affiliateUrl: null
 avoid:
   name: "Google AI Plus, for work inside Sheets"
-  reason: "Plus is $4.99/mo in the US. Its card lists Gemini in Gmail for proofreading. It does not list Sheets. Pro, at $19.99/mo, is the consumer plan whose card lists Gemini in Docs and Sheets. The Workspace post also omits Plus from the Fill with Gemini citation rollout."
+  reason: "On 9 Nov 2026 the Plus card lists Gemini in Gmail for proofreading and does not list Sheets. Pro, at $19.99/mo, is the consumer plan whose card lists Gemini in Docs and Sheets. A Plus dollar amount was not in that HTML. The $4.99 figure recorded on 2 Nov 2026 is not repeated. The Workspace post also omits Plus from the Fill with Gemini citation rollout."
   sourceUrl: "https://one.google.com/about/google-ai-plans/"
 alsoConsidered:
   - name: "ChatGPT (Free)"
@@ -38,9 +38,9 @@ alsoConsidered:
     url: "https://datastripes.com"
     note: "Signed out on 7 Nov 2026, with no account and no card, a 20-row CSV reached Story view in about 3.3 seconds. Total units 102 and an unweighted average unit price of 3.55 matched an independent check of the file. This page's job is a sheet that shows the web source on a filled cell. This check did not fill cells from the web. Export and saving need a sign-up. The data table showed a euro sign on unit_price_gbp values, and order_date, order_id and channel were unused in the KPIs and charts."
     pricing:
-      summary: "Instant €0, always free, up to 8 charts. Custom dashboard €5/file. Deploy €5. Pro €19/month. Export and saving need a sign-up."
+      summary: "Public €0, with a Made with Datastripes credit. Pro €19/month. The Instant, €5 custom and €5 deploy lines recorded on 7 Nov 2026 were not in the homepage HTML on 9 Nov 2026."
       sourceUrl: "https://datastripes.com"
-      checked: 2026-11-07
+      checked: 2026-11-09
 stack:
   - step: "The question"
     tool: "A sentence you write"
@@ -56,7 +56,7 @@ stack:
     role: "Keep the source link next to any figure that came from the web. If the same notes become a post, use the writing page."
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-07
+lastVerified: 2026-11-09
 testNotes: "Hands-on note, 7 Nov 2026: Datastripes only, signed out, with no account, no email, no password, no card and no Google sign-in, on datastripes.com and the guest app at app.datastripes.com/#/guest. A 20-row Hollow Oak Bakery CSV, sample-bakery-orders.csv, with columns order_id, order_date, channel, product, units, unit_price_gbp and city, was uploaded through the file picker. The €5 custom and deploy options were not used. Story view first showed \"20 records / 3 Product\" about 3.3 seconds after upload. The time was script-measured. The header read \"20 rows · not saved\", \"1/2 free projects\", and \"Sign up free to keep it\". The auto dashboard showed three KPIs: Total units 102, Avg unit price 3.55, and Product (distinct) 3, with about 8 charts and filters for Product and City. An independent check of the CSV found total units 102, Croissant 45, Sourdough loaf 33, Cinnamon bun 24, and Bath 60 units (58.8%). The unweighted mean of unit_price_gbp across the 20 rows was 3.55, matching the KPI. The units-weighted average unit price was about 3.13, and that figure was not shown as a KPI. The data table showed a euro sign on unit_price_gbp values, for example €2.20, and column names were de-snake-cased, including \"Unit price gbp\". order_date, order_id and channel were not used in the KPIs or charts, and no time-trend chart was seen. There was no signup wall, no captcha and no card before the results. A cookie banner was the only gate, and it was declined or ignored. PDF and PPTX export were disabled while signed out. The trial line read \"Export disabled\", and the footer read \"Sign up to export\", with a \"Made with Datastripes\" watermark. The page priced Instant at €0, always free, up to 8 charts, Custom dashboard at €5 per file, a deploy link at €5, and Pro at €19 a month. A Black Friday -15% banner was on the page. No discounted price was recorded. The page said rows stay in the browser. That privacy claim was not checked by network inspection. Google Sheets, Claude and ChatGPT were not part of this check. The standard task is still pending: from the same 20-row sheet, fill one column from the web and check one total in each tool, then score how many web-sourced cells link to a page that contains the figure, how many do not, and what the published plan costs for that one sheet."
 ---
 
