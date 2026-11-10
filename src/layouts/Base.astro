@@ -89,12 +89,12 @@ const isCurrent = (href: string) => {
         <div>© {new Date().getFullYear()} Tried &amp; Tooled. Rankings are never for sale. Some links may be affiliate links; <a href={withBase('/about/#money')}>see how we make money</a>.</div>
         <div><a href={withBase('/tested/')}>Tested by us</a> · <a href={withBase('/newsletter/')}>Newsletter</a> · <a href={withBase('/about/')}>Editorial policy</a> · <a href={withBase('/submit/')}>Submit a tool</a> · <a href={withBase('/llms.txt')}>llms.txt</a></div>
         {listings.length > 0 && (
-          <div class="listed-on">
-            <span class="label">Listed on</span>
+          <nav class="listed-on" aria-label="Find us on directories">
+            <span class="label">Find us on directories</span>
             {listings.map((entry) => (
               <a href={entry.url}>{entry.badgeImg ? <img src={withBase(entry.badgeImg)} alt={entry.name} /> : entry.name}</a>
             ))}
-          </div>
+          </nav>
         )}
       </div>
     </footer>
