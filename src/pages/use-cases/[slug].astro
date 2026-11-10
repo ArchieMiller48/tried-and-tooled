@@ -24,7 +24,7 @@ const meta = useCaseMeta(entry);
 const faqs = buildFaqs(entry);
 const answer = shortAnswer(entry);
 const verified = isoDate(d.lastVerified);
-const pricingVerified = [d.topPick, d.budgetPick, ...d.alsoConsidered]
+const pricingVerified = [d.topPick, d.budgetPick]
   .map((tool) => tool.pricing.checked)
   .reduce((latest, day) => (day > latest ? day : latest));
 const handsOnPicks = [d.topPick, d.budgetPick].filter((pick) => pick.handsOn);

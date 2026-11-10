@@ -642,8 +642,16 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Nine notes exist',
+  'Ten notes exist',
   'Dessn',
+  'Spacefast',
+  '10 Nov 2026',
+  'This space is private',
+  'about 4 seconds',
+  'about 3.2 seconds',
+  'HTTP 500',
+  'about 33 hours',
+  'WordPress.com',
   '9 Nov 2026',
   'Baked this morning on Mill Lane',
   '£10.10',
@@ -718,6 +726,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('nixm (8 Nov 2026)'
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Dessn (9 Nov 2026)')) {
   fail('llms.txt omits the Dessn hands-on note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Spacefast (10 Nov 2026)')) {
+  fail('llms.txt omits the Spacefast hands-on note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -737,8 +748,12 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('introducing our w
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Baked this morning on Mill Lane') || !readFileSync(full, 'utf8').includes('The app-screen page\'s standard task'))) {
   fail('llms-full.txt omits the Dessn hands-on note or its unrun standard task');
 }
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('This space is private') || !readFileSync(full, 'utf8').includes('The vibe-code page\'s standard task'))) {
+  fail('llms-full.txt omits the Spacefast hands-on note or its unrun standard task');
+}
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
+if (!smallBusiness.includes('Spacefast')) fail('small-business hub omits the Spacefast hands-on note');
 
 const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');
 for (const phrase of [
@@ -790,6 +805,19 @@ for (const phrase of [
   'Verify you are human',
   'No preview, Deploy button or public URL appeared',
   'Signup was not completed',
+  'Hands-on test (10 Nov 2026)',
+  'sf publish',
+  'about 4 seconds',
+  'about 3.2 seconds',
+  'This space is private',
+  'about 33 hours',
+  'WordPress.com',
+  'HTTP 500',
+  'does not build the app',
+  'Standard task still pending',
+  'has not been run',
+  `${base}/tested/`,
+  'datetime="2026-11-09"',
 ]) {
   if (!vibe.includes(phrase)) fail(`vibe-code page is missing: ${phrase}`);
 }
@@ -801,6 +829,10 @@ if (!vibeTop.includes('Lovable') || vibeTop.includes('Hands-on test')) {
 if (!vibeBudget.includes('Bolt.new') || vibeBudget.includes('Hands-on test')) {
   fail('Bolt.new was marked as hands-on tested');
 }
+if (vibe.includes('Hands-on test 10 Nov')) fail('A vibe-code pick was marked as hands-on tested on 10 Nov');
+const vibeConsidered = vibe.split('<h2>Also considered</h2>')[1]?.split('<h2>Test notes</h2>')[0] ?? '';
+if (!vibeConsidered.includes('Spacefast')) fail('Spacefast is missing from Also considered');
+if (vibeConsidered.includes('Pending hands-on test')) fail('Spacefast is still labelled pending');
 
 const screen = readFileSync(pathToFile(`${base}/use-cases/design-an-app-screen/`), 'utf8');
 for (const phrase of [
