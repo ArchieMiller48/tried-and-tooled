@@ -1,10 +1,10 @@
 ---
 issue: 3
-title: "Tried & Tooled #3: the right AI tool for research, decks and meetings"
+title: "Issue 3: research, decks and meetings"
 subtitle: "Six new jobs, Greptile drops its seat fee, and our first hands-on note"
 date: 2026-10-29
 beehiivUrl: https://archies-newsletter-77bb75.beehiiv.com/p/tried-tooled-3-research-decks-and-meetings
-summary: "Six new jobs, Greptile drops its seat fee, and our first hands-on note"
+summary: "Six new jobs: research, decks, meetings, writing, marketing and logos. Greptile drops its seat fee, and the first hands-on note is in. Picks stay pending."
 ---
 
 <p>Hey there</p>

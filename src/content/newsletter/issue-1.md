@@ -1,9 +1,9 @@
 ---
 issue: 1
-title: "Tried & Tooled #1: the AI stack to ship an MVP"
+title: "Issue 1: the AI stack to ship an MVP"
 date: 2026-10-19
 beehiivUrl: https://archies-newsletter-77bb75.beehiiv.com/p/tried-tooled-1-the-ai-stack-to-ship-an-mvp
-summary: "House rules, four tool updates, and a stack for shipping an MVP by prompting. Picks are pending a hands-on test."
+summary: "House rules, vendor updates for CodeRabbit, Cursor, ElevenLabs and OpusClip, and a pending stack for shipping an MVP. Prices checked 17 October 2026."
 ---
 
 <p>Hey there</p>

@@ -85,11 +85,11 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
         {answer.prices.map((price) => (
           <li>
             <strong>{price.name}:</strong> {price.summary}{' '}
-            <a href={price.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, pricing checked <time datetime={isoDate(price.checked)}>{formatDate(price.checked)}</time>
+            <a href={price.sourceUrl} rel="nofollow noopener" target="_blank">source<span class="sr-only"> for {price.name}</span></a>, pricing checked <time datetime={isoDate(price.checked)}>{formatDate(price.checked)}</time>
           </li>
         ))}
       </ul>
-      <p class="answer-avoid"><strong>Avoid:</strong> {answer.avoidName}. {answer.avoidReason}{answer.avoidSourceUrl && <> <a href={answer.avoidSourceUrl} rel="nofollow noopener" target="_blank">source</a></>}</p>
+      <p class="answer-avoid"><strong>Avoid:</strong> {answer.avoidName}. {answer.avoidReason}{answer.avoidSourceUrl && <> <a href={answer.avoidSourceUrl} rel="nofollow noopener" target="_blank">source<span class="sr-only"> for {answer.avoidName}</span></a></>}</p>
       <p>{answer.statusNote}</p>
     </section>
 
@@ -112,7 +112,7 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
           <h3>{d.topPick.name}</h3>
           {d.topPick.handsOnSummary && <p>{d.topPick.handsOnSummary}</p>}
           <p>{d.topPick.why}</p>
-          <div class="price">{d.topPick.pricing.summary}<br /><a href={d.topPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, checked {formatDate(d.topPick.pricing.checked)}</div>
+          <div class="price">{d.topPick.pricing.summary}<br /><a href={d.topPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source<span class="sr-only"> for {d.topPick.name}</span></a>, checked {formatDate(d.topPick.pricing.checked)}</div>
           <p style="margin-top:12px"><a class="btn" href={go(d.topPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.topPick.name}</a></p>
         </div>
         <div class="card pick budget">
@@ -125,14 +125,14 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
           <h3>{d.budgetPick.name}</h3>
           {d.budgetPick.handsOnSummary && <p>{d.budgetPick.handsOnSummary}</p>}
           <p>{d.budgetPick.why}</p>
-          <div class="price">{d.budgetPick.pricing.summary}<br /><a href={d.budgetPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, checked {formatDate(d.budgetPick.pricing.checked)}</div>
+          <div class="price">{d.budgetPick.pricing.summary}<br /><a href={d.budgetPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source<span class="sr-only"> for {d.budgetPick.name}</span></a>, checked {formatDate(d.budgetPick.pricing.checked)}</div>
           <p style="margin-top:12px"><a class="btn ghost" href={go(d.budgetPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.budgetPick.name}</a></p>
         </div>
         <div class="card pick avoid">
           <div class="label">Avoid for this job</div>
           <h3>{d.avoid.name}</h3>
           <p>{d.avoid.reason}</p>
-          {d.avoid.sourceUrl && <p><a href={d.avoid.sourceUrl} rel="nofollow noopener" target="_blank">source</a></p>}
+          {d.avoid.sourceUrl && <p><a href={d.avoid.sourceUrl} rel="nofollow noopener" target="_blank">source<span class="sr-only"> for {d.avoid.name}</span></a></p>}
         </div>
       </div>
     </section>
@@ -153,7 +153,7 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
           <thead><tr><th>Tool</th><th>Why it's not the pick</th><th>Pricing (verified)</th></tr></thead>
           <tbody>
             {d.alsoConsidered.map((t) => (
-              <tr><td><a href={t.url} rel="nofollow noopener" target="_blank">{t.name}</a></td><td>{t.note}</td><td>{t.pricing.summary} (<a href={t.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, {formatDate(t.pricing.checked)})</td></tr>
+              <tr><td><a href={t.url} rel="nofollow noopener" target="_blank">{t.name}</a></td><td>{t.note}</td><td>{t.pricing.summary} (<a href={t.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source<span class="sr-only"> for {t.name}</span></a>, {formatDate(t.pricing.checked)})</td></tr>
             ))}
           </tbody>
         </table>
@@ -211,7 +211,7 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
               {faq.parts.map((part) => (
                 <>
                   {part.text}
-                  {part.link && <> <a href={part.link.href} rel="nofollow noopener" target="_blank">{part.link.label}</a></>}
+                  {part.link && <> <a href={part.link.href} rel="nofollow noopener" target="_blank">{part.link.label}{part.link.sr && <span class="sr-only"> {part.link.sr}</span>}</a></>}
                 </>
               ))}
             </p>

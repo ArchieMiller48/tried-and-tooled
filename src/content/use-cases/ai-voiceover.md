@@ -48,3 +48,4 @@ testNotes: "Pending hands-on test. Planned standard task: voice the same 150-wor
 - **Voice is a core part of your content:** ElevenLabs Starter or Creator. The sourced swaps are on [ElevenLabs alternatives](../../alternatives/elevenlabs/).
 - **You mainly need to patch your own recordings:** Descript's built-in AI Speech may be enough.
 - **The video is for YouTube and commercial rights matter:** [Best AI voiceover for YouTube](../../best/ai-voiceover-for-youtube/) quotes what each vendor says about free-plan commercial use. Prices on that page were checked 10 Nov 2026.
+- **You are choosing between ElevenLabs and Descript:** [ElevenLabs vs Descript for voiceover](../../compare/elevenlabs-vs-descript/) lines up the free plans, the named paid plans and what each vendor says about commercial use. Prices on that page were checked 10 Nov 2026. It does not change the picks above.

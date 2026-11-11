@@ -1,10 +1,10 @@
 ---
 issue: 4
-title: "Tried & Tooled #4: what we actually tested this week"
-subtitle: "Four dated hands-on notes, new use-case pages, and a proofread stack that starts free"
+title: "Issue 4: four dated hands-on notes"
+subtitle: "Four dated notes on what we actually tested this week, new use-case pages, and a proofread stack that starts free"
 date: 2026-11-05
 beehiivUrl: https://archies-newsletter-77bb75.beehiiv.com/p/tried-tooled-4-what-we-actually-tested-this-week
-summary: "Four dated hands-on notes, new use-case pages, and a proofread stack that starts free"
+summary: "Covers what we actually tested this week: four dated hands-on notes, new pages and shortlists. The proofread stack starts on free LanguageTool Basic."
 ---
 
 <p>Hey there</p>

@@ -14,8 +14,14 @@ assertHandsOnCoverage(entries);
 const titles = new Map(entries.map((entry) => [entry.id, entry.data.title]));
 const title = 'Tested by us';
 const description = 'Hands-on notes: Consensus Free, Perplexity Free, DeepL Free, LanguageTool Basic, Looka, Phrasly, Datastripes, nixm, Dessn and Spacefast.';
-const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
 const notes = [...handsOnNotes].sort((a, b) => b.date.localeCompare(a.date));
+const hub = hubPage(
+  Astro.site!,
+  Astro.url.pathname,
+  title,
+  description,
+  notes.map((note) => ({ name: note.tool, path: `/use-cases/${note.useCaseSlug}/` })),
+);
 ---
 <Base title={title} description={description} jsonLd={hub.jsonLd} hasNewsletter>
   <article class="wrap narrow" data-pagefind-body>

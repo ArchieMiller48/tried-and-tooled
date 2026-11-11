@@ -267,7 +267,70 @@ for (const file of htmlFiles) {
     }
     if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
     if (html.includes('{{') || html.includes('first_name')) fail(`${path} still has a Beehiiv merge tag`);
+    if (title.length > 60) fail(`${path} title is ${title.length} characters`);
+    if (description.length < 140 || description.length > 155) {
+      fail(`${path} description is ${description.length} characters`);
+    }
   }
+
+  if (path === `${base}/search/` && (description.length < 140 || description.length > 155)) {
+    fail(`${path} description is ${description.length} characters`);
+  }
+
+  const collectionHubs = new Set([
+    `${base}/use-cases/`,
+    `${base}/best/`,
+    `${base}/compare/`,
+    `${base}/alternatives/`,
+    `${base}/tested/`,
+    `${base}/new/`,
+  ]);
+  if (collectionHubs.has(path)) {
+    const graph = blocks.flatMap((block) => {
+      try {
+        const data = JSON.parse(block[1]);
+        return data['@graph'] ?? [data];
+      } catch {
+        return [];
+      }
+    });
+    const types = new Set(graph.map((node) => node['@type']));
+    for (const type of ['WebPage', 'CollectionPage', 'BreadcrumbList', 'ItemList']) {
+      if (!types.has(type)) fail(`${path} JSON-LD is missing ${type}`);
+    }
+    const list = graph.find((node) => node['@type'] === 'ItemList');
+    const elements = list?.itemListElement ?? [];
+    if (!Array.isArray(elements) || elements.length < 2) fail(`${path} ItemList has ${elements.length} pages`);
+    else if (list.numberOfItems !== elements.length) fail(`${path} ItemList count does not match its pages`);
+    for (const element of elements) {
+      if (typeof element.name !== 'string' || element.name.length === 0) fail(`${path} ItemList entry is missing a name`);
+      if (typeof element.url !== 'string') {
+        fail(`${path} ItemList entry is missing a url`);
+        continue;
+      }
+      let url;
+      try {
+        url = new URL(element.url);
+      } catch {
+        fail(`${path} ItemList url does not parse: ${element.url}`);
+        continue;
+      }
+      if (url.origin !== origin) fail(`${path} ItemList url is off-site: ${element.url}`);
+      const target = pathToFile(url.pathname);
+      if (!target || !existsSync(target)) fail(`${path} ItemList points at missing ${url.pathname}`);
+    }
+  }
+
+  const signupPages = new Set([
+    `${base}/use-cases/`,
+    `${base}/best/`,
+    `${base}/compare/`,
+    `${base}/alternatives/`,
+    `${base}/about/`,
+    `${base}/submit/`,
+    `${base}/pricing/`,
+  ]);
+  if (signupPages.has(path) && !html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
 
   if (path === `${base}/newsletter/`) {
     if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
@@ -864,6 +927,58 @@ if (screen.includes('Hands-on test 9 Nov')) fail('A design-page pick was marked 
 const considered = screen.split('<h2>Also considered</h2>')[1]?.split('<h2>Test notes</h2>')[0] ?? '';
 if (!considered.includes('Dessn')) fail('Dessn is missing from Also considered');
 if (considered.includes('Pending hands-on test')) fail('Dessn is still labelled pending');
+
+const background = readFileSync(pathToFile(`${base}/best/ai-product-background-removers/`), 'utf8');
+for (const phrase of [
+  'Photoroom Pro',
+  'Pixelcut Free',
+  'Pixelcut Pro',
+  '$7.50',
+  '9 Nov 2026',
+  'Not a hands-on test',
+  'Pending hands-on test',
+  `${base}/use-cases/cut-out-a-product-photo/`,
+  'id="newsletter"',
+  'id="short-answer"',
+  'id="faq"',
+]) {
+  if (!background.includes(phrase)) fail(`background-remover shortlist is missing ${phrase}`);
+}
+if (background.includes('Hands-on test 9 Nov')) fail('background-remover shortlist claims a hands-on test');
+const voiceCompare = readFileSync(pathToFile(`${base}/compare/elevenlabs-vs-descript/`), 'utf8');
+for (const phrase of [
+  'ElevenLabs',
+  'Descript',
+  '$6/mo',
+  '$16',
+  '10 Nov 2026',
+  'Not a hands-on test',
+  'Pending hands-on test',
+  'commercial licence',
+  `${base}/use-cases/ai-voiceover/`,
+  `${base}/best/ai-voiceover-for-youtube/`,
+  `${base}/alternatives/elevenlabs/`,
+]) {
+  if (!voiceCompare.includes(phrase)) fail(`voiceover comparison is missing ${phrase}`);
+}
+if (voiceCompare.includes('Hands-on test 10 Nov') || voiceCompare.includes('Hands-on test 9 Nov')) {
+  fail('voiceover comparison claims a hands-on test');
+}
+const productPhoto = readFileSync(pathToFile(`${base}/use-cases/cut-out-a-product-photo/`), 'utf8');
+if (!productPhoto.includes(`${base}/best/ai-product-background-removers/`)) {
+  fail('product photo use case does not link the shortlist');
+}
+const voiceover = readFileSync(pathToFile(`${base}/use-cases/ai-voiceover/`), 'utf8');
+if (!voiceover.includes(`${base}/compare/elevenlabs-vs-descript/`)) {
+  fail('voiceover use case does not link the comparison');
+}
+for (const page of [
+  `${base}/best/ai-product-background-removers/`,
+  `${base}/compare/elevenlabs-vs-descript/`,
+]) {
+  if (!existsSync(pathToFile(page))) fail(`built page is missing ${page}`);
+  if (!sitemap.includes(`${origin}${page}`)) fail(`sitemap is missing ${page}`);
+}
 
 if (errors.length > 0) {
   console.error(errors.join('\n'));

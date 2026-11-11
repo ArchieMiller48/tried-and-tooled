@@ -153,6 +153,36 @@ function softwareApp(
   };
 }
 
+export interface ListedPage {
+  name: string;
+  url: string;
+}
+
+function webPageNode(input: {
+  title: string;
+  description: string;
+  pageUrl: string;
+  siteUrl: string;
+  dateModified: string;
+  id?: string;
+}): Record<string, unknown> {
+  return {
+    '@type': 'WebPage',
+    '@id': input.id ?? input.pageUrl,
+    url: input.pageUrl,
+    name: input.title,
+    description: input.description,
+    dateModified: input.dateModified,
+    inLanguage: 'en-GB',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Tried & Tooled',
+      url: input.siteUrl,
+    },
+    breadcrumb: { '@id': `${input.pageUrl}#breadcrumb` },
+  };
+}
+
 export function buildWebPageJsonLd(input: {
   title: string;
   description: string;
@@ -164,9 +194,30 @@ export function buildWebPageJsonLd(input: {
   return {
     '@context': 'https://schema.org',
     '@graph': [
+      webPageNode(input),
+      breadcrumbList(input.pageUrl, input.crumbs),
+    ],
+  };
+}
+
+/** Hub index: keep WebPage and add the collection of child pages. */
+export function buildCollectionPageJsonLd(input: {
+  title: string;
+  description: string;
+  pageUrl: string;
+  siteUrl: string;
+  dateModified: string;
+  crumbs: Crumb[];
+  items: ListedPage[];
+}): Record<string, unknown> {
+  const page = webPageNode(input);
+  page.mainEntity = { '@id': `${input.pageUrl}#items` };
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
       {
-        '@type': 'WebPage',
-        '@id': input.pageUrl,
+        '@type': 'CollectionPage',
+        '@id': `${input.pageUrl}#collection`,
         url: input.pageUrl,
         name: input.title,
         description: input.description,
@@ -178,8 +229,22 @@ export function buildWebPageJsonLd(input: {
           url: input.siteUrl,
         },
         breadcrumb: { '@id': `${input.pageUrl}#breadcrumb` },
+        mainEntity: { '@id': `${input.pageUrl}#items` },
       },
+      page,
       breadcrumbList(input.pageUrl, input.crumbs),
+      {
+        '@type': 'ItemList',
+        '@id': `${input.pageUrl}#items`,
+        name: input.title,
+        numberOfItems: input.items.length,
+        itemListElement: input.items.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          url: item.url,
+        })),
+      },
     ],
   };
 }

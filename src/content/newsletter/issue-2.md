@@ -1,11 +1,11 @@
 ---
 issue: 2
-title: "Tried & Tooled #2: AI video, music and admin stacks"
+title: "Issue 2: video, music and admin stacks"
 subtitle: "Three new use-case pages, Kling 4.0, Lovable's growth tools and a quiz to find your stack"
 date: 2026-10-22
 # Web version publishes later today. Swap beehiivUrl to https://archies-newsletter-77bb75.beehiiv.com/ if the final slug differs.
 beehiivUrl: https://archies-newsletter-77bb75.beehiiv.com/p/tried-tooled-2-ai-video-music-and-admin-stacks
-summary: "Three new use-case pages, Kling 4.0, Lovable's growth tools and a quiz to find your stack"
+summary: "New pages for AI video, music and small-business admin, plus Kling 4.0, Lovable growth tools and a quiz. Every pick stays pending a hands-on test."
 ---
 
 <p>Hey there</p>
