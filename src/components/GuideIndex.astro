@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Checked from './Checked.astro';
 import Crumbs from './Crumbs.astro';
 import GuideCard from './GuideCard.astro';
+import Newsletter from './Newsletter.astro';
 import { hubPage } from '../lib/hubPage';
 import { withBase } from '../lib/withBase';
 interface Entry {
@@ -23,9 +24,15 @@ interface Props {
   entries: Entry[];
 }
 const { title, description, eyebrow, intro, empty, entries } = Astro.props;
-const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
+const hub = hubPage(
+  Astro.site!,
+  Astro.url.pathname,
+  title,
+  description,
+  entries.map((entry) => ({ name: entry.title, path: entry.href })),
+);
 ---
-<Base title={title} description={description} jsonLd={hub.jsonLd}>
+<Base title={title} description={description} jsonLd={hub.jsonLd} hasNewsletter>
   <div class="wrap" data-pagefind-body>
     <section class="hero" style="padding-bottom:16px">
       <Crumbs items={[{ href: withBase('/'), label: 'Home' }, { label: title }]} />
@@ -54,5 +61,6 @@ const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
         <p><a href={withBase('/use-cases/')}>Browse use cases</a></p>
       </section>
     )}
+    <section class="signup"><Newsletter /></section>
   </div>
 </Base>

@@ -46,6 +46,8 @@ export interface UseCaseEntry {
 export interface FaqLink {
   href: string;
   label: string;
+  /** Extra words for the accessible name. The visible label stays short. */
+  sr?: string;
 }
 
 export interface FaqPart {
@@ -296,14 +298,14 @@ export function buildFaqs(entry: UseCaseEntry): FaqBlock[] {
       question: 'What is the top pick?',
       parts: [{
         text: `${data.topPick.name} is the top pick for this job. ${data.topPick.why} Verified price: ${data.topPick.pricing.summary} Pricing checked ${formatDate(data.topPick.pricing.checked)}.`,
-        link: { href: data.topPick.pricing.sourceUrl, label: 'source' },
+        link: { href: data.topPick.pricing.sourceUrl, label: 'source', sr: `for ${data.topPick.name}` },
       }],
     },
     {
       question: 'What is the budget pick?',
       parts: [{
         text: `${data.budgetPick.name} is the budget pick. ${data.budgetPick.why} Verified price: ${data.budgetPick.pricing.summary} Pricing checked ${formatDate(data.budgetPick.pricing.checked)}.`,
-        link: { href: data.budgetPick.pricing.sourceUrl, label: 'source' },
+        link: { href: data.budgetPick.pricing.sourceUrl, label: 'source', sr: `for ${data.budgetPick.name}` },
       }],
     },
   ];
@@ -317,7 +319,7 @@ export function buildFaqs(entry: UseCaseEntry): FaqBlock[] {
       priced.forEach((mention, index) => {
         parts.push({
           text: `${index > 0 ? ' ' : ''}${mention.name}: ${mention.quote} Pricing checked ${formatDate(mention.checked)}.`,
-          link: { href: mention.sourceUrl, label: 'source' },
+          link: { href: mention.sourceUrl, label: 'source', sr: `for ${mention.name}` },
         });
       });
       if (avoidFree) {
@@ -326,7 +328,7 @@ export function buildFaqs(entry: UseCaseEntry): FaqBlock[] {
     } else {
       parts.push({
         text: `This page does not list a separate free-tier price. It says to avoid ${data.avoid.name}. ${data.avoid.reason}`,
-        link: data.avoid.sourceUrl ? { href: data.avoid.sourceUrl, label: 'source' } : undefined,
+        link: data.avoid.sourceUrl ? { href: data.avoid.sourceUrl, label: 'source', sr: `for ${data.avoid.name}` } : undefined,
       });
     }
     faqs.push({ question: 'Is there a free option?', parts });
@@ -336,7 +338,7 @@ export function buildFaqs(entry: UseCaseEntry): FaqBlock[] {
     question: 'What should you avoid, and why?',
     parts: [{
       text: `${data.avoid.name}. ${data.avoid.reason}`,
-      link: data.avoid.sourceUrl ? { href: data.avoid.sourceUrl, label: 'source' } : undefined,
+      link: data.avoid.sourceUrl ? { href: data.avoid.sourceUrl, label: 'source', sr: `for ${data.avoid.name}` } : undefined,
     }],
   });
   return faqs;

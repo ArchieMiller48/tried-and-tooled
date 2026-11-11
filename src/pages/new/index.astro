@@ -10,7 +10,13 @@ import { getCollection } from 'astro:content';
 const items = (await getCollection('news')).sort((a, b) => b.data.spotted.valueOf() - a.data.spotted.valueOf());
 const title = 'New this week';
 const description = 'New AI tool releases and pricing changes, each with a source link. Not a tested recommendation.';
-const hub = hubPage(Astro.site!, Astro.url.pathname, title, description);
+const hub = hubPage(
+  Astro.site!,
+  Astro.url.pathname,
+  title,
+  description,
+  items.map((item) => ({ name: item.data.title, path: `/new/#${item.id}` })),
+);
 ---
 <Base title={title} description={description} jsonLd={hub.jsonLd} hasNewsletter>
   <div class="wrap narrow" data-pagefind-body>
