@@ -705,7 +705,15 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Ten notes exist',
+  'Eleven notes exist',
+  'Quillo',
+  '11 Nov 2026',
+  '0.566',
+  'pronunciation of the time, date, phone number and price is unverified',
+  '$4.99/mo',
+  '$9.99/mo',
+  '10 cloud minutes',
+  'MP3 download is not available',
   'Dessn',
   'Spacefast',
   '10 Nov 2026',
@@ -792,6 +800,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Dessn (9 Nov 2026)
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Spacefast (10 Nov 2026)')) {
   fail('llms.txt omits the Spacefast hands-on note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Quillo (11 Nov 2026)')) {
+  fail('llms.txt omits the Quillo hands-on note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -814,9 +825,13 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Baked this mornin
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('This space is private') || !readFileSync(full, 'utf8').includes('The vibe-code page\'s standard task'))) {
   fail('llms-full.txt omits the Spacefast hands-on note or its unrun standard task');
 }
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('pronunciation of the time, date, phone number and price is unverified') || !readFileSync(full, 'utf8').includes('The voiceover page\'s standard task'))) {
+  fail('llms-full.txt omits the Quillo hands-on note or its unrun standard task');
+}
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
 if (!smallBusiness.includes('Spacefast')) fail('small-business hub omits the Spacefast hands-on note');
+if (!smallBusiness.includes('Quillo')) fail('small-business hub omits the Quillo hands-on note');
 
 const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');
 for (const phrase of [
@@ -972,6 +987,36 @@ const voiceover = readFileSync(pathToFile(`${base}/use-cases/ai-voiceover/`), 'u
 if (!voiceover.includes(`${base}/compare/elevenlabs-vs-descript/`)) {
   fail('voiceover use case does not link the comparison');
 }
+for (const phrase of [
+  'Pending hands-on test',
+  'Hands-on test (11 Nov 2026)',
+  'Standard task still pending',
+  'pronunciation of the time, date, phone number and price is unverified',
+  'Pause appeared within 0.566',
+  'MP3 download',
+  '$4.99/mo',
+  '$9.99/mo',
+  '10 cloud minutes',
+  'no card',
+  'ElevenLabs and Descript were not part of this check',
+  'has not been run',
+  `${base}/tested/`,
+  'datetime="2026-11-09"',
+]) {
+  if (!voiceover.includes(phrase)) fail(`voiceover page is missing: ${phrase}`);
+}
+const voiceTop = voiceover.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const voiceBudget = voiceover.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!voiceTop.includes('ElevenLabs') || voiceTop.includes('Hands-on test')) {
+  fail('ElevenLabs was marked as hands-on tested');
+}
+if (!voiceBudget.includes('Descript') || voiceBudget.includes('Hands-on test')) {
+  fail('Descript was marked as hands-on tested');
+}
+if (voiceover.includes('Hands-on test 11 Nov')) fail('A voiceover pick was marked as hands-on tested on 11 Nov');
+const voiceConsidered = voiceover.split('<h2>Also considered</h2>')[1]?.split('<h2>Test notes</h2>')[0] ?? '';
+if (!voiceConsidered.includes('Quillo')) fail('Quillo is missing from Also considered');
+if (voiceConsidered.includes('Pending hands-on test')) fail('Quillo is still labelled pending');
 for (const page of [
   `${base}/best/ai-product-background-removers/`,
   `${base}/compare/elevenlabs-vs-descript/`,
