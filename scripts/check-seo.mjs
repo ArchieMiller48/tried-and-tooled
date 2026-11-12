@@ -334,14 +334,17 @@ for (const file of htmlFiles) {
 
   if (path === `${base}/newsletter/`) {
     if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
-    for (const issue of ['issue-1', 'issue-2', 'issue-3', 'issue-4']) {
+    for (const issue of ['issue-1', 'issue-2', 'issue-3', 'issue-4', 'issue-5']) {
       if (!html.includes(`${base}/newsletter/${issue}/`)) fail(`${path} does not link to ${issue}`);
     }
+    const issue5At = html.indexOf(`${base}/newsletter/issue-5/`);
     const issue4At = html.indexOf(`${base}/newsletter/issue-4/`);
     const issue3At = html.indexOf(`${base}/newsletter/issue-3/`);
     const issue2At = html.indexOf(`${base}/newsletter/issue-2/`);
     const issue1At = html.indexOf(`${base}/newsletter/issue-1/`);
-    if (!(issue4At < issue3At && issue3At < issue2At && issue2At < issue1At)) fail(`${path} does not list issue 4 first`);
+    if (!(issue5At < issue4At && issue4At < issue3At && issue3At < issue2At && issue2At < issue1At)) {
+      fail(`${path} does not list issue 5 first`);
+    }
   }
 
   if (path === `${base}/` || path === `${base}`) {
@@ -400,7 +403,7 @@ if (existsSync(llms) && existsSync(full)) {
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
     if (!index.includes(`${base}${needle}`)) fail(`llms.txt is missing ${needle}`);
   }
-  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`]) {
+  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`, `${base}/newsletter/issue-5/`]) {
     if (!index.includes(issuePath)) fail(`llms.txt is missing ${issuePath}`);
     if (!expanded.includes(issuePath)) fail(`llms-full.txt is missing ${issuePath}`);
   }
@@ -425,7 +428,7 @@ const sitemap = walk(dist)
   .filter((file) => file.endsWith('.xml') && file.includes('sitemap'))
   .map((file) => readFileSync(file, 'utf8'))
   .join('\n');
-for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`]) {
+for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`, `${base}/newsletter/issue-5/`]) {
   if (!existsSync(pathToFile(page))) fail(`built page is missing ${page}`);
   if (!sitemap.includes(`${origin}${page}`)) fail(`sitemap is missing ${page}`);
 }
@@ -464,6 +467,69 @@ else for (const phrase of [
 }
 if (issue4.includes('rel="sponsored"') || issue4.includes('{{') || issue4.includes('first_name')) {
   fail('issue 4 has a sponsored link or a Beehiiv merge tag');
+}
+const issue5Path = pathToFile(`${base}/newsletter/issue-5/`);
+const issue5 = issue5Path && existsSync(issue5Path) ? readFileSync(issue5Path, 'utf8') : '';
+if (!issue5) fail('built page is missing issue 5');
+else {
+  const issue5Title = attr(issue5, /<title>([^<]*)<\/title>/);
+  if (issue5Title !== 'Tried & Tooled #5: hands-on notes and a spreadsheet stack') {
+    fail(`issue 5 title is ${JSON.stringify(issue5Title)}`);
+  }
+  for (const phrase of [
+    'eleven hands-on notes and a spreadsheet stack',
+    'datetime="2026-11-12"',
+    'href="https://archies-newsletter-77bb75.beehiiv.com/"',
+    'from four notes to eleven',
+    'nobody pays to rank',
+    'OpusClip 4.0 edits the raw talking video',
+    'ChatGPT Images 2.6',
+    'Gemini Omni 1.2 Flash',
+    'Personal Finance in Claude',
+    'GPT-6-Cyber',
+    'No top or budget pick was replaced',
+    '$14.50/mo',
+    `${base}/use-cases/design-an-app-screen/`,
+    `${base}/use-cases/cut-out-a-product-photo/`,
+    `${base}/use-cases/see-where-the-money-went/`,
+    `${base}/use-cases/check-if-an-image-is-ai/`,
+    `${base}/alternatives/elevenlabs/`,
+    `${base}/best/ai-voiceover-for-youtube/`,
+    `${base}/compare/elevenlabs-vs-descript/`,
+    `${base}/best/ai-product-background-removers/`,
+    'Looka (5 Nov)',
+    'likely real',
+    'Datastripes (7 Nov)',
+    'nixm (8 Nov)',
+    'Dessn (9 Nov)',
+    '£10.10',
+    'Spacefast (10 Nov)',
+    'about 33 hours',
+    'Quillo (11 Nov)',
+    `${base}/tested/`,
+    'class="callout"',
+    'Write the question first',
+    'Google Sheets on Google AI Pro',
+    'Google AI Plus',
+    'Avg unit price 3.55',
+    'about 3.13',
+    'pending hands-on test',
+    'See the spreadsheet stack',
+    `${base}/use-cases/analyse-a-spreadsheet/`,
+    'When an AI dashboard says',
+    'Just hit reply',
+    `${base}/submit/`,
+    `${base}/newsletter/`,
+    'No pay-to-rank and no sponsors in this issue',
+    'None of the links in this issue are affiliate links',
+    'Seven daily checks, three new use-case pages, and the AI average',
+  ]) {
+    if (!issue5.includes(phrase)) fail(`issue 5 is missing ${phrase}`);
+  }
+  if (issue5.includes('beehiiv.com/p/')) fail('issue 5 links to a guessed Beehiiv post URL');
+  if (issue5.includes('rel="sponsored"') || issue5.includes('{{') || issue5.includes('first_name')) {
+    fail('issue 5 has a sponsored link or a Beehiiv merge tag');
+  }
 }
 const sitemapUrls = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
 if (sitemapUrls.length < 32) fail(`sitemap lists ${sitemapUrls.length} URLs`);

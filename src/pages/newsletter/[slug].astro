@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Newsletter from '../../components/Newsletter.astro';
 import { getCollection, render } from 'astro:content';
 import { formatDate, isoDate } from '../../lib/formatDate';
+import { newsletterDocumentTitle } from '../../lib/metaText';
 import { buildNewsletterIssueJsonLd } from '../../lib/schema';
 import { withBase } from '../../lib/withBase';
 
@@ -16,6 +17,7 @@ const d = entry.data;
 const { Content } = await render(entry);
 const published = isoDate(d.date);
 const description = d.summary;
+const documentTitle = newsletterDocumentTitle(d.title);
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const archiveUrl = new URL(withBase('/newsletter/'), Astro.site).href;
@@ -33,7 +35,7 @@ const jsonLd = buildNewsletterIssueJsonLd({
   ],
 });
 ---
-<Base title={d.title} description={description} jsonLd={jsonLd} hasNewsletter>
+<Base documentTitle={documentTitle} description={description} jsonLd={jsonLd} hasNewsletter>
   <article class="wrap narrow prose" data-pagefind-body>
     <section class="hero" style="padding-bottom:8px">
       <nav class="crumbs" aria-label="Breadcrumb">
