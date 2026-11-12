@@ -5,6 +5,8 @@ import { clipMeta } from '../lib/metaText';
 import listedOn from '../data/listed-on.json';
 interface Props {
   title?: string;
+  /** Complete document title. When set, the brand suffix is not added again. */
+  documentTitle?: string;
   description?: string;
   jsonLd?: unknown;
   ogImage?: string;
@@ -14,6 +16,7 @@ interface Props {
 interface Listing { name: string; url: string; badgeImg?: string; }
 const {
   title,
+  documentTitle,
   description = 'Curated AI tool picks for any job, with a top pick, a budget pick, one to avoid and sourced prices.',
   jsonLd,
   ogImage: ogImageProp,
@@ -22,7 +25,11 @@ const {
 } = Astro.props;
 const metaDescription = clipMeta(description);
 const jsonLdText = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : '';
-const fullTitle = title ? `${title} · Tried & Tooled` : 'Tried & Tooled · The right AI tool for any job';
+const fullTitle = documentTitle
+  ? documentTitle
+  : title
+    ? `${title} · Tried & Tooled`
+    : 'Tried & Tooled · The right AI tool for any job';
 const path = Astro.url.pathname;
 const notFound = /\/404\/?$/.test(path);
 const pageUrl = notFound ? new URL(`${import.meta.env.BASE_URL}404.html`, Astro.site) : new URL(path, Astro.site);
