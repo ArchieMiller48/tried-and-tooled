@@ -771,7 +771,15 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Eleven notes exist',
+  'Twelve notes exist',
+  '14 Nov 2026',
+  'Preview resolution 904×1080 Free',
+  '1200×1433',
+  'HIGHGROVE',
+  '0.85 seconds',
+  'box browser',
+  'no formal edge-error count',
+  'Pixelcut Free account',
   'Quillo',
   '11 Nov 2026',
   '0.566',
@@ -869,6 +877,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Spacefast (10 Nov 
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Quillo (11 Nov 2026)')) {
   fail('llms.txt omits the Quillo hands-on note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('signed-out Pixelcut and Photoroom web tools (14 Nov 2026)')) {
+  fail('llms.txt omits the 14 Nov background-remover note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -894,10 +905,16 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('This space is pri
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('pronunciation of the time, date, phone number and price is unverified') || !readFileSync(full, 'utf8').includes('The voiceover page\'s standard task'))) {
   fail('llms-full.txt omits the Quillo hands-on note or its unrun standard task');
 }
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Preview resolution 904×1080 Free') || !readFileSync(full, 'utf8').includes('The product-photo page\'s standard task'))) {
+  fail('llms-full.txt omits the signed-out background-remover note or its unrun standard task');
+}
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
 if (!smallBusiness.includes('Spacefast')) fail('small-business hub omits the Spacefast hands-on note');
 if (!smallBusiness.includes('Quillo')) fail('small-business hub omits the Quillo hands-on note');
+if (!smallBusiness.includes('signed-out Pixelcut and Photoroom web tools from 14 Nov 2026')) {
+  fail('small-business hub omits the 14 Nov background-remover note');
+}
 
 const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');
 for (const phrase of [
@@ -1049,6 +1066,39 @@ const productPhoto = readFileSync(pathToFile(`${base}/use-cases/cut-out-a-produc
 if (!productPhoto.includes(`${base}/best/ai-product-background-removers/`)) {
   fail('product photo use case does not link the shortlist');
 }
+for (const phrase of [
+  'Pending hands-on test',
+  'Standard task still pending',
+  'Hands-on test (14 Nov 2026)',
+  'Preview resolution 904×1080 Free',
+  'Full resolution 1200×1433 Free with sign in',
+  '1200×1433',
+  'HIGHGROVE',
+  '0.85 seconds',
+  '1.5 seconds',
+  'box browser',
+  'Optional cookies were rejected',
+  'no watermark seen',
+  'Get Pro',
+  'Want to land 50% more sales?',
+  'Log in or sign up in seconds to continue using Photoroom',
+  'no formal edge-error count',
+  'remains pending for Photoroom Pro',
+  'has not been run',
+  `${base}/tested/`,
+  'datetime="2026-11-09"',
+]) {
+  if (!productPhoto.includes(phrase)) fail(`product photo page is missing: ${phrase}`);
+}
+const photoTop = productPhoto.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const photoBudget = productPhoto.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!photoTop.includes('Photoroom Pro') || photoTop.includes('Hands-on test')) {
+  fail('Photoroom Pro was marked as hands-on tested');
+}
+if (!photoBudget.includes('Pixelcut Free') || photoBudget.includes('Hands-on test')) {
+  fail('Pixelcut Free was marked as hands-on tested');
+}
+if (productPhoto.includes('Hands-on test 14 Nov')) fail('A product-photo pick was marked as hands-on tested on 14 Nov');
 const voiceover = readFileSync(pathToFile(`${base}/use-cases/ai-voiceover/`), 'utf8');
 if (!voiceover.includes(`${base}/compare/elevenlabs-vs-descript/`)) {
   fail('voiceover use case does not link the comparison');

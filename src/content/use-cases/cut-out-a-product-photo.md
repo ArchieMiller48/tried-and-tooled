@@ -50,7 +50,7 @@ alsoConsidered:
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-11-09
-testNotes: "Pending hands-on test. Planned standard task: cut out the same product photo in Photoroom and Pixelcut, place it on a plain background, then score edge errors, whether the label text survives, and what the published plan allows you to do with the file."
+testNotes: "Hands-on note, 14 Nov 2026: the free signed-out web background removers on Pixelcut and Photoroom only. Photoroom Pro and a Pixelcut Free account were not part of this check, and it is not the standard task. Pending hands-on test. Planned standard task: cut out the same product photo in Photoroom and Pixelcut, place it on a plain background, then score edge errors, whether the label text survives, and what the published plan allows you to do with the file. That task remains pending for Photoroom Pro."
 ---
 
 ## Who this is for
@@ -61,5 +61,26 @@ Shops, marketers and designers who have a product photo and need the item on a c
 
 - **The photo is going on a product page or into an ad:** Photoroom Pro, which lists AI backgrounds and a monthly export allowance.
 - **You are cutting out one or two pictures to see the edge quality:** Pixelcut Free.
+- **You want a quick one-off cut-out and no account:** both free web tools worked on 14 Nov 2026. Photoroom gave the full-resolution file signed out. Pixelcut's signed-out download was a reduced preview. Photoroom Pro and a Pixelcut Free account were not part of that check.
 - **You also need a logo or a social title on the image:** [Design logos and graphics](../../use-cases/design-logos-and-graphics/) and [AI thumbnails and social images](../../use-cases/ai-thumbnails-and-images/).
 - **You want the background-remover shortlist:** [Best AI product background removers](../../best/ai-product-background-removers/). It uses the prices on this page, checked 9 Nov 2026, and it does not change the picks above.
+
+The note below is a signed-out check of the free web background removers only, dated 14 Nov 2026. Photoroom Pro and a Pixelcut Free account were not part of it. The standard task on this page has not been run.
+
+## Hands-on test (14 Nov 2026)
+
+This note is for the free web background removers, signed out, at [pixelcut.ai/background-remover](https://www.pixelcut.ai/background-remover) and [photoroom.com/tools/background-remover](https://www.photoroom.com/tools/background-remover). The check ran on Saturday 14 Nov 2026, at about 10:55 GMT, in the box browser. No account, no email, no password, no card and no social sign-in were used. Optional cookies were rejected. Photoroom Pro, the top pick, and a Pixelcut Free account were not part of it.
+
+The task was to cut out the same product photo in both tools, put it on plain white, and download. The photo was a Highgrove Royal Garden honey jar, CC BY 4.0, from Wikimedia Commons, resized to 1200×1433. It had a gold lid, translucent amber glass, a white label reading HIGHGROVE / Honey / ROYAL GARDEN / 250g e 8.8oz, an off-white backdrop, and a yellow shelf at the bottom.
+
+Pixelcut opened the editor at /ai-image-editor?tool=removeBackground. The editor controls appeared 0.85 seconds after upload. The cut-out was visible within about 1 to 2 seconds. The gold lid was kept whole. The amber glass and the honey were kept. The edges were mostly clean, with slight softness. No yellow shelf was left. The label text HIGHGROVE, Honey, ROYAL GARDEN, 250g e 8.8oz was intact and readable. A white background worked signed out. The download was a PNG at 904×1080, with no sign-up and no watermark seen. The options shown were "Preview resolution 904×1080 Free" and "Full resolution 1200×1433 Free with sign in". The full-resolution sign-in path was not tested. An upsell, "Get Pro", was on the page.
+
+Photoroom's free web tool returned a result in a few seconds. A capture 1.5 seconds after upload still showed a loader. The exact time was not measured. The gold lid, the glass and the honey were kept. There was slight softness and unevenness at the outer edges. No yellow shelf was left. The label text was intact and readable. The white swatch worked signed out. The download was a PNG at 1200×1433, the full input resolution, with no sign-up and no watermark seen. The optional "Add background" editor asked to "Log in or sign up in seconds to continue using Photoroom" (Google, Facebook, Apple or email). That was not pursued. The upsells were "Want to land 50% more sales?" and, after download, "Want to increase your conversion rate by 50%?".
+
+Both kept the lid, the glass, the honey and the label text, and removed the shelf. Edge quality looked similar to the eye at this size. There was no formal edge-error count. Pixelcut showed a result faster. Photoroom's signed-out download was full resolution, and Pixelcut's was reduced preview resolution. Neither added a watermark. For a quick one-off cut-out with no account, both free web tools worked on 14 Nov 2026. Photoroom gave the full-resolution file signed out.
+
+Photoroom Pro and a Pixelcut Free account were not part of this check. The standard task on this page has not been run. That task is the same product photo in Photoroom and Pixelcut, on a plain background, scored for edge errors, whether the label text survives, and what the published plan allows you to do with the file. It remains pending for Photoroom Pro.
+
+## Where this goes next
+
+- The 14 Nov 2026 note is also listed on [Tested by us](../../tested/).

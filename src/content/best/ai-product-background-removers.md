@@ -60,7 +60,7 @@ faqs:
   - question: "How much is Photoroom Pro?"
     answer: "On the pricing page read for the parent use case, Pro is $7.50 per month billed yearly, with 8,000 AI credits and 1,000 exports a month. Max is $20.99 per month billed yearly, with 25,000 AI credits and 3,000 exports. A separate zero-price plan amount was not in the HTML. The page says to start free, then pick a plan. Video for ads is not on Pro. Prices checked 9 Nov 2026. Nothing here was measured by exporting a file."
   - question: "Have these background removers been tested on a product photo?"
-    answer: "No. The parent page is pending a hands-on test. Its planned standard task is to cut out the same product photo in Photoroom and Pixelcut, place it on a plain background, then score edge errors, whether the label text survives, and what the published plan allows you to do with the file. That task has not been run. This shortlist does not add a result."
+    answer: "The free signed-out web tools were, once, on 14 Nov 2026. The same product photo was cut out in Pixelcut's background remover and Photoroom's free web tool, put on white, and downloaded. Photoroom's signed-out file was full resolution. Pixelcut's was a reduced preview. Neither showed a watermark. Photoroom Pro and a Pixelcut Free account were not part of that check. There was no formal edge-error count. The planned standard task remains pending for Photoroom Pro. The note is on the product-photo page. This shortlist does not add a result, and it does not change the picks."
 ---
 
 The order follows the parent use case. Photoroom Pro is first because that page names it for a product page or an ad. Pixelcut Free is second because that page names it for one or two trial cuts. Pixelcut Pro is third because that page lists it as the step up when Free is too limited. This page does not change the top pick, the budget pick or the avoid.
@@ -68,7 +68,7 @@ The order follows the parent use case. Photoroom Pro is first because that page 
 Prices checked 9 Nov 2026, from the same vendor pages the parent use case cites. Prices are in US dollars, as those pages publish them. Nothing here is converted to pounds. Where the Pixelcut card shows two dollar amounts, both are quoted.
 
 <h2>Price and what the plan allows</h2>
-<p>These sentences are copied from the parent use case, which read the vendor pricing pages on 9 Nov 2026. They are not a test, and no product photo was cut out.</p>
+<p>These sentences are copied from the parent use case, which read the vendor pricing pages on 9 Nov 2026. They are not a test, and no product photo was cut out for this page.</p>
 <div class="table-scroll">
 <table>
   <thead>
@@ -82,4 +82,4 @@ Prices checked 9 Nov 2026, from the same vendor pages the parent use case cites.
 </table>
 </div>
 
-The parent page is [Cut out a product photo with AI](../../use-cases/cut-out-a-product-photo/). A logo or a title on the same image is a different job: [Design logos and graphics](../../use-cases/design-logos-and-graphics/) and [AI thumbnails and social images](../../use-cases/ai-thumbnails-and-images/).
+The parent page is [Cut out a product photo with AI](../../use-cases/cut-out-a-product-photo/). The 14 Nov 2026 note on that page is a signed-out check of the free web tools only. It is listed on [Tested by us](../../tested/). Photoroom Pro and a Pixelcut Free account were not part of it, and this page does not change the picks. A logo or a title on the same image is a different job: [Design logos and graphics](../../use-cases/design-logos-and-graphics/) and [AI thumbnails and social images](../../use-cases/ai-thumbnails-and-images/).
