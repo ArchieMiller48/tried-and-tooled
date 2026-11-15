@@ -22,6 +22,8 @@ budgetPick:
     sourceUrl: "https://openai.com/chatgpt/pricing/"
     checked: 2026-11-02
   affiliateUrl: null
+  handsOn: 2026-11-15
+  handsOnSummary: "Signed out on chatgpt.com on 15 Nov 2026, with no account. This is not a logged-in Free account. Optional cookies were rejected. The Ask ChatGPT box returned a 116-word Hollow Oak Bakery email in about 7 seconds (11:20:23.6 to 11:20:30.7 UTC), in an Email card. It kept the bakery name, Bath, founded 2026, £18, Saturday 9am–11am collection, no delivery, croissants and cinnamon buns. Sourdough loaves were not mentioned. No banned words, and no invented awards, street address, extra prices, website, hours or products. A still of a wooden shop sign was gated within about 8 seconds: image creation needs a login. A logged-in Free account, message limits, file uploads, image quality and Plus/Pro were not tested."
 avoid:
   name: "Claude Free, for a week of client copy"
   reason: "Claude's pricing FAQ says Free covers everyday questions, and that Pro gives at least five times the usage of Free per five-hour session. Free also caps Projects at five. Fine for a one-off draft, not for a week of client work."
@@ -50,7 +52,7 @@ alsoConsidered:
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-11-09
-testNotes: "Hands-on note, 8 Nov 2026: nixm only, a signed-out chat draft. It is not the standard task. Pending hands-on test. Planned standard task: from the same one-page brief, draft a 500-word blog post and a 120-word customer email in each tool, then score how well the draft follows the voice guide, how many factual inventions appear, and how many edits a human still has to make. On 8 Nov 2026 an email signup at https://claude.ai/login (Continue with email, archie.miller@mail.grokbot.com) was refused with: \"Unfortunately, Claude is not available to new users right now. We're working hard to expand our availability soon.\" No code, password or phone step appeared and no draft was generated in Claude. Claude remains the top pick. This is availability for new users that day, not a quality score."
+testNotes: "Hands-on note, 8 Nov 2026: nixm only, a signed-out chat draft. It is not the standard task. Hands-on note, 15 Nov 2026: ChatGPT on https://chatgpt.com/, signed out throughout, with no account. Optional cookies were rejected. This is not a logged-in Free account. The Ask ChatGPT box worked without logging in. No model name or message limit was shown. The Hollow Oak Bakery customer-email brief came back in about 7 seconds, from 11:20:23.6 to 11:20:30.7 UTC, as 116 words from the subject through the sign-off, in an Email card with a Subject field and edit and copy buttons. It kept the bakery name, Bath, founded 2026, £18, Saturday 9am–11am collection, no delivery, croissants and cinnamon buns. Sourdough loaves were not mentioned. There were no awards, no street address (only \"Hollow Oak Bakery, Bath\"), no extra prices, no website, no extra hours and no extra products, and none of the banned words (revolutionary, game-changing, unlock, synergy, world-class). Added colour only: \"freshly baked treats\", \"buttery croissants\", \"comforting cinnamon buns\". \"Filled with some of our favourite... treats\" is vague about box contents. After the reply there was a Share button and a banner: \"Log in to get answers based on saved chats, plus create images and upload files.\" A still of a wooden shop sign reading \"Hollow Oak Bakery\" was gated within about 8 seconds, with no image: \"Image creation is only available when you're logged in. You can keep chatting here, or log in to create images.\" Not tested: a logged-in Free account, free message and model limits, file uploads, image quality, Plus and Pro. Claude was not part of this check. Pending hands-on test. Planned standard task: from the same one-page brief, draft a 500-word blog post and a 120-word customer email in each tool, then score how well the draft follows the voice guide, how many factual inventions appear, and how many edits a human still has to make. On 8 Nov 2026 an email signup at https://claude.ai/login (Continue with email, archie.miller@mail.grokbot.com) was refused with: \"Unfortunately, Claude is not available to new users right now. We're working hard to expand our availability soon.\" No code, password or phone step appeared and no draft was generated in Claude. Claude remains the top pick. This is availability for new users that day, not a quality score."
 ---
 
 ## Who this is for
@@ -61,9 +63,10 @@ Founders, creators and small teams who write the same kinds of posts and emails 
 
 - **You write for clients most days:** Claude Pro, with the voice guide in a project.
 - **You need a draft and you are not paying yet:** ChatGPT Free's everyday text chats.
+- **You want one email with no account:** on 15 Nov 2026 the signed-out Ask ChatGPT box returned a 116-word bakery email in about 7 seconds. Sourdough loaves were missed. Image creation asked for a login. That check was not a logged-in Free account, and Claude was not part of it.
 - **The same story has to become a deck:** [Make a slide deck](../../use-cases/make-a-slide-deck/) covers Gamma and Claude Slides. ChatGPT Slides is not on the free plan.
 
-The note below is a signed-out check of nixm only, dated 8 Nov 2026. Claude and ChatGPT were not part of it. The standard task on this page has not been run.
+Two notes are below. The 8 Nov 2026 note is a signed-out check of nixm only. Claude and ChatGPT were not part of that check. The 15 Nov 2026 note is ChatGPT signed out on chatgpt.com, with no account. It is not a logged-in Free account. Claude was not part of it. The standard task on this page has not been run.
 
 ## Hands-on test (8 Nov 2026)
 
@@ -91,11 +94,29 @@ In the same session, a still of a wooden bakery shop sign reading "Hollow Oak Ba
 
 Vendor pages claim logged-out signals are public by link and dissolve after seven days, and some copy says a still can be made without an account. In this check, signed-out chat worked and the still was gated. A shareable NIXM link was not seen. Privacy, transcripts and dissolution were not verified.
 
-Magic-link signup, the stated 20-credit grant, video, web research and signed-in stills were not tested. The standard task on this page has not been run. That task is a 500-word blog post and a 120-word customer email in Claude and in ChatGPT, scored on the voice guide, invented facts, and edits a person still has to make.
+Magic-link signup, the stated 20-credit grant, video, web research and signed-in stills were not tested. The standard task on this page has not been run. That task is a 500-word blog post and a 120-word customer email in Claude and in ChatGPT, scored on the voice guide, invented facts, and edits a person still has to make. A signed-out ChatGPT email check, dated 15 Nov 2026, is in the next section. It is not that standard task, and it is not a logged-in Free account.
+
+## Hands-on test (15 Nov 2026)
+
+This note is for ChatGPT, the budget pick, signed out on [chatgpt.com](https://chatgpt.com/). No account. Optional cookies were rejected. This is not a logged-in Free account. Claude was not part of it.
+
+The signed-out Ask ChatGPT box worked without logging in. No model name or message limit was shown.
+
+The brief was the standard Hollow Oak Bakery customer email. Hollow Oak Bakery is an independent bakery in Bath, founded in 2026. The products named were sourdough loaves, croissants and cinnamon buns. A weekend pastry box was £18, to collect in store on Saturday from 9am to 11am, with no delivery. The ask was about 120 words. The brief said not to invent awards, a street address, extra prices, a website, opening hours other than that Saturday window, delivery or extra products, and not to use revolutionary, game-changing, unlock, synergy or world-class.
+
+The reply finished about 7 seconds after it was sent, from 11:20:23.6 to 11:20:30.7 UTC. It was rendered in an Email card with a Subject field and edit and copy buttons.
+
+Counted from the subject through the sign-off, the draft was 116 words. The ask was about 120. It kept the bakery name, Bath, founded 2026, £18, Saturday 9am–11am collection, no delivery, croissants and cinnamon buns. Sourdough loaves were not mentioned. No awards, street address (only "Hollow Oak Bakery, Bath"), extra prices, website, extra hours or extra products appeared. None of the banned words appeared. The only additions were colour: "freshly baked treats", "buttery croissants" and "comforting cinnamon buns". "Filled with some of our favourite... treats" is vague about what is in the box.
+
+After the reply, a Share button was on the page. A banner read "Log in to get answers based on saved chats, plus create images and upload files."
+
+A still image of a wooden shop sign reading "Hollow Oak Bakery" was gated within about 8 seconds. No image was produced. The page said "Image creation is only available when you're logged in. You can keep chatting here, or log in to create images."
+
+A logged-in Free account was not tested. Free message and model limits, file uploads, image quality, and Plus and Pro were not tested. The standard task on this page has not been run. That task is a 500-word blog post and a 120-word customer email in Claude and in ChatGPT. On 8 Nov 2026, Claude Free sign-up was blocked and no draft was generated in Claude. Claude remains the top pick.
 
 ## Where this goes next
 
-- The 8 Nov 2026 note is also listed on [Tested by us](../../tested/).
+- The 8 Nov 2026 note and the 15 Nov 2026 note are also listed on [Tested by us](../../tested/).
 - This job sits with the other small-business jobs on [AI tools for a small business](../../best/ai-tools-for-small-business/).
 - After the draft, catch the mistakes on [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/).
 - Put the approved posts on a calendar on [Run a marketing campaign](../../use-cases/run-marketing-campaigns/).
