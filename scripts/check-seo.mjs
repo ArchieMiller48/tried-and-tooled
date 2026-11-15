@@ -771,7 +771,17 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Twelve notes exist',
+  'Thirteen notes exist',
+  '15 Nov 2026',
+  '11:20:23.6',
+  '11:20:30.7',
+  '116 words',
+  'not a logged-in Free account',
+  'Sourdough loaves were not mentioned',
+  'freshly baked treats',
+  'Image creation is only available when you',
+  'Ask ChatGPT',
+  'a logged-in ChatGPT Free account',
   '14 Nov 2026',
   'Preview resolution 904×1080 Free',
   '1200×1433',
@@ -880,6 +890,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Quillo (11 Nov 202
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('signed-out Pixelcut and Photoroom web tools (14 Nov 2026)')) {
   fail('llms.txt omits the 14 Nov background-remover note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('ChatGPT signed out (15 Nov 2026)')) {
+  fail('llms.txt omits the signed-out ChatGPT note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -908,6 +921,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('pronunciation of 
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Preview resolution 904×1080 Free') || !readFileSync(full, 'utf8').includes('The product-photo page\'s standard task'))) {
   fail('llms-full.txt omits the signed-out background-remover note or its unrun standard task');
 }
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('11:20:23.6') || !readFileSync(full, 'utf8').includes('not a logged-in Free account'))) {
+  fail('llms-full.txt omits the signed-out ChatGPT note or its logged-in caveat');
+}
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
 if (!smallBusiness.includes('Spacefast')) fail('small-business hub omits the Spacefast hands-on note');
@@ -915,11 +931,19 @@ if (!smallBusiness.includes('Quillo')) fail('small-business hub omits the Quillo
 if (!smallBusiness.includes('signed-out Pixelcut and Photoroom web tools from 14 Nov 2026')) {
   fail('small-business hub omits the 14 Nov background-remover note');
 }
+if (!smallBusiness.includes('signed-out ChatGPT email check from 15 Nov 2026')) {
+  fail('small-business hub omits the 15 Nov ChatGPT note');
+}
+if (!smallBusiness.includes('not a logged-in Free account')) {
+  fail('small-business hub does not keep the ChatGPT note signed out');
+}
 
 const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');
 for (const phrase of [
   'Pending hands-on test',
+  'Standard task still pending',
   'Hands-on test (8 Nov 2026)',
+  'Hands-on test (15 Nov 2026)',
   'introducing our weekend pastry box',
   'every saturday',
   'signing an account is needed to generate images',
@@ -929,6 +953,20 @@ for (const phrase of [
   'no draft was generated in Claude',
   'not a quality score',
   'has not been run',
+  '11:20:23.6',
+  '11:20:30.7',
+  '116 words',
+  'not a logged-in Free account',
+  'Sourdough loaves were not mentioned',
+  'freshly baked treats',
+  'buttery croissants',
+  'comforting cinnamon buns',
+  'Filled with some of our favourite... treats',
+  'Log in to get answers based on saved chats, plus create images and upload files.',
+  'Image creation is only available when you',
+  'Ask ChatGPT',
+  'Optional cookies were rejected',
+  'No model name or message limit was shown',
   `${base}/tested/`,
   'datetime="2026-11-09"',
 ]) {
@@ -936,12 +974,24 @@ for (const phrase of [
 }
 const writingTop = writing.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
 const writingBudget = writing.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
-if (!writingTop.includes('Claude') || writingTop.includes('Hands-on test')) {
+const writingAvoid = writing.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!writingTop.includes('Claude') || !writingTop.includes('Pending hands-on test')) {
+  fail('Claude lost its pending hands-on label on the writing page');
+}
+if (writingTop.includes('Hands-on test 15 Nov') || writingTop.includes('Hands-on test 8 Nov')) {
   fail('Claude was marked as hands-on tested on the writing page');
 }
-if (!writingBudget.includes('ChatGPT') || writingBudget.includes('Hands-on test')) {
-  fail('ChatGPT was marked as hands-on tested on the writing page');
+if (!writingBudget.includes('ChatGPT') || !writingBudget.includes('Hands-on test 15 Nov 2026')) {
+  fail('ChatGPT card is missing its signed-out hands-on label');
 }
+if (writingBudget.includes('Pending hands-on test')) fail('ChatGPT card still has a pending hands-on label');
+if (!writingBudget.includes('not a logged-in Free account')) {
+  fail('ChatGPT card does not say this was signed out, not a logged-in Free account');
+}
+if (!writingBudget.includes('Sourdough loaves were not mentioned')) {
+  fail('ChatGPT card omits the missed sourdough loaves');
+}
+if (writingAvoid.includes('Hands-on test 15 Nov')) fail('Claude Free was marked as hands-on tested on 15 Nov');
 
 const slides = readFileSync(pathToFile(`${base}/use-cases/make-a-slide-deck/`), 'utf8');
 for (const phrase of [
