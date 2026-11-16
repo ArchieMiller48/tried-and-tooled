@@ -771,8 +771,30 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Thirteen notes exist',
+  'Fourteen notes exist',
   '15 Nov 2026',
+  '16 Nov 2026',
+  'Anki desktop',
+  '26.09.4',
+  'Linux x86_64',
+  'official GitHub release',
+  '194.7 MB',
+  'about 665 MB',
+  'about 5 seconds',
+  'food-hygiene',
+  '10 notes found in file',
+  '6.27 seconds',
+  '6 of 6 checked answers matched',
+  'under 1 minute',
+  'under 6 minutes',
+  'under 10 minutes',
+  '3 to 5 days',
+  '1.96 minutes',
+  '11.78 seconds',
+  'no built-in AI card generation',
+  'Audio was not tested',
+  'AnkiWeb',
+  'AnkiMobile',
   '11:20:23.6',
   '11:20:30.7',
   '116 words',
@@ -893,6 +915,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('signed-out Pixelcu
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('ChatGPT signed out (15 Nov 2026)')) {
   fail('llms.txt omits the signed-out ChatGPT note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Anki desktop (16 Nov 2026)')) {
+  fail('llms.txt omits the Anki desktop note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -924,6 +949,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Preview resolutio
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('11:20:23.6') || !readFileSync(full, 'utf8').includes('not a logged-in Free account'))) {
   fail('llms-full.txt omits the signed-out ChatGPT note or its logged-in caveat');
 }
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('10 notes found in file') || !readFileSync(full, 'utf8').includes('The flashcards page\'s standard task'))) {
+  fail('llms-full.txt omits the Anki desktop note or its unrun standard task');
+}
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
 if (!smallBusiness.includes('Spacefast')) fail('small-business hub omits the Spacefast hands-on note');
@@ -936,6 +964,12 @@ if (!smallBusiness.includes('signed-out ChatGPT email check from 15 Nov 2026')) 
 }
 if (!smallBusiness.includes('not a logged-in Free account')) {
   fail('small-business hub does not keep the ChatGPT note signed out');
+}
+if (!smallBusiness.includes('Anki desktop from 16 Nov 2026')) {
+  fail('small-business hub omits the 16 Nov Anki note');
+}
+if (!smallBusiness.includes('The flashcards page stays pending. AnkiWeb and AnkiMobile were not part of that check.')) {
+  fail('small-business hub marks AnkiWeb or AnkiMobile as part of the Anki check');
 }
 
 const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');
@@ -992,6 +1026,64 @@ if (!writingBudget.includes('Sourdough loaves were not mentioned')) {
   fail('ChatGPT card omits the missed sourdough loaves');
 }
 if (writingAvoid.includes('Hands-on test 15 Nov')) fail('Claude Free was marked as hands-on tested on 15 Nov');
+
+const flashcards = readFileSync(pathToFile(`${base}/use-cases/turn-notes-into-flashcards/`), 'utf8');
+for (const phrase of [
+  'Pending hands-on test',
+  'Standard task still pending',
+  'Hands-on test (16 Nov 2026)',
+  '26.09.4',
+  'Linux x86_64',
+  'official GitHub release',
+  '194.7 MB',
+  'about 665 MB',
+  'about 5 seconds',
+  'no account prompt and no sync prompt',
+  'food-hygiene',
+  '10 Basic cards',
+  'Anki header lines',
+  '10 notes found in file',
+  'Of those: 10 new notes imported.',
+  '6.27 seconds',
+  '6 of 6 checked answers matched',
+  'under 1 minute',
+  'under 6 minutes',
+  'under 10 minutes',
+  '3 to 5 days',
+  'varied per card',
+  'came back later in the same session',
+  '1.96 minutes',
+  '11.78 seconds',
+  'no built-in AI card generation',
+  'The download is large',
+  'Audio was not tested',
+  'AnkiWeb',
+  'AnkiMobile',
+  'sync were not tested',
+  '20 lecture facts',
+  'has not been run',
+  'Computer version: free',
+  'No purchase price is printed',
+  'Described as free',
+  '$25',
+  `${base}/tested/`,
+  'datetime="2026-11-16"',
+]) {
+  if (!flashcards.includes(phrase)) fail(`flashcards page is missing the hands-on note phrase: ${phrase}`);
+}
+const flashTop = flashcards.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const flashBudget = flashcards.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const flashAvoid = flashcards.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!flashTop.includes('Anki') || !flashTop.includes('Hands-on test 16 Nov 2026')) {
+  fail('Anki desktop card is missing its hands-on label');
+}
+if (flashTop.includes('Pending hands-on test')) fail('Anki desktop card still has a pending hands-on label');
+if (!flashBudget.includes('AnkiWeb') || !flashBudget.includes('Pending hands-on test')) {
+  fail('AnkiWeb lost its pending hands-on label');
+}
+if (flashBudget.includes('Hands-on test 16 Nov')) fail('AnkiWeb was marked as hands-on tested on 16 Nov');
+if (flashAvoid.includes('Hands-on test 16 Nov')) fail('AnkiMobile was marked as hands-on tested on 16 Nov');
+if (flashcards.includes('>Tested 16 Nov 2026<')) fail('flashcards page was marked as a completed test');
 
 const slides = readFileSync(pathToFile(`${base}/use-cases/make-a-slide-deck/`), 'utf8');
 for (const phrase of [
