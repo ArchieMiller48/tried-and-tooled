@@ -13,6 +13,8 @@ topPick:
     sourceUrl: "https://apps.ankiweb.net/"
     checked: 2026-11-16
   affiliateUrl: null
+  handsOn: 2026-11-16
+  handsOnSummary: "Anki desktop 26.09.4 on Linux x86_64, the official GitHub release, on 16 Nov 2026. Fresh local profile, no account, no AnkiWeb sign-in, no sync, no add-ons and nothing paid. The download was 194.7 MB compressed (about 665 MB extracted). Launch reached the first-run language dialog in about 5 seconds, with no account or sync prompt. 10 Basic cards from short Hollow Oak Bakery staff food-hygiene notes were written as a tab-separated .txt with Anki header lines and imported with File > Import. The preview auto-detected the tab separator, the Basic note type and the deck. The result was \"10 notes found in file. Of those: 10 new notes imported.\" in 6.27 seconds. One card added by hand with Add > Basic worked, with no warning. 6 of 6 checked answers matched. For a new card, the buttons showed Again under 1 minute, Hard under 6 minutes, Good under 10 minutes, and Easy 3 to 5 days. The Easy interval varied per card. A card marked Again came back later in the same session. 10 cards were studied in 1.96 minutes (Anki stats, 11.78 seconds per card). Anki has no built-in AI card generation. Audio was not tested. AnkiWeb, AnkiMobile and sync were not tested."
 budgetPick:
   name: "AnkiWeb"
   url: "https://apps.ankiweb.net/"
@@ -43,7 +45,7 @@ alsoConsidered: []
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-11-16
-testNotes: "Pending hands-on test. Planned standard task: turn the same one-page set of 20 lecture facts into a deck in each tool, review it the next day, and record how many cards kept the original wording, how many invented a fact, and what the published plan costs. No deck has been built for this page."
+testNotes: "Hands-on note, 16 Nov 2026: Anki desktop 26.09.4 only, on Linux x86_64, the official GitHub release. Fresh local profile, no account, no AnkiWeb sign-in, no sync, no add-ons and nothing paid. It is not the standard task. The download was 194.7 MB compressed (about 665 MB extracted). Launch reached the first-run language dialog in about 5 seconds, with no account or sync prompt. Short Hollow Oak Bakery staff food-hygiene notes were turned into 10 Basic cards, written as a tab-separated .txt with Anki header lines, then imported with File > Import. The preview auto-detected the tab separator, the Basic note type and the deck. The result was \"10 notes found in file. Of those: 10 new notes imported.\" in 6.27 seconds. One card added by hand with Add > Basic worked, with no warning. 6 of 6 checked answers matched. For a new card, the buttons showed Again under 1 minute, Hard under 6 minutes, Good under 10 minutes, and Easy 3 to 5 days. The Easy interval varied per card. A card marked Again came back later in the same session. 10 cards were studied in 1.96 minutes (Anki stats, 11.78 seconds per card). Anki has no built-in AI card generation: you write the cards, or use another tool, and import a text file. The download is large. Audio was not tested. Pending hands-on test. Planned standard task: turn the same one-page set of 20 lecture facts into a deck in each tool, review it the next day, and record how many cards kept the original wording, how many invented a fact, and what the published plan costs. AnkiWeb, AnkiMobile and sync were not part of this check."
 ---
 
 ## Who this is for
@@ -54,7 +56,28 @@ Students, and anyone else, who already has notes and needs a review pile rather 
 
 - **You can install a program:** Anki on Windows, Mac or Linux. The download page does not put a price on it.
 - **You will not buy an iPhone app:** the FAQ points to AnkiWeb.
+- **You will write the cards yourself:** on 16 Nov 2026, Anki desktop 26.09.4 imported 10 Basic cards from a tab-separated text file in 6.27 seconds. There is no built-in AI card generation. AnkiWeb, AnkiMobile and sync were not part of that check.
 - **The notes still have to be found:** start on [Research and summarise sources](../../use-cases/research-and-summarise-sources/), then make cards from the sources you opened.
 - **The write-up still has to be edited:** [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/) is a different job.
 
-Pending hands-on test. The picks are from Anki's own pages, read on 16 Nov 2026.
+The note below is a local check of Anki desktop 26.09.4 only, dated 16 Nov 2026. No account, no AnkiWeb sign-in, no sync, no add-ons and nothing paid. AnkiWeb and AnkiMobile were not part of it. The standard task on this page has not been run.
+
+## Hands-on test (16 Nov 2026)
+
+This note is for Anki on a computer, the top pick. The version was Anki desktop 26.09.4, the official GitHub release for Linux x86_64. The check ran on 16 Nov 2026. No account was used. The profile was a fresh local profile. There was no AnkiWeb sign-in, no sync, no add-ons and nothing paid. AnkiWeb, the budget pick, AnkiMobile and sync were not part of it.
+
+The download was 194.7 MB compressed, about 665 MB extracted. Launch reached the first-run language dialog in about 5 seconds. There was no account prompt and no sync prompt.
+
+The task was to turn short Hollow Oak Bakery staff food-hygiene notes into 10 Basic cards. The cards were written as a tab-separated .txt file with Anki header lines, then imported with File > Import. The preview auto-detected the tab separator, the Basic note type and the deck. The result was "10 notes found in file. Of those: 10 new notes imported." The import took 6.27 seconds.
+
+One card was added by hand with Add > Basic. It worked, with no warning.
+
+In study, 6 of 6 checked answers matched. For a new card, the buttons showed Again under 1 minute, Hard under 6 minutes, Good under 10 minutes, and Easy 3 to 5 days. The Easy interval varied per card. A card marked Again came back later in the same session. Anki's stats showed 10 cards studied in 1.96 minutes, at 11.78 seconds per card.
+
+Anki has no built-in AI card generation. You write the cards, or use another tool, and import a text file. The download is large. Audio was not tested.
+
+AnkiWeb, AnkiMobile and sync were not tested. The standard task on this page has not been run. That task is the same one-page set of 20 lecture facts turned into a deck in each tool, reviewed the next day, with a count of how many cards kept the original wording, how many invented a fact, and what the published plan costs.
+
+## Where this goes next
+
+- The 16 Nov 2026 note is also listed on [Tested by us](../../tested/).
