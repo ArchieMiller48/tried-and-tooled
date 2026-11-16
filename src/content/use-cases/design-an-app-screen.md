@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Starter is free: 150 AI credits/day, up to 500 AI credits/mo. Professional Full seat $16/mo, plus 3,000 AI credits/mo. Monthly and Annual controls are on that card; a second Full-seat dollar amount was not in the HTML."
     sourceUrl: "https://www.figma.com/pricing/"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
 budgetPick:
   name: "Figma Starter"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free. Unlimited drafts, UI kits and templates, and 150 AI credits/day up to 500 AI credits/mo."
     sourceUrl: "https://www.figma.com/pricing/"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
 avoid:
   name: "Figma Organization, for a solo screen"
@@ -46,17 +46,17 @@ alsoConsidered:
     pricing:
       summary: "Free $0/month, 7 messages/day. Plus is shown as $30 and $90 per user/month, with $30 of included monthly credits."
       sourceUrl: "https://v0.app/pricing"
-      checked: 2026-11-09
+      checked: 2026-11-16
   - name: "Dessn"
     url: "https://create.dessn.ai/"
     note: "On the Free plan on 9 Nov 2026, signed in with an email link and no password or card, a blank page with no repository connected produced a Hollow Oak Bakery order screen in about 2 minutes 6 seconds. The three names and prices were exact, the steppers worked, four Saturday slots from 9:00 to 10:30 were shown, and the total was £10.10 for the quantities it chose. It also wrote placeholder copy, including \"Baked this morning on Mill Lane\" and a 30-minute collection rule, and one step showed \"1 action failed\" before the screen rendered. No export or download control was seen. This is not the Figma and v0 standard task. The full note is on the Tested by us page."
     pricing:
       summary: "Free $0/month, 20 monthly credits. Pro $30 per editor/month, 100 monthly credits. Enterprise is custom."
       sourceUrl: "https://www.dessn.com/pricing"
-      checked: 2026-11-09
+      checked: 2026-11-16
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-09
+lastVerified: 2026-11-16
 testNotes: "Hands-on note, 9 Nov 2026: Dessn Free only, one mobile order screen from a blank page. It is not the standard task. Pending hands-on test. Planned standard task: from the same one-sentence brief, produce one mobile screen with a title, a price and a primary button in Figma and in v0, then score whether the text is readable, whether the price matches the brief, and how many edits it takes before the file can be shared. Figma and v0 were not part of this check."
 ---
 

@@ -7,20 +7,20 @@ category: "Study & research"
 topPick:
   name: "Grammarly Pro"
   url: "https://www.grammarly.com"
-  why: "Grammarly's plans page lists full-sentence rewrites, tone adjustments and plagiarism and AI-text detection under Pro, on top of Free. The comparison table lists 2,000 AI prompts a month on Pro and 100 on Free. Pro is offered with a $0 trial and an email reminder two days before it ends."
+  why: "Grammarly's plans page lists full-sentence rewrites, tone adjustments and plagiarism and AI-text detection under Pro, on top of Free. The comparison table lists 2,000 AI prompts per member a month on Pro and 100 a month on Free. The visible Pro card says Try for $0.00 and does not print a subscription price. Plan data in the page lists a 1-month subscription at $30 USD, a 3-month subscription at $60 USD, and a 1-year subscription at $144 USD."
   pricing:
-    summary: "Free $0 USD/month. Pro is listed at $12 USD on the plans page. That $12 figure is not labelled per month in the page text. A trial is offered at $0 today."
+    summary: "Free $0 USD/month. Visible Pro card: Try for $0.00, with no subscription dollar in that card. Plan data in the HTML: $30 USD for 1 month, $60 USD for 3 months, $144 USD for 1 year."
     sourceUrl: "https://www.grammarly.com/plans"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
 budgetPick:
   name: "LanguageTool Basic"
   url: "https://languagetool.org"
-  why: "LanguageTool's pricing table lists Basic as free, with a 2,000-character limit per text field and 3 AI sentence rephrases a day. Premium raises the field limit to 150,000 characters and lists unlimited AI paraphrasing. A Premium price was not in the page HTML on 9 Nov 2026, so this pick stays on the free row."
+  why: "LanguageTool's pricing table lists Basic as free, with a 2,000-character limit per text field and 3 AI sentence rephrases a day. Premium raises the field limit to 150,000 characters and lists unlimited AI paraphrasing. A Premium price was not in the page HTML on 16 Nov 2026, so this pick stays on the free row."
   pricing:
     summary: "Free Basic: 2,000 characters per text field and 3 AI sentence rephrases a day. Prices on the page are labelled as including VAT. A Premium euro or dollar price was not in the HTML."
     sourceUrl: "https://languagetool.org/pricing"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
   handsOn: 2026-11-04
   handsOnSummary: "Signed out, with no account: a short business email with 8 planted errors, plus a lowercase friday. All 8 were caught at least partly, and friday was flagged. The has agreement error in \"Me and the team has\" was missed. One arguable false positive. Results within a few seconds; the exact time was not measured. The free check showed a 2,000-character cap and Paraphrasing 0/3. No Premium locks in this check."
@@ -44,7 +44,7 @@ stack:
     role: "Reject any change that adds a fact, a citation or a number you did not write."
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-09
+lastVerified: 2026-11-16
 testNotes: "Hands-on note, 4 Nov 2026: LanguageTool Basic only, on the homepage editor, default English, signed out with no account, no card and no Google sign-in. The text was typed, not pasted: a short business email with 8 planted errors, plus a lowercase friday. 8 flags were showing as typing finished, while Checking text... was still on screen. The full list, 10 flags, appeared within a few seconds. The exact time was not measured. All 8 planted errors were caught at least partly: thank's to thanks, you're to your, its to it's, peice to piece, their to there, discus to discuss, and tomorow to tomorrow. In \"Me and the team has\", Me was flagged with a suggestion of I and a note to put yourself second. The has subject-verb error was not flagged, and the editor did not suggest \"The team and I have\". That one counts as partial. friday was flagged as a spelling mistake, with Friday as the first suggestion. One arguable false positive: a suggested comma before and, joining two independent clauses. The counter read Characters 246/2000, a 2,000-character cap. The page showed Paraphrasing 0/3. The paraphrase tab was not used. No Premium locks were seen in this check, and there was no hidden premium-suggestion count. Picky Mode was not opened. The only premium prompt was the promo text Unlock all Premium Features. Sign-up was not needed. A longer document was not tested. Grammarly Pro and Grammarly Free were not part of this check. The standard task is still pending: run the same 600-word draft, with 15 planted grammar errors and 3 planted factual claims, through each tool, then score how many errors are marked, how many rewrites change a fact, and what the published plan costs."
 ---
 
@@ -54,7 +54,7 @@ Students, researchers and anyone else who has a draft and needs the mistakes cau
 
 ## How to choose
 
-- **You want full-sentence rewrites and a tone control:** Grammarly Pro. The plans page lists Pro at $12 USD and does not label that figure per month. Free is $0 USD/month. See [Grammarly's plans](https://www.grammarly.com/plans).
+- **You want full-sentence rewrites and a tone control:** Grammarly Pro. The visible card says try Pro for $0.00. Plan data in the page lists $30 USD for 1 month, $60 USD for 3 months and $144 USD for 1 year. Free is $0 USD/month. See [Grammarly's plans](https://www.grammarly.com/plans).
 - **A first pass, and the section is under 2,000 characters:** LanguageTool Basic, free on [LanguageTool's pricing table](https://languagetool.org/pricing).
 - **The piece is a new draft, not an edit:** start on [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/), then come back here.
 

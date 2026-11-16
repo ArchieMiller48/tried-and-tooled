@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free: $0, 100 tasks/mo, two-step Zaps only. Professional from $19.99/mo. A yearly toggle is labelled Save 33%. A separate $29.99 monthly figure was not in the page HTML on 9 Nov 2026. Agents Free: 400 activities/mo."
     sourceUrl: "https://zapier.com/pricing"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
 budgetPick:
   name: "n8n"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Cloud Starter €20/mo billed annually (1,600 Assistant credits/mo). Pro €50/mo billed annually. Self-hosted Community Edition available on GitHub."
     sourceUrl: "https://n8n.io/pricing/"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
 avoid:
   name: "Zapier Free, for a workflow with more than two steps"
@@ -45,7 +45,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-09
+lastVerified: 2026-11-16
 testNotes: "Pending hands-on test. Planned standard task: build 'new website enquiry → AI-drafted reply saved as a draft + CRM row + Slack alert' in each tool. We'll record build time, the tasks or executions used per run, the cost per 100 enquiries, and what happens when a step fails."
 ---
 

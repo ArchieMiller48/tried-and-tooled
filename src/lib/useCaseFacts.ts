@@ -106,6 +106,10 @@ const SEARCH_TITLES: Record<string, (year: number) => string> = {
   'design-an-app-screen': (year) => `Best AI tools to design an app screen (${year})`,
   'cut-out-a-product-photo': (year) => `Best AI tools for a product photo (${year})`,
   'see-where-the-money-went': (year) => `Best AI tools to see where money went (${year})`,
+  'turn-notes-into-flashcards': (year) => `Best AI flashcard tools for study (${year})`,
+  'write-product-descriptions': (year) => `Best AI tools for product copy (${year})`,
+  'keep-a-citation-library': (year) => `Best AI tools to store citations (${year})`,
+  'build-a-resume': (year) => `Best AI tools for a resume (${year})`,
 };
 
 /** Fact sentences for the meta description. The checked date and test status are appended from frontmatter. */
@@ -136,6 +140,10 @@ const SEARCH_BLURBS: Record<string, string> = {
   'design-an-app-screen': 'Figma Professional for an app screen. Figma Starter is free. Avoid Organization for one person.',
   'cut-out-a-product-photo': 'Photoroom Pro for a product cutout. Pixelcut Free has no watermark. Avoid Free for a catalogue.',
   'see-where-the-money-went': 'Claude Personal Finance on a paid US plan. Datastripes Public is €0. Avoid a total you do not open.',
+  'turn-notes-into-flashcards': 'Anki on a computer is free, with free AnkiWeb sync. Avoid the paid iOS app if you study at a desk.',
+  'write-product-descriptions': 'Sidekick writes shop text on Shopify Basic. Claude Free drafts one. Do not publish it unread.',
+  'keep-a-citation-library': 'Zotero keeps the citations. 300 MB of file sync is free. Unlimited storage is $120 a year.',
+  'build-a-resume': 'Kickresume yearly is $8/mo for the AI writer. A basic download is free. Qualifying students are free.',
 };
 
 export function textMentionsFree(text: string): boolean {
