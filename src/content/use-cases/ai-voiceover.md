@@ -9,9 +9,9 @@ topPick:
   url: "https://elevenlabs.io"
   why: "A broad voice library and voice cloning: Instant Voice Cloning from Starter, Professional Voice Cloning from Creator. It also includes dubbing, and paid plans come with a commercial licence."
   pricing:
-    summary: "Free 10k credits/mo. Starter $6/mo (the page on 9 Nov 2026 still showed a first month at $1, countdown at 0 days), 30k credits, commercial licence. Creator $22/mo (first month still shown at $11), 121k credits. 1 credit ≈ 1 character on multilingual v2 models."
+    summary: "Free 10k credits/mo. Starter $6/mo, and the card still shows a first month at $1 then $6, with 30k credits and a commercial licence. Creator $22/mo, and the card still shows a first month at $11 then $22, with 121k credits. A banner says 30,000 credits for $1 and Ends September 30. No countdown reading 0 days was in the HTML. 1 credit ≈ 1 character on multilingual v2 models."
     sourceUrl: "https://elevenlabs.io/pricing"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
 budgetPick:
   name: "Descript (Hobbyist)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Hobbyist $16/mo billed annually ($24 monthly), 400 AI credits/mo, includes AI Speech with custom voice clones."
     sourceUrl: "https://www.descript.com/pricing"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
 avoid:
   name: "ElevenLabs Free, for monetised content"
@@ -46,7 +46,7 @@ alsoConsidered:
       checked: 2026-11-11
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-09
+lastVerified: 2026-11-16
 testNotes: "Hands-on note, 11 Nov 2026: Quillo only, a signed-out read-aloud of a short notice. It uses device voices and has no MP3 download, and it is not the standard task. Pending hands-on test. Planned standard task: voice the same 150-word explainer script with a stock voice and a cloned voice, then do a blind listen for naturalness and pronunciation of tech terms (e.g. 'Supabase', 'LLM'), and record the credits used. ElevenLabs and Descript were not part of this check."
 ---
 

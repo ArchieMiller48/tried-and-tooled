@@ -48,7 +48,11 @@
     { "id": "translate", "label": "Translation" },
     { "id": "screens", "label": "App screens" },
     { "id": "product-photos", "label": "Product photos" },
-    { "id": "money", "label": "Spending" }
+    { "id": "money", "label": "Spending" },
+    { "id": "flashcards", "label": "Flashcards" },
+    { "id": "listings", "label": "Product listings" },
+    { "id": "citations", "label": "Citations" },
+    { "id": "resume", "label": "Resumes" }
   ],
   "budgets": [
     {
@@ -181,6 +185,26 @@
       "roles": ["everyday", "student", "small-business", "analyst"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["money"]
+    },
+    "turn-notes-into-flashcards": {
+      "roles": ["student", "everyday", "researcher"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["flashcards"]
+    },
+    "write-product-descriptions": {
+      "roles": ["small-business", "founder", "marketer", "everyday"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["listings"]
+    },
+    "keep-a-citation-library": {
+      "roles": ["student", "researcher", "everyday"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["citations"]
+    },
+    "build-a-resume": {
+      "roles": ["student", "everyday", "researcher"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["resume"]
     }
   }
 }

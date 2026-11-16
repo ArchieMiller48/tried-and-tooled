@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Basic: Free. Limited Research Agent and Research Reports. Unlimited search across more than 138 million papers, unlimited summaries, and unlimited chat with full-text papers."
     sourceUrl: "https://elicit.com/pricing"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
 avoid:
   name: "Consensus Free, for a long literature review"

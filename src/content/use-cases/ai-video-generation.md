@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free: a one-time 125 credits. Standard $12/mo billed annually ($15 monthly), 625 credits/mo (about 52s of Gen-4.5). Pro $28/mo annually ($35 monthly), 2,250 credits/mo."
     sourceUrl: "https://runway.com/pricing"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
 budgetPick:
   name: "Google Flow (Veo 3.1)"
@@ -56,7 +56,7 @@ alsoConsidered:
       checked: 2026-11-09
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-09
+lastVerified: 2026-11-16
 testNotes: "Pending hands-on test. Planned standard task: generate the same 3-shot product B-roll sequence (one prompt per shot plus one reference image of the product) in each tool, then score prompt adherence, product consistency across shots and visible artefacts, and record the credits and cost per usable second."
 ---
 

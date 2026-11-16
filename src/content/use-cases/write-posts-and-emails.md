@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free $0 (chat, Claude Docs, up to 5 projects). Pro $20/mo, or $17/mo billed annually ($200 up front)."
     sourceUrl: "https://claude.com/pricing"
-    checked: 2026-11-09
+    checked: 2026-11-16
   affiliateUrl: null
 budgetPick:
   name: "ChatGPT (Free)"
@@ -51,7 +51,7 @@ alsoConsidered:
       checked: 2026-11-08
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-09
+lastVerified: 2026-11-16
 testNotes: "Hands-on note, 8 Nov 2026: nixm only, a signed-out chat draft. It is not the standard task. Hands-on note, 15 Nov 2026: ChatGPT on https://chatgpt.com/, signed out throughout, with no account. Optional cookies were rejected. This is not a logged-in Free account. The Ask ChatGPT box worked without logging in. No model name or message limit was shown. The Hollow Oak Bakery customer-email brief came back in about 7 seconds, from 11:20:23.6 to 11:20:30.7 UTC, as 116 words from the subject through the sign-off, in an Email card with a Subject field and edit and copy buttons. It kept the bakery name, Bath, founded 2026, £18, Saturday 9am–11am collection, no delivery, croissants and cinnamon buns. Sourdough loaves were not mentioned. There were no awards, no street address (only \"Hollow Oak Bakery, Bath\"), no extra prices, no website, no extra hours and no extra products, and none of the banned words (revolutionary, game-changing, unlock, synergy, world-class). Added colour only: \"freshly baked treats\", \"buttery croissants\", \"comforting cinnamon buns\". \"Filled with some of our favourite... treats\" is vague about box contents. After the reply there was a Share button and a banner: \"Log in to get answers based on saved chats, plus create images and upload files.\" A still of a wooden shop sign reading \"Hollow Oak Bakery\" was gated within about 8 seconds, with no image: \"Image creation is only available when you're logged in. You can keep chatting here, or log in to create images.\" Not tested: a logged-in Free account, free message and model limits, file uploads, image quality, Plus and Pro. Claude was not part of this check. Pending hands-on test. Planned standard task: from the same one-page brief, draft a 500-word blog post and a 120-word customer email in each tool, then score how well the draft follows the voice guide, how many factual inventions appear, and how many edits a human still has to make. On 8 Nov 2026 an email signup at https://claude.ai/login (Continue with email, archie.miller@mail.grokbot.com) was refused with: \"Unfortunately, Claude is not available to new users right now. We're working hard to expand our availability soon.\" No code, password or phone step appeared and no draft was generated in Claude. Claude remains the top pick. This is availability for new users that day, not a quality score."
 ---
 
