@@ -28,7 +28,9 @@ test('content dates cover published guides and fall back only where a page has n
   assert.ok(dates.get('/tried-and-tooled/'));
   assert.equal(dates.get('/tried-and-tooled/compare/elevenlabs-vs-descript/'), '2026-11-10');
   assert.equal(dates.get('/tried-and-tooled/best/ai-product-background-removers/'), '2026-11-09');
-  assert.equal(dates.get('/tried-and-tooled/compare/'), '2026-11-10');
+  assert.equal(dates.get('/tried-and-tooled/compare/'), '2026-11-17');
+  assert.equal(dates.get('/tried-and-tooled/compare/ideogram-vs-midjourney/'), '2026-11-17');
+  assert.equal(dates.get('/tried-and-tooled/best/ai-thumbnail-makers/'), '2026-11-17');
   const about = dateInfo('/about/');
   assert.equal(about.aggregated, true);
   assert.ok(about.date);
