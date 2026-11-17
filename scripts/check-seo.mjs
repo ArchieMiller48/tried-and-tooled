@@ -771,10 +771,27 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Fourteen notes exist',
+  'Fifteen notes exist',
   '15 Nov 2026',
   '16 Nov 2026',
+  '17 Nov 2026',
   'Anki desktop',
+  'Zotero desktop',
+  '10.0.8',
+  '118.3 MB',
+  'about 63 seconds',
+  '10.1038/nature14539',
+  '9780262035613',
+  '10.1145/3442188.3445922',
+  'APA Style 7th edition',
+  'The MIT press',
+  'lower-case press',
+  'Food Standards Agency',
+  'issue number 7553',
+  'Bakery dissertation',
+  'Add to Collection',
+  'PDF attachment',
+  'Log In / Create Account',
   '26.09.4',
   'Linux x86_64',
   'official GitHub release',
@@ -918,6 +935,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('ChatGPT signed out
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Anki desktop (16 Nov 2026)')) {
   fail('llms.txt omits the Anki desktop note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Zotero desktop (17 Nov 2026)')) {
+  fail('llms.txt omits the Zotero desktop note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -952,6 +972,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('11:20:23.6') || !
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('10 notes found in file') || !readFileSync(full, 'utf8').includes('The flashcards page\'s standard task'))) {
   fail('llms-full.txt omits the Anki desktop note or its unrun standard task');
 }
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('APA Style 7th edition') || !readFileSync(full, 'utf8').includes('The citation page\'s standard task'))) {
+  fail('llms-full.txt omits the Zotero desktop note or its unrun standard task');
+}
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
 if (!smallBusiness.includes('Spacefast')) fail('small-business hub omits the Spacefast hands-on note');
@@ -970,6 +993,12 @@ if (!smallBusiness.includes('Anki desktop from 16 Nov 2026')) {
 }
 if (!smallBusiness.includes('The flashcards page stays pending. AnkiWeb and AnkiMobile were not part of that check.')) {
   fail('small-business hub marks AnkiWeb or AnkiMobile as part of the Anki check');
+}
+if (!smallBusiness.includes('Zotero desktop from 17 Nov 2026')) {
+  fail('small-business hub omits the 17 Nov Zotero note');
+}
+if (!smallBusiness.includes('The citation page stays pending. Zotero storage was not part of that check.')) {
+  fail('small-business hub marks Zotero storage as part of the Zotero check');
 }
 
 const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');
@@ -1084,6 +1113,66 @@ if (!flashBudget.includes('AnkiWeb') || !flashBudget.includes('Pending hands-on 
 if (flashBudget.includes('Hands-on test 16 Nov')) fail('AnkiWeb was marked as hands-on tested on 16 Nov');
 if (flashAvoid.includes('Hands-on test 16 Nov')) fail('AnkiMobile was marked as hands-on tested on 16 Nov');
 if (flashcards.includes('>Tested 16 Nov 2026<')) fail('flashcards page was marked as a completed test');
+
+const citations = readFileSync(pathToFile(`${base}/use-cases/keep-a-citation-library/`), 'utf8');
+for (const phrase of [
+  'Pending hands-on test',
+  'Standard task still pending',
+  'Hands-on test (17 Nov 2026)',
+  '10.0.8',
+  'Linux x86_64',
+  'zotero.org',
+  '118.3 MB',
+  'about 63 seconds',
+  'install-confirmation page',
+  'LibreOffice citation-plugin installer',
+  'The installer was cancelled',
+  'Quick Start Guide',
+  'No account or payment prompt blocked use',
+  '10.1038/nature14539',
+  'about 18 seconds',
+  '436–444',
+  '9780262035613',
+  'focus moved away',
+  'The MIT press',
+  'lower-case press',
+  '10.1145/3442188.3445922',
+  'Stochastic Parrots',
+  '610–623',
+  'Food Standards Agency',
+  'APA Style 7th edition',
+  'issue number 7553',
+  '(n.d.)',
+  'Bakery dissertation',
+  'Add to Collection',
+  'did not add them',
+  'Log In / Create Account',
+  'PDF attachment',
+  'were not tested',
+  'five public web pages',
+  'has not been run',
+  '300 MB free',
+  '$20/year',
+  '$60/year',
+  '$120/year',
+  `${base}/tested/`,
+  'datetime="2026-11-16"',
+]) {
+  if (!citations.includes(phrase)) fail(`citation page is missing the hands-on note phrase: ${phrase}`);
+}
+const citeTop = citations.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const citeBudget = citations.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const citeAvoid = citations.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!citeTop.includes('Zotero') || !citeTop.includes('Hands-on test 17 Nov 2026')) {
+  fail('Zotero desktop card is missing its hands-on label');
+}
+if (citeTop.includes('Pending hands-on test')) fail('Zotero desktop card still has a pending hands-on label');
+if (!citeBudget.includes('Zotero storage') || !citeBudget.includes('Pending hands-on test')) {
+  fail('Zotero storage lost its pending hands-on label');
+}
+if (citeBudget.includes('Hands-on test 17 Nov')) fail('Zotero storage was marked as hands-on tested on 17 Nov');
+if (citeAvoid.includes('Hands-on test 17 Nov')) fail('Zotero unlimited storage was marked as hands-on tested on 17 Nov');
+if (citations.includes('>Tested 17 Nov 2026<')) fail('citation page was marked as a completed test');
 
 const slides = readFileSync(pathToFile(`${base}/use-cases/make-a-slide-deck/`), 'utf8');
 for (const phrase of [
