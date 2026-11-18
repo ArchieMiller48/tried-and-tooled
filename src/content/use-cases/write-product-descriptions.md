@@ -55,6 +55,7 @@ Shop owners who already know the product and need the paragraph on the listing, 
 - **The shop is on Shopify:** Sidekick, then read the purple fields before you accept them. The steps are on [Shopify's help page](https://help.shopify.com/en/manual/shopify-admin/productivity-tools/sidekick/generate-content).
 - **You are not paying for a shop platform yet:** Claude Free, then paste only the sentences that match the facts.
 - **The same words have to become a post:** [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/).
+- **The listing still needs a proofread:** [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/).
 - **The photo is still on a kitchen table:** [Cut out a product photo](../../use-cases/cut-out-a-product-photo/).
 - **The launch has to land on a calendar:** [Run a marketing campaign](../../use-cases/run-marketing-campaigns/).
 

@@ -70,7 +70,7 @@ Grammarly and LanguageTool were re-read on 16 Nov 2026. ProWritingAid was last r
 
 Grammarly's $0, $30, $60 and $144, the prompt counts, and the rewrite sentence are from grammarly.com/plans. LanguageTool's 2,000 characters, 3 rephrases a day, and the missing Premium currency amount are from languagetool.org/pricing. ProWritingAid's $30, $10, $120, $36 and $144 are from the purchase page.
 
-The parent page is [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/). The 4 Nov 2026 LanguageTool Basic note is listed on [Tested by us](../../tested/). If the draft has to change language first, see [Translate a document](../../use-cases/translate-a-document/) and the [translation shortlist](../../best/ai-translation-tools/).
+The head-to-head, with the same prices, is [Grammarly vs LanguageTool](../../compare/grammarly-vs-languagetool/). The parent page is [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/). The 4 Nov 2026 LanguageTool Basic note is listed on [Tested by us](../../tested/). If the draft has to change language first, see [Translate a document](../../use-cases/translate-a-document/) and the [translation shortlist](../../best/ai-translation-tools/).
 
 <h2>Comparison</h2>
 <p>The parent page's picks stay Grammarly Pro and LanguageTool Basic. This table adds ProWritingAid because its price could be read. Not a tested ranking.</p>

@@ -56,6 +56,7 @@ Students, researchers and anyone else who has a draft and needs the mistakes cau
 
 - **You want full-sentence rewrites and a tone control:** Grammarly Pro. The visible card says try Pro for $0.00. Plan data in the page lists $30 USD for 1 month, $60 USD for 3 months and $144 USD for 1 year. Free is $0 USD/month. See [Grammarly's plans](https://www.grammarly.com/plans).
 - **A first pass, and the section is under 2,000 characters:** LanguageTool Basic, free on [LanguageTool's pricing table](https://languagetool.org/pricing).
+- **You want the two plans side by side:** [Grammarly vs LanguageTool](../../compare/grammarly-vs-languagetool/). Prices on that page were checked 16 Nov 2026. It does not change the picks above.
 - **The piece is a new draft, not an edit:** start on [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/), then come back here.
 
 The note below is a signed-out check of LanguageTool Basic, dated 4 Nov 2026. Grammarly Pro and Grammarly Free were not part of it.

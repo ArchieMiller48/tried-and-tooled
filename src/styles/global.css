@@ -69,9 +69,12 @@ a.card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,23,42
 }
 @media (max-width: 720px) {
   header.site .logo { flex: 1; }
-  nav.main { order: 3; flex: 1 0 100%; overflow-x: auto; gap: 14px; padding-top: 4px; }
+  nav.main { order: 3; flex: 1 0 100%; flex-wrap: nowrap; overflow-x: auto; gap: 14px; padding-top: 4px; }
   nav.main a { white-space: nowrap; }
 }
+.quotable { margin: 10px 0; padding: 10px 12px; border-left: 4px solid var(--accent); background: var(--accent-soft); font-weight: 700; }
+.hands-on-more { margin: 8px 0 0; }
+.hands-on-more summary { min-height: 44px; display: flex; align-items: center; font-weight: 700; cursor: pointer; }
 .picks { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 24px 0; }
 .pick { border-top: 4px solid var(--accent); }
 .pick.budget { border-top-color: #0ea5e9; }
