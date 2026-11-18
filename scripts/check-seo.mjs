@@ -433,6 +433,9 @@ if (existsSync(llms) && existsSync(full)) {
   if (!index.includes('Tested 17 Nov 2026: Zotero 10.0.8 resolved 3/3 identifiers')) {
     fail('llms.txt is missing the Zotero quotable line');
   }
+  if (!index.includes('Tested 18 Nov 2026: n8n self-hosted 2.48.5 routed 6 of 6 orders correctly')) {
+    fail('llms.txt is missing the n8n quotable line');
+  }
   if (!index.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms.txt does not advertise the sitemap');
   if (!expanded.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms-full.txt does not advertise the sitemap');
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
@@ -819,10 +822,27 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Fifteen notes exist',
+  'Sixteen notes exist',
   '15 Nov 2026',
   '16 Nov 2026',
   '17 Nov 2026',
+  '18 Nov 2026',
+  'n8n self-hosted',
+  '2.48.5',
+  'Community Edition',
+  'v24.22.1',
+  '74.9 seconds',
+  '2.9 GB',
+  '1,096 top-level packages',
+  'Successfully imported 1 workflow',
+  '344 database migrations',
+  'HollowOakOrder01',
+  '0.80 seconds',
+  '6 of 6 correct',
+  'Saturday 9–11am collection, Bath, no delivery',
+  'Node does not have any credentials set',
+  'n8n Cloud',
+  'webhooks',
   'Anki desktop',
   'Zotero desktop',
   '10.0.8',
@@ -925,6 +945,9 @@ for (const phrase of [
 if (!tested.includes('Tested 17 Nov 2026: Zotero 10.0.8 resolved 3/3 identifiers')) {
   fail('tested page is missing the Zotero quotable line');
 }
+if (!tested.includes('Tested 18 Nov 2026: n8n self-hosted 2.48.5 routed 6 of 6 orders correctly')) {
+  fail('tested page is missing the n8n quotable line');
+}
 if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
   fail('tested page is missing the Anki quotable line');
 }
@@ -957,6 +980,9 @@ if (smallBusiness.includes('None of the five use-case pages has a hands-on note'
 }
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 17 Nov 2026: Zotero 10.0.8 resolved 3/3 identifiers')) {
   fail('llms-full.txt is missing the Zotero quotable line');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 18 Nov 2026: n8n self-hosted 2.48.5 routed 6 of 6 orders correctly')) {
+  fail('llms-full.txt is missing the n8n quotable line');
 }
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
@@ -995,6 +1021,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Anki desktop (16 N
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Zotero desktop (17 Nov 2026)')) {
   fail('llms.txt omits the Zotero desktop note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('n8n self-hosted (18 Nov 2026)')) {
+  fail('llms.txt omits the n8n self-hosted note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -1032,6 +1061,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('10 notes found in
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('APA Style 7th edition') || !readFileSync(full, 'utf8').includes('The citation page\'s standard task'))) {
   fail('llms-full.txt omits the Zotero desktop note or its unrun standard task');
 }
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Successfully imported 1 workflow') || !readFileSync(full, 'utf8').includes('The admin page\'s standard task'))) {
+  fail('llms-full.txt omits the n8n self-hosted note or its unrun standard task');
+}
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
 if (!smallBusiness.includes('Spacefast')) fail('small-business hub omits the Spacefast hands-on note');
@@ -1056,6 +1088,12 @@ if (!smallBusiness.includes('Zotero desktop from 17 Nov 2026')) {
 }
 if (!smallBusiness.includes('The citation page stays pending. Zotero storage was not part of that check.')) {
   fail('small-business hub marks Zotero storage as part of the Zotero check');
+}
+if (!smallBusiness.includes('n8n self-hosted note from 18 Nov 2026')) {
+  fail('small-business hub omits the 18 Nov n8n note');
+}
+if (!smallBusiness.includes('The admin page stays pending. Zapier, the editor UI, n8n Cloud, AI nodes with a real key, and integrations (Gmail, Sheets, webhooks, schedules) were not part of that check.')) {
+  fail('small-business hub marks Zapier, n8n Cloud or an integration as part of the n8n check');
 }
 
 const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');
@@ -1236,6 +1274,79 @@ if (!citeBudget.includes('Zotero storage') || !citeBudget.includes('Pending hand
 if (citeBudget.includes('Hands-on test 17 Nov')) fail('Zotero storage was marked as hands-on tested on 17 Nov');
 if (citeAvoid.includes('Hands-on test 17 Nov')) fail('Zotero unlimited storage was marked as hands-on tested on 17 Nov');
 if (citations.includes('>Tested 17 Nov 2026<')) fail('citation page was marked as a completed test');
+
+const admin = readFileSync(pathToFile(`${base}/use-cases/automate-small-business-admin/`), 'utf8');
+for (const phrase of [
+  'Pending hands-on test',
+  'Standard task still pending',
+  'Hands-on test (18 Nov 2026)',
+  '2.48.5',
+  'Community Edition',
+  'Linux x86_64',
+  'v24.22.1',
+  'npm 11.21.1',
+  '24.0.0',
+  '74.9 seconds',
+  '2.9 GB',
+  '1,096 top-level packages',
+  '14 packages',
+  '0.3 seconds',
+  'Successfully imported 1 workflow',
+  '344 database migrations',
+  '5.8 seconds',
+  'HollowOakOrder01',
+  'N8N_RESTRICT_FILE_ACCESS_TO',
+  '3.83 seconds',
+  '3.51 seconds',
+  '0.80 seconds',
+  '703 ms',
+  '6 of 6 correct',
+  '4 of 4',
+  'Saturday 9–11am collection, Bath, no delivery',
+  '£80.80',
+  '16.80',
+  'Missing email - cannot send confirmation',
+  'Delivery requested - we do not deliver (collection only)',
+  'written by us',
+  'Nothing was AI-generated',
+  '846 node types',
+  'Node does not have any credentials set',
+  'editor UI',
+  'n8n Cloud',
+  'Gmail',
+  'Google Sheets',
+  'webhooks',
+  'schedules',
+  'local owner account',
+  'DEPRECATED: Please use --id instead',
+  'Python task runner',
+  'were not tested',
+  'new website enquiry',
+  'has not been run',
+  '100 tasks/mo',
+  `${base}/tested/`,
+  'datetime="2026-11-16"',
+]) {
+  if (!admin.includes(phrase)) fail(`admin page is missing the hands-on note phrase: ${phrase}`);
+}
+const adminTop = admin.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const adminBudget = admin.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const adminAvoid = admin.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!adminBudget.includes('n8n') || !adminBudget.includes('Hands-on test 18 Nov 2026')) {
+  fail('n8n card is missing its hands-on label');
+}
+if (!adminBudget.includes('Tested 18 Nov 2026: n8n self-hosted 2.48.5 routed 6 of 6 orders correctly')) {
+  fail('n8n card is missing the quotable line');
+}
+if (adminBudget.includes('Pending hands-on test')) fail('n8n card still has a pending hands-on label');
+if (!adminBudget.includes('were not tested')) fail('n8n card does not say what was not tested');
+if (!adminBudget.includes('written by us')) fail('n8n card does not say the workflow wording was written by us');
+if (!adminTop.includes('Zapier') || !adminTop.includes('Pending hands-on test')) {
+  fail('Zapier lost its pending hands-on label');
+}
+if (adminTop.includes('Hands-on test 18 Nov')) fail('Zapier was marked as hands-on tested on 18 Nov');
+if (adminAvoid.includes('Hands-on test 18 Nov')) fail('Zapier Free was marked as hands-on tested on 18 Nov');
+if (admin.includes('>Tested 18 Nov 2026<')) fail('admin page was marked as a completed test');
 
 const slides = readFileSync(pathToFile(`${base}/use-cases/make-a-slide-deck/`), 'utf8');
 for (const phrase of [
