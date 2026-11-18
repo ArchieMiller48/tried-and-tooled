@@ -81,3 +81,4 @@ AnkiWeb, AnkiMobile and sync were not tested. The standard task on this page has
 ## Where this goes next
 
 - The 16 Nov 2026 note is also listed on [Tested by us](../../tested/).
+- The sources those cards came from belong in [Keep a citation library](../../use-cases/keep-a-citation-library/).

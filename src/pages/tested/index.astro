@@ -12,8 +12,8 @@ import { withBase } from '../../lib/withBase';
 const entries = await getCollection('use-cases', ({ data }) => !data.draft);
 assertHandsOnCoverage(entries);
 const titles = new Map(entries.map((entry) => [entry.id, entry.data.title]));
-const title = 'Tested by us';
-const description = 'Notes: Consensus, Perplexity, DeepL, LanguageTool, Looka, Phrasly, Datastripes, nixm, Dessn, Spacefast, Quillo, Pixelcut, Photoroom, ChatGPT, Anki, Zotero.';
+const title = 'Hands-on AI tool tests';
+const description = 'Dated hands-on notes for the AI tools we actually tried, including Anki, Zotero, DeepL and LanguageTool. Standard tasks stay pending.';
 const notes = [...handsOnNotes].sort((a, b) => b.date.localeCompare(a.date));
 const hub = hubPage(
   Astro.site!,
@@ -28,7 +28,7 @@ const hub = hubPage(
     <section class="hero" style="padding-bottom:8px">
       <Crumbs items={[{ href: withBase('/'), label: 'Home' }, { label: title }]} />
       <span class="eyebrow">Hands-on notes</span>
-      <h1>Tested by us</h1>
+      <h1>Hands-on AI tool tests</h1>
       <p class="lead">These are the only hands-on notes written on the site. Each one names the date, the tool, and what was actually tried. A shorter check does not turn the use-case page into a completed test.</p>
       <div class="meta"><Checked date={hub.dateModified} label={hub.dateLabel} /></div>
     </section>
@@ -37,6 +37,8 @@ const hub = hubPage(
       <h2 id="short-answer">Short answer</h2>
       <p>Fifteen notes exist. Consensus Free on 26 Oct 2026 and Perplexity Free on 2 Nov 2026 are on the research page. DeepL Free on 3 Nov 2026 is on the translate page. LanguageTool Basic on 4 Nov 2026 is on the proofread page. Looka Brand Kit on 5 Nov 2026 is on the logo page. Phrasly AI Image Detector on 6 Nov 2026 is on the image-check page. Datastripes on 7 Nov 2026 is on the spreadsheet page. nixm on 8 Nov 2026 is on the writing page. Dessn on 9 Nov 2026 is on the app-screen page. Spacefast on 10 Nov 2026 is on the vibe-code page. Quillo on 11 Nov 2026 is on the voiceover page. Pixelcut and Photoroom, signed out, on 14 Nov 2026 are on the product-photo page. ChatGPT, signed out, on 15 Nov 2026 is on the writing page. Anki desktop on 16 Nov 2026 is on the flashcards page. Zotero desktop on 17 Nov 2026 is on the citation page. No other tool on this site has a hands-on note.</p>
     </section>
+
+    <section class="signup"><Newsletter /></section>
 
     <section>
       <h2>The notes</h2>
@@ -50,8 +52,12 @@ const hub = hubPage(
                 <span class="tag tested">Hands-on note <time datetime={note.date}>{formatDate(new Date(`${note.date}T00:00:00.000Z`))}</time></span>
               </div>
               <h3 style="font-size:1.2rem;margin-top:10px">{note.tool}</h3>
-              <p>{note.tested}</p>
-              <p class="caveat">{note.limits}</p>
+              <p class="quotable">{note.quote}</p>
+              <details class="hands-on-more">
+                <summary>Full note</summary>
+                <p>{note.tested}</p>
+                <p class="caveat">{note.limits}</p>
+              </details>
               <p><a href={withBase(`/use-cases/${note.useCaseSlug}/`)}>{useCaseTitle}</a></p>
             </article>
           );
@@ -66,6 +72,5 @@ const hub = hubPage(
       <p>Browse <a href={withBase('/use-cases/')}>all use cases</a>, <a href={withBase('/best/')}>all shortlists</a> and <a href={withBase('/about/')}>how we test</a>.</p>
     </section>
 
-    <section class="signup"><Newsletter /></section>
   </article>
 </Base>

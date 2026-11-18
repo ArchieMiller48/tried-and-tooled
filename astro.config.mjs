@@ -20,6 +20,10 @@ export default defineConfig({
   site: 'https://archiemiller48.github.io',
   base: '/tried-and-tooled',
   output: 'static',
+  // The stylesheet is one small file. Inlining it removes the render-blocking request.
+  build: {
+    inlineStylesheets: 'always',
+  },
   // Directory URLs keep the trailing slash GitHub Pages serves for index.html.
   trailingSlash: 'always',
   integrations: [

@@ -91,3 +91,4 @@ The standard task on this page has not been run. That task is the same five publ
 ## Where this goes next
 
 - The 17 Nov 2026 note is also listed on [Tested by us](../../tested/).
+- Turn the reading into a review pile on [Turn notes into flashcards](../../use-cases/turn-notes-into-flashcards/).

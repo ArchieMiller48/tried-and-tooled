@@ -7,6 +7,7 @@ import { listGuides } from '../../lib/guides';
 import { formatDate, isoDate } from '../../lib/formatDate';
 import { buildUseCaseJsonLd } from '../../lib/schema';
 import { audienceLabel } from '../../lib/useCaseGroups';
+import { handsOnQuote } from '../../lib/handsOnNotes';
 import { buildFaqs, shortAnswer, siblingUseCases, useCaseMeta } from '../../lib/useCaseFacts';
 import { withBase } from '../../lib/withBase';
 import { getCollection, render } from 'astro:content';
@@ -48,6 +49,8 @@ const jsonLd = buildUseCaseJsonLd({
 // Affiliate placeholder: use affiliateUrl if approved, otherwise the vendor URL. Never affects ranking.
 const go = (p: { url: string; affiliateUrl: string | null }) => p.affiliateUrl ?? p.url;
 const datedNote = d.testStatus === 'pending' && d.testNotes.startsWith('Hands-on note');
+const topQuote = d.topPick.handsOn ? handsOnQuote(entry.id, isoDate(d.topPick.handsOn)) : null;
+const budgetQuote = d.budgetPick.handsOn ? handsOnQuote(entry.id, isoDate(d.budgetPick.handsOn)) : null;
 const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png`, Astro.site).href;
 ---
 <Base title={meta.title} description={meta.description} jsonLd={jsonLd} ogImage={ogImage} ogAlt={`Tried & Tooled: ${d.title}`} hasNewsletter>
@@ -99,6 +102,8 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
       <p class="notice"><strong>Not hands-on tested yet.</strong> The picks below are based on vendor documentation and pricing we verified on {formatDate(pricingVerified)}. Test results will appear here once we've run our standard task. We don't publish made-up test results.</p>
     ))}
 
+    <section class="signup"><Newsletter /></section>
+
     <section>
       <h2>The picks</h2>
       <div class="picks">
@@ -110,7 +115,13 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
             <p class="meta" style="margin-top:8px"><span class="tag pending">Pending hands-on test</span></p>
           ) : null}
           <h3>{d.topPick.name}</h3>
-          {d.topPick.handsOnSummary && <p>{d.topPick.handsOnSummary}</p>}
+          {topQuote && <p class="quotable">{topQuote}</p>}
+          {d.topPick.handsOnSummary && (
+            <details class="hands-on-more">
+              <summary>Full hands-on note for this pick</summary>
+              <p>{d.topPick.handsOnSummary}</p>
+            </details>
+          )}
           <p>{d.topPick.why}</p>
           <div class="price">{d.topPick.pricing.summary}<br /><a href={d.topPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source<span class="sr-only"> for {d.topPick.name}</span></a>, checked {formatDate(d.topPick.pricing.checked)}</div>
           <p style="margin-top:12px"><a class="btn" href={go(d.topPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.topPick.name}</a></p>
@@ -123,7 +134,13 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
             <p class="meta" style="margin-top:8px"><span class="tag pending">Pending hands-on test</span></p>
           ) : null}
           <h3>{d.budgetPick.name}</h3>
-          {d.budgetPick.handsOnSummary && <p>{d.budgetPick.handsOnSummary}</p>}
+          {budgetQuote && <p class="quotable">{budgetQuote}</p>}
+          {d.budgetPick.handsOnSummary && (
+            <details class="hands-on-more">
+              <summary>Full hands-on note for this pick</summary>
+              <p>{d.budgetPick.handsOnSummary}</p>
+            </details>
+          )}
           <p>{d.budgetPick.why}</p>
           <div class="price">{d.budgetPick.pricing.summary}<br /><a href={d.budgetPick.pricing.sourceUrl} rel="nofollow noopener" target="_blank">source<span class="sr-only"> for {d.budgetPick.name}</span></a>, checked {formatDate(d.budgetPick.pricing.checked)}</div>
           <p style="margin-top:12px"><a class="btn ghost" href={go(d.budgetPick)} rel="sponsored nofollow noopener" target="_blank">Visit {d.budgetPick.name}</a></p>
@@ -136,8 +153,6 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
         </div>
       </div>
     </section>
-
-    <section class="signup"><Newsletter /></section>
 
     <section style="padding-top:8px">
       <h2>The full stack</h2>

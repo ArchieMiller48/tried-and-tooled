@@ -67,6 +67,23 @@ const htmlFiles = walk(dist).filter((file) => file.endsWith('.html'));
 const descriptions = new Map();
 const titles = new Map();
 const canonicals = new Map();
+const indexable = [];
+const auditedForLength = new Set([
+  `${base}/use-cases/turn-notes-into-flashcards/`,
+  `${base}/use-cases/write-product-descriptions/`,
+  `${base}/use-cases/keep-a-citation-library/`,
+  `${base}/use-cases/build-a-resume/`,
+  `${base}/use-cases/ai-thumbnails-and-images/`,
+  `${base}/use-cases/write-posts-and-emails/`,
+  `${base}/use-cases/design-logos-and-graphics/`,
+  `${base}/use-cases/translate-a-document/`,
+  `${base}/use-cases/check-if-an-image-is-ai/`,
+  `${base}/use-cases/proofread-and-edit/`,
+  `${base}/compare/ideogram-vs-midjourney/`,
+  `${base}/compare/grammarly-vs-languagetool/`,
+  `${base}/best/ai-thumbnail-makers/`,
+  `${base}/tested/`,
+]);
 
 for (const file of htmlFiles) {
   const html = readFileSync(file, 'utf8');
@@ -92,6 +109,15 @@ for (const file of htmlFiles) {
     if (canonicals.has(canonical)) fail(`${path} repeats the canonical of ${canonicals.get(canonical)}`);
     else canonicals.set(canonical, path);
   }
+
+  if (!title) fail(`${path} is missing a title`);
+  if (auditedForLength.has(path)) {
+    if (title.length > 60) fail(`${path} title is ${title.length} characters`);
+    if (description && (description.length < 120 || description.length > 160)) {
+      fail(`${path} description is ${description.length} characters`);
+    }
+  }
+  if (!noindex) indexable.push({ path, canonical });
 
   if (!robots.includes('max-image-preview:large')) fail(`${path} is missing max-image-preview:large`);
   if (title && ogTitle && title !== ogTitle) fail(`${path} title and og:title differ`);
@@ -398,6 +424,15 @@ if (existsSync(llms) && existsSync(full)) {
     const listed = index.slice(index.indexOf(path), index.indexOf(path) + 500);
     if (!listed.includes(': Answer:')) fail(`llms.txt answer for ${path} is not answer-first`);
   }
+  const handsOnHeading = index.indexOf('## Hands-on notes');
+  const compareHeading = index.indexOf('## Comparisons');
+  const useCaseHeading = index.indexOf('## Use cases');
+  if (!(handsOnHeading >= 0 && handsOnHeading < compareHeading && compareHeading < useCaseHeading)) {
+    fail('llms.txt does not lead with hands-on notes and comparisons');
+  }
+  if (!index.includes('Tested 17 Nov 2026: Zotero 10.0.8 resolved 3/3 identifiers')) {
+    fail('llms.txt is missing the Zotero quotable line');
+  }
   if (!index.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms.txt does not advertise the sitemap');
   if (!expanded.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms-full.txt does not advertise the sitemap');
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
@@ -417,6 +452,13 @@ if (existsSync(llms) && existsSync(full)) {
   }
 }
 
+const keyFiles = readdirSync(dist).filter((name) => /^[a-f0-9]{32}\.txt$/.test(name));
+if (keyFiles.length !== 1) fail(`expected one IndexNow key file in dist, found ${keyFiles.length}`);
+else {
+  const key = keyFiles[0].replace(/\.txt$/, '');
+  const keyBody = readFileSync(join(dist, keyFiles[0]), 'utf8');
+  if (keyBody !== key) fail('IndexNow key file does not contain the key');
+}
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8');
 if (!robots.includes(`${origin}${base}/llms.txt`)) fail('robots.txt does not mention llms.txt');
 if (!robots.includes(`${origin}${base}/llms-full.txt`)) fail('robots.txt does not mention llms-full.txt');
@@ -538,6 +580,12 @@ for (const block of sitemapUrls) {
   const lastmod = block.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1] ?? '';
   if (!lastmod) fail(`sitemap URL has no lastmod: ${loc}`);
   else if (!/^\d{4}-\d{2}-\d{2}/.test(lastmod)) fail(`sitemap lastmod for ${loc} is not a date: ${lastmod}`);
+}
+const sitemapLocs = new Set(sitemapUrls.map((block) => block.match(/<loc>([^<]+)<\/loc>/)?.[1] ?? ''));
+for (const page of indexable) {
+  const absolute = `${origin}${page.path}`;
+  if (!sitemapLocs.has(absolute)) fail(`${page.path} is absent from the sitemap`);
+  if (page.canonical !== absolute) fail(`${page.path} canonical is ${page.canonical || '(missing)'}`);
 }
 const research = readFileSync(pathToFile(`${base}/use-cases/research-and-summarise-sources/`), 'utf8');
 for (const phrase of ['26 Oct 2026', '10 Pro searches a month', 'Consensus Meter', '25 seconds', '60 seconds', 'free Consensus account']) {
@@ -874,6 +922,12 @@ for (const phrase of [
 ]) {
   if (!tested.includes(phrase)) fail(`tested page is missing ${phrase}`);
 }
+if (!tested.includes('Tested 17 Nov 2026: Zotero 10.0.8 resolved 3/3 identifiers')) {
+  fail('tested page is missing the Zotero quotable line');
+}
+if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
+  fail('tested page is missing the Anki quotable line');
+}
 if (!/standard task/i.test(tested) || !tested.includes('has not been run')) {
   fail('tested page does not keep the standard tasks pending');
 }
@@ -900,6 +954,9 @@ if (!smallBusiness.includes('Looka Brand Kit')) fail('small-business hub omits t
 if (!smallBusiness.includes('Datastripes')) fail('small-business hub omits the Datastripes hands-on note');
 if (smallBusiness.includes('None of the five use-case pages has a hands-on note')) {
   fail('small-business hub still says the spreadsheet page has no hands-on note');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 17 Nov 2026: Zotero 10.0.8 resolved 3/3 identifiers')) {
+  fail('llms-full.txt is missing the Zotero quotable line');
 }
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
@@ -1106,6 +1163,9 @@ const flashAvoid = flashcards.split('class="card pick avoid"')[1]?.split('</sect
 if (!flashTop.includes('Anki') || !flashTop.includes('Hands-on test 16 Nov 2026')) {
   fail('Anki desktop card is missing its hands-on label');
 }
+if (!flashTop.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
+  fail('Anki desktop card is missing the quotable line');
+}
 if (flashTop.includes('Pending hands-on test')) fail('Anki desktop card still has a pending hands-on label');
 if (!flashBudget.includes('AnkiWeb') || !flashBudget.includes('Pending hands-on test')) {
   fail('AnkiWeb lost its pending hands-on label');
@@ -1165,6 +1225,9 @@ const citeBudget = citations.split('class="card pick budget"')[1]?.split('class=
 const citeAvoid = citations.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
 if (!citeTop.includes('Zotero') || !citeTop.includes('Hands-on test 17 Nov 2026')) {
   fail('Zotero desktop card is missing its hands-on label');
+}
+if (!citeTop.includes('Tested 17 Nov 2026: Zotero 10.0.8 resolved 3/3 identifiers')) {
+  fail('Zotero desktop card is missing the quotable line');
 }
 if (citeTop.includes('Pending hands-on test')) fail('Zotero desktop card still has a pending hands-on label');
 if (!citeBudget.includes('Zotero storage') || !citeBudget.includes('Pending hands-on test')) {
@@ -1292,6 +1355,34 @@ for (const phrase of [
 }
 if (voiceCompare.includes('Hands-on test 10 Nov') || voiceCompare.includes('Hands-on test 9 Nov')) {
   fail('voiceover comparison claims a hands-on test');
+}
+const grammarlyComparePath = pathToFile(`${base}/compare/grammarly-vs-languagetool/`);
+const grammarlyCompare = grammarlyComparePath && existsSync(grammarlyComparePath) ? readFileSync(grammarlyComparePath, 'utf8') : '';
+if (!grammarlyCompare) fail('built page is missing Grammarly vs LanguageTool');
+else {
+  for (const phrase of [
+    'Grammarly vs LanguageTool',
+    '$30 USD',
+    '$144 USD',
+    '2,000 characters',
+    '3 AI sentence rephrases a day',
+    'Pending hands-on test',
+    'Not a hands-on test',
+    '4 Nov 2026',
+    '8 planted errors',
+    `${base}/use-cases/proofread-and-edit/`,
+    `${base}/alternatives/grammarly/`,
+    `${base}/tested/`,
+    'id="newsletter"',
+    'id="short-answer"',
+    'id="faq"',
+  ]) {
+    if (!grammarlyCompare.includes(phrase)) fail(`Grammarly vs LanguageTool is missing ${phrase}`);
+  }
+  if (grammarlyCompare.includes('Hands-on test 4 Nov')) fail('Grammarly vs LanguageTool claims a hands-on test');
+  if (!sitemap.includes(`${origin}${base}/compare/grammarly-vs-languagetool/`)) {
+    fail('sitemap is missing Grammarly vs LanguageTool');
+  }
 }
 const productPhoto = readFileSync(pathToFile(`${base}/use-cases/cut-out-a-product-photo/`), 'utf8');
 if (!productPhoto.includes(`${base}/best/ai-product-background-removers/`)) {

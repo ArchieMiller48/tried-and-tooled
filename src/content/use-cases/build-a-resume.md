@@ -54,7 +54,7 @@ Students and anyone else applying for a job who wants a first draft of a resume,
 
 - **You want the AI writer and the search will take months:** Kickresume yearly, at $8/month on the [pricing page](https://www.kickresume.com/en/pricing/).
 - **You only need a simple download, or you have ISIC, ITIC or UNiDAYS:** the free path on the same page.
-- **The sentences still need a proofread:** [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/).
+- **The sentences still need a proofread:** [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/), or the [Grammarly vs LanguageTool](../../compare/grammarly-vs-languagetool/) comparison.
 - **The same facts have to become a short email:** [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/).
 
 Pending hands-on test. Prices were read on 16 Nov 2026.
