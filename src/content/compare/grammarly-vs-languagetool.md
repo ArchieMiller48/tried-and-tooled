@@ -97,4 +97,4 @@ Grammarly and LanguageTool were re-read on 16 Nov 2026. Prices are in the curren
 
 Grammarly's $0, $30, $60 and $144, the prompt counts, and the rewrite sentence are from [grammarly.com/plans](https://www.grammarly.com/plans). LanguageTool's 2,000 characters, 3 rephrases a day, and the missing Premium currency amount are from [languagetool.org/pricing](https://languagetool.org/pricing).
 
-The parent page is [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/). Other swaps, including ProWritingAid, are on [Grammarly alternatives](../../alternatives/grammarly/). The 4 Nov 2026 LanguageTool Basic note is listed on [Tested by us](../../tested/).
+The parent page is [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/). Other swaps, including ProWritingAid, are on [Grammarly alternatives](../../alternatives/grammarly/). The 4 Nov 2026 LanguageTool Basic note is listed on [Tested by us](../../tested/). The 19 Nov 2026 Grammarly Free note is listed on [Tested by us](../../tested/).

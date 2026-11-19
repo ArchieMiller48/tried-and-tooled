@@ -437,6 +437,9 @@ if (existsSync(llms) && existsSync(full)) {
   if (!index.includes('Tested 18 Nov 2026: n8n self-hosted 2.48.5 routed 6 of 6 orders correctly')) {
     fail('llms.txt is missing the n8n quotable line');
   }
+  if (!index.includes('Tested 19 Nov 2026: Grammarly Free, signed out, showed only the first fix')) {
+    fail('llms.txt is missing the Grammarly Free quotable line');
+  }
   if (!index.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms.txt does not advertise the sitemap');
   if (!expanded.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms-full.txt does not advertise the sitemap');
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
@@ -720,6 +723,22 @@ for (const phrase of [
   'Paraphrasing 0/3',
   'No Premium locks',
   'Picky Mode was not opened',
+  'Hands-on test (19 Nov 2026)',
+  'about 11:22 GMT',
+  '247 characters',
+  '9 underlines',
+  'about 5 seconds',
+  'Fix spelling',
+  'Get Grammarly for free to get more',
+  '618 words',
+  '3,355 characters',
+  '709 characters',
+  'about 133 words',
+  'about 21%',
+  'Only 4 suggestions',
+  'no warning',
+  'paraphrasing tool',
+  'no free rewrite',
 ]) {
   if (!proofread.includes(phrase)) fail(`proofread page is missing the hands-on note phrase: ${phrase}`);
 }
@@ -740,7 +759,20 @@ if (!proofBudget.includes('LanguageTool Basic') || !proofBudget.includes('Hands-
 }
 if (proofBudget.includes('Pending hands-on test')) fail('LanguageTool Basic card still has a pending hands-on label');
 if (!proofBudget.includes('No Premium locks in this check')) fail('LanguageTool Basic card omits the Premium-lock result');
-if (proofAvoid.includes('Hands-on test 4 Nov')) fail('Grammarly Free was marked as hands-on tested');
+if (!proofAvoid.includes('Grammarly Free') || !proofAvoid.includes('Hands-on test 19 Nov 2026')) {
+  fail('Grammarly Free card is missing its hands-on label');
+}
+if (!proofAvoid.includes('Tested 19 Nov 2026: Grammarly Free, signed out, showed only the first fix')) {
+  fail('Grammarly Free card is missing the quotable line');
+}
+if (!proofAvoid.includes('709 characters') || !proofAvoid.includes('were not tested')) {
+  fail('Grammarly Free card does not keep the character cap or the untested list');
+}
+if (proofAvoid.includes('Hands-on test 4 Nov')) fail('Grammarly Free was marked with the LanguageTool date');
+if (proofAvoid.includes('Pending hands-on test')) fail('Grammarly Free card has a pending hands-on label');
+if (proofTop.includes('Hands-on test 19 Nov')) fail('Grammarly Pro was marked as hands-on tested on 19 Nov');
+if (proofBudget.includes('Hands-on test 19 Nov')) fail('LanguageTool Basic was marked as hands-on tested on 19 Nov');
+if (proofread.includes('>Tested 19 Nov 2026<')) fail('proofread page was marked as a completed test');
 
 const logos = readFileSync(pathToFile(`${base}/use-cases/design-logos-and-graphics/`), 'utf8');
 for (const phrase of [
@@ -904,7 +936,20 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Sixteen notes exist',
+  'Seventeen notes exist',
+  '19 Nov 2026',
+  'Grammarly Free',
+  '247-character',
+  '9 underlines',
+  'about 5 seconds',
+  'Fix spelling',
+  'Get Grammarly for free to get more',
+  '618-word',
+  '3,355',
+  '709 characters',
+  'about 133 words',
+  'only 4 suggestions',
+  'paraphrasing tool',
   '15 Nov 2026',
   '16 Nov 2026',
   '17 Nov 2026',
@@ -1030,6 +1075,9 @@ if (!tested.includes('Tested 17 Nov 2026: Zotero 10.0.8 resolved 3/3 identifiers
 if (!tested.includes('Tested 18 Nov 2026: n8n self-hosted 2.48.5 routed 6 of 6 orders correctly')) {
   fail('tested page is missing the n8n quotable line');
 }
+if (!tested.includes('Tested 19 Nov 2026: Grammarly Free, signed out, showed only the first fix')) {
+  fail('tested page is missing the Grammarly Free quotable line');
+}
 if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
   fail('tested page is missing the Anki quotable line');
 }
@@ -1065,6 +1113,9 @@ if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 17 Nov 2026
 }
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 18 Nov 2026: n8n self-hosted 2.48.5 routed 6 of 6 orders correctly')) {
   fail('llms-full.txt is missing the n8n quotable line');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 19 Nov 2026: Grammarly Free, signed out, showed only the first fix')) {
+  fail('llms-full.txt is missing the Grammarly Free quotable line');
 }
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
@@ -1106,6 +1157,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Zotero desktop (17
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('n8n self-hosted (18 Nov 2026)')) {
   fail('llms.txt omits the n8n self-hosted note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Grammarly Free (19 Nov 2026)')) {
+  fail('llms.txt omits the Grammarly Free note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -1146,6 +1200,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('APA Style 7th edi
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Successfully imported 1 workflow') || !readFileSync(full, 'utf8').includes('The admin page\'s standard task'))) {
   fail('llms-full.txt omits the n8n self-hosted note or its unrun standard task');
 }
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Get Grammarly for free to get more') || !readFileSync(full, 'utf8').includes('The proofread page\'s standard task'))) {
+  fail('llms-full.txt omits the Grammarly Free note or its unrun standard task');
+}
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
 if (!smallBusiness.includes('Spacefast')) fail('small-business hub omits the Spacefast hands-on note');
@@ -1176,6 +1233,12 @@ if (!smallBusiness.includes('n8n self-hosted note from 18 Nov 2026')) {
 }
 if (!smallBusiness.includes('The admin page stays pending. Zapier, the editor UI, n8n Cloud, AI nodes with a real key, and integrations (Gmail, Sheets, webhooks, schedules) were not part of that check.')) {
   fail('small-business hub marks Zapier, n8n Cloud or an integration as part of the n8n check');
+}
+if (!smallBusiness.includes('Grammarly Free from 19 Nov 2026')) {
+  fail('small-business hub omits the 19 Nov Grammarly Free note');
+}
+if (!smallBusiness.includes('The proofread page stays pending. Grammarly Pro, a signed-in free account, the browser extension, the desktop app and the paraphrasing tool were not part of the 19 Nov Grammarly Free check.')) {
+  fail('small-business hub marks Grammarly Pro or a signed-in account as part of the Grammarly Free check');
 }
 
 const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');

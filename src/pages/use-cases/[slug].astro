@@ -28,7 +28,7 @@ const verified = isoDate(d.lastVerified);
 const pricingVerified = [d.topPick, d.budgetPick]
   .map((tool) => tool.pricing.checked)
   .reduce((latest, day) => (day > latest ? day : latest));
-const handsOnPicks = [d.topPick, d.budgetPick].filter((pick) => pick.handsOn);
+const handsOnPicks = [d.topPick, d.budgetPick, d.avoid].filter((pick) => pick.handsOn);
 const pendingPicks = [d.topPick, d.budgetPick].filter((pick) => !pick.handsOn);
 const mixed = d.testStatus === 'pending' && handsOnPicks.length > 0;
 const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;
@@ -51,6 +51,7 @@ const go = (p: { url: string; affiliateUrl: string | null }) => p.affiliateUrl ?
 const datedNote = d.testStatus === 'pending' && d.testNotes.startsWith('Hands-on note');
 const topQuote = d.topPick.handsOn ? handsOnQuote(entry.id, isoDate(d.topPick.handsOn)) : null;
 const budgetQuote = d.budgetPick.handsOn ? handsOnQuote(entry.id, isoDate(d.budgetPick.handsOn)) : null;
+const avoidQuote = d.avoid.handsOn ? handsOnQuote(entry.id, isoDate(d.avoid.handsOn)) : null;
 const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png`, Astro.site).href;
 ---
 <Base title={meta.title} description={meta.description} jsonLd={jsonLd} ogImage={ogImage} ogAlt={`Tried & Tooled: ${d.title}`} hasNewsletter>
@@ -147,7 +148,17 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
         </div>
         <div class="card pick avoid">
           <div class="label">Avoid for this job</div>
+          {d.avoid.handsOn ? (
+            <p class="meta" style="margin-top:8px"><span class="tag tested">Hands-on test {formatDate(d.avoid.handsOn)}</span></p>
+          ) : null}
           <h3>{d.avoid.name}</h3>
+          {avoidQuote && <p class="quotable">{avoidQuote}</p>}
+          {d.avoid.handsOnSummary && (
+            <details class="hands-on-more">
+              <summary>Full hands-on note for this pick</summary>
+              <p>{d.avoid.handsOnSummary}</p>
+            </details>
+          )}
           <p>{d.avoid.reason}</p>
           {d.avoid.sourceUrl && <p><a href={d.avoid.sourceUrl} rel="nofollow noopener" target="_blank">source<span class="sr-only"> for {d.avoid.name}</span></a></p>}
         </div>
