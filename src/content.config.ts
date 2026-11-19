@@ -44,6 +44,17 @@ const useCases = defineCollection({
       name: z.string(),
       reason: z.string(),
       sourceUrl: z.string().url().optional(),
+      /**
+       * Date of a hands-on check of this avoid alone.
+       * The page stays `pending` until the standard task has been run.
+       */
+      handsOn: z.coerce.date().nullable().default(null),
+      /** Scope line shown on the avoid card. Set only together with `handsOn`. */
+      handsOnSummary: z.string().nullable().default(null),
+    }).superRefine((value, ctx) => {
+      if (value.handsOnSummary && !value.handsOn) {
+        ctx.addIssue({ code: 'custom', message: 'handsOnSummary requires handsOn', path: ['handsOnSummary'] });
+      }
     }),
     stack: z
       .array(z.object({ step: z.string(), tool: z.string(), role: z.string() }))
