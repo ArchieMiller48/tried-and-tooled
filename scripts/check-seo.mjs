@@ -360,16 +360,17 @@ for (const file of htmlFiles) {
 
   if (path === `${base}/newsletter/`) {
     if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
-    for (const issue of ['issue-1', 'issue-2', 'issue-3', 'issue-4', 'issue-5']) {
+    for (const issue of ['issue-1', 'issue-2', 'issue-3', 'issue-4', 'issue-5', 'issue-6']) {
       if (!html.includes(`${base}/newsletter/${issue}/`)) fail(`${path} does not link to ${issue}`);
     }
+    const issue6At = html.indexOf(`${base}/newsletter/issue-6/`);
     const issue5At = html.indexOf(`${base}/newsletter/issue-5/`);
     const issue4At = html.indexOf(`${base}/newsletter/issue-4/`);
     const issue3At = html.indexOf(`${base}/newsletter/issue-3/`);
     const issue2At = html.indexOf(`${base}/newsletter/issue-2/`);
     const issue1At = html.indexOf(`${base}/newsletter/issue-1/`);
-    if (!(issue5At < issue4At && issue4At < issue3At && issue3At < issue2At && issue2At < issue1At)) {
-      fail(`${path} does not list issue 5 first`);
+    if (!(issue6At < issue5At && issue5At < issue4At && issue4At < issue3At && issue3At < issue2At && issue2At < issue1At)) {
+      fail(`${path} does not list issue 6 first`);
     }
   }
 
@@ -441,7 +442,7 @@ if (existsSync(llms) && existsSync(full)) {
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
     if (!index.includes(`${base}${needle}`)) fail(`llms.txt is missing ${needle}`);
   }
-  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`, `${base}/newsletter/issue-5/`]) {
+  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`, `${base}/newsletter/issue-5/`, `${base}/newsletter/issue-6/`]) {
     if (!index.includes(issuePath)) fail(`llms.txt is missing ${issuePath}`);
     if (!expanded.includes(issuePath)) fail(`llms-full.txt is missing ${issuePath}`);
   }
@@ -473,7 +474,7 @@ const sitemap = walk(dist)
   .filter((file) => file.endsWith('.xml') && file.includes('sitemap'))
   .map((file) => readFileSync(file, 'utf8'))
   .join('\n');
-for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`, `${base}/newsletter/issue-5/`]) {
+for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`, `${base}/newsletter/issue-5/`, `${base}/newsletter/issue-6/`]) {
   if (!existsSync(pathToFile(page))) fail(`built page is missing ${page}`);
   if (!sitemap.includes(`${origin}${page}`)) fail(`sitemap is missing ${page}`);
 }
@@ -574,6 +575,87 @@ else {
   if (issue5.includes('beehiiv.com/p/')) fail('issue 5 links to a guessed Beehiiv post URL');
   if (issue5.includes('rel="sponsored"') || issue5.includes('{{') || issue5.includes('first_name')) {
     fail('issue 5 has a sponsored link or a Beehiiv merge tag');
+  }
+}
+const issue6Path = pathToFile(`${base}/newsletter/issue-6/`);
+const issue6 = issue6Path && existsSync(issue6Path) ? readFileSync(issue6Path, 'utf8') : '';
+if (!issue6) fail('built page is missing issue 6');
+else {
+  const issue6Title = attr(issue6, /<title>([^<]*)<\/title>/);
+  if (issue6Title !== 'Tried & Tooled #6: sixteen hands-on notes and an admin stack') {
+    fail(`issue 6 title is ${JSON.stringify(issue6Title)}`);
+  }
+  if (issue6Title.length > 60) fail(`issue 6 title is ${issue6Title.length} characters`);
+  for (const phrase of [
+    'sixteen hands-on notes and an admin stack',
+    'datetime="2026-11-19"',
+    'href="https://archies-newsletter-77bb75.beehiiv.com/"',
+    'now has sixteen notes',
+    'nobody pays to rank',
+    'Gemini 4 Hydrogen',
+    '$1.50 per million input tokens',
+    'ElevenLabs Scribe v3',
+    'Nod by n8n Labs',
+    'Claude Meetings',
+    'Claude Fable 5.2',
+    '$8 / $40 per million tokens',
+    '11 December',
+    'No top or budget pick was replaced',
+    '$0.00 Pro trial',
+    '$30 for one month or $144 for a year',
+    `${base}/use-cases/turn-notes-into-flashcards/`,
+    `${base}/use-cases/write-product-descriptions/`,
+    `${base}/use-cases/keep-a-citation-library/`,
+    `${base}/use-cases/build-a-resume/`,
+    '300 MB of file storage free',
+    '2 GB at $20/year',
+    'Kickresume yearly at $8/mo',
+    `${base}/compare/ideogram-vs-midjourney/`,
+    `${base}/best/ai-thumbnail-makers/`,
+    `${base}/compare/grammarly-vs-languagetool/`,
+    'Ideogram Plus $20/mo',
+    'Pixelcut and Photoroom (14 Nov)',
+    '904×1080',
+    '1200×1433',
+    'ChatGPT signed out (15 Nov)',
+    '116-word',
+    'sourdough loaves',
+    'Anki desktop (16 Nov)',
+    '10 cards imported',
+    'Zotero 10 desktop (17 Nov)',
+    'The MIT press',
+    'n8n self-hosted (18 Nov)',
+    '9-step bakery order workflow',
+    `${base}/tested/`,
+    'class="callout"',
+    'Map it on paper first',
+    'from $19.99/mo',
+    '€20/mo billed annually',
+    'two-step Zaps only',
+    'Community Edition 2.48.5',
+    'about 75 seconds',
+    '2.9 GB',
+    '0.80 seconds',
+    '6 of 6 orders routed correctly',
+    '4 of 4 confirmation emails',
+    'pending hands-on test',
+    'See the admin automation stack',
+    `${base}/use-cases/automate-small-business-admin/`,
+    'fake data that hits every branch',
+    'collection only',
+    'Just hit reply',
+    `${base}/submit/`,
+    `${base}/newsletter/`,
+    'No pay-to-rank and no sponsors in this issue',
+    'None of the links in this issue are affiliate links',
+    'Five daily checks, four new use-case pages, and an n8n workflow',
+    'two comparisons and a new shortlist',
+  ]) {
+    if (!issue6.includes(phrase)) fail(`issue 6 is missing ${phrase}`);
+  }
+  if (issue6.includes('beehiiv.com/p/')) fail('issue 6 links to a guessed Beehiiv post URL');
+  if (issue6.includes('rel="sponsored"') || issue6.includes('{{') || issue6.includes('first_name')) {
+    fail('issue 6 has a sponsored link or a Beehiiv merge tag');
   }
 }
 const sitemapUrls = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
