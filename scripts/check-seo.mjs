@@ -936,7 +936,16 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Seventeen notes exist',
+  'Eighteen notes exist',
+  '20 Nov 2026',
+  'AmIPicked',
+  '3/9',
+  '8/10',
+  'AI recommends you only sometimes',
+  'Here is what we will ask AI',
+  'No checks-left counter',
+  'Cotswolds and Bristol',
+  'ERR_CONNECTION_CLOSED',
   '19 Nov 2026',
   'Grammarly Free',
   '247-character',
@@ -1078,6 +1087,9 @@ if (!tested.includes('Tested 18 Nov 2026: n8n self-hosted 2.48.5 routed 6 of 6 o
 if (!tested.includes('Tested 19 Nov 2026: Grammarly Free, signed out, showed only the first fix')) {
   fail('tested page is missing the Grammarly Free quotable line');
 }
+if (!tested.includes('returned 3/9 for Hobbs House Bakery and 8/10 for Greggs')) {
+  fail('tested page is missing the AmIPicked quotable line');
+}
 if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
   fail('tested page is missing the Anki quotable line');
 }
@@ -1116,6 +1128,9 @@ if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 18 Nov 2026
 }
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 19 Nov 2026: Grammarly Free, signed out, showed only the first fix')) {
   fail('llms-full.txt is missing the Grammarly Free quotable line');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('returned 3/9 for Hobbs House Bakery and 8/10 for Greggs')) {
+  fail('llms-full.txt is missing the AmIPicked quotable line');
 }
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
@@ -1160,6 +1175,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('n8n self-hosted (1
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Grammarly Free (19 Nov 2026)')) {
   fail('llms.txt omits the Grammarly Free note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('AmIPicked (20 Nov 2026)')) {
+  fail('llms.txt omits the AmIPicked note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -1203,6 +1221,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Successfully impo
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Get Grammarly for free to get more') || !readFileSync(full, 'utf8').includes('The proofread page\'s standard task'))) {
   fail('llms-full.txt omits the Grammarly Free note or its unrun standard task');
 }
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Here is what we will ask AI') || !readFileSync(full, 'utf8').includes('The marketing page\'s standard task'))) {
+  fail('llms-full.txt omits the AmIPicked note or its unrun standard task');
+}
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
 if (!smallBusiness.includes('Spacefast')) fail('small-business hub omits the Spacefast hands-on note');
@@ -1239,6 +1260,12 @@ if (!smallBusiness.includes('Grammarly Free from 19 Nov 2026')) {
 }
 if (!smallBusiness.includes('The proofread page stays pending. Grammarly Pro, a signed-in free account, the browser extension, the desktop app and the paraphrasing tool were not part of the 19 Nov Grammarly Free check.')) {
   fail('small-business hub marks Grammarly Pro or a signed-in account as part of the Grammarly Free check');
+}
+if (!smallBusiness.includes('AmIPicked note from 20 Nov 2026')) {
+  fail('small-business hub omits the 20 Nov AmIPicked note');
+}
+if (!smallBusiness.includes('The marketing page stays pending. Buffer Essentials and Metricool Free were not part of that check.')) {
+  fail('small-business hub marks Buffer or Metricool as part of the AmIPicked check');
 }
 
 const writing = readFileSync(pathToFile(`${base}/use-cases/write-posts-and-emails/`), 'utf8');
@@ -1711,6 +1738,84 @@ if (voiceover.includes('Hands-on test 11 Nov')) fail('A voiceover pick was marke
 const voiceConsidered = voiceover.split('<h2>Also considered</h2>')[1]?.split('<h2>Test notes</h2>')[0] ?? '';
 if (!voiceConsidered.includes('Quillo')) fail('Quillo is missing from Also considered');
 if (voiceConsidered.includes('Pending hands-on test')) fail('Quillo is still labelled pending');
+const marketing = readFileSync(pathToFile(`${base}/use-cases/run-marketing-campaigns/`), 'utf8');
+for (const phrase of [
+  'Pending hands-on test',
+  'Standard task still pending',
+  'Hands-on test (20 Nov 2026)',
+  'Here is what we will ask AI',
+  'Ask ChatGPT and Gemini',
+  '3/9',
+  '8/10',
+  'AI recommends you only sometimes',
+  'ERR_CONNECTION_CLOSED',
+  'Cotswolds and Bristol',
+  'not Bath',
+  'about 96 seconds',
+  'about 75 seconds',
+  'about 50 seconds',
+  'about 41 seconds',
+  'This model did not answer',
+  'No llms.txt file',
+  'No structured data',
+  'not checked independently',
+  'Remind me in 30 days',
+  'Five questions are a sample',
+  '$29/month',
+  '$59/month',
+  '$39',
+  '2 months free',
+  'Buffer Essentials and Metricool Free were not part of it',
+  'has not been run',
+  `${base}/tested/`,
+  'datetime="2026-11-16"',
+  'https://amipicked.com/pricing/',
+]) {
+  if (!marketing.includes(phrase)) fail(`marketing page is missing: ${phrase}`);
+}
+const marketingTop = marketing.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const marketingBudget = marketing.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!marketingTop.includes('Buffer Essentials') || marketingTop.includes('Hands-on test')) {
+  fail('Buffer Essentials was marked as hands-on tested');
+}
+if (!marketingBudget.includes('Metricool Free') || marketingBudget.includes('Hands-on test')) {
+  fail('Metricool Free was marked as hands-on tested');
+}
+if (marketing.includes('Hands-on test 20 Nov')) fail('A marketing pick was marked as hands-on tested on 20 Nov');
+const marketingConsidered = marketing.split('<h2>Also considered</h2>')[1]?.split('<h2>Test notes</h2>')[0] ?? '';
+if (!marketingConsidered.includes('AmIPicked')) fail('AmIPicked is missing from Also considered');
+if (marketingConsidered.includes('Pending hands-on test')) fail('AmIPicked is labelled as a pending pick');
+
+const resume = readFileSync(pathToFile(`${base}/use-cases/build-a-resume/`), 'utf8');
+for (const phrase of [
+  'Pending hands-on test',
+  'On 20 Nov 2026 Kickresume Free could not be tested unattended',
+  'no account-free path',
+  'Create My Resume',
+  '/dashboard/create-resume/',
+  '/register/',
+  'requires a password',
+  'LinkedIn, Google and Facebook',
+  'no one-time code or magic link',
+  'Nothing was built',
+  'the AI writer and the free download remain untested',
+  'The page stays pending',
+  'datetime="2026-11-16"',
+]) {
+  if (!resume.includes(phrase)) fail(`resume page is missing: ${phrase}`);
+}
+if (resume.includes('Hands-on note') || resume.includes('Hands-on test (')) {
+  fail('the blocked Kickresume attempt was written up as a hands-on note');
+}
+const resumeTop = resume.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const resumeBudget = resume.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!resumeTop.includes('Kickresume Premium') || resumeTop.includes('Hands-on test')) {
+  fail('Kickresume Premium was marked as hands-on tested');
+}
+if (!resumeBudget.includes('Kickresume Free') || resumeBudget.includes('Hands-on test')) {
+  fail('Kickresume Free was marked as hands-on tested');
+}
+
 for (const page of [
   `${base}/best/ai-product-background-removers/`,
   `${base}/compare/elevenlabs-vs-descript/`,
