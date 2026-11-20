@@ -43,7 +43,7 @@ alsoConsidered: []
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-11-16
-testNotes: "Pending hands-on test. Planned standard task: from the same one-page work history and job ad, generate a one-page resume in each plan, then count invented jobs, dates and skills, and record whether a free download was offered. No resume has been generated for this page."
+testNotes: "Pending hands-on test. Planned standard task: from the same one-page work history and job ad, generate a one-page resume in each plan, then count invented jobs, dates and skills, and record whether a free download was offered. No resume has been generated for this page. On 20 Nov 2026 Kickresume Free could not be tested unattended. There is no account-free path. Create My Resume, Sign Up For Free, and /dashboard/create-resume/ redirect to /register/. Email sign-up requires a password. There is no one-time code or magic link. The other options are LinkedIn, Google and Facebook. Nothing was typed and no account was created. Nothing was built, so the planned task, the AI writer and the free download remain untested. The page stays pending."
 ---
 
 ## Who this is for
@@ -57,4 +57,4 @@ Students and anyone else applying for a job who wants a first draft of a resume,
 - **The sentences still need a proofread:** [Proofread and edit a piece of writing](../../use-cases/proofread-and-edit/), or the [Grammarly vs LanguageTool](../../compare/grammarly-vs-languagetool/) comparison.
 - **The same facts have to become a short email:** [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/).
 
-Pending hands-on test. Prices were read on 16 Nov 2026.
+Pending hands-on test. Prices were read on 16 Nov 2026. On 20 Nov 2026 Kickresume Free could not be tested unattended. From 11:18 UTC, Create My Resume, Sign Up For Free and /dashboard/create-resume/ redirected to the register page. Email sign-up asks you to create a password. LinkedIn, Google and Facebook are the other options. There is no one-time code or magic link. Nothing was typed, no account was created, and nothing was built. The AI writer and the free download were not tested.
