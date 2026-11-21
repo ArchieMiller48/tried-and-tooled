@@ -676,12 +676,73 @@ for (const page of indexable) {
   if (page.canonical !== absolute) fail(`${page.path} canonical is ${page.canonical || '(missing)'}`);
 }
 const research = readFileSync(pathToFile(`${base}/use-cases/research-and-summarise-sources/`), 'utf8');
-for (const phrase of ['26 Oct 2026', '10 Pro searches a month', 'Consensus Meter', '25 seconds', '60 seconds', 'free Consensus account']) {
-  if (!research.includes(phrase)) fail(`research page is missing the hands-on note phrase: ${phrase}`);
+for (const phrase of [
+  '26 Oct 2026',
+  '10 Pro searches a month',
+  'Consensus Meter',
+  '25 seconds',
+  '60 seconds',
+  'free Consensus account',
+  'Pending hands-on test',
+  'Standard task still pending',
+  'Hands-on test (21 Nov 2026)',
+  'Fack\'d',
+  'email code',
+  'no password',
+  'in real time',
+  'from the captions',
+  '0:38',
+  '3 claims',
+  'TalkTV',
+  '6:04',
+  '2 of 2',
+  'Jeremy Kyle',
+  'Stop checking',
+  '6 of 10',
+  '10 free checks',
+  'Go Premium',
+  'Chrome extension',
+  'live streams',
+  'DOM-ready in 0.5 seconds',
+  '0.35 seconds',
+  'weakly, or partly',
+  'Kuenssberg',
+  'Daily Show',
+  '$12/mo',
+  '$49/mo',
+  'https://fackd.com/pricing',
+  'On 21 Nov 2026 Elicit Basic could not be tested',
+  'requires a password',
+  'GitHub, Google and single sign-on',
+  'no email code or magic link',
+  'Nothing was submitted',
+  'Elicit Basic stays pending',
+  'The page stays pending',
+  'Consensus Pro and Elicit Basic were not part of it',
+  'has not been run',
+  `${base}/tested/`,
+  'datetime="2026-11-09"',
+  'https://elicit.com/users/auth?show=signup',
+]) {
+  if (!research.includes(phrase)) fail(`research page is missing: ${phrase}`);
 }
 if (!research.includes('Standard task still pending') || !research.includes('standard task')) {
   fail('research page does not keep the standard task pending');
 }
+const researchTop = research.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const researchBudget = research.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+if (!researchTop.includes('Consensus Pro') || researchTop.includes('Hands-on test')) {
+  fail('Consensus Pro was marked as hands-on tested');
+}
+if (!researchBudget.includes('Elicit Basic') || researchBudget.includes('Hands-on test')) {
+  fail('Elicit Basic was marked as hands-on tested');
+}
+if (research.includes('Hands-on test 21 Nov')) fail('A research pick was marked as hands-on tested on 21 Nov');
+const researchConsidered = research.split('<h2>Also considered</h2>')[1]?.split('<h2>Test notes</h2>')[0] ?? '';
+if (!researchConsidered.includes('Fack&#39;d') || !researchConsidered.includes('https://fackd.com')) {
+  fail('Fack\'d is missing from Also considered');
+}
+if (researchConsidered.includes('Pending hands-on test')) fail('Fack\'d is labelled as a pending pick');
 const translate = readFileSync(pathToFile(`${base}/use-cases/translate-a-document/`), 'utf8');
 for (const phrase of [
   'Hands-on test (3 Nov 2026)',
@@ -936,7 +997,14 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Eighteen notes exist',
+  'Nineteen notes exist',
+  '21 Nov 2026',
+  'Fack\'d',
+  '6 of 10',
+  'Stop checking',
+  'Jeremy Kyle',
+  '2 of 2',
+  'TalkTV',
   '20 Nov 2026',
   'AmIPicked',
   '3/9',
@@ -1090,6 +1158,9 @@ if (!tested.includes('Tested 19 Nov 2026: Grammarly Free, signed out, showed onl
 if (!tested.includes('returned 3/9 for Hobbs House Bakery and 8/10 for Greggs')) {
   fail('tested page is missing the AmIPicked quotable line');
 }
+if (!tested.includes('found 3 claims on a 6-minute TalkTV debate, 2 of 2 opened sources supported the ratings')) {
+  fail('tested page is missing the Fack\'d quotable line');
+}
 if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
   fail('tested page is missing the Anki quotable line');
 }
@@ -1131,6 +1202,9 @@ if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 19 Nov 2026
 }
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('returned 3/9 for Hobbs House Bakery and 8/10 for Greggs')) {
   fail('llms-full.txt is missing the AmIPicked quotable line');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('found 3 claims on a 6-minute TalkTV debate, 2 of 2 opened sources supported the ratings')) {
+  fail('llms-full.txt is missing the Fack\'d quotable line');
 }
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
@@ -1178,6 +1252,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Grammarly Free (19
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('AmIPicked (20 Nov 2026)')) {
   fail('llms.txt omits the AmIPicked note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Fack\'d (21 Nov 2026)')) {
+  fail('llms.txt omits the Fack\'d note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -1223,6 +1300,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Get Grammarly for
 }
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Here is what we will ask AI') || !readFileSync(full, 'utf8').includes('The marketing page\'s standard task'))) {
   fail('llms-full.txt omits the AmIPicked note or its unrun standard task');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Stop checking') || !readFileSync(full, 'utf8').includes('The research page\'s standard task'))) {
+  fail('llms-full.txt omits the Fack\'d note or its unrun standard task');
 }
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
