@@ -1001,7 +1001,21 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Nineteen notes exist',
+  'Twenty notes exist',
+  '23 Nov 2026',
+  'Scam Link Check',
+  'Hands-on test 23 Nov 2026',
+  'royalmaiI-redelivery-uk.com',
+  'We don\'t keep what you paste',
+  'For guidance only; no tool can catch every scam.',
+  '1.0–1.2 seconds',
+  'phishing / scam site',
+  'Not encrypted (http instead of https)',
+  'No known risk found',
+  'No short-link expansion was shown',
+  'uses words scammers often use: redeliver, unpaid',
+  'weak reassurance',
+  'only on this page',
   '21 Nov 2026',
   'Fack\'d',
   '6 of 10',
@@ -1165,6 +1179,9 @@ if (!tested.includes('returned 3/9 for Hobbs House Bakery and 8/10 for Greggs'))
 if (!tested.includes('found 3 claims on a 6-minute TalkTV debate, 2 of 2 opened sources supported the ratings')) {
   fail('tested page is missing the Fack\'d quotable line');
 }
+if (!tested.includes('returned 4 verdicts in about 1.0–1.2 seconds, marked Google') || !tested.includes('test phishing URL Dangerous, and missed a look-alike Royal Mail text')) {
+  fail('tested page is missing the Scam Link Check quotable line');
+}
 if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
   fail('tested page is missing the Anki quotable line');
 }
@@ -1259,6 +1276,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('AmIPicked (20 Nov 
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Fack\'d (21 Nov 2026)')) {
   fail('llms.txt omits the Fack\'d note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Scam Link Check (23 Nov 2026)')) {
+  fail('llms.txt omits the Scam Link Check note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -1307,6 +1327,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Here is what we w
 }
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Stop checking') || !readFileSync(full, 'utf8').includes('The research page\'s standard task'))) {
   fail('llms-full.txt omits the Fack\'d note or its unrun standard task');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('royalmaiI-redelivery-uk.com') || !readFileSync(full, 'utf8').includes('only on the tested page'))) {
+  fail('llms-full.txt omits the Scam Link Check note or files it under a use case');
 }
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');

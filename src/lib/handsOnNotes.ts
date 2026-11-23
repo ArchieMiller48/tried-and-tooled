@@ -4,8 +4,9 @@ export interface HandsOnNote {
   id: string;
   date: string;
   tool: string;
-  useCaseSlug: string;
-  /** A phrase that must already appear in that use-case page. */
+  /** Use-case page this note is filed under. Null when no existing job fits. */
+  useCaseSlug: string | null;
+  /** A phrase that must already appear on the use-case page, or in this note when it has no page. */
   anchor: string;
   /** One dated sentence, copied only from `tested` and `limits`. */
   quote: string;
@@ -21,6 +22,7 @@ export function handsOnQuote(useCaseSlug: string, isoDay: string): string | null
 
 /**
  * The only hands-on notes in the repo, copied from the use-case pages.
+ * A note with no fitting use-case page has a null slug and is listed only on /tested/.
  * Adding a note here without the source page, or the other way round, fails the build.
  */
 export const handsOnNotes: HandsOnNote[] = [
@@ -214,6 +216,16 @@ export const handsOnNotes: HandsOnNote[] = [
     tested: 'Fack\'d, at https://fackd.com, on 21 Nov 2026. It checks claims in a YouTube interview or debate while the video plays. It is not the research page\'s standard task. Sign-in was an email code, with no password. Signed out, the homepage was DOM-ready in 0.5 seconds and load was 0.7 seconds. It showed a search box, "Search YouTube or paste a link", "Add to Chrome", and "First 10 checks free". An already-checked video, "Elon Musk Says He\'s \'Not MAGA\'" (NYT), at https://fackd.com/v/zWeT91uH7LI?aired=2026-11-18, was DOM-ready in 0.35 seconds. It showed 3 claims, each with a timestamp, a speaker, a rating and sources: Supported at 0:53 (SpaceX IPO biggest listing), Missing context at 7:14, and Misleading at 17:17 (Russia disabled all communications). It was unclear whether the signed-out list is capped. The Supported source, Houston Public Media/NPR "SpaceX IPO makes history as largest ever", says the IPO "raised some $75 billion" and "shattered records", so it supports the rating. The Misleading source, Wikipedia "Starlink in the Russo-Ukrainian war", was checked at the opening section only and only weakly or partly supports the rating. Sign-up at fackd.com/signin says "No password. We\'ll send a 6-digit code that works for 10 minutes." The options are an email code or Google. A code was requested at about 11:16 and arrived at 11:16:43. There was no captcha, no SMS and no card. Signed in, the counter read "10 free checks left" and "About 6 min · 10 free checks left". The free check used a video that was not in the library: "\'They Should All Just SHUT UP!\' | Lisa Nandy Hits Back Over Remembrance Sunday Row" (TalkTV, 6:04), at https://fackd.com/v/EFumk-2-qvA. Searches for a Nov 2026 Kuenssberg or budget interview found nothing. The check started at about 11:18:20. The first claim appeared at about 11:19:25, at 0:38. Checks run in real time as the video plays, from the captions. The check finished at about 11:24, when the video ended. The counter fell about one per minute of video, from 10 to 9, then 8, then 7, then 5. The "10 free checks" behaved like about 10 minutes of checking, not 10 videos. Autoplay moved on to an unrelated Daily Show clip, and Fack\'d kept checking until "Stop checking" was clicked. The counter then read 4 left, so the 6-minute video plus the overrun cost 6 of 10. The result was 3 claims: 2 Supported, at 2:02 and 4:17, and 1 Missing context, at 0:38. None were Misleading or False. The 0:38 Missing context claim, on Troubles Bill veteran safeguards, used an RTE article on removing "conditional immunity from prosecution" and Attorney General consent, and that source supports the rating. The 4:17 Supported claim, "Labour councils are pulling out of agreements with Greens", used a LabourList article, "Labour ends co-operation with Greens in 11 local councils", and that source supports the rating. That is 2 of 2. Speaker labels were wrong. Claims were attributed to the host, Jeremy Kyle, even when a panellist said them. Nothing was visibly locked. The only upsell was a "Go Premium" button. There were no errors. Tested 21 Nov 2026: Fack\'d, signed in with an email code, found 3 claims on a 6-minute TalkTV debate, 2 of 2 opened sources supported the ratings, and the check used 6 of 10 free checks.',
     limits: 'Videos longer than about 10 minutes, length limits, the Chrome extension, live streams and Premium were not tested. Prices read on 20 Nov 2026: Free $0 (watch checked videos with no account; 10 free checks after sign-up), Premium $12/mo, Pro $49/mo. Consensus Pro was not part of this check. Elicit Basic, the budget pick, was not part of this check. On 21 Nov 2026 it could not be tested unattended, because email sign-up requires a password. The other options are GitHub, Google and single sign-on. There is no email code or magic link. Nothing was submitted. The research page\'s standard task has not been run. That task is the same research question and the same five PDFs, a 300-word summary in each tool, scored on claims that link to a real passage.',
   },
+  {
+    id: 'scam-link-check-2026-11-23',
+    date: '2026-11-23',
+    tool: 'Scam Link Check',
+    quote: 'Tested 23 Nov 2026: Scam Link Check, free and with no sign-up, returned 4 verdicts in about 1.0–1.2 seconds, marked Google\'s test phishing URL Dangerous, and missed a look-alike Royal Mail text.',
+    useCaseSlug: null,
+    anchor: 'royalmaiI-redelivery-uk.com',
+    tested: 'Scam Link Check, at https://scam-link-check-366963689543.us-central1.run.app/, on 23 Nov 2026. It is free, with no sign-up. The page says "Free · No sign-up · We don\'t keep what you paste". The footer says "For guidance only; no tool can catch every scam." No ads, upsells or limits were seen across 4 checks. Four test messages were used. Each verdict came back in about 1.0–1.2 seconds. Google\'s Safe Browsing test phishing URL was marked "Dangerous". The reasons were "Google\'s safety list flags it as: phishing / scam site" and "Not encrypted (http instead of https)". That verdict was correct. A genuine GOV.UK passport renewal link was marked "No known risk found". That was correct, with no false alarm. A youtu.be short link to a real YouTube video was marked "No known risk found". No short-link expansion was shown, even though its "How it works" says it checks where short links go. A fake Royal Mail unpaid-fee text used a made-up look-alike domain, royalmaiI-redelivery-uk.com, with a capital I. It was marked "No known risk found". That was a miss. The only side note was that the message "uses words scammers often use: redeliver, unpaid". There was no look-alike brand warning and no new-domain warning, despite claiming those checks. Tested 23 Nov 2026: Scam Link Check, free and with no sign-up, returned 4 verdicts in about 1.0–1.2 seconds, marked Google\'s test phishing URL Dangerous, and missed a look-alike Royal Mail text.',
+    limits: 'It is fast and plain-English. It catches links already on Google\'s list, and it missed a fresh look-alike delivery scam, so treat "No known risk found" as weak reassurance. No use-case page covers checking a suspicious text or link, so this note is only on the tested page.',
+  },
 ];
 
 const COVERED = ['research-and-summarise-sources', 'translate-a-document', 'proofread-and-edit', 'design-logos-and-graphics', 'check-if-an-image-is-ai', 'analyse-a-spreadsheet', 'write-posts-and-emails', 'design-an-app-screen', 'vibe-code-an-mvp', 'ai-voiceover', 'cut-out-a-product-photo', 'turn-notes-into-flashcards', 'keep-a-citation-library', 'automate-small-business-admin', 'run-marketing-campaigns'];
@@ -236,6 +248,13 @@ export function assertHandsOnCoverage(entries: CollectionEntry<'use-cases'>[]): 
     throw new Error(`Hands-on coverage changed. Found: ${withNotes.join(', ') || '(none)'}. Expected: ${expected.join(', ')}.`);
   }
   for (const note of handsOnNotes) {
+    if (!note.useCaseSlug) {
+      const own = `${note.quote}\n${note.tested}\n${note.limits}`;
+      if (!own.includes(note.anchor)) {
+        throw new Error(`Hands-on note ${note.id} is missing its anchor.`);
+      }
+      continue;
+    }
     const entry = entries.find((item) => item.id === note.useCaseSlug);
     if (!entry) throw new Error(`Hands-on note ${note.id} points at a missing use case.`);
     if (!pageText(entry).includes(note.anchor)) {

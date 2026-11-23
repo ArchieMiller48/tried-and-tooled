@@ -78,7 +78,7 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
     '',
     'Cite these first. Each line is one dated check. A note is not a completed standard task.',
     '',
-    link('Tested by us', pageUrl(site, '/tested/'), 'Answer: the only hands-on notes are Consensus Free (26 Oct 2026), Perplexity Free (2 Nov 2026), DeepL Free (3 Nov 2026), LanguageTool Basic (4 Nov 2026), Looka Brand Kit (5 Nov 2026), Phrasly AI Image Detector (6 Nov 2026), Datastripes (7 Nov 2026), nixm (8 Nov 2026), Dessn (9 Nov 2026), Spacefast (10 Nov 2026), Quillo (11 Nov 2026), the signed-out Pixelcut and Photoroom web tools (14 Nov 2026), ChatGPT signed out (15 Nov 2026), Anki desktop (16 Nov 2026), Zotero desktop (17 Nov 2026), n8n self-hosted (18 Nov 2026), Grammarly Free (19 Nov 2026), AmIPicked (20 Nov 2026) and Fack\'d (21 Nov 2026). Standard tasks are still pending.'),
+    link('Tested by us', pageUrl(site, '/tested/'), 'Answer: the only hands-on notes are Consensus Free (26 Oct 2026), Perplexity Free (2 Nov 2026), DeepL Free (3 Nov 2026), LanguageTool Basic (4 Nov 2026), Looka Brand Kit (5 Nov 2026), Phrasly AI Image Detector (6 Nov 2026), Datastripes (7 Nov 2026), nixm (8 Nov 2026), Dessn (9 Nov 2026), Spacefast (10 Nov 2026), Quillo (11 Nov 2026), the signed-out Pixelcut and Photoroom web tools (14 Nov 2026), ChatGPT signed out (15 Nov 2026), Anki desktop (16 Nov 2026), Zotero desktop (17 Nov 2026), n8n self-hosted (18 Nov 2026), Grammarly Free (19 Nov 2026), AmIPicked (20 Nov 2026), Fack\'d (21 Nov 2026) and Scam Link Check (23 Nov 2026). Scam Link Check is only on the tested page. Standard tasks are still pending.'),
     ...handsOnNotes.map((note) => `- ${note.quote}`),
     '',
     '## Comparisons',
@@ -423,15 +423,17 @@ function renderHandsOn(site: URL, useCases: CollectionEntry<'use-cases'>[]): str
     '## Hands-on notes',
     '',
     `URL: ${pageUrl(site, '/tested/')}`,
-    'These are the only hands-on notes in the directory. A note is not a completed standard task. The use-case page stays pending.',
+    'These are the only hands-on notes in the directory. A note is not a completed standard task. Where a note sits on a use-case page, that page stays pending.',
     '',
   ];
   for (const note of handsOnNotes) {
-    const title = titles.get(note.useCaseSlug) ?? note.useCaseSlug;
+    const useCaseLine = note.useCaseSlug
+      ? `Use case: ${titles.get(note.useCaseSlug) ?? note.useCaseSlug} (${pageUrl(site, `/use-cases/${note.useCaseSlug}/`)})`
+      : 'Use case: none. This note is only on the tested page.';
     lines.push(
       `### ${note.tool}`,
       `Date: ${formatDate(new Date(`${note.date}T00:00:00.000Z`))}`,
-      `Use case: ${title} (${pageUrl(site, `/use-cases/${note.useCaseSlug}/`)})`,
+      useCaseLine,
       note.quote,
       oneLine(note.tested),
       oneLine(note.limits),
