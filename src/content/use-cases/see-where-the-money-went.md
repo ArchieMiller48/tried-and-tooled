@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Pro $20/mo, or $17/mo billed annually ($200 up front). Max $100/mo. Ultra $200/mo. Personal Finance is a beta on those plans in the US, not a separate price."
     sourceUrl: "https://claude.com/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "Datastripes Public"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Public €0, with a Made with Datastripes credit. Pro €19/month for private projects without that credit."
     sourceUrl: "https://datastripes.com"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "A Claude spending total you do not open"
@@ -42,7 +42,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Pending hands-on test. Planned standard task: from the same exported month of transactions, ask for category totals in Claude Personal Finance and from a CSV chart, then score whether each total matches a hand-added sum and whether the tool shows the rows behind it. No bank was connected for this page."
 ---
 

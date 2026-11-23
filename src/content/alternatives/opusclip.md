@@ -15,7 +15,7 @@ subject:
   pricing:
     summary: "Free $0. Starter $15/mo, monthly only. Pro $29/mo, or $14.50/mo ($174 billed annually). Business is custom. A help doc read on 3 Nov 2026 listed Free 60 processing min/mo, Starter 150, Pro 300/mo or 3,600/year. That help doc was not re-read on 9 Nov."
     sourceUrl: "https://www.opus.pro/pricing"
-    checked: 2026-11-09
+    checked: 2026-11-23
   sources:
     - label: "Processing minutes, and Pro as the only monthly-or-yearly plan"
       url: "https://help.opus.pro/docs/article/plans-and-credits"
@@ -28,7 +28,7 @@ alternatives:
     pricing:
       summary: "Free $0 (60 media min/mo, 720p, Create Clips marked Limited). Hobbyist $16/mo billed annually ($24/mo month to month): 10 media hours, 400 AI credits, 1080p watermark-free."
       sourceUrl: "https://www.descript.com/pricing"
-      checked: 2026-11-03
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
   - name: "Vizard"
@@ -48,7 +48,7 @@ alternatives:
     pricing:
       summary: "No free plan on the pricing page. Basic $29/mo, or $14/mo on the yearly card, for 100 clips/mo. Structured data lists Basic yearly as $174/year. Pro $79/mo or $39/mo on the yearly card; structured data lists $474/year."
       sourceUrl: "https://klap.app/pricing"
-      checked: 2026-11-03
+      checked: 2026-11-23
     sources:
       - label: "One video with no card; paid plans required to download and post"
         url: "https://klap.app/tools/ai-video-clipping-tool"
@@ -60,7 +60,7 @@ alternatives:
     pricing:
       summary: "Starter $19/mo, Pro $39/mo, Business $69/mo, billed monthly. Yearly billing is described as up to 41% less, and the page does not print that dollar amount."
       sourceUrl: "https://www.submagic.co/pricing"
-      checked: 2026-11-03
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
 verdicts:

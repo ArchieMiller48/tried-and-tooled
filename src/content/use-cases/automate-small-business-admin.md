@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free: $0, 100 tasks/mo, two-step Zaps only. Professional from $19.99/mo. A yearly toggle is labelled Save 33%. A separate $29.99 monthly figure was not in the page HTML on 9 Nov 2026. Agents Free: 400 activities/mo."
     sourceUrl: "https://zapier.com/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "n8n"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Cloud Starter €20/mo billed annually (1,600 Assistant credits/mo). Pro €50/mo billed annually. Self-hosted Community Edition available on GitHub."
     sourceUrl: "https://n8n.io/pricing/"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
   handsOn: 2026-11-18
   handsOnSummary: "n8n 2.48.5, self-hosted Community Edition, installed with npm on Linux x86_64 (Node v24.22.1, npm 11.21.1) on 18 Nov 2026. Fresh local SQLite database. No n8n account, no n8n Cloud, no licence key, no card and no sign-up. Run with the n8n CLI. The editor UI was not used. npm install took 74.9 seconds and node_modules was 2.9 GB. A 9-node Hollow Oak Bakery order workflow, written by us as JSON, imported in 5.8 seconds after 344 database migrations. The first execute finished in 3.83 seconds wall clock, and a second run in 3.51 seconds. The workflow itself ran in 0.80 seconds. 6 of 6 orders routed correctly, 6 of 6 totals were right, and 4 of 4 confirmation emails included the collection line. Both CSVs were written. n8n executed the workflow. The rules and email wording were written by us. No AI was involved. The editor UI, n8n Cloud, AI nodes with a real key, and integrations (Gmail, Google Sheets, webhooks, schedules) were not tested."
@@ -47,7 +47,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Hands-on note, 18 Nov 2026: n8n 2.48.5 only, self-hosted Community Edition, installed with npm on Linux x86_64 (Node v24.22.1, npm 11.21.1). Fresh local SQLite database in its own user folder. No n8n account, no n8n Cloud trial, no licence key, no card and no sign-up. Run with the n8n CLI. The editor UI was not used. It is not the standard task. npm install took 74.9 seconds. node_modules was 2.9 GB (1,096 top-level packages). npm 11 skipped install scripts for 14 packages. n8n still ran. Import printed \"Successfully imported 1 workflow.\" after 5.8 seconds, most of that 344 database migrations. The workflow id was HollowOakOrder01. The first execute took 3.83 seconds wall clock, status success. A second run took 3.51 seconds. The workflow itself ran in 0.80 seconds. 6 orders went in, 2 were flagged and 4 were confirmed. Routing was 6 of 6 correct. Totals were 6 of 6 correct (£18.00, £36.00, £8.80 and £18.00 on the confirmations, £80.80 together, and £13.50 and £16.80 on the problem rows). 4 of 4 confirmation bodies included the line \"Saturday 9–11am collection, Bath, no delivery\". The CSVs were 313 bytes and 1,442 bytes. The rules and email wording were written by us. n8n executed them. No AI was involved. An OpenAI message node with no credential failed with \"Node does not have any credentials set\". Pending hands-on test. Planned standard task: build 'new website enquiry → AI-drafted reply saved as a draft + CRM row + Slack alert' in each tool. We'll record build time, the tasks or executions used per run, the cost per 100 enquiries, and what happens when a step fails. The editor UI, n8n Cloud, AI nodes with a real key, and integrations (Gmail, Google Sheets, Stripe, webhooks, schedules) were not part of this check."
 ---
 

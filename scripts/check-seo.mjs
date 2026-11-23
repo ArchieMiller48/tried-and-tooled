@@ -73,6 +73,10 @@ const auditedForLength = new Set([
   `${base}/use-cases/write-product-descriptions/`,
   `${base}/use-cases/keep-a-citation-library/`,
   `${base}/use-cases/build-a-resume/`,
+  `${base}/use-cases/add-captions-to-a-video/`,
+  `${base}/use-cases/check-if-writing-is-ai/`,
+  `${base}/use-cases/clean-up-a-noisy-recording/`,
+  `${base}/use-cases/upscale-a-low-resolution-image/`,
   `${base}/use-cases/ai-thumbnails-and-images/`,
   `${base}/use-cases/write-posts-and-emails/`,
   `${base}/use-cases/design-logos-and-graphics/`,
@@ -757,7 +761,7 @@ for (const phrase of [
 ]) {
   if (!translate.includes(phrase)) fail(`translate page is missing the hands-on note phrase: ${phrase}`);
 }
-if (!translate.includes('datetime="2026-11-16"')) fail('translate page does not show 16 Nov 2026 as dateModified');
+if (!translate.includes('datetime="2026-11-23"')) fail('translate page does not show 23 Nov 2026 as dateModified');
 const topCard = translate.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
 const budgetCard = translate.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
 if (!topCard.includes('DeepL Pro Individual') || !topCard.includes('Pending hands-on test')) {
@@ -803,7 +807,7 @@ for (const phrase of [
 ]) {
   if (!proofread.includes(phrase)) fail(`proofread page is missing the hands-on note phrase: ${phrase}`);
 }
-if (!proofread.includes('datetime="2026-11-16"')) fail('proofread page does not show 16 Nov 2026 as dateModified');
+if (!proofread.includes('datetime="2026-11-23"')) fail('proofread page does not show 23 Nov 2026 as dateModified');
 if (!proofread.includes('Standard task still pending') || !proofread.includes('standard task')) {
   fail('proofread page does not keep the standard task pending');
 }
@@ -955,7 +959,7 @@ for (const phrase of [
 ]) {
   if (!sheet.includes(phrase)) fail(`spreadsheet page is missing the hands-on note phrase: ${phrase}`);
 }
-if (!sheet.includes('datetime="2026-11-16"')) fail('spreadsheet page does not show 16 Nov 2026 as dateModified');
+if (!sheet.includes('datetime="2026-11-23"')) fail('spreadsheet page does not show 23 Nov 2026 as dateModified');
 if (!sheet.includes('Standard task still pending') || !sheet.includes('standard task')) {
   fail('spreadsheet page does not keep the standard task pending');
 }
@@ -1378,7 +1382,7 @@ for (const phrase of [
   'Optional cookies were rejected',
   'No model name or message limit was shown',
   `${base}/tested/`,
-  'datetime="2026-11-16"',
+  'datetime="2026-11-23"',
 ]) {
   if (!writing.includes(phrase)) fail(`writing page is missing the hands-on note phrase: ${phrase}`);
 }
@@ -1443,7 +1447,7 @@ for (const phrase of [
   'Described as free',
   '$25',
   `${base}/tested/`,
-  'datetime="2026-11-16"',
+  'datetime="2026-11-23"',
 ]) {
   if (!flashcards.includes(phrase)) fail(`flashcards page is missing the hands-on note phrase: ${phrase}`);
 }
@@ -1506,7 +1510,7 @@ for (const phrase of [
   '$60/year',
   '$120/year',
   `${base}/tested/`,
-  'datetime="2026-11-16"',
+  'datetime="2026-11-23"',
 ]) {
   if (!citations.includes(phrase)) fail(`citation page is missing the hands-on note phrase: ${phrase}`);
 }
@@ -1577,7 +1581,7 @@ for (const phrase of [
   'has not been run',
   '100 tasks/mo',
   `${base}/tested/`,
-  'datetime="2026-11-16"',
+  'datetime="2026-11-23"',
 ]) {
   if (!admin.includes(phrase)) fail(`admin page is missing the hands-on note phrase: ${phrase}`);
 }
@@ -1635,7 +1639,7 @@ for (const phrase of [
   'Standard task still pending',
   'has not been run',
   `${base}/tested/`,
-  'datetime="2026-11-16"',
+  'datetime="2026-11-23"',
 ]) {
   if (!vibe.includes(phrase)) fail(`vibe-code page is missing: ${phrase}`);
 }
@@ -1666,7 +1670,7 @@ for (const phrase of [
   'No export or download control was seen',
   'has not been run',
   `${base}/tested/`,
-  'datetime="2026-11-16"',
+  'datetime="2026-11-23"',
 ]) {
   if (!screen.includes(phrase)) fail(`app-screen page is missing the hands-on note phrase: ${phrase}`);
 }
@@ -1771,7 +1775,7 @@ for (const phrase of [
   'remains pending for Photoroom Pro',
   'has not been run',
   `${base}/tested/`,
-  'datetime="2026-11-16"',
+  'datetime="2026-11-23"',
 ]) {
   if (!productPhoto.includes(phrase)) fail(`product photo page is missing: ${phrase}`);
 }
@@ -1848,7 +1852,7 @@ for (const phrase of [
   'Buffer Essentials and Metricool Free were not part of it',
   'has not been run',
   `${base}/tested/`,
-  'datetime="2026-11-16"',
+  'datetime="2026-11-23"',
   'https://amipicked.com/pricing/',
 ]) {
   if (!marketing.includes(phrase)) fail(`marketing page is missing: ${phrase}`);
@@ -1880,7 +1884,7 @@ for (const phrase of [
   'Nothing was built',
   'the AI writer and the free download remain untested',
   'The page stays pending',
-  'datetime="2026-11-16"',
+  'datetime="2026-11-23"',
 ]) {
   if (!resume.includes(phrase)) fail(`resume page is missing: ${phrase}`);
 }

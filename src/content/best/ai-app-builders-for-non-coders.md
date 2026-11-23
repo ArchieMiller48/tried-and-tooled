@@ -8,7 +8,7 @@ secondaryQueries:
 parent: "vibe-code-an-mvp"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-09
+lastVerified: 2026-11-23
 picks:
   - name: "Lovable"
     url: "https://lovable.dev"
@@ -18,7 +18,7 @@ picks:
     pricing:
       summary: "Free: 5 build credits/day, capped at 30/month. Pro from $25/month for 100 credits, or $250/year ($21/month)."
       sourceUrl: "https://docs.lovable.dev/introduction/subscription-plans"
-      checked: 2026-11-09
+      checked: 2026-11-23
     sources:
       - label: "What free and paid include"
         url: "https://lovable.dev/pricing"
@@ -33,7 +33,7 @@ picks:
     pricing:
       summary: "Free: $0, 1M tokens/month, 300K tokens/day, Bolt branding. Pro $25/month billed monthly, from 10M tokens, custom domain, branding removed. A Yearly control says save up to 28%. No yearly dollar amount and no tax asterisk were in the HTML."
       sourceUrl: "https://bolt.new/pricing"
-      checked: 2026-11-09
+      checked: 2026-11-23
     sources:
       - label: "What Bolt is"
         url: "https://support.bolt.new/get-started/intro-bolt"
@@ -48,7 +48,7 @@ picks:
     pricing:
       summary: "Starter free, at no cost, with one published app that goes down after 30 days. Core $18/mo billed annually ($20 struck through). Pro $90/mo billed annually ($100 struck through)."
       sourceUrl: "https://replit.com/pricing"
-      checked: 2026-11-09
+      checked: 2026-11-23
     sources:
       - label: "Starter plan"
         url: "https://docs.replit.com/billing/plans/starter-plan"
@@ -65,7 +65,7 @@ picks:
     pricing:
       summary: "Free (limited agent and chat). Plus $8/month, Grok models only. Premium $30/month. Super $100/month. Ultra $200/month. Third-party models at API list price from Premium, billed separately."
       sourceUrl: "https://cursor.com/pricing"
-      checked: 2026-11-09
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
 verdicts:

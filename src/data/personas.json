@@ -52,7 +52,11 @@
     { "id": "flashcards", "label": "Flashcards" },
     { "id": "listings", "label": "Product listings" },
     { "id": "citations", "label": "Citations" },
-    { "id": "resume", "label": "Resumes" }
+    { "id": "resume", "label": "Resumes" },
+    { "id": "captions", "label": "Captions" },
+    { "id": "ai-writing", "label": "AI-written text" },
+    { "id": "audio-cleanup", "label": "Noisy audio" },
+    { "id": "upscale", "label": "Upscaling images" }
   ],
   "budgets": [
     {
@@ -205,6 +209,26 @@
       "roles": ["student", "everyday", "researcher"],
       "skills": ["none", "some", "comfortable"],
       "goals": ["resume"]
+    },
+    "add-captions-to-a-video": {
+      "roles": ["creator", "marketer", "small-business"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["captions"]
+    },
+    "check-if-writing-is-ai": {
+      "roles": ["student", "researcher", "everyday"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["ai-writing"]
+    },
+    "clean-up-a-noisy-recording": {
+      "roles": ["creator", "everyday", "small-business"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["audio-cleanup"]
+    },
+    "upscale-a-low-resolution-image": {
+      "roles": ["designer", "small-business", "marketer"],
+      "skills": ["none", "some", "comfortable"],
+      "goals": ["upscale"]
     }
   }
 }

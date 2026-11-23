@@ -8,7 +8,7 @@ secondaryQueries:
 parent: "ai-code-review"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-02
+lastVerified: 2026-11-23
 picks:
   - name: "CodeRabbit"
     url: "https://www.coderabbit.ai"
@@ -18,7 +18,7 @@ picks:
     pricing:
       summary: "Annual prices on the pricing page: Essentials $24/user/mo, Team $48/user/mo, Advanced $72/user/mo. FAQ month-to-month: Essentials $30, Team $60. Public repositories: free reviews forever."
       sourceUrl: "https://www.coderabbit.ai/pricing"
-      checked: 2026-11-02
+      checked: 2026-11-23
     sources:
       - label: "Free plan, hourly limits, Advanced at $90 month-to-month"
         url: "https://docs.coderabbit.ai/management/plans"
@@ -31,7 +31,7 @@ picks:
     pricing:
       summary: "Starter free (1 active developer, 50 credits/month, unlimited repositories). Pro has no seat fee: $1 per credit, shared across the organisation. Base review 1 credit, Plus 3, Apex 10."
       sourceUrl: "https://www.greptile.com/pricing"
-      checked: 2026-11-02
+      checked: 2026-11-23
     sources:
       - label: "Reviews pause at a zero balance"
         url: "https://www.greptile.com/docs/code-review-bot/billing-seats"
@@ -44,7 +44,7 @@ picks:
     pricing:
       summary: "Free $0. Pro $10/month. Pro+ $39/month. Max $100/month. Plans page lists total GitHub AI Credits of $15/month (Pro), $70 (Pro+) and $200 (Max). 1 AI credit = $0.01."
       sourceUrl: "https://github.com/features/copilot/plans"
-      checked: 2026-11-02
+      checked: 2026-11-23
     sources:
       - label: "Business $19, Enterprise $39, and who gets code review"
         url: "https://docs.github.com/en/copilot/get-started/plans"
@@ -59,7 +59,7 @@ picks:
     pricing:
       summary: "Bugbot is on the pricing table from Premium at $30/month, not on Free or Plus. Super $100/month. Ultra $200/month. Teams from $30/user/month. Third-party models at API list price, billed separately."
       sourceUrl: "https://cursor.com/pricing"
-      checked: 2026-11-02
+      checked: 2026-11-23
     sources:
       - label: "Average Bugbot run and usage billing"
         url: "https://cursor.com/help/account-and-billing/bugbot-usage-based-billing"
@@ -72,7 +72,7 @@ picks:
     pricing:
       summary: "Open source free on public repos. Pro $12/developer/month billed annually ($15 month-to-month, per the FAQ). Team $24 annually ($30 month-to-month). 14-day Team trial, no card."
       sourceUrl: "https://www.sourcery.ai/pricing"
-      checked: 2026-11-02
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
   - name: "Graphite"
@@ -83,7 +83,7 @@ picks:
     pricing:
       summary: "Hobby free, with limited AI reviews and no count given. Starter $20/user/month billed annually. Team $40/user/month billed annually, with unlimited AI reviews. Enterprise custom. Monthly prices were not in the page HTML."
       sourceUrl: "https://graphite.com/pricing"
-      checked: 2026-11-02
+      checked: 2026-11-23
     sources:
       - label: "30-day Team trial"
         url: "https://graphite.com/docs/billing-plans"
@@ -96,7 +96,7 @@ picks:
     pricing:
       summary: "No seat fee. $100 free usage for a new workspace. GitHub correctness review from $0.025/KB (Budget, $0.25 minimum) to $0.20/KB (Ultra, $2 minimum). Balanced default is $0.05/KB, $0.50 minimum."
       sourceUrl: "https://docs.macroscope.com/pricing"
-      checked: 2026-11-02
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
 verdicts:

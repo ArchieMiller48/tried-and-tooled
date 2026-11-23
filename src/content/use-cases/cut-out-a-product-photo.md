@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Pro $7.50/mo billed yearly, 8,000 AI credits and 1,000 exports. Max $20.99/mo billed yearly, 25,000 AI credits and 3,000 exports. A zero-price plan amount was not in the HTML."
     sourceUrl: "https://www.photoroom.com/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "Pixelcut Free"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free $0/month. Limited background removal, and export without a watermark."
     sourceUrl: "https://www.pixelcut.ai/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "Pixelcut Free, for a shop catalogue"
@@ -46,10 +46,10 @@ alsoConsidered:
     pricing:
       summary: "Pro is shown as $10 and $8 per month, billed yearly, with unlimited background removal, a commercial licence and 600 AI credits a month."
       sourceUrl: "https://www.pixelcut.ai/pricing"
-      checked: 2026-11-16
+      checked: 2026-11-23
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Hands-on note, 14 Nov 2026: the free signed-out web background removers on Pixelcut and Photoroom only. Photoroom Pro and a Pixelcut Free account were not part of this check, and it is not the standard task. Pending hands-on test. Planned standard task: cut out the same product photo in Photoroom and Pixelcut, place it on a plain background, then score edge errors, whether the label text survives, and what the published plan allows you to do with the file. That task remains pending for Photoroom Pro."
 ---
 

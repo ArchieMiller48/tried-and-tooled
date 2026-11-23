@@ -8,15 +8,15 @@ secondaryQueries:
 parent: "ai-voiceover"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-10
+lastVerified: 2026-11-23
 tools:
   - name: "ElevenLabs"
     url: "https://elevenlabs.io"
     blurb: "The top pick on the parent use case when the voiceover is the job. The pricing page lists Free at $0 with 10k credits a month. Starter is $6 per month, the card on 10 Nov 2026 still showed a first month at $1, and the countdown read 0 days. Starter includes 30k credits, and Commercial License is in the Starter list, along with Instant Voice Cloning. Creator is $22 per month, and the card and the FAQ still showed a first month at $11, with 121k credits and Professional Voice Cloning. The billing docs say paid plans get commercial rights and the free plan is non-commercial with attribution."
     pricing:
-      summary: "Free $0, 10k credits/mo. Starter $6/mo (the card on 10 Nov 2026 still showed a first month at $1; the countdown read 0 days), 30k credits, commercial licence. Creator $22/mo (the card and the FAQ still showed a first month at $11), 121k credits. Annual billing is monthly price times 10, so Starter's equivalent is $5/mo. Pro $99/mo. Scale $299/mo. Business $990/mo."
+      summary: "Free $0, 10k credits/mo. Starter $6/mo (the card on 23 Nov 2026 still showed a first month at $1; a countdown reading 0 days, seen on 10 Nov 2026, was not in the HTML), 30k credits, commercial licence. Creator $22/mo (the card and the FAQ still showed a first month at $11), 121k credits. Annual billing is monthly price times 10, so Starter's equivalent is $5/mo. A sale line says Creator annual costs $99 for the year until 1 December 2026, up to 55% off annual plans. Pro $99/mo. Scale $299/mo. Business $990/mo."
       sourceUrl: "https://elevenlabs.io/pricing"
-      checked: 2026-11-10
+      checked: 2026-11-23
     sources:
       - label: "Paid plans get commercial rights; the free plan is non-commercial with attribution"
         url: "https://elevenlabs.io/docs/overview/administration/billing"
@@ -27,7 +27,7 @@ tools:
     pricing:
       summary: "Free $0: 60 media minutes/mo, export 720p. Hobbyist $16/mo billed annually ($24/mo): 10 media hours, 400 AI credits, 1080p watermark-free, AI Speech with custom voice clones. Creator $24/mo billed annually ($35/mo)."
       sourceUrl: "https://www.descript.com/pricing"
-      checked: 2026-11-10
+      checked: 2026-11-23
     sources:
       - label: "12 October 2026 release notes: voice clones sound closer; pick v4 in AI model settings"
         url: "https://descript.canny.io/changelog/release-roundupoctober-12-2026"

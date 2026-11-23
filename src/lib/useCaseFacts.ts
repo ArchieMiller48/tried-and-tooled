@@ -110,6 +110,10 @@ const SEARCH_TITLES: Record<string, (year: number) => string> = {
   'write-product-descriptions': (year) => `Best AI tools for product copy (${year})`,
   'keep-a-citation-library': (year) => `Best AI tools to store citations (${year})`,
   'build-a-resume': (year) => `Best AI tools for a resume (${year})`,
+  'add-captions-to-a-video': (year) => `Best AI tools to caption a video (${year})`,
+  'check-if-writing-is-ai': (year) => `Best AI tools to check AI writing (${year})`,
+  'clean-up-a-noisy-recording': (year) => `Best AI tools to clean a voice note (${year})`,
+  'upscale-a-low-resolution-image': (year) => `Best AI tools to upscale a photo (${year})`,
 };
 
 /** Fact sentences for the meta description. The checked date and test status are appended from frontmatter. */
@@ -133,7 +137,7 @@ const SEARCH_BLURBS: Record<string, string> = {
   'run-marketing-campaigns': 'Buffer Essentials schedules the campaign; Metricool Free covers 20 posts a month. Buffer Free queues 10.',
   'design-logos-and-graphics': 'Canva Pro for logos and graphics; Looka Brand Kit is $96/year. Skip Canva Business when you work solo.',
   'analyse-a-spreadsheet': 'Google AI Pro cites web cells in Sheets. Claude Free includes code execution. Plus does not list Sheets.',
-  'answer-customer-questions': 'Tidio Lyro from $32.50/mo for site answers. Tidio Free is $0. The 50 free Lyro chats do not refresh.',
+  'answer-customer-questions': 'Tidio Starter with Lyro is $33/mo on the annual view. Free is $0. The 50 free Lyro chats do not refresh.',
   'translate-a-document': 'DeepL Individual is €7.49/mo yearly for documents. Free caps at 50,000 characters and one file.',
   'proofread-and-edit': 'Grammarly Pro lists full-sentence rewrites. LanguageTool Free checks 2,000 characters.',
   'check-if-an-image-is-ai': "Phrasly's image detector is free with no sign-up. Its over 99% figure is the vendor's claim.",
@@ -144,6 +148,10 @@ const SEARCH_BLURBS: Record<string, string> = {
   'write-product-descriptions': 'Sidekick writes shop text on Shopify Basic. Claude Free drafts one. Do not publish it unread.',
   'keep-a-citation-library': 'Zotero keeps the citations. 300 MB of file sync is free. Unlimited storage is $120 a year.',
   'build-a-resume': 'Kickresume yearly is $8/mo for the AI writer. A basic download is free. Qualifying students are free.',
+  'add-captions-to-a-video': 'Kapwing Pro is $16 on the annual view and drops the watermark. Free exports keep one.',
+  'check-if-writing-is-ai': 'Grammarly Pro lists AI-text detection. GPTZero Free scans 10,000 words a month.',
+  'clean-up-a-noisy-recording': 'Adobe Enhance Speech is free for one voice file. Auphonic Free covers 2 hours and adds a jingle.',
+  'upscale-a-low-resolution-image': 'Magnific Premium is $14.50/mo yearly and lists the upscaler. Upscayl is free.',
 };
 
 export function textMentionsFree(text: string): boolean {

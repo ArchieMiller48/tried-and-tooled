@@ -8,15 +8,15 @@ secondaryQueries:
 parent: "ai-voiceover"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-10
+lastVerified: 2026-11-23
 subject:
   name: "ElevenLabs"
   url: "https://elevenlabs.io"
   blurb: "This is the top pick on the parent use case for a video voiceover. The pricing page lists Free at $0 with 10k credits a month. Starter is $6 per month after a card that still showed a first month at $1, with 30k credits, and Commercial License is in the Starter list. Creator is $22 per month, and both the card and the FAQ still showed a first month at $11, with 121k credits. A countdown beside the $1 offer read 0 days. The billing docs say paid plans get commercial rights and the free plan is non-commercial with attribution."
   pricing:
-    summary: "Free $0, 10k credits/mo. Starter $6/mo (the card on 10 Nov 2026 still showed a first month at $1; the countdown read 0 days), 30k credits, commercial licence. Creator $22/mo (the card and the FAQ still showed a first month at $11), 121k credits. Annual billing is monthly price times 10, so Starter's equivalent is $5/mo. Pro $99/mo. Scale $299/mo. Business $990/mo."
+    summary: "Free $0, 10k credits/mo. Starter $6/mo (the card on 23 Nov 2026 still showed a first month at $1; a countdown reading 0 days, seen on 10 Nov 2026, was not in the HTML), 30k credits, commercial licence. Creator $22/mo (the card and the FAQ still showed a first month at $11), 121k credits. Annual billing is monthly price times 10, so Starter's equivalent is $5/mo. A sale line says Creator annual costs $99 for the year until 1 December 2026, up to 55% off annual plans. Pro $99/mo. Scale $299/mo. Business $990/mo."
     sourceUrl: "https://elevenlabs.io/pricing"
-    checked: 2026-11-10
+    checked: 2026-11-23
   sources:
     - label: "Paid plans get commercial rights; the free plan is non-commercial with attribution"
       url: "https://elevenlabs.io/docs/overview/administration/billing"
@@ -29,7 +29,7 @@ alternatives:
     pricing:
       summary: "Free $0: 60 media minutes/mo, export 720p. Hobbyist $16/mo billed annually ($24/mo): 10 media hours, 400 AI credits, 1080p watermark-free, AI Speech with custom voice clones. Creator $24/mo billed annually ($35/mo)."
       sourceUrl: "https://www.descript.com/pricing"
-      checked: 2026-11-10
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
   - name: "Typecast"
@@ -39,7 +39,7 @@ alternatives:
     pricing:
       summary: "Free $0: 3,000 lifetime download credits (~5 mins), attribution required. Basic $5/mo or $54 billed yearly: 30,000 credits/mo (~35 mins), commercial licence. Plus $19/mo or $204 billed yearly. Pro $29/mo or $312 billed yearly. Business $69/mo or $744 billed yearly."
       sourceUrl: "https://typecast.ai/pricing/"
-      checked: 2026-11-10
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
   - name: "Narakeet"
@@ -49,7 +49,7 @@ alternatives:
     pricing:
       summary: "Free account: 20 conversions, commercial use No. One-time top-ups: $6 for 30 minutes ($0.20 per minute in the FAQ), $45 for 300, $100 for 1,000, $200 for 2,500, $500 for 10,000. Credits do not expire."
       sourceUrl: "https://www.narakeet.com/docs/pricing/"
-      checked: 2026-11-10
+      checked: 2026-11-23
     sources:
       - label: "Commercial use is allowed on a commercial account and not on a free account"
         url: "https://www.narakeet.com/docs/usage-rights-copyright/"
@@ -61,7 +61,7 @@ alternatives:
     pricing:
       summary: "Trial is free: 3 download minutes/mo, no commercial rights. Starter $10/mo billed annually ($120/year, 240 minutes/year) or $19/mo (20 minutes/mo), full commercial rights. Pro $33/mo billed annually ($396/year, 2,160 minutes/year) or $49/mo (180 minutes/mo)."
       sourceUrl: "https://www.wellsaid.io/pricing"
-      checked: 2026-11-10
+      checked: 2026-11-23
     sources:
       - label: "All paid plans include full commercial usage rights for public-facing content"
         url: "https://www.wellsaid.io/pricing"

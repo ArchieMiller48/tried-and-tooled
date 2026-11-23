@@ -8,7 +8,7 @@ secondaryQueries:
 parent: "translate-a-document"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-04
+lastVerified: 2026-11-23
 picks:
   - name: "DeepL Pro Individual"
     url: "https://www.deepl.com/en/translator"
@@ -18,7 +18,7 @@ picks:
     pricing:
       summary: "Individual €7.49/mo billed annually, VAT included. 300,000 characters a month and 3 file translations, up to 30 MB."
       sourceUrl: "https://www.deepl.com/en/pro"
-      checked: 2026-11-04
+      checked: 2026-11-23
     sources:
       - label: "Pro subscribers: text is not used to train DeepL's models"
         url: "https://www.deepl.com/en/pro"
@@ -31,7 +31,7 @@ picks:
     pricing:
       summary: "Free version: 50,000 characters a month and 1 file translation, up to 5 MB."
       sourceUrl: "https://www.deepl.com/en/pro"
-      checked: 2026-11-04
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
   - name: "Google Cloud Translation"
@@ -42,7 +42,7 @@ picks:
     pricing:
       summary: "Advanced NMT text: first 500,000 characters a month free, as a $10 credit. The row lists $20 after that. NMT document translation is $0.08 a page."
       sourceUrl: "https://cloud.google.com/translate/pricing"
-      checked: 2026-11-04
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
   - name: "Azure Translator"
@@ -53,7 +53,7 @@ picks:
     pricing:
       summary: "F0 Free: 2 million characters a month of standard translation and custom translation training. Paid dollar amounts on the page did not render."
       sourceUrl: "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/translator/"
-      checked: 2026-11-04
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
 verdicts:

@@ -11,16 +11,16 @@ topPick:
   pricing:
     summary: "Free $0 (chat, Claude Docs, up to 5 projects). Pro $20/mo, or $17/mo billed annually ($200 up front)."
     sourceUrl: "https://claude.com/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "ChatGPT (Free)"
   url: "https://chatgpt.com"
   why: "ChatGPT's pricing page lists unlimited everyday text chats with GPT-6 on the free plan, subject to abuse guardrails. Uploads, memory and deep research stay limited. Enough to draft a post when you are not paying for a second writing subscription."
   pricing:
-    summary: "Free: $0. Unlimited everyday text chats with GPT-6, subject to abuse guardrails. Uploads, memory and deep research are limited."
+    summary: "Free: $0. The card says unlimited text chats with GPT-6, subject to abuse guardrails. The comparison table marks GPT-6 Luna as included and GPT-6.1 Sol, GPT-6 Astra and GPT-6 Sol as not included. Uploads, memory and deep research are limited. A heading says Pro $100, and that price cell says From. A dollar amount for Go or Plus was not in the HTML."
     sourceUrl: "https://openai.com/chatgpt/pricing/"
-    checked: 2026-11-02
+    checked: 2026-11-23
   affiliateUrl: null
   handsOn: 2026-11-15
   handsOnSummary: "Signed out on chatgpt.com on 15 Nov 2026, with no account. This is not a logged-in Free account. Optional cookies were rejected. The Ask ChatGPT box returned a 116-word Hollow Oak Bakery email in about 7 seconds (11:20:23.6 to 11:20:30.7 UTC), in an Email card. It kept the bakery name, Bath, founded 2026, £18, Saturday 9am–11am collection, no delivery, croissants and cinnamon buns. Sourdough loaves were not mentioned. No banned words, and no invented awards, street address, extra prices, website, hours or products. A still of a wooden shop sign was gated within about 8 seconds: image creation needs a login. A logged-in Free account, message limits, file uploads, image quality and Plus/Pro were not tested."
@@ -48,10 +48,10 @@ alsoConsidered:
     pricing:
       summary: "Signup copy said 20 free credits to start. No plan price or payment details appeared, and those credits were not granted in this check."
       sourceUrl: "https://nixm.ai/"
-      checked: 2026-11-08
+      checked: 2026-11-23
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Hands-on note, 8 Nov 2026: nixm only, a signed-out chat draft. It is not the standard task. Hands-on note, 15 Nov 2026: ChatGPT on https://chatgpt.com/, signed out throughout, with no account. Optional cookies were rejected. This is not a logged-in Free account. The Ask ChatGPT box worked without logging in. No model name or message limit was shown. The Hollow Oak Bakery customer-email brief came back in about 7 seconds, from 11:20:23.6 to 11:20:30.7 UTC, as 116 words from the subject through the sign-off, in an Email card with a Subject field and edit and copy buttons. It kept the bakery name, Bath, founded 2026, £18, Saturday 9am–11am collection, no delivery, croissants and cinnamon buns. Sourdough loaves were not mentioned. There were no awards, no street address (only \"Hollow Oak Bakery, Bath\"), no extra prices, no website, no extra hours and no extra products, and none of the banned words (revolutionary, game-changing, unlock, synergy, world-class). Added colour only: \"freshly baked treats\", \"buttery croissants\", \"comforting cinnamon buns\". \"Filled with some of our favourite... treats\" is vague about box contents. After the reply there was a Share button and a banner: \"Log in to get answers based on saved chats, plus create images and upload files.\" A still of a wooden shop sign reading \"Hollow Oak Bakery\" was gated within about 8 seconds, with no image: \"Image creation is only available when you're logged in. You can keep chatting here, or log in to create images.\" Not tested: a logged-in Free account, free message and model limits, file uploads, image quality, Plus and Pro. Claude was not part of this check. Pending hands-on test. Planned standard task: from the same one-page brief, draft a 500-word blog post and a 120-word customer email in each tool, then score how well the draft follows the voice guide, how many factual inventions appear, and how many edits a human still has to make. On 8 Nov 2026 an email signup at https://claude.ai/login (Continue with email, archie.miller@mail.grokbot.com) was refused with: \"Unfortunately, Claude is not available to new users right now. We're working hard to expand our availability soon.\" No code, password or phone step appeared and no draft was generated in Claude. Claude remains the top pick. This is availability for new users that day, not a quality score."
 ---
 

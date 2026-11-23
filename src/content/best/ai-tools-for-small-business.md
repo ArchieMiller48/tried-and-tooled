@@ -1,6 +1,6 @@
 ---
 title: "Best AI tools for a small business (2026)"
-summary: "By job: Zapier, Tidio Lyro, Google AI Pro, Buffer Essentials and Claude. Zapier and Google AI plans re-read 9 Nov 2026. The other prices were last checked 4 Nov 2026. Not a hands-on test."
+summary: "By job: Zapier, Tidio with Lyro, Google AI Pro, Buffer Essentials and Claude. Those prices were re-read on 23 Nov 2026. Tidio Starter with Lyro is $33/mo, billed annually at $390/yr. Not a hands-on test."
 targetQuery: "best ai tools for small business"
 secondaryQueries:
   - "ai tools for a small business"
@@ -9,7 +9,7 @@ parent: "automate-small-business-admin"
 inFinder: false
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-09
+lastVerified: 2026-11-23
 picks:
   - name: "Zapier"
     url: "https://zapier.com"
@@ -19,18 +19,18 @@ picks:
     pricing:
       summary: "Free: 100 tasks/mo and two-step Zaps. Professional from $19.99/mo. A $29.99 monthly figure was not in the HTML on 9 Nov 2026."
       sourceUrl: "https://zapier.com/pricing"
-      checked: 2026-11-09
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
   - name: "Tidio Lyro"
     url: "https://www.tidio.com"
     fit: "Repeat questions on a small-business site, answered from pages you already wrote. This is the top pick on the customer-questions page."
-    why: "The pricing page lists Lyro AI Agent starting at $32.50/mo, from 50 Lyro conversations a month. Those figures were on the view labelled Annually (2 months free). The FAQ says Lyro draws on your support content, and that a Lyro reply is not a billable human conversation. A 7-day trial does not need a card, then the account returns to Free."
-    caveat: "The FAQ says every account starts with 50 Lyro conversations, and that the monthly refresh needs the Lyro AI Agent plan. Fifty replies do not restock on their own. The customer-questions page names that lifetime bundle as the thing to avoid if the bot has to keep running. A month-to-month dollar price, with annual billing switched off, was not the figure on the view read today."
+    why: "With Lyro AI selected, the Starter card shows $33/mo, billed annually at $390/yr, for 50 AI and human conversations. The FAQ says annual billing is 2 months free. The old $32.50 and $24.17 figures were not on the page. A 7-day trial does not need a card, then the account returns to Free."
+    caveat: "The FAQ says Free includes a one-time quota of 50 Lyro conversations that does not renew. Fifty replies do not restock. The customer-questions page names that one-time bundle as the thing to avoid if the bot has to keep running. A month-to-month dollar, with annual billing switched off, was not the figure on the view read today."
     pricing:
-      summary: "Lyro AI Agent starts at $32.50/mo, from 50 Lyro conversations a month, on the annual view labelled 2 months free."
+      summary: "With Lyro AI selected, Starter is $33/mo, billed annually at $390/yr, for 50 AI and human conversations. Annual billing is described as 2 months free."
       sourceUrl: "https://www.tidio.com/pricing/"
-      checked: 2026-11-04
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
   - name: "Google Sheets on Google AI Pro"
@@ -41,7 +41,7 @@ picks:
     pricing:
       summary: "Google AI Pro $19.99/mo. The savings block also lists Annual ($199.99). The Pro card lists Gemini in Docs and Sheets."
       sourceUrl: "https://one.google.com/about/google-ai-plans/"
-      checked: 2026-11-09
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
   - name: "Buffer Essentials"
@@ -52,7 +52,7 @@ picks:
     pricing:
       summary: "Essentials $5/month for 1 channel, $60/year billed yearly. The card says save 2 months. The FAQ says annual billing is 20% off."
       sourceUrl: "https://buffer.com/pricing"
-      checked: 2026-11-04
+      checked: 2026-11-23
     sources:
       - label: "Free queue of 10 posts per channel, and the 5,000 fair-use cap"
         url: "https://buffer.com/pricing"
@@ -65,27 +65,27 @@ picks:
     pricing:
       summary: "Free $0. Pro $17/mo billed annually ($200 up front), or $20/mo billed monthly."
       sourceUrl: "https://claude.com/pricing"
-      checked: 2026-11-04
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
 verdicts:
   - situation: "The busywork is copying leads, drafts and rows between apps."
     guidance: "Open the admin page. Its top pick is still Zapier. On 9 Nov 2026 Professional starts at $19.99/mo, and a $29.99 monthly figure was not in the HTML. Free stops at two steps. The budget pick on that page is n8n, at €20/mo billed annually for Cloud Starter."
   - situation: "The same customer questions arrive on the site."
-    guidance: "Open the customer-questions page. Its top pick is still Tidio Lyro, from $32.50/mo on the annual view. Free is $0/mo for a person replying. The 50 starting Lyro conversations do not refresh monthly until you pay."
+    guidance: "Open the customer-questions page. Its top pick is still Tidio with Lyro, at $33/mo billed annually at $390/yr. Free is $0. The one-time 50 Lyro conversations do not refresh."
   - situation: "You already have the spreadsheet."
     guidance: "Open the spreadsheet page. Its top pick is still Google AI Pro at $19.99/mo, the plan whose card lists Sheets. The Plus card does not list Sheets. A Plus dollar amount was not in the HTML on 9 Nov 2026. Claude Free, at $0, is the budget pick there because code execution is listed on Free."
   - situation: "The posts have to go on a calendar, or the words still have to be drafted."
     guidance: "Scheduling stays on the marketing page: Buffer Essentials at $5/month for one channel, $60 billed yearly. Drafting stays on the writing page: Claude Pro at $17/mo billed annually or $20/mo billed monthly. This hub does not replace those picks."
 faqs:
   - question: "What AI tools should a small business use?"
-    answer: "It depends on the job, and the picks already on this site are unchanged. Admin: Zapier, with n8n as the budget pick. Customer chat: Tidio Lyro. A spreadsheet: Google AI Pro, with Claude Free as the budget pick. A social calendar: Buffer Essentials. Posts and emails: Claude. Prices were re-read on 4 Nov 2026. This is not a hands-on ranking."
+    answer: "It depends on the job, and the picks already on this site are unchanged. Admin: Zapier, with n8n as the budget pick. Customer chat: Tidio with Lyro. A spreadsheet: Google AI Pro, with Claude Free as the budget pick. A social calendar: Buffer Essentials. Posts and emails: Claude. Prices that could be fetched were re-read on 23 Nov 2026. This is not a hands-on ranking."
   - question: "Which page should you open first?"
-    answer: "The job page, not this hub. Admin automation, customer questions, the spreadsheet, the marketing calendar and the writing page each keep a top pick, a budget pick and one option to avoid. This page links them and repeats only the prices that could be read on the vendor's site on 4 Nov 2026."
+    answer: "The job page, not this hub. Admin automation, customer questions, the spreadsheet, the marketing calendar and the writing page each keep a top pick, a budget pick and one option to avoid. This page links them and repeats only the prices that could be read on the vendor's site on 23 Nov 2026."
   - question: "Have these small-business tools been tested?"
     answer: "No. The five picks on this hub have not been hands-on tested, and the standard tasks on the five job pages have not been run. The spreadsheet page has a separate Datastripes note from 7 Nov 2026, a signed-out CSV check, and that page stays pending. The writing page has a separate nixm note from 8 Nov 2026, a signed-out email draft, and a signed-out ChatGPT email check from 15 Nov 2026 with no account. That ChatGPT check is not a logged-in Free account. Claude was not part of either writing-page check, and that page stays pending. The admin page has a separate n8n self-hosted note from 18 Nov 2026, a headless Community Edition run with the CLI. The admin page stays pending. Zapier, the editor UI, n8n Cloud, AI nodes with a real key, and integrations (Gmail, Sheets, webhooks, schedules) were not part of that check. The marketing page has a separate AmIPicked note from 20 Nov 2026, a free one-off check with no sign-up. The marketing page stays pending. Buffer Essentials and Metricool Free were not part of that check. Other hands-on notes on the site are Consensus Free, Perplexity Free, DeepL Free, LanguageTool Basic, Looka Brand Kit, Phrasly AI Image Detector, Dessn, Spacefast, Quillo, the signed-out Pixelcut and Photoroom web tools from 14 Nov 2026, Anki desktop from 16 Nov 2026, Zotero desktop from 17 Nov 2026, and Grammarly Free from 19 Nov 2026. They are listed on the tested page. The product-photo page stays pending. Photoroom Pro and a Pixelcut Free account were not part of that check. The flashcards page stays pending. AnkiWeb and AnkiMobile were not part of that check. The citation page stays pending. Zotero storage was not part of that check. The proofread page stays pending. Grammarly Pro, a signed-in free account, the browser extension, the desktop app and the paraphrasing tool were not part of the 19 Nov Grammarly Free check."
   - question: "Why is there no ChatGPT price?"
-    answer: "The writing page names ChatGPT Free as the budget pick. On 4 Nov 2026 the ChatGPT pricing page said the free version is available to everyone and that paid plans are priced per user per month. It did not print a dollar amount for Go, Plus or Pro. That amount is left out rather than guessed."
+    answer: "The writing page names ChatGPT Free as the budget pick. On 23 Nov 2026 the free card still says unlimited text chats with GPT-6, subject to abuse guardrails. A heading says Pro $100 and that price cell says From. A dollar amount for Go or Plus was not in the HTML. Those amounts are left out rather than guessed."
   - question: "What price was left out besides ChatGPT?"
     answer: "Metricool's paid plans. The help page confirms Free is at no cost, with 1 brand, up to 20 published posts a calendar month and 5 AI text-generator credits, and no LinkedIn or X. It points at a pricing page for current paid prices, and those dollar amounts were not read into this page. Tidio's month-to-month price, with the annual view switched off, was also not the number on screen."
 ---
@@ -94,7 +94,7 @@ This is a map of five jobs the site already covers. The order is the order of th
 
 Prices checked 4 Nov 2026. Dollars and euros are printed as the vendors print them. Nothing is converted to pounds. Where a card and a FAQ disagree, both are quoted. Where a dollar amount was not on the page, it is left out.
 
-Zapier's $19.99 and $29.99 are from the self-serve table on zapier.com/pricing. Tidio's Lyro price of $32.50 and the Starter price of $24.17 were on the annual view. Free at $0/mo was in the plan table. Google AI Pro's $19.99 and the $199.99 annual line are from the Google AI plans page. Buffer's $5 and $60 are from buffer.com/pricing. Claude's $0, $17, $200 and $20 are from claude.com/pricing.
+Zapier's $19.99 is from the self-serve table on zapier.com/pricing. A $29.99 monthly figure was not in that HTML. Tidio Starter with Lyro is $33/mo, billed annually at $390/yr. The old $32.50 and $24.17 figures were not on the page. Free is $0. Google AI Pro's $19.99 and the $199.99 annual line are from the Google AI plans page. Buffer's $5 and $60 are from buffer.com/pricing. Claude's $0, $17, $200 and $20 are from claude.com/pricing.
 
 <h2>The five jobs</h2>
 <p>Open the job page for the budget pick, the avoid, and the stack. The prices in the table are the ones re-read on 4 Nov 2026.</p>
@@ -112,7 +112,7 @@ Zapier's $19.99 and $29.99 are from the self-serve table on zapier.com/pricing. 
     <tr>
       <td><a href="../../use-cases/answer-customer-questions/">Answer customer questions</a></td>
       <td>Tidio Lyro</td>
-      <td>From $32.50/mo on the annual view. <a href="https://www.tidio.com/pricing/">source</a> Budget: Tidio Free $0/mo. <a href="https://www.tidio.com/pricing/">source</a></td>
+      <td>Starter with Lyro is $33/mo, billed annually at $390/yr. <a href="https://www.tidio.com/pricing/">source</a> Budget: Tidio Free $0. <a href="https://www.tidio.com/pricing/">source</a></td>
     </tr>
     <tr>
       <td><a href="../../use-cases/analyse-a-spreadsheet/">Check a spreadsheet</a></td>

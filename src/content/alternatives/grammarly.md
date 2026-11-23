@@ -8,7 +8,7 @@ secondaryQueries:
 parent: "proofread-and-edit"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 subject:
   name: "Grammarly"
   url: "https://www.grammarly.com"
@@ -16,7 +16,7 @@ subject:
   pricing:
     summary: "Free $0 USD/month. Visible Pro card: Try for $0.00. Plan data in the HTML: $30 USD for 1 month, $60 USD for 3 months, $144 USD for 1 year."
     sourceUrl: "https://www.grammarly.com/plans"
-    checked: 2026-11-16
+    checked: 2026-11-23
   sources:
     - label: "Pro includes tone suggestions and full-sentence rewrites"
       url: "https://www.grammarly.com/plans"
@@ -29,7 +29,7 @@ alternatives:
     pricing:
       summary: "Basic is free: 2,000 characters per text field and 3 AI sentence rephrases a day. No Premium currency amount was in the HTML."
       sourceUrl: "https://languagetool.org/pricing"
-      checked: 2026-11-16
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
   - name: "ProWritingAid"
@@ -39,7 +39,7 @@ alternatives:
     pricing:
       summary: "Free: 500 words at a time and 10 rephrases a day. Premium $30/mo billed monthly, or $10/mo billed yearly ($120/year). Premium Pro $36/mo billed monthly, or $144/year."
       sourceUrl: "https://prowritingaid.com/en/App/Purchase"
-      checked: 2026-11-04
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
 verdicts:

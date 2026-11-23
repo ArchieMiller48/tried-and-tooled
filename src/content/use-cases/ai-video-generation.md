@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free: a one-time 125 credits. Standard $12/mo billed annually ($15 monthly), 625 credits/mo (about 52s of Gen-4.5). Pro $28/mo annually ($35 monthly), 2,250 credits/mo."
     sourceUrl: "https://runway.com/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "Google Flow (Veo 3.1)"
@@ -20,11 +20,11 @@ budgetPick:
   pricing:
     summary: "Free daily allowance: 50 Flow credits/day with or without a subscription. Unused daily credits do not roll over. Plus adds 200/month, Pro 1,000/month, Ultra $100 adds 10,000/month, Ultra $200 adds 25,000/month."
     sourceUrl: "https://support.google.com/flow/answer/16526234?hl=en"
-    checked: 2026-11-09
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "Kling's free Basic plan, for client or monetised video"
-  reason: "Kling's plan guide says content generated on Basic is not for commercial use, while the paid plans on that page list commercial use. If the clip is going into an ad, a sponsored video or client work, use a paid plan. This check re-read the plan guide on 2 Nov 2026. It did not re-open the live pricing page HTML."
+  reason: "Kling's plan guide says content generated on Basic is not for commercial use, while the paid plans on that page list commercial use. If the clip is going into an ad, a sponsored video or client work, use a paid plan. The plan guide was re-read on 23 Nov 2026. A separate live pricing-page HTML was not opened."
   sourceUrl: "https://kling.ai/blog/kling-video-3-0-credit-cost-guide"
 stack:
   - step: "Shot list"
@@ -44,19 +44,19 @@ alsoConsidered:
     url: "https://kling.ai"
     note: "Go direct for Kling 4.0, which launched on 15 October with native clips up to 30 seconds and up to 15 reference assets. Runway's plan cards, re-read on 9 November 2026, now list Kling 4.0 as well, at 25% off until 30 November 2026."
     pricing:
-      summary: "Basic free (not for commercial use). Standard $10/mo shown (first month $6.99, then $8.80), 660 credits/mo. Pro $37/mo shown (first month $25.99, then $32.56), 3,000 credits/mo. From Kling's plan guide, re-read on 9 Nov 2026. This check did not re-open the live pricing page HTML."
+      summary: "Basic free (not for commercial use). Standard $6.99/month ($10 shown); the next renewal is printed as $8.8, 660 credits/mo. Pro $25.99/month ($37 shown); the next renewal is printed as $32.56, 3,000 credits/mo. The plan guide was re-read on 23 Nov 2026."
       sourceUrl: "https://kling.ai/blog/kling-video-3-0-credit-cost-guide"
-      checked: 2026-11-09
+      checked: 2026-11-23
   - name: "Gemini Omni 1.2 Flash"
     url: "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/"
     note: "Generally available on 5 November 2026 for API and Gemini for business clips up to 15 seconds, with multi-turn edits. Google's post also says you can direct scenes in Flow. A separate Vids post the same day says up to three 15-second videos a month at no cost: https://blog.google/products-and-platforms/products/workspace/omni-1-2-flash-google-vids/ It does not replace Runway here: Runway's subscription still lists several video models on one plan, and Flow's daily credits remain the budget path. Not a hands-on comparison."
     pricing:
       summary: "Free path on the same post: 15-second clips in Google Vids at no additional cost with a Google account. API: $0.07 per second of 720p."
       sourceUrl: "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/"
-      checked: 2026-11-09
+      checked: 2026-11-23
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Pending hands-on test. Planned standard task: generate the same 3-shot product B-roll sequence (one prompt per shot plus one reference image of the product) in each tool, then score prompt adherence, product consistency across shots and visible artefacts, and record the credits and cost per usable second."
 ---
 

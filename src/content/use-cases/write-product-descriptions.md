@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Basic $39 USD/mo paid monthly, or $29 USD/mo paid yearly. The page also says try 3 days free, then $1/month for 3 months. The card lists a built-in AI assistant and millions of tokens. No separate Sidekick price is printed."
     sourceUrl: "https://www.shopify.com/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "Claude (Free)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free $0. Pro $20/mo, or $17/mo billed annually ($200 up front)."
     sourceUrl: "https://claude.com/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "A Sidekick description you accept without reading"
