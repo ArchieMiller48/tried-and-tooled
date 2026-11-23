@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Essentials $5/mo per channel, billed yearly ($60/year for 1 channel). Annual billing is 20% off the monthly price."
     sourceUrl: "https://buffer.com/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "Metricool Free"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free plan, at no cost. 1 brand, up to 20 published posts per calendar month, and 5 AI text-generator credits a month. No credit card."
     sourceUrl: "https://help.metricool.com/main-differences-between-free-and-paid-plans-bl0v9"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "Buffer Free, for a daily campaign"
@@ -33,7 +33,7 @@ alsoConsidered:
     pricing:
       summary: "Free check $0, one-off, no card, 5 questions, ChatGPT and Gemini, no signup. Starter $29/month with a 7-day trial, 10 prompts daily. Growth $59/month with a 7-day trial, 25 prompts daily, up to 3 businesses. Both paid plans charge the card after 7 days. One-off report $39 for 20 questions in 4 models, credited if tracking starts within 30 days. The yearly toggle says 2 months free."
       sourceUrl: "https://amipicked.com/pricing/"
-      checked: 2026-11-20
+      checked: 2026-11-23
 stack:
   - step: "Offer"
     tool: "A short brief you write"
@@ -49,7 +49,7 @@ stack:
     role: "Confirm the account, the date and the final text before the queue goes out."
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Hands-on note, 20 Nov 2026: AmIPicked only, the free one-off check at https://amipicked.com/, with no sign-up, no email and no card. It is not this page's standard task. Buffer Essentials and Metricool Free were not part of this check and remain untested. The home page says \"Free AI visibility checker\" and \"no signup · results in about a minute\". The free check uses ChatGPT and Gemini only. You enter a URL. The site is read for about 4 to 10 seconds. An editable screen, \"Here is what we will ask AI\", shows the business name, the service, the city and 5 questions. You then click \"Ask ChatGPT and Gemini\", and the result stays on the same page. Colonnade Bakery's site did not load (ERR_CONNECTION_CLOSED). The first check used Hobbs House Bakery instead. It is an independent family bakery in the Cotswolds and Bristol, not Bath. A Bath site was not confirmed. That check took about 96 seconds in total, and about 75 seconds of asking. The result was 3/9. The page said the business was mentioned in 3 of 5 questions, and \"AI recommends you only sometimes\". Gemini returned \"This model did not answer. Try again in a minute.\" on question 1. Hobbs House itself was 33% (avg #1.3). Of two citations opened, one supported the claim and one only partly supported it. The second check was Greggs. It took about 50 seconds in total, and about 41 seconds of asking. ChatGPT and Gemini both answered every question. The result was 8/10. The page said the business was mentioned in 5 of 5 questions, and it still said \"AI recommends you only sometimes\". Greggs itself was 80% (avg #1.8). Of two citations opened, both supported the claim. No checks-left counter was seen after the two checks. Upsells seen were \"Remind me in 30 days\", which was not used, a Download PDF button, which was not clicked, and \"Five questions are a sample. Track it daily and see what works.\" The pricing page lists a free check at $0, Starter at $29/month, Growth at $59/month and a one-off report at $39. Paid tracking, the PDF download and the email reminder were not tested. The checker reported \"No llms.txt file\" and \"No structured data\" for greggs.com. That report was not checked independently. Pending hands-on test. Planned standard task: schedule the same 12-post, two-week campaign to one Instagram account and one Facebook page in each tool, including one AI-drafted caption per tool, then record whether every post stayed queued, what the published plan costs for those two channels, and which networks the plan cannot connect."
 ---
 

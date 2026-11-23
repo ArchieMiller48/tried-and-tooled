@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free: 5 build credits/day (max 30/month). Pro from $25/mo (100 credits) or $21/mo billed annually."
     sourceUrl: "https://docs.lovable.dev/introduction/subscription-plans"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "Bolt.new"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free: 300K tokens/day, 1M/month, Bolt branding. Pro $25/month billed monthly, from 10M tokens, custom domain, branding removed. A Yearly control says save up to 28%. No yearly dollar amount and no tax asterisk were in the HTML."
     sourceUrl: "https://bolt.new/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "Lovable Free plan, for anything you plan to ship"
@@ -46,24 +46,24 @@ alsoConsidered:
     pricing:
       summary: "Starter free, at no cost, with one published app that goes down after 30 days. Core $18/mo billed annually ($20 struck through). Pro $90/mo billed annually ($100 struck through)."
       sourceUrl: "https://replit.com/pricing"
-      checked: 2026-11-16
+      checked: 2026-11-23
   - name: "Cursor"
     url: "https://cursor.com"
     note: "An editor, not an app builder: best for the refine step once you have code. Plans are now sold through X subscription tiers."
     pricing:
       summary: "Free (limited); Plus $8/mo (Grok models only); Premium $30/mo; Super $100/mo; Ultra $200/mo. Third-party models billed at API list price."
       sourceUrl: "https://cursor.com/pricing"
-      checked: 2026-11-16
+      checked: 2026-11-23
   - name: "Spacefast"
     url: "https://spacefast.com/"
     note: "Hosting only. It publishes files you already have, and it does not build the app. On 10 Nov 2026, with no account, npm install -g spacefast and then sf publish . published a two-file HTML page in about 4 seconds. A one-line redeploy took about 3.2 seconds, and the changed text was live on the first check. The bakery text matched exactly. Spacefast also added social meta, a favicon and a script tag. HTTPS worked. The plain URL returned HTTP 403, \"This space is private\". The page was viewable only through a private link, and the anonymous space was set to expire in about 33 hours. Making it public needs a claim with a WordPress.com account, which was not tested. A plain http:// request returned HTTP 500 instead of redirecting. This is not the standard task. The full note is on the Tested by us page."
     pricing:
       summary: "Personal $0, $1 of usage included every month, 20 Spaces. Go $5/month. Pro $15/month."
       sourceUrl: "https://spacefast.com/pricing/"
-      checked: 2026-11-10
+      checked: 2026-11-23
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Hands-on note, 10 Nov 2026: Spacefast only, an anonymous publish of an existing HTML page. It does not build the app, and it is not the standard task. Pending hands-on test. Planned standard task: 'Build a to-do app with email login, per-user data and a public URL', run on Lovable, Bolt.new and Replit. We'll record time to first working deploy, credits or tokens used, the number of fix-up prompts, and whether the exported code runs locally. On 8 Nov 2026 Bolt.new, the budget pick, was opened signed out at https://bolt.new/. The prompt box was available and this prompt was submitted at 11:09:09.983 UTC: \"Build a simple to-do web app. Requirements: email login, each user only sees their own to-dos, add/complete/delete tasks, and a public URL I can open. Use a clean, minimal UI. Do not add extra features.\" Bolt immediately opened a Create account dialog (Sign up with Google, GitHub, email and password, or SSO). The email form required Email, Username and Password and showed a Cloudflare \"Verify you are human\" checkbox. No preview, Deploy button or public URL appeared. Signup was not completed."
 ---
 

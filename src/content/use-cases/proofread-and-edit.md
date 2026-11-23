@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Free $0 USD/month. Visible Pro card: Try for $0.00, with no subscription dollar in that card. Plan data in the HTML: $30 USD for 1 month, $60 USD for 3 months, $144 USD for 1 year."
     sourceUrl: "https://www.grammarly.com/plans"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "LanguageTool Basic"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free Basic: 2,000 characters per text field and 3 AI sentence rephrases a day. Prices on the page are labelled as including VAT. A Premium euro or dollar price was not in the HTML."
     sourceUrl: "https://languagetool.org/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
   handsOn: 2026-11-04
   handsOnSummary: "Signed out, with no account: a short business email with 8 planted errors, plus a lowercase friday. All 8 were caught at least partly, and friday was flagged. The has agreement error in \"Me and the team has\" was missed. One arguable false positive. Results within a few seconds; the exact time was not measured. The free check showed a 2,000-character cap and Paraphrasing 0/3. No Premium locks in this check."
@@ -46,7 +46,7 @@ stack:
     role: "Reject any change that adds a fact, a citation or a number you did not write."
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Hands-on note, 4 Nov 2026: LanguageTool Basic only, on the homepage editor, default English, signed out with no account, no card and no Google sign-in. The text was typed, not pasted: a short business email with 8 planted errors, plus a lowercase friday. 8 flags were showing as typing finished, while Checking text... was still on screen. The full list, 10 flags, appeared within a few seconds. The exact time was not measured. All 8 planted errors were caught at least partly: thank's to thanks, you're to your, its to it's, peice to piece, their to there, discus to discuss, and tomorow to tomorrow. In \"Me and the team has\", Me was flagged with a suggestion of I and a note to put yourself second. The has subject-verb error was not flagged, and the editor did not suggest \"The team and I have\". That one counts as partial. friday was flagged as a spelling mistake, with Friday as the first suggestion. One arguable false positive: a suggested comma before and, joining two independent clauses. The counter read Characters 246/2000, a 2,000-character cap. The page showed Paraphrasing 0/3. The paraphrase tab was not used. No Premium locks were seen in this check, and there was no hidden premium-suggestion count. Picky Mode was not opened. The only premium prompt was the promo text Unlock all Premium Features. Sign-up was not needed. A longer document was not tested. Grammarly Pro and Grammarly Free were not part of this check. Hands-on note, 19 Nov 2026: Grammarly Free only, signed out, no account, desktop browser, at https://www.grammarly.com/grammar-check, at about 11:22 GMT. It is not the standard task. A short 247-character email with 8 planted errors showed 9 underlines in about 5 seconds. Signed out, only the first suggestion could be read: thank's to thanks, labelled Fix spelling. Hovering or clicking any other underline opened a sign-up modal, Get Grammarly for free to get more. Me and the team has was not flagged. A 618-word blog post, 3,355 characters, was silently cut to 709 characters, about 133 words, about 21%, with no warning. Only 4 suggestions were shown for that part. No rewrite, rephrase or tone option appeared. The page says generative AI, tone and clarity suggestions need an account or Pro. Not tested: a free Grammarly account signed in, the browser extension, the desktop app, Pro, and the paraphrasing tool. Grammarly Pro and LanguageTool were not part of this check. The standard task is still pending: run the same 600-word draft, with 15 planted grammar errors and 3 planted factual claims, through each tool, then score how many errors are marked, how many rewrites change a fact, and what the published plan costs."
 ---
 

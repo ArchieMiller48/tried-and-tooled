@@ -53,7 +53,7 @@ picks:
     pricing:
       summary: "Premium shows $40 and $28, billed annually at $336 a year, with 18,000 credits. Ultimate shows $80 and $56, with 54,000 credits. A thumbnail costs 10-20 credits."
       sourceUrl: "https://pikzels.com/pricing"
-      checked: 2026-11-17
+      checked: 2026-11-23
     sources: []
     affiliateUrl: null
 verdicts:

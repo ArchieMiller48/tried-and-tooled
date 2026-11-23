@@ -7,7 +7,7 @@ secondaryQueries:
 parent: "ai-code-review"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-02
+lastVerified: 2026-11-23
 tools:
   - name: "CodeRabbit"
     url: "https://www.coderabbit.ai"
@@ -15,7 +15,7 @@ tools:
     pricing:
       summary: "Annual prices on the pricing page: Essentials $24/user/mo, Team $48/user/mo, Advanced $72/user/mo. FAQ month-to-month: Essentials $30, Team $60. Public repositories: free reviews forever."
       sourceUrl: "https://www.coderabbit.ai/pricing"
-      checked: 2026-11-02
+      checked: 2026-11-23
     sources:
       - label: "Plans, Free vs open source, and the $90 Advanced month-to-month price"
         url: "https://docs.coderabbit.ai/management/plans"
@@ -26,7 +26,7 @@ tools:
     pricing:
       summary: "Starter free (1 active developer, 50 credits/month, unlimited repositories). Pro has no seat fee: $1 per credit, shared across the organisation. Base review 1 credit, Plus 3, Apex 10."
       sourceUrl: "https://www.greptile.com/pricing"
-      checked: 2026-11-02
+      checked: 2026-11-23
     sources:
       - label: "Credits pause reviews when the balance hits zero; TREX is 3 extra credits"
         url: "https://www.greptile.com/docs/code-review-bot/billing-seats"

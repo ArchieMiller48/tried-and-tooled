@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Yearly $8/month. Quarterly $18/month. Monthly $24/month. The yearly card says save 25%. A 14-day money-back guarantee is on the yearly and quarterly cards."
     sourceUrl: "https://www.kickresume.com/en/pricing/"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "Kickresume Free"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Free to download on the free customisation options. Students with ISIC, ITIC or UNiDAYS are free. The page does not put the AI writer on that free row."
     sourceUrl: "https://www.kickresume.com/en/pricing/"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "Kickresume monthly, for a long search or a qualifying student"
@@ -42,7 +42,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Pending hands-on test. Planned standard task: from the same one-page work history and job ad, generate a one-page resume in each plan, then count invented jobs, dates and skills, and record whether a free download was offered. No resume has been generated for this page. On 20 Nov 2026 Kickresume Free could not be tested unattended. There is no account-free path. Create My Resume, Sign Up For Free, and /dashboard/create-resume/ redirect to /register/. Email sign-up requires a password. There is no one-time code or magic link. The other options are LinkedIn, Google and Facebook. Nothing was typed and no account was created. Nothing was built, so the planned task, the AI writer and the free download remain untested. The page stays pending."
 ---
 

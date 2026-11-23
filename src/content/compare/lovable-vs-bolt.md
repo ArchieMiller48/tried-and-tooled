@@ -8,7 +8,7 @@ secondaryQueries:
 parent: "vibe-code-an-mvp"
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-09
+lastVerified: 2026-11-23
 tools:
   - name: "Lovable"
     url: "https://lovable.dev"
@@ -16,7 +16,7 @@ tools:
     pricing:
       summary: "Free: 5 build credits/day, capped at 30/month. Pro from $25/month for 100 credits, or $250/year ($21/month)."
       sourceUrl: "https://docs.lovable.dev/introduction/subscription-plans"
-      checked: 2026-11-09
+      checked: 2026-11-23
     sources:
       - label: "Git sync on all plans"
         url: "https://docs.lovable.dev/tips-tricks/external-deployment-hosting"
@@ -29,7 +29,7 @@ tools:
     pricing:
       summary: "Free: $0, 1M tokens/month, 300K tokens/day, Bolt branding. Pro $25/month billed monthly, from 10M tokens, custom domain, branding removed. A Yearly control says save up to 28%. No yearly dollar amount and no tax asterisk were in the HTML."
       sourceUrl: "https://bolt.new/pricing"
-      checked: 2026-11-09
+      checked: 2026-11-23
     sources:
       - label: "Free plan limits, including hosting"
         url: "https://support.bolt.new/account/billing"

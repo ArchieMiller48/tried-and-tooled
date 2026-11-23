@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "File storage: 300 MB free, 2 GB at $20/year, 6 GB at $60/year, unlimited at $120/year. The download page does not print a price for Zotero 10 or the connectors."
     sourceUrl: "https://www.zotero.org/storage"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
   handsOn: 2026-11-17
   handsOnSummary: "Zotero 10.0.8, the Linux x86_64 build from zotero.org, on 17 Nov 2026. Fresh local profile, no Zotero account, no sync, no browser connector, no Word or LibreOffice plugin and nothing paid. The download was 118.3 MB (.tar.xz). On first launch Zotero opened its install-confirmation page in the browser and started a LibreOffice citation-plugin installer, which was cancelled. Zotero's own window was usable about 63 seconds after launch, including those two windows. The welcome panel suggested the Quick Start Guide, the Zotero Connector and syncing. No account or payment prompt blocked use. Three sources were added by identifier and one web page by hand. DOI 10.1038/nature14539 took about 18 seconds: journal article Deep learning; LeCun, Bengio, Hinton; 2015-05-28; Nature; volume 521; pages 436–444. Correct. ISBN 9780262035613 took about 16 seconds. One earlier attempt did not register because focus moved away. Book Deep learning; Goodfellow, Bengio, Courville; 2016; publisher The MIT press, with a lower-case press as returned. Correct apart from that casing. DOI 10.1145/3442188.3445922 took about 18 seconds: conference paper On the Dangers of Stochastic Parrots...; Bender, Gebru, McMillan-Major, Shmitchell; 2021; ACM FAccT proceedings; ACM; pages 610–623. Correct. The Food Standards Agency allergen labelling page, added by hand, saved the title, website title, URL and accessed date. Create Bibliography from Items, style APA Style 7th edition, saved as HTML: four alphabetised entries, DOIs as links, issue number 7553 on the Nature article, and (n.d.) for the undated web page. The MIT press casing carried through. Collection Bakery dissertation: dragging items onto it did not add them in this test session. Right-click Add to Collection worked, and both items showed. Settings showed Log In / Create Account. The profile was not signed in. Storage, sync, the browser connector, PDF attachment and citing from Word or LibreOffice were not tested."
@@ -22,7 +22,7 @@ budgetPick:
   pricing:
     summary: "300 MB free. The next tier is 2 GB at $20/year."
     sourceUrl: "https://www.zotero.org/storage"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "Zotero unlimited storage, before the library needs it"
@@ -44,7 +44,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Hands-on note, 17 Nov 2026: Zotero 10.0.8 only, the Linux x86_64 build from zotero.org. Fresh local profile, no Zotero account, no sync, no browser connector, no Word or LibreOffice plugin and nothing paid. It is not the standard task. The download was 118.3 MB (.tar.xz). On first launch Zotero opened its install-confirmation page in the browser and started a LibreOffice citation-plugin installer, which was cancelled. Zotero's own window was usable about 63 seconds after launch, including those two windows. The welcome panel suggested the Quick Start Guide, the Zotero Connector and syncing. No account or payment prompt blocked use. Three sources were added by identifier and one web page by hand. DOI 10.1038/nature14539 took about 18 seconds: journal article Deep learning; LeCun, Bengio, Hinton; 2015-05-28; Nature; volume 521; pages 436–444. Correct. ISBN 9780262035613 took about 16 seconds. One earlier attempt did not register because focus moved away. Book Deep learning; Goodfellow, Bengio, Courville; 2016; publisher The MIT press, with a lower-case press as returned. Correct apart from that casing. DOI 10.1145/3442188.3445922 took about 18 seconds: conference paper On the Dangers of Stochastic Parrots...; Bender, Gebru, McMillan-Major, Shmitchell; 2021; ACM FAccT proceedings; ACM; pages 610–623. Correct. The Food Standards Agency allergen labelling page, added by hand, saved the title, website title, URL and accessed date. Create Bibliography from Items, style APA Style 7th edition, saved as HTML: four alphabetised entries, DOIs as links, issue number 7553 on the Nature article, and (n.d.) for the undated web page. The MIT press casing carried through. Collection Bakery dissertation: dragging items onto it did not add them in this test session. Right-click Add to Collection worked, and both items showed. Settings showed Log In / Create Account. The profile was not signed in. Pending hands-on test. Planned standard task: save the same five public web pages, insert one citation into a document, and record whether the fields match the page and what storage tier the files would need. Storage, sync, the browser connector, PDF attachment and citing from Word or LibreOffice were not part of this check."
 ---
 

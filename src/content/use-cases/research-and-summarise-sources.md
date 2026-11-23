@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Basic: Free. Limited Research Agent and Research Reports. Unlimited search across more than 138 million papers, unlimited summaries, and unlimited chat with full-text papers."
     sourceUrl: "https://elicit.com/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "Consensus Free, for a long literature review"
@@ -33,7 +33,7 @@ alsoConsidered:
     pricing:
       summary: "Free with a Gmail account. 100 notebooks per user and 50 sources per notebook."
       sourceUrl: "https://support.google.com/gemininotebook/answer/16213268?hl=en"
-      checked: 2026-11-09
+      checked: 2026-11-23
   - name: "Perplexity (Free)"
     url: "https://www.perplexity.ai"
     note: "A cited answer from the web, not a search of the scholarly index. On 2 Nov 2026 a free account (email code, no card) answered one evidence question in Search mode. Every model in the picker was locked, and the prompt box had no Deep Research or Pro Search control."
@@ -47,7 +47,7 @@ alsoConsidered:
     pricing:
       summary: "Free $0 (watch checked videos with no account; 10 free checks after sign-up). Premium $12/mo. Pro $49/mo."
       sourceUrl: "https://fackd.com/pricing"
-      checked: 2026-11-20
+      checked: 2026-11-23
 stack:
   - step: "Question"
     tool: "A sentence you write"

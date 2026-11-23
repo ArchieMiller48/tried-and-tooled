@@ -9,9 +9,9 @@ topPick:
   url: "https://elevenlabs.io"
   why: "A broad voice library and voice cloning: Instant Voice Cloning from Starter, Professional Voice Cloning from Creator. It also includes dubbing, and paid plans come with a commercial licence."
   pricing:
-    summary: "Free 10k credits/mo. Starter $6/mo, and the card still shows a first month at $1 then $6, with 30k credits and a commercial licence. Creator $22/mo, and the card still shows a first month at $11 then $22, with 121k credits. A banner says 30,000 credits for $1 and Ends September 30. No countdown reading 0 days was in the HTML. 1 credit ≈ 1 character on multilingual v2 models."
+    summary: "Free 10k credits/mo. Starter $6/mo, and the card still shows a first month at $1 then $6, with 30k credits and a commercial licence. Creator $22/mo, and the card still shows a first month at $11 then $22, with 121k credits. A banner says 30,000 credits for $1 and Ends September 30. No countdown reading 0 days was in the HTML. A sale line says Creator annual costs $99 for the year until 1 December 2026, up to 55% off annual plans. 1 credit ≈ 1 character on multilingual v2 models."
     sourceUrl: "https://elevenlabs.io/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 budgetPick:
   name: "Descript (Hobbyist)"
@@ -20,7 +20,7 @@ budgetPick:
   pricing:
     summary: "Hobbyist $16/mo billed annually ($24 monthly), 400 AI credits/mo, includes AI Speech with custom voice clones."
     sourceUrl: "https://www.descript.com/pricing"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "ElevenLabs Free, for monetised content"

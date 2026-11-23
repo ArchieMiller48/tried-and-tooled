@@ -11,7 +11,7 @@ topPick:
   pricing:
     summary: "Computer version: free. Current desktop release named on the page: 26.09.4. AnkiWeb sync is described as free. No purchase price is printed for the desktop downloads."
     sourceUrl: "https://apps.ankiweb.net/"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
   handsOn: 2026-11-16
   handsOnSummary: "Anki desktop 26.09.4 on Linux x86_64, the official GitHub release, on 16 Nov 2026. Fresh local profile, no account, no AnkiWeb sign-in, no sync, no add-ons and nothing paid. The download was 194.7 MB compressed (about 665 MB extracted). Launch reached the first-run language dialog in about 5 seconds, with no account or sync prompt. 10 Basic cards from short Hollow Oak Bakery staff food-hygiene notes were written as a tab-separated .txt with Anki header lines and imported with File > Import. The preview auto-detected the tab separator, the Basic note type and the deck. The result was \"10 notes found in file. Of those: 10 new notes imported.\" in 6.27 seconds. One card added by hand with Add > Basic worked, with no warning. 6 of 6 checked answers matched. For a new card, the buttons showed Again under 1 minute, Hard under 6 minutes, Good under 10 minutes, and Easy 3 to 5 days. The Easy interval varied per card. A card marked Again came back later in the same session. 10 cards were studied in 1.96 minutes (Anki stats, 11.78 seconds per card). Anki has no built-in AI card generation. Audio was not tested. AnkiWeb, AnkiMobile and sync were not tested."
@@ -22,7 +22,7 @@ budgetPick:
   pricing:
     summary: "Described as free. The FAQ names AnkiWeb as the alternative to buying AnkiMobile. A separate AnkiWeb subscription price is not on that page."
     sourceUrl: "https://docs.ankiweb.net/faqs/how-can-i-donate"
-    checked: 2026-11-16
+    checked: 2026-11-23
   affiliateUrl: null
 avoid:
   name: "AnkiMobile, if you study on a computer"
@@ -44,7 +44,7 @@ stack:
 alsoConsidered: []
 testStatus: "pending"
 lastTested: null
-lastVerified: 2026-11-16
+lastVerified: 2026-11-23
 testNotes: "Hands-on note, 16 Nov 2026: Anki desktop 26.09.4 only, on Linux x86_64, the official GitHub release. Fresh local profile, no account, no AnkiWeb sign-in, no sync, no add-ons and nothing paid. It is not the standard task. The download was 194.7 MB compressed (about 665 MB extracted). Launch reached the first-run language dialog in about 5 seconds, with no account or sync prompt. Short Hollow Oak Bakery staff food-hygiene notes were turned into 10 Basic cards, written as a tab-separated .txt with Anki header lines, then imported with File > Import. The preview auto-detected the tab separator, the Basic note type and the deck. The result was \"10 notes found in file. Of those: 10 new notes imported.\" in 6.27 seconds. One card added by hand with Add > Basic worked, with no warning. 6 of 6 checked answers matched. For a new card, the buttons showed Again under 1 minute, Hard under 6 minutes, Good under 10 minutes, and Easy 3 to 5 days. The Easy interval varied per card. A card marked Again came back later in the same session. 10 cards were studied in 1.96 minutes (Anki stats, 11.78 seconds per card). Anki has no built-in AI card generation: you write the cards, or use another tool, and import a text file. The download is large. Audio was not tested. Pending hands-on test. Planned standard task: turn the same one-page set of 20 lecture facts into a deck in each tool, review it the next day, and record how many cards kept the original wording, how many invented a fact, and what the published plan costs. AnkiWeb, AnkiMobile and sync were not part of this check."
 ---
 
