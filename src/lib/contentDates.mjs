@@ -100,9 +100,9 @@ export function contentLastmods() {
   }
   if (spotted.length) consider(dates, `${BASE}/new/`, spotted.sort().at(-1));
 
-  // The tested index lists the hands-on notes. 23 Nov 2026 is the newest of those notes.
-  consider(dates, `${BASE}/tested/`, '2026-11-23');
-  all.push('2026-11-23');
+  // The tested index lists the hands-on notes. 24 Nov 2026 is the newest of those notes.
+  consider(dates, `${BASE}/tested/`, '2026-11-24');
+  all.push('2026-11-24');
 
   const latest = all.sort().at(-1);
   if (latest) {
