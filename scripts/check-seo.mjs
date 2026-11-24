@@ -444,6 +444,9 @@ if (existsSync(llms) && existsSync(full)) {
   if (!index.includes('Tested 19 Nov 2026: Grammarly Free, signed out, showed only the first fix')) {
     fail('llms.txt is missing the Grammarly Free quotable line');
   }
+  if (!index.includes('Tested 24 Nov 2026: GPTZero Free, signed out, scored a 2018 Wikipedia passage 100% human')) {
+    fail('llms.txt is missing the GPTZero Free quotable line');
+  }
   if (!index.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms.txt does not advertise the sitemap');
   if (!expanded.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms-full.txt does not advertise the sitemap');
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
@@ -839,6 +842,56 @@ if (proofTop.includes('Hands-on test 19 Nov')) fail('Grammarly Pro was marked as
 if (proofBudget.includes('Hands-on test 19 Nov')) fail('LanguageTool Basic was marked as hands-on tested on 19 Nov');
 if (proofread.includes('>Tested 19 Nov 2026<')) fail('proofread page was marked as a completed test');
 
+const writingCheck = readFileSync(pathToFile(`${base}/use-cases/check-if-writing-is-ai/`), 'utf8');
+for (const phrase of [
+  'Hands-on test (24 Nov 2026)',
+  'Sally Lunn bun',
+  'Model 5.0b',
+  'We are highly confident this text is entirely human',
+  'highly confident this text was AI generated',
+  'a mix of AI and human',
+  '3 of 8 sentences',
+  'about 2.8 seconds',
+  'about 8.8 seconds',
+  'about 1.0 seconds',
+  'image captcha',
+  '10,000 characters',
+  '250-character minimum',
+  '10,000 credits left this month',
+  'Sign up to Continue',
+  '1/1 free scans left',
+  '£9.09',
+  'was £12.99',
+  'Grammarly Pro and Grammarly Free were not part of it',
+  'false positives on more human writing were not tested',
+  'paraphrased AI text',
+  'Prices were read on 23 Nov 2026',
+]) {
+  if (!writingCheck.includes(phrase)) fail(`AI-writing check page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!writingCheck.includes('datetime="2026-11-23"')) fail('AI-writing check page does not show 23 Nov 2026 as dateModified');
+if (!writingCheck.includes('Standard task still pending') || !writingCheck.includes('standard task')) {
+  fail('AI-writing check page does not keep the standard task pending');
+}
+if (!writingCheck.includes(`${base}/tested/`)) fail('AI-writing check page does not link to the tested page');
+const writingCheckTop = writingCheck.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const writingCheckBudget = writingCheck.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const writingCheckAvoid = writingCheck.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!writingCheckTop.includes('Grammarly Pro') || !writingCheckTop.includes('Pending hands-on test')) {
+  fail('Grammarly Pro lost its pending hands-on label on the AI-writing check page');
+}
+if (writingCheckTop.includes('Hands-on test 24 Nov')) fail('Grammarly Pro was marked as hands-on tested');
+if (!writingCheckBudget.includes('GPTZero Free') || !writingCheckBudget.includes('Hands-on test 24 Nov 2026')) {
+  fail('GPTZero Free card is missing its hands-on label');
+}
+if (writingCheckBudget.includes('Pending hands-on test')) fail('GPTZero Free card still has a pending hands-on label');
+if (!writingCheckBudget.includes('Tested 24 Nov 2026: GPTZero Free, signed out, scored a 2018 Wikipedia passage 100% human')) {
+  fail('GPTZero Free card is missing the quotable line');
+}
+if (!writingCheckAvoid.includes('Grammarly Free')) fail('AI-writing avoid card lost Grammarly Free');
+if (writingCheckAvoid.includes('Hands-on test')) fail('Grammarly Free on the AI-writing check page was marked as hands-on tested');
+if (writingCheck.includes('>Tested 24 Nov 2026<')) fail('AI-writing check page was marked as a completed test');
+
 const logos = readFileSync(pathToFile(`${base}/use-cases/design-logos-and-graphics/`), 'utf8');
 for (const phrase of [
   'Hands-on test (5 Nov 2026)',
@@ -1001,7 +1054,26 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Twenty notes exist',
+  'Twenty-one notes exist',
+  '24 Nov 2026',
+  'GPTZero Free',
+  'Sally Lunn bun',
+  'Model 5.0b',
+  'We are highly confident this text is entirely human',
+  'highly confident this text was AI generated',
+  'a mix of AI and human',
+  '3 of 8 sentences',
+  'about 2.8 seconds',
+  'about 8.8 seconds',
+  'about 1.0 seconds',
+  'image captcha',
+  '10,000 credits left this month',
+  'Sign up to Continue',
+  '1/1 free scans left',
+  '£9.09',
+  'was £12.99',
+  'AI-writing check page',
+  'false positives on more human writing were not tested',
   '23 Nov 2026',
   'Scam Link Check',
   'Hands-on test 23 Nov 2026',
@@ -1182,6 +1254,9 @@ if (!tested.includes('found 3 claims on a 6-minute TalkTV debate, 2 of 2 opened 
 if (!tested.includes('returned 4 verdicts in about 1.0–1.2 seconds, marked Google') || !tested.includes('test phishing URL Dangerous, and missed a look-alike Royal Mail text')) {
   fail('tested page is missing the Scam Link Check quotable line');
 }
+if (!tested.includes('Tested 24 Nov 2026: GPTZero Free, signed out, scored a 2018 Wikipedia passage 100% human')) {
+  fail('tested page is missing the GPTZero Free quotable line');
+}
 if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
   fail('tested page is missing the Anki quotable line');
 }
@@ -1226,6 +1301,9 @@ if (existsSync(full) && !readFileSync(full, 'utf8').includes('returned 3/9 for H
 }
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('found 3 claims on a 6-minute TalkTV debate, 2 of 2 opened sources supported the ratings')) {
   fail('llms-full.txt is missing the Fack\'d quotable line');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 24 Nov 2026: GPTZero Free, signed out, scored a 2018 Wikipedia passage 100% human')) {
+  fail('llms-full.txt is missing the GPTZero Free quotable line');
 }
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
@@ -1279,6 +1357,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Fack\'d (21 Nov 20
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Scam Link Check (23 Nov 2026)')) {
   fail('llms.txt omits the Scam Link Check note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('GPTZero Free (24 Nov 2026)')) {
+  fail('llms.txt omits the GPTZero Free note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -1330,6 +1411,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Stop checking') |
 }
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('royalmaiI-redelivery-uk.com') || !readFileSync(full, 'utf8').includes('only on the tested page'))) {
   fail('llms-full.txt omits the Scam Link Check note or files it under a use case');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Sally Lunn bun') || !readFileSync(full, 'utf8').includes('The AI-writing check page\'s standard task'))) {
+  fail('llms-full.txt omits the GPTZero Free note or its unrun standard task');
 }
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
