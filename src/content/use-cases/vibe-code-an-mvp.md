@@ -78,6 +78,8 @@ Solo founders, indie hackers and creators who want a real, working product (logi
 - **You're on £0:** Bolt.new's free tier gives the most room to prototype. Upgrade only when you need a custom domain.
 - **You want the head-to-head:** [Lovable vs Bolt.new](../../compare/lovable-vs-bolt/) lines up free limits, the first paid plan and getting the code out.
 - **You want the wider shortlist:** [AI app builders for non-coders](../../best/ai-app-builders-for-non-coders/) covers Lovable, Bolt.new, Replit and where Cursor fits.
+- **You want Lovable's prices:** [Lovable pricing](../../pricing/lovable/) lists the plans, the credit tiers and the free limits, checked on 24 Nov 2026. Pending hands-on test.
+- **You want Cursor's prices:** [Cursor pricing](../../pricing/cursor/) lists the current plans, Pro versus Pro+, and the usage limits, checked on 24 Nov 2026. Pending hands-on test.
 - **You already have the files and only need a short private preview:** Spacefast, checked on 10 Nov 2026. Anonymous publish of an existing page took about 4 seconds. The plain URL was private, and the space was set to expire in about 33 hours. It does not build the app.
 
 The note below is a check of Spacefast only, dated 10 Nov 2026. Lovable, Bolt.new and Replit were not part of it. The standard task on this page has not been run.

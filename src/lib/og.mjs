@@ -13,6 +13,7 @@ const KINDS = [
   { folder: 'compare', kicker: 'COMPARE', footer: 'Head-to-head  ·  sourced prices' },
   { folder: 'best', kicker: 'BEST OF', footer: 'Shortlist  ·  sourced prices' },
   { folder: 'alternatives', kicker: 'ALTERNATIVES', footer: 'One tool  ·  the realistic swaps' },
+  { folder: 'pricing', kicker: 'PRICING', footer: 'Vendor prices  ·  checked on a named date' },
 ];
 
 function esc(value) {
