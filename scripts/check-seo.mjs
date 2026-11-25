@@ -481,6 +481,9 @@ if (existsSync(llms) && existsSync(full)) {
   if (!index.includes('Tested 24 Nov 2026: GPTZero Free, signed out, scored a 2018 Wikipedia passage 100% human')) {
     fail('llms.txt is missing the GPTZero Free quotable line');
   }
+  if (!index.includes('Tested 25 Nov 2026: Upscayl 2.15.0, with no account, upscaled a 320×240 sourdough photo 4×')) {
+    fail('llms.txt is missing the Upscayl quotable line');
+  }
   if (!index.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms.txt does not advertise the sitemap');
   if (!expanded.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms-full.txt does not advertise the sitemap');
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
@@ -926,6 +929,63 @@ if (!writingCheckAvoid.includes('Grammarly Free')) fail('AI-writing avoid card l
 if (writingCheckAvoid.includes('Hands-on test')) fail('Grammarly Free on the AI-writing check page was marked as hands-on tested');
 if (writingCheck.includes('>Tested 24 Nov 2026<')) fail('AI-writing check page was marked as a completed test');
 
+const upscale = decode(readFileSync(pathToFile(`${base}/use-cases/upscale-a-low-resolution-image/`), 'utf8'));
+for (const phrase of [
+  'Hands-on test (25 Nov 2026)',
+  'Upscayl 2.15.0',
+  '25 Dec 2024',
+  'latest GitHub release',
+  'Invalid GPU Device',
+  'Mesa\'s CPU Vulkan driver',
+  '8 CPU cores',
+  'CPU-only',
+  'Help improve Upscayl',
+  '4 screens',
+  'Auto-update was on by default',
+  'donation or paid prompt',
+  '320×240',
+  '1280×960',
+  'sourdough loaf',
+  'Upscayl Standard',
+  'Upscayl Lite',
+  'about 76 seconds',
+  'about 6 seconds',
+  'about 21.4 dB',
+  'plain bicubic stretch',
+  'cracked-flour',
+  'Double Upscayl',
+  'Magnific Premium was not part of it',
+  'Prices were read on 23 Nov 2026',
+  'no halos',
+]) {
+  if (!upscale.includes(phrase)) fail(`upscale page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!upscale.includes('datetime="2026-11-23"')) fail('upscale page does not show 23 Nov 2026 as dateModified');
+if (!upscale.includes('Standard task still pending') || !upscale.includes('standard task')) {
+  fail('upscale page does not keep the standard task pending');
+}
+if (!upscale.includes(`${base}/tested/`)) fail('upscale page does not link to the tested page');
+const upscaleTop = upscale.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const upscaleBudget = upscale.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const upscaleAvoid = upscale.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!upscaleTop.includes('Magnific Premium') || !upscaleTop.includes('Pending hands-on test')) {
+  fail('Magnific Premium lost its pending hands-on label');
+}
+if (upscaleTop.includes('Hands-on test 25 Nov')) fail('Magnific Premium was marked as hands-on tested');
+if (!upscaleBudget.includes('Upscayl') || !upscaleBudget.includes('Hands-on test 25 Nov 2026')) {
+  fail('Upscayl card is missing its hands-on label');
+}
+if (upscaleBudget.includes('Pending hands-on test')) fail('Upscayl card still has a pending hands-on label');
+if (!upscaleBudget.includes('Tested 25 Nov 2026: Upscayl 2.15.0, with no account, upscaled a 320×240 sourdough photo 4×')) {
+  fail('Upscayl card is missing the quotable line');
+}
+if (!upscaleAvoid.includes('Magnific Plus')) fail('upscale avoid card lost Magnific Plus');
+if (upscaleAvoid.includes('Hands-on test')) fail('Magnific Plus was marked as hands-on tested');
+if (upscale.includes('>Tested 25 Nov 2026<')) fail('upscale page was marked as a completed test');
+if (!upscale.includes('$14.50/month') || !upscale.includes('$33.75/month') || !upscale.includes('$82.50/month')) {
+  fail('upscale page dropped a Magnific price');
+}
+
 const logos = readFileSync(pathToFile(`${base}/use-cases/design-logos-and-graphics/`), 'utf8');
 for (const phrase of [
   'Hands-on test (5 Nov 2026)',
@@ -1088,7 +1148,16 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Twenty-one notes exist',
+  'Twenty-two notes exist',
+  '25 Nov 2026',
+  'Upscayl',
+  '2.15.0',
+  'Invalid GPU Device',
+  'about 76 seconds',
+  'about 21.4 dB',
+  'Double Upscayl',
+  'plain bicubic stretch',
+  'upscale page',
   '24 Nov 2026',
   'GPTZero Free',
   'Sally Lunn bun',
@@ -1291,6 +1360,9 @@ if (!tested.includes('returned 4 verdicts in about 1.0–1.2 seconds, marked Goo
 if (!tested.includes('Tested 24 Nov 2026: GPTZero Free, signed out, scored a 2018 Wikipedia passage 100% human')) {
   fail('tested page is missing the GPTZero Free quotable line');
 }
+if (!tested.includes('Tested 25 Nov 2026: Upscayl 2.15.0, with no account, upscaled a 320×240 sourdough photo 4×')) {
+  fail('tested page is missing the Upscayl quotable line');
+}
 if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
   fail('tested page is missing the Anki quotable line');
 }
@@ -1338,6 +1410,9 @@ if (existsSync(full) && !readFileSync(full, 'utf8').includes('found 3 claims on 
 }
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 24 Nov 2026: GPTZero Free, signed out, scored a 2018 Wikipedia passage 100% human')) {
   fail('llms-full.txt is missing the GPTZero Free quotable line');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 25 Nov 2026: Upscayl 2.15.0, with no account, upscaled a 320×240 sourdough photo 4×')) {
+  fail('llms-full.txt is missing the Upscayl quotable line');
 }
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
@@ -1394,6 +1469,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Scam Link Check (2
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('GPTZero Free (24 Nov 2026)')) {
   fail('llms.txt omits the GPTZero Free note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Upscayl (25 Nov 2026)')) {
+  fail('llms.txt omits the Upscayl note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -1448,6 +1526,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('royalmaiI-redeliv
 }
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Sally Lunn bun') || !readFileSync(full, 'utf8').includes('The AI-writing check page\'s standard task'))) {
   fail('llms-full.txt omits the GPTZero Free note or its unrun standard task');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Invalid GPU Device') || !readFileSync(full, 'utf8').includes('The upscale page\'s standard task'))) {
+  fail('llms-full.txt omits the Upscayl note or its unrun standard task');
 }
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
