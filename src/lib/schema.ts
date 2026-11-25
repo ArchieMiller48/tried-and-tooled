@@ -140,7 +140,14 @@ export function buildUseCaseJsonLd(input: {
 }
 
 function softwareApp(
-  tool: { name: string; url: string; why?: string; description?: string; pricing: PriceFact },
+  tool: {
+    name: string;
+    url: string;
+    why?: string;
+    description?: string;
+    pricing: PriceFact;
+    offers?: Record<string, unknown>[];
+  },
   category: string,
 ): Record<string, unknown> {
   return {
@@ -149,7 +156,7 @@ function softwareApp(
     url: tool.url,
     applicationCategory: category,
     description: tool.why ?? tool.description ?? tool.name,
-    offers: offerFromPrice(tool.pricing),
+    offers: tool.offers?.length ? tool.offers : offerFromPrice(tool.pricing),
   };
 }
 
@@ -270,7 +277,7 @@ export function buildGuideJsonLd(input: {
   dateModified: string;
   crumbs: Crumb[];
   faqs: { question: string; answer: string }[];
-  tools?: { name: string; url: string; description: string; pricing: PriceFact }[];
+  tools?: { name: string; url: string; description: string; pricing: PriceFact; offers?: Record<string, unknown>[] }[];
   applicationCategory?: string;
 }): Record<string, unknown> {
   const page: Record<string, unknown> = {

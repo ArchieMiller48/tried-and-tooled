@@ -1,9 +1,10 @@
 ---
 import { getCollection, render } from 'astro:content';
 import GuidePage from '../../components/GuidePage.astro';
-import { formatDate } from '../../lib/formatDate';
+import { formatDate, isoDate } from '../../lib/formatDate';
 import { hasGuideEntries } from '../../lib/guides';
 import { outboundHref, outboundRel } from '../../lib/outbound';
+import { offersFromListedPrices } from '../../lib/useCaseFacts';
 
 export async function getStaticPaths() {
   if (!hasGuideEntries('pricing')) return [];
@@ -26,6 +27,17 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/pricing/${entry.id}.png`,
   faqs={d.faqs}
   verdicts={d.verdicts}
   ogImage={ogImage}
+  schemaTools={[{
+    name: d.tool.name,
+    url: d.tool.url,
+    description: d.summary,
+    pricing: {
+      summary: d.plans.map((plan) => `${plan.name} ${plan.price}`).join('. '),
+      sourceUrl: d.plans[0].sourceUrl,
+      checked: d.plans[0].checked,
+    },
+    offers: offersFromListedPrices(d.plans),
+  }]}
 >
   <p>
     <span class={`tag ${d.testStatus}`}>{d.testStatus === 'pending' ? 'Pending hands-on test' : 'Tested'}</span>
@@ -45,7 +57,7 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/pricing/${entry.id}.png`,
               <td>{plan.name}</td>
               <td>{plan.price}</td>
               <td>{plan.includes}</td>
-              <td><a href={plan.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, pricing checked {formatDate(plan.checked)}</td>
+              <td><a href={plan.sourceUrl} rel="nofollow noopener" target="_blank">source</a>, pricing checked <time datetime={isoDate(plan.checked)}>{formatDate(plan.checked)}</time></td>
             </tr>
           ))}
         </tbody>

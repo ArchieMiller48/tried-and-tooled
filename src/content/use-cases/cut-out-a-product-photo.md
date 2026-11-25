@@ -64,6 +64,7 @@ Shops, marketers and designers who have a product photo and need the item on a c
 - **You want a quick one-off cut-out and no account:** both free web tools worked on 14 Nov 2026. Photoroom gave the full-resolution file signed out. Pixelcut's signed-out download was a reduced preview. Photoroom Pro and a Pixelcut Free account were not part of that check.
 - **You also need a logo or a social title on the image:** [Design logos and graphics](../../use-cases/design-logos-and-graphics/) and [AI thumbnails and social images](../../use-cases/ai-thumbnails-and-images/).
 - **You want the background-remover shortlist:** [Best AI product background removers](../../best/ai-product-background-removers/). It uses the prices on this page, checked 9 Nov 2026, and it does not change the picks above.
+- **The file is too small, and the job is a larger image rather than a cutout:** [Upscale a low-resolution image](../../use-cases/upscale-a-low-resolution-image/).
 
 The note below is a signed-out check of the free web background removers only, dated 14 Nov 2026. Photoroom Pro and a Pixelcut Free account were not part of it. The standard task on this page has not been run.
 

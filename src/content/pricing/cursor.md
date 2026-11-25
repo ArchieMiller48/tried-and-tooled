@@ -64,6 +64,8 @@ verdicts:
   - situation: "You only need a free editor to look at a repo."
     guidance: "Free is $0 with limited Agent and Chat. No request count is published. Cloud agents, Origin and Bugbot are not on Free or Plus. They start on Premium."
 faqs:
+  - question: "Is Cursor free?"
+    answer: "Yes. On 24 Nov 2026 cursor.com/pricing lists Free at $0. It says limited Agent requests and limited Chat requests, and it does not print a number. Third-party models, Cloud agents, Origin and Bugbot are not on Free. This is not a hands-on test."
   - question: "What is Cursor pricing?"
     answer: "On 24 Nov 2026 cursor.com/pricing lists Free at $0, Plus at $8 a month, Premium at $30 a month, Super at $100 a month and Ultra at $200 a month. Teams starts at $30+ per user a month. Enterprise is Custom. The docs add annual prices of $80, $300, $1,000 and $2,000 a year for Plus, Premium, Super and Ultra. Prices exclude tax. Third-party model usage is not included in those monthly prices. This is not a hands-on test."
   - question: "What is the difference between Cursor Pro and Pro+?"
@@ -149,6 +151,6 @@ Current plans do not include Max Mode. On legacy request-based plans, Max Mode i
 
 No token or request count for Free, for the Plus pool, or for the Pro and Pro+ pools. No per-review price for Bugbot on the pricing page. No Enterprise dollar price. No hands-on measurement of how fast a pool runs out.
 
-Pending hands-on test. The parent page is [Vibe-code an MVP](../../use-cases/vibe-code-an-mvp/). The shortlist that places Cursor after the builders is [AI app builders for non-coders](../../best/ai-app-builders-for-non-coders/). Builder pricing for the first step is [Lovable pricing](../lovable/).
+Pending hands-on test. The parent page is [Vibe-code an MVP](../../use-cases/vibe-code-an-mvp/). [Lovable vs Cursor](../../compare/lovable-vs-cursor/) lines up the free plans and the first paid step. Both tools stay pending a hands-on test, and that page does not change the picks. The shortlist that places Cursor after the builders is [AI app builders for non-coders](../../best/ai-app-builders-for-non-coders/). Builder pricing for the first step is [Lovable pricing](../lovable/).
 
 Sources, fetched 24 Nov 2026: [cursor.com/pricing](https://cursor.com/pricing), [Models and pricing](https://cursor.com/docs/account/pricing), [Pricing and plans](https://cursor.com/help/account-and-billing/pricing), [Legacy Cursor plans](https://cursor.com/docs/account/pricing/legacy-cursor-plans) and [Usage and limits](https://cursor.com/help/models-and-usage/usage-limits).

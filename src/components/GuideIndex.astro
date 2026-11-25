@@ -39,6 +39,9 @@ const hub = hubPage(
       <span class="eyebrow">{eyebrow}</span>
       <h1>{title}</h1>
       <p class="lead">{intro}</p>
+      <p class="hub-nav">
+        Also browse <a href={withBase('/use-cases/')}>use cases</a>, <a href={withBase('/best/')}>shortlists</a>, <a href={withBase('/compare/')}>comparisons</a>, <a href={withBase('/alternatives/')}>alternatives</a>, <a href={withBase('/pricing/')}>pricing</a> and <a href={withBase('/tested/')}>hands-on notes</a>.
+      </p>
       <div class="meta"><Checked date={hub.dateModified} label={hub.dateLabel} /></div>
     </section>
     {entries.length > 0 ? (

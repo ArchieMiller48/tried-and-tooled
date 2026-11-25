@@ -76,7 +76,8 @@ Solo founders, indie hackers and creators who want a real, working product (logi
 - **You want to ship this week:** start in Lovable or Bolt.new, and connect GitHub straight away.
 - **You already write some code:** prototype in a builder, then move to an AI editor for the details.
 - **You're on £0:** Bolt.new's free tier gives the most room to prototype. Upgrade only when you need a custom domain.
-- **You want the head-to-head:** [Lovable vs Bolt.new](../../compare/lovable-vs-bolt/) lines up free limits, the first paid plan and getting the code out.
+- **You want the head-to-head between the two builders:** [Lovable vs Bolt.new](../../compare/lovable-vs-bolt/) lines up free limits, the first paid plan and getting the code out.
+- **You are choosing between the builder and the editor:** [Lovable vs Cursor](../../compare/lovable-vs-cursor/) lines up the free plans and the first paid step. Prices there were checked 24 Nov 2026. Both stay pending a hands-on test. It does not change the picks above.
 - **You want the wider shortlist:** [AI app builders for non-coders](../../best/ai-app-builders-for-non-coders/) covers Lovable, Bolt.new, Replit and where Cursor fits.
 - **You want Lovable's prices:** [Lovable pricing](../../pricing/lovable/) lists the plans, the credit tiers and the free limits, checked on 24 Nov 2026. Pending hands-on test.
 - **You want Cursor's prices:** [Cursor pricing](../../pricing/cursor/) lists the current plans, Pro versus Pro+, and the usage limits, checked on 24 Nov 2026. Pending hands-on test.

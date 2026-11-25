@@ -62,3 +62,4 @@ Creators who record interviews, and founders who want the notes from a call with
 - **The meeting is live:** Fireflies. Move to Pro when you need the download or you will pass 400 minutes of stored audio.
 - **You already have the file, and you edit in Descript:** stay on Descript. The [voiceover](../../use-cases/ai-voiceover/) and [clipping](../../use-cases/clip-long-videos-into-shorts/) pages use it for the steps after the transcript.
 - **You want a small, obvious free cap:** Otter Basic is 300 minutes a month. It is not the pick here because Fireflies Free lists more transcription, with the storage limit above.
+- **The file is noisy and you need it cleaned before anyone reads a transcript:** [Clean up a noisy voice recording](../../use-cases/clean-up-a-noisy-recording/).

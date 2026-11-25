@@ -8,6 +8,7 @@ import {
   hasHandwrittenSearchCopy,
   moneyAmounts,
   offerFromPrice,
+  offersFromListedPrices,
   siblingUseCases,
   textMentionsFree,
   useCaseMeta,
@@ -157,6 +158,28 @@ test('use-case schema lists the recommended tools and does not invent a rating',
   assert.equal(json.includes('reviewCount'), false);
   assert.match(json, /SoftwareApplication/);
   assert.match(json, /"dateModified":"2026-10-20"/);
+});
+
+test('pricing-page offers keep a number only for a single listed price', () => {
+  const checked = new Date('2026-11-24T00:00:00.000Z');
+  const offers = offersFromListedPrices([
+    { name: 'Free', price: '$0', includes: 'Limited Agent requests.', sourceUrl: 'https://example.com/pricing', checked },
+    { name: 'Plus', price: '$8/month', includes: 'Grok models only.', sourceUrl: 'https://example.com/pricing', checked },
+    { name: 'Pro', price: '$25/month for 100 credits, or $250/year ($21/month)', includes: 'Code editing starts here.', sourceUrl: 'https://example.com/plans', checked },
+    { name: 'Teams', price: 'from $30/user/month', includes: 'Shared seats.', sourceUrl: 'https://example.com/pricing', checked },
+    { name: 'Enterprise', price: 'Custom', includes: 'No dollar amount is printed.', sourceUrl: 'https://example.com/pricing', checked },
+  ]);
+  assert.equal(offers[0].price, '0');
+  assert.equal(offers[0].priceCurrency, 'USD');
+  assert.match(String(offers[0].description), /\$0/);
+  assert.match(String(offers[0].description), /Pricing checked 24 Nov 2026/);
+  assert.equal(offers[1].price, '8');
+  assert.equal(offers[1].priceCurrency, 'USD');
+  assert.equal(offers[2].price, undefined);
+  assert.match(String(offers[2].description), /\$250\/year/);
+  assert.equal(offers[3].price, undefined);
+  assert.equal(offers[4].price, undefined);
+  assert.equal(offers[4].url, 'https://example.com/pricing');
 });
 
 test('sibling use cases stay on other jobs and prefer the same category', () => {

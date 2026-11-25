@@ -19,6 +19,8 @@ interface PricedTool {
   url: string;
   description: string;
   pricing: { summary: string; sourceUrl: string; checked: Date };
+  /** Plan offers already printed on the page. When set, schema uses these instead of a single price. */
+  offers?: Record<string, unknown>[];
 }
 interface Props {
   eyebrow: string;
@@ -31,6 +33,8 @@ interface Props {
   faqs: Faq[];
   verdicts: Verdict[];
   tools?: PricedTool[];
+  /** Schema-only tool list. Use when the page already prints every price in its own table. */
+  schemaTools?: PricedTool[];
   ogImage?: string;
   /** The page renders the signup inside its own body, after the picks. */
   newsletterInSlot?: boolean;
@@ -64,6 +68,7 @@ const guides = await listGuides();
 const here = Astro.url.pathname.replace(/\/+$/, '');
 const relatedGuides = guides.filter((guide) => guide.parent === page.parent && withBase(guide.href).replace(/\/+$/, '') !== here);
 const siblings = siblingUseCases(parent, await getCollection('use-cases', ({ data }) => !data.draft));
+const schemaTools = page.schemaTools ?? page.tools;
 const jsonLd = buildGuideJsonLd({
   title: documentTitle,
   description,
@@ -76,8 +81,8 @@ const jsonLd = buildGuideJsonLd({
     { name: page.title, url: pageUrl },
   ],
   faqs: page.faqs,
-  tools: page.tools,
-  applicationCategory: page.tools?.length ? applicationCategory(parent.data.category) : undefined,
+  tools: schemaTools,
+  applicationCategory: schemaTools?.length ? applicationCategory(parent.data.category) : undefined,
 });
 ---
 <Base title={documentTitle} description={description} jsonLd={jsonLd} ogImage={page.ogImage} ogAlt={`Tried & Tooled: ${page.title}`} hasNewsletter>

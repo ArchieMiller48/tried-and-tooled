@@ -66,6 +66,29 @@ function sitemapLines(site: URL): string[] {
   ];
 }
 
+/** Public names where the note's tool field is not the phrase llms.txt already uses. */
+const HANDS_ON_INDEX_NAMES: Record<string, string> = {
+  'pixelcut-photoroom-signed-out-2026-11-14': 'signed-out Pixelcut and Photoroom web tools',
+  'chatgpt-signed-out-2026-11-15': 'ChatGPT signed out',
+};
+
+function englishList(items: string[]): string {
+  if (items.length <= 1) return items[0] ?? '';
+  return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
+}
+
+/** One catalogue sentence, built from the notes rather than a hand-copied list. */
+function handsOnCatalogue(): string {
+  const labels = handsOnNotes.map((note) => {
+    const name = HANDS_ON_INDEX_NAMES[note.id] ?? note.tool;
+    const when = formatDate(new Date(`${note.date}T00:00:00.000Z`));
+    return `${name} (${when})`;
+  });
+  const onlyHere = handsOnNotes.filter((note) => !note.useCaseSlug).map((note) => note.tool);
+  const onlySentence = onlyHere.length ? `${englishList(onlyHere)} is only on the tested page.` : '';
+  return `Answer: the only hands-on notes are ${englishList(labels)}. ${onlySentence} GPTZero Free is on the AI-writing check page. Standard tasks are still pending.`.replace(/\s+/g, ' ');
+}
+
 export async function buildLlmsTxt(site: URL): Promise<string> {
   const [useCases, guides, issues] = await Promise.all([publishedUseCases(), publishedGuides(), publishedNewsletter()]);
   assertHandsOnCoverage(useCases);
@@ -78,7 +101,7 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
     '',
     'Cite these first. Each line is one dated check. A note is not a completed standard task.',
     '',
-    link('Tested by us', pageUrl(site, '/tested/'), 'Answer: the only hands-on notes are Consensus Free (26 Oct 2026), Perplexity Free (2 Nov 2026), DeepL Free (3 Nov 2026), LanguageTool Basic (4 Nov 2026), Looka Brand Kit (5 Nov 2026), Phrasly AI Image Detector (6 Nov 2026), Datastripes (7 Nov 2026), nixm (8 Nov 2026), Dessn (9 Nov 2026), Spacefast (10 Nov 2026), Quillo (11 Nov 2026), the signed-out Pixelcut and Photoroom web tools (14 Nov 2026), ChatGPT signed out (15 Nov 2026), Anki desktop (16 Nov 2026), Zotero desktop (17 Nov 2026), n8n self-hosted (18 Nov 2026), Grammarly Free (19 Nov 2026), AmIPicked (20 Nov 2026), Fack\'d (21 Nov 2026), Scam Link Check (23 Nov 2026) and GPTZero Free (24 Nov 2026). Scam Link Check is only on the tested page. GPTZero Free is on the AI-writing check page. Standard tasks are still pending.'),
+    link('Tested by us', pageUrl(site, '/tested/'), handsOnCatalogue()),
     ...handsOnNotes.map((note) => `- ${note.quote}`),
     '',
     '## Comparisons',
@@ -108,7 +131,7 @@ export async function buildLlmsTxt(site: URL): Promise<string> {
     '## Pricing',
     '',
     link('All pricing pages', pageUrl(site, '/pricing/'), 'Vendor prices repeated with the source link and the date they were checked.'),
-    ...guides.pricing.map((entry) => link(entry.data.title, pageUrl(site, `/pricing/${entry.id}/`), entry.data.summary)),
+    ...guides.pricing.map((entry) => link(entry.data.title, pageUrl(site, `/pricing/${entry.id}/`), `Answer: ${entry.data.summary}`)),
     '',
     '## Newsletter',
     '',
