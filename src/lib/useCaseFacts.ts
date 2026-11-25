@@ -211,6 +211,38 @@ export function offerFromPrice(pricing: PriceFact): Record<string, unknown> {
   return offer;
 }
 
+export interface ListedPlanPrice {
+  name: string;
+  price: string;
+  includes: string;
+  sourceUrl: string;
+  checked: Date;
+}
+
+/**
+ * One Offer per plan already printed on a pricing page.
+ * A numeric price is set only when that plan's price line is a single amount.
+ * A range, a yearly-or-monthly pair, or "from" stays in the description so the schema does not pick one number.
+ */
+export function offersFromListedPrices(plans: ListedPlanPrice[]): Record<string, unknown>[] {
+  return plans.map((plan) => {
+    const description = `${plan.name}: ${plan.price}. ${plan.includes} Pricing checked ${formatDate(plan.checked)}.`;
+    const offer: Record<string, unknown> = {
+      '@type': 'Offer',
+      name: plan.name,
+      url: plan.sourceUrl,
+      description,
+    };
+    const amounts = moneyAmounts(plan.price);
+    const hedged = /\bfrom\b|\bcustom\b/i.test(plan.price);
+    if (amounts.length === 1 && !hedged) {
+      offer.price = amounts[0].amount;
+      offer.priceCurrency = amounts[0].currency;
+    }
+    return offer;
+  });
+}
+
 function fitsTitle(title: string): boolean {
   return (title + BRAND_SUFFIX).length <= TITLE_LIMIT;
 }

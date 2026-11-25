@@ -21,10 +21,11 @@
 import { withBase } from '../lib/withBase';
 
 interface Props {
-  variant?: 'subtle';
+  variant?: 'subtle' | 'compact';
 }
 const { variant } = Astro.props;
 const subtle = variant === 'subtle';
+const compact = variant === 'compact';
 
 const BEEHIIV_CREATE = 'https://archies-newsletter-77bb75.beehiiv.com/create';
 const BEEHIIV_SUBSCRIBE = 'https://archies-newsletter-77bb75.beehiiv.com/subscribe';
@@ -45,9 +46,14 @@ for (const [key, value] of Object.entries(utm)) {
   fallbackUrl.searchParams.set(key, value);
 }
 ---
-<div class:list={['newsletter', { subtle }]} id="newsletter">
+<div class:list={['newsletter', { subtle, compact }]} id="newsletter">
   <div>
-    {subtle ? (
+    {compact ? (
+      <>
+        <h2 class="sr-only">Thursday note</h2>
+        <p class="sr-only">One job, the picks, and an alert when a tracked price changes.</p>
+      </>
+    ) : subtle ? (
       <>
         <h2>Price changes, once a week</h2>
         <p>The Thursday note: one job, and an alert when a price or an avoid on a tool we track changes.</p>

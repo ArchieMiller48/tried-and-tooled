@@ -44,6 +44,8 @@ verdicts:
   - situation: "You are a student or a teacher."
     guidance: "The pricing page says up to 50% off Lovable Pro. The docs say 50% off for up to 12 months, only on Pro with 100 credits a month, billed monthly, and only from a Free workspace after Lovable verifies an academic email. Higher tiers and annual billing are not included in that discount."
 faqs:
+  - question: "Is Lovable free?"
+    answer: "Yes. On 24 Nov 2026 the pricing page lists Free at $0, with no credit card. The pricing FAQ says that plan includes 5 build credits a day, up to 30 a month, plus 20 Cloud credits a month and 4 credits for AI features in apps. It does not include editing code, downloading code, a custom domain, or removing the Edit with Lovable badge. This is not a hands-on test."
   - question: "What is Lovable pricing?"
     answer: "On 24 Nov 2026 the pricing page lists Free at $0, Pro at $25 a month for 100 credits, and Business at $50 a month for 100 credits. A Yearly control says 2 months free. The subscription-plans doc prints the rest of the credit tiers, in US dollars, and the annual charge for the 100-credit Pro tier as $250 a year ($21 a month). Enterprise is a platform fee with no dollar amount on the pricing page. This is not a hands-on test."
   - question: "How do Lovable credits work?"
@@ -135,6 +137,6 @@ Hosting: the FAQ says that for most smaller or new apps the included grant cover
 
 No dollar price for a single credit. No named list of the regional plans whose daily grant is capped at 30 a month. No Enterprise platform fee in dollars. No count for the "daily chat allowance", which the docs describe as included, and larger than Free on Pro and Business, without a number.
 
-Pending hands-on test. Nothing on this page was measured inside a Lovable account. The parent page is [Vibe-code an MVP](../../use-cases/vibe-code-an-mvp/). The same job's comparison is [Lovable vs Bolt.new](../../compare/lovable-vs-bolt/), and the shortlist is [AI app builders for non-coders](../../best/ai-app-builders-for-non-coders/). Editor pricing for the refine step is [Cursor pricing](../cursor/).
+Pending hands-on test. Nothing on this page was measured inside a Lovable account. The parent page is [Vibe-code an MVP](../../use-cases/vibe-code-an-mvp/). The same job's comparison with the other builder is [Lovable vs Bolt.new](../../compare/lovable-vs-bolt/). [Lovable vs Cursor](../../compare/lovable-vs-cursor/) is the builder against the editor step, and it does not change the picks. The shortlist is [AI app builders for non-coders](../../best/ai-app-builders-for-non-coders/). Editor pricing for the refine step is [Cursor pricing](../cursor/).
 
 Sources, fetched 24 Nov 2026: [lovable.dev/pricing](https://lovable.dev/pricing) and [Lovable subscription plans](https://docs.lovable.dev/introduction/subscription-plans).

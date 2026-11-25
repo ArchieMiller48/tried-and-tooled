@@ -85,6 +85,7 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
     <section class="answer" aria-labelledby="short-answer">
       <h2 id="short-answer">Short answer</h2>
       <p>{answer.lead} {answer.pricesChecked}</p>
+      <div class="signup signup-early"><Newsletter variant="compact" /></div>
       <ul class="answer-prices">
         {answer.prices.map((price) => (
           <li>
@@ -102,8 +103,6 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}og/use-cases/${entry.id}.png
     ) : (
       <p class="notice"><strong>Not hands-on tested yet.</strong> The picks below are based on vendor documentation and pricing we verified on {formatDate(pricingVerified)}. Test results will appear here once we've run our standard task. We don't publish made-up test results.</p>
     ))}
-
-    <section class="signup"><Newsletter /></section>
 
     <section>
       <h2>The picks</h2>

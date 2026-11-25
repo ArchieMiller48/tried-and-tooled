@@ -95,3 +95,5 @@ The order above is a reading guide for non-coders. It is not a ranking from a sh
 Prices are in US dollars, as the vendors publish them. Nothing here is converted to pounds. Where a page shows an annual price with a monthly price struck through beside it, both figures are reported, and the billing period is named.
 
 Replit's help centre prints some plan facts as template placeholders rather than numbers. Those placeholders are not used. Starter at no cost, with one published app, was confirmed on 9 November 2026 on the billing docs. The Core and Pro dollar figures come from replit.com/pricing, which on 9 November 2026 showed yearly billing: Core at $18 a month billed annually with $20 struck through, and Pro at $90 a month billed annually with $100 struck through.
+
+The builder and the editor step are compared on [Lovable vs Cursor](../../compare/lovable-vs-cursor/). Prices on that page were checked 24 Nov 2026. It does not change the order above. The plan pages are [Lovable pricing](../../pricing/lovable/) and [Cursor pricing](../../pricing/cursor/).

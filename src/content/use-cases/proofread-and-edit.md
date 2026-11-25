@@ -61,6 +61,7 @@ Students, researchers and anyone else who has a draft and needs the mistakes cau
 - **You need a full-sentence rewrite and you are signed out of Grammarly:** on 19 Nov 2026 the [grammar-check page](https://www.grammarly.com/grammar-check), with no account, showed the first spelling fix and then a sign-up modal. A 618-word post was cut to 709 characters with no warning. No rewrite option appeared. Grammarly Pro was not part of that check.
 - **You want the two plans side by side:** [Grammarly vs LanguageTool](../../compare/grammarly-vs-languagetool/). Prices on that page were checked 16 Nov 2026. It does not change the picks above.
 - **The piece is a new draft, not an edit:** start on [Write posts, emails and landing copy](../../use-cases/write-posts-and-emails/), then come back here.
+- **The job is a detector score, not a rewrite:** [Check if a piece of writing is AI](../../use-cases/check-if-writing-is-ai/).
 
 Two notes are below. The 4 Nov 2026 note is a signed-out check of LanguageTool Basic. Grammarly Pro and Grammarly Free were not part of it. The 19 Nov 2026 note is Grammarly Free, signed out on the grammar-check page, with no account. Grammarly Pro and LanguageTool were not part of that check. The standard task on this page has not been run.
 

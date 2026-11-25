@@ -85,6 +85,10 @@ const auditedForLength = new Set([
   `${base}/use-cases/proofread-and-edit/`,
   `${base}/compare/ideogram-vs-midjourney/`,
   `${base}/compare/grammarly-vs-languagetool/`,
+  `${base}/compare/lovable-vs-cursor/`,
+  `${base}/pricing/`,
+  `${base}/pricing/lovable/`,
+  `${base}/pricing/cursor/`,
   `${base}/best/ai-thumbnail-makers/`,
   `${base}/tested/`,
 ]);
@@ -115,6 +119,8 @@ for (const file of htmlFiles) {
   }
 
   if (!title) fail(`${path} is missing a title`);
+  const h1Count = (html.match(/<h1\b/gi) ?? []).length;
+  if (h1Count !== 1) fail(`${path} has ${h1Count} h1 headings`);
   if (auditedForLength.has(path)) {
     if (title.length > 60) fail(`${path} title is ${title.length} characters`);
     if (description && (description.length < 120 || description.length > 160)) {
@@ -148,8 +154,9 @@ for (const file of htmlFiles) {
         for (const key of ['name', 'url', 'applicationCategory']) {
           if (typeof node[key] !== 'string' || node[key].length === 0) fail(`${path} SoftwareApplication is missing ${key}`);
         }
-        const offer = node.offers;
-        if (offer?.price !== undefined) {
+        const offers = Array.isArray(node.offers) ? node.offers : node.offers ? [node.offers] : [];
+        for (const offer of offers) {
+          if (!offer || typeof offer !== 'object' || offer.price === undefined) continue;
           const price = String(offer.price);
           if (!String(offer.description ?? '').includes(price)) {
             fail(`${path} offer price ${price} for ${node.name} is not in the sourced description`);
@@ -314,6 +321,7 @@ for (const file of htmlFiles) {
     `${base}/alternatives/`,
     `${base}/tested/`,
     `${base}/new/`,
+    `${base}/pricing/`,
   ]);
   if (collectionHubs.has(path)) {
     const graph = blocks.flatMap((block) => {
@@ -361,6 +369,32 @@ for (const file of htmlFiles) {
     `${base}/pricing/`,
   ]);
   if (signupPages.has(path) && !html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
+
+  if (/\/pricing\/[^/]+\/$/.test(path)) {
+    if (!/Is [^<]{1,48} free\?/i.test(html)) fail(`${path} is missing an Is it free FAQ`);
+    const graph = blocks.flatMap((block) => {
+      try {
+        const data = JSON.parse(block[1]);
+        return data['@graph'] ?? [data];
+      } catch {
+        return [];
+      }
+    });
+    const apps = [];
+    walkNodes(graph, (node) => {
+      if (node['@type'] === 'SoftwareApplication') apps.push(node);
+    });
+    if (apps.length < 1) fail(`${path} is missing SoftwareApplication`);
+    for (const app of apps) {
+      const offers = Array.isArray(app.offers) ? app.offers : app.offers ? [app.offers] : [];
+      if (offers.length < 1) fail(`${path} SoftwareApplication ${app.name} has no offers`);
+      for (const offer of offers) {
+        const description = String(offer?.description ?? '');
+        if (!description.includes('Pricing checked')) fail(`${path} offer for ${app.name} is missing the checked date`);
+        if (typeof offer?.url !== 'string' || !offer.url.startsWith('http')) fail(`${path} offer for ${app.name} is missing a source url`);
+      }
+    }
+  }
 
   if (path === `${base}/newsletter/`) {
     if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);

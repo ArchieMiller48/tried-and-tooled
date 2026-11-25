@@ -44,7 +44,7 @@ const hub = hubPage(Astro.site!, Astro.url.pathname, title, description, listed)
       <section>
         <div class="section-head">
           <h2>Comparisons and shortlists</h2>
-          <span><a href={withBase('/compare/')}>Comparisons</a> · <a href={withBase('/best/')}>Shortlists</a></span>
+          <span><a href={withBase('/compare/')}>Comparisons</a> · <a href={withBase('/best/')}>Shortlists</a> · <a href={withBase('/alternatives/')}>Alternatives</a> · <a href={withBase('/pricing/')}>Pricing</a></span>
         </div>
         <div class="grid">{guides.map((guide) => <GuideCard {...guide} />)}</div>
       </section>
