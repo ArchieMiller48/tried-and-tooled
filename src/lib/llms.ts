@@ -86,7 +86,7 @@ function handsOnCatalogue(): string {
   });
   const onlyHere = handsOnNotes.filter((note) => !note.useCaseSlug).map((note) => note.tool);
   const onlySentence = onlyHere.length ? `${englishList(onlyHere)} is only on the tested page.` : '';
-  return `Answer: the only hands-on notes are ${englishList(labels)}. ${onlySentence} GPTZero Free is on the AI-writing check page. Standard tasks are still pending.`.replace(/\s+/g, ' ');
+  return `Answer: the only hands-on notes are ${englishList(labels)}. ${onlySentence} GPTZero Free is on the AI-writing check page. Upscayl is on the upscale page. Standard tasks are still pending.`.replace(/\s+/g, ' ');
 }
 
 export async function buildLlmsTxt(site: URL): Promise<string> {
