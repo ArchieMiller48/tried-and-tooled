@@ -485,6 +485,9 @@ if (existsSync(llms) && existsSync(full)) {
   if (!index.includes('Tested 25 Nov 2026: Upscayl 2.15.0, with no account, upscaled a 320×240 sourdough photo 4×')) {
     fail('llms.txt is missing the Upscayl quotable line');
   }
+  if (!index.includes('Tested 26 Nov 2026: Kapwing Free, after an email sign-in code, burned captions into a 2 min 38 s Gettysburg Address clip')) {
+    fail('llms.txt is missing the Kapwing Free quotable line');
+  }
   if (!index.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms.txt does not advertise the sitemap');
   if (!expanded.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms-full.txt does not advertise the sitemap');
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
@@ -1097,6 +1100,76 @@ if (!upscale.includes('$14.50/month') || !upscale.includes('$33.75/month') || !u
   fail('upscale page dropped a Magnific price');
 }
 
+const captions = decode(readFileSync(pathToFile(`${base}/use-cases/add-captions-to-a-video/`), 'utf8'));
+for (const phrase of [
+  'Hands-on test (26 Nov 2026)',
+  'kapwing.com/subtitles',
+  'Sign in to continue',
+  'one-time sign-in code',
+  'no password',
+  'No card and no trial',
+  '2 minutes 38 seconds',
+  'LibriVox',
+  'Gettysburg Address',
+  'still slide',
+  'about 15 seconds',
+  'about 25 seconds',
+  '3 of 10 credits',
+  '720p',
+  'about 2 to 3 minutes',
+  'current word highlighted',
+  'frame by frame',
+  '0 wrong words',
+  'November nineteenth, eighteen sixty-three',
+  'published text',
+  'not a human transcript',
+  'One clean speaker only',
+  'KAPWING watermark',
+  'bottom-right',
+  'Upgrade your workspace',
+  '$16 a month billed annually ($192)',
+  '$50 a month billed annually ($600)',
+  'burned-in captions only',
+  'not a caption file',
+  'wrong free plan for a client video',
+  'Kapwing Pro, the top pick, was not part of it',
+  'YouTube automatic captions were not tested and stay pending',
+  'translation and dubbing',
+  'caption style edits',
+  'other languages',
+  'Prices were read on 23 Nov 2026',
+]) {
+  if (!captions.includes(phrase)) fail(`captions page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!captions.includes('datetime="2026-11-23"')) fail('captions page does not show 23 Nov 2026 as dateModified');
+if (!captions.includes('Standard task still pending') || !captions.includes('standard task')) {
+  fail('captions page does not keep the standard task pending');
+}
+if (!captions.includes(`${base}/tested/`)) fail('captions page does not link to the tested page');
+const captionsTop = captions.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const captionsBudget = captions.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const captionsAvoid = captions.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!captionsTop.includes('Kapwing Pro') || !captionsTop.includes('Pending hands-on test')) {
+  fail('Kapwing Pro lost its pending hands-on label');
+}
+if (captionsTop.includes('Hands-on test 26 Nov')) fail('Kapwing Pro was marked as hands-on tested');
+if (!captionsBudget.includes('Kapwing Free') || !captionsBudget.includes('Hands-on test 26 Nov 2026')) {
+  fail('Kapwing Free card is missing its hands-on label');
+}
+if (captionsBudget.includes('Pending hands-on test')) fail('Kapwing Free card still has a pending hands-on label');
+if (!captionsBudget.includes('Tested 26 Nov 2026: Kapwing Free, after an email sign-in code, burned captions into a 2 min 38 s Gettysburg Address clip')) {
+  fail('Kapwing Free card is missing the quotable line');
+}
+if (!captionsAvoid.includes('Kapwing Free, for a video you will publish')) fail('captions avoid card lost Kapwing Free for a published video');
+if (captionsAvoid.includes('Hands-on test')) fail('Kapwing Free for a published video was marked as hands-on tested');
+if (!captions.includes('YouTube automatic captions') || !captions.includes('stay pending')) {
+  fail('YouTube automatic captions are not still labelled pending');
+}
+if (captions.includes('>Tested 26 Nov 2026<')) fail('captions page was marked as a completed test');
+if (!captions.includes('$16/month') || !captions.includes('$50/month')) {
+  fail('captions page dropped a Kapwing price');
+}
+
 const logos = readFileSync(pathToFile(`${base}/use-cases/design-logos-and-graphics/`), 'utf8');
 for (const phrase of [
   'Hands-on test (5 Nov 2026)',
@@ -1259,7 +1332,19 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Twenty-two notes exist',
+  'Twenty-three notes exist',
+  '26 Nov 2026',
+  'Kapwing Free',
+  'Gettysburg Address',
+  'Sign in to continue',
+  '3 of 10 credits',
+  '0 wrong words',
+  'November nineteenth, eighteen sixty-three',
+  'Upgrade your workspace',
+  'KAPWING',
+  'burned-in captions only',
+  'captions page',
+  'YouTube automatic captions',
   '25 Nov 2026',
   'Upscayl',
   '2.15.0',
@@ -1474,6 +1559,9 @@ if (!tested.includes('Tested 24 Nov 2026: GPTZero Free, signed out, scored a 201
 if (!tested.includes('Tested 25 Nov 2026: Upscayl 2.15.0, with no account, upscaled a 320×240 sourdough photo 4×')) {
   fail('tested page is missing the Upscayl quotable line');
 }
+if (!tested.includes('Tested 26 Nov 2026: Kapwing Free, after an email sign-in code, burned captions into a 2 min 38 s Gettysburg Address clip')) {
+  fail('tested page is missing the Kapwing Free quotable line');
+}
 if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
   fail('tested page is missing the Anki quotable line');
 }
@@ -1524,6 +1612,9 @@ if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 24 Nov 2026
 }
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 25 Nov 2026: Upscayl 2.15.0, with no account, upscaled a 320×240 sourdough photo 4×')) {
   fail('llms-full.txt is missing the Upscayl quotable line');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 26 Nov 2026: Kapwing Free, after an email sign-in code, burned captions into a 2 min 38 s Gettysburg Address clip')) {
+  fail('llms-full.txt is missing the Kapwing Free quotable line');
 }
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
@@ -1583,6 +1674,9 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('GPTZero Free (24 N
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Upscayl (25 Nov 2026)')) {
   fail('llms.txt omits the Upscayl note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Kapwing Free (26 Nov 2026)')) {
+  fail('llms.txt omits the Kapwing Free note');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -1640,6 +1734,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Sally Lunn bun') 
 }
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Invalid GPU Device') || !readFileSync(full, 'utf8').includes('The upscale page\'s standard task'))) {
   fail('llms-full.txt omits the Upscayl note or its unrun standard task');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('November nineteenth, eighteen sixty-three') || !readFileSync(full, 'utf8').includes('The captions page\'s standard task'))) {
+  fail('llms-full.txt omits the Kapwing Free note or its unrun standard task');
 }
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
