@@ -1,16 +1,18 @@
 const BRAND_SUFFIX = ' · Tried & Tooled';
 const NEWSLETTER_TITLE_LIMIT = 60;
 const ISSUE_5_PAGE_TITLE = 'Tried & Tooled #5: hands-on notes and a spreadsheet stack';
+const ISSUE_7_PAGE_TITLE = 'Tried & Tooled #7: hands-on notes and an AI-writing check';
 
 /**
  * Document title for one newsletter issue.
  * Issues whose `title · Tried & Tooled` already fits keep that form.
- * Issue 5's full title is 64 characters, so the page title is the shorter line.
+ * Issue 5's full title is 64 characters, and issue 7's is 68, so those page titles are the shorter lines.
  */
 export function newsletterDocumentTitle(title: string): string {
   const withSuffix = `${title}${BRAND_SUFFIX}`;
   if (withSuffix.length <= NEWSLETTER_TITLE_LIMIT) return withSuffix;
   if (title.startsWith('Tried & Tooled #5:')) return ISSUE_5_PAGE_TITLE;
+  if (title.startsWith('Tried & Tooled #7:')) return ISSUE_7_PAGE_TITLE;
   return title.length <= NEWSLETTER_TITLE_LIMIT ? title : withSuffix;
 }
 
