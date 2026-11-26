@@ -398,17 +398,18 @@ for (const file of htmlFiles) {
 
   if (path === `${base}/newsletter/`) {
     if (!html.includes('id="newsletter"')) fail(`${path} is missing the signup form`);
-    for (const issue of ['issue-1', 'issue-2', 'issue-3', 'issue-4', 'issue-5', 'issue-6']) {
+    for (const issue of ['issue-1', 'issue-2', 'issue-3', 'issue-4', 'issue-5', 'issue-6', 'issue-7']) {
       if (!html.includes(`${base}/newsletter/${issue}/`)) fail(`${path} does not link to ${issue}`);
     }
+    const issue7At = html.indexOf(`${base}/newsletter/issue-7/`);
     const issue6At = html.indexOf(`${base}/newsletter/issue-6/`);
     const issue5At = html.indexOf(`${base}/newsletter/issue-5/`);
     const issue4At = html.indexOf(`${base}/newsletter/issue-4/`);
     const issue3At = html.indexOf(`${base}/newsletter/issue-3/`);
     const issue2At = html.indexOf(`${base}/newsletter/issue-2/`);
     const issue1At = html.indexOf(`${base}/newsletter/issue-1/`);
-    if (!(issue6At < issue5At && issue5At < issue4At && issue4At < issue3At && issue3At < issue2At && issue2At < issue1At)) {
-      fail(`${path} does not list issue 6 first`);
+    if (!(issue7At < issue6At && issue6At < issue5At && issue5At < issue4At && issue4At < issue3At && issue3At < issue2At && issue2At < issue1At)) {
+      fail(`${path} does not list issue 7 first`);
     }
   }
 
@@ -489,7 +490,7 @@ if (existsSync(llms) && existsSync(full)) {
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
     if (!index.includes(`${base}${needle}`)) fail(`llms.txt is missing ${needle}`);
   }
-  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`, `${base}/newsletter/issue-5/`, `${base}/newsletter/issue-6/`]) {
+  for (const issuePath of [`${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`, `${base}/newsletter/issue-5/`, `${base}/newsletter/issue-6/`, `${base}/newsletter/issue-7/`]) {
     if (!index.includes(issuePath)) fail(`llms.txt is missing ${issuePath}`);
     if (!expanded.includes(issuePath)) fail(`llms-full.txt is missing ${issuePath}`);
   }
@@ -521,7 +522,7 @@ const sitemap = walk(dist)
   .filter((file) => file.endsWith('.xml') && file.includes('sitemap'))
   .map((file) => readFileSync(file, 'utf8'))
   .join('\n');
-for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`, `${base}/newsletter/issue-5/`, `${base}/newsletter/issue-6/`]) {
+for (const page of [`${base}/newsletter/`, `${base}/newsletter/issue-1/`, `${base}/newsletter/issue-2/`, `${base}/newsletter/issue-3/`, `${base}/newsletter/issue-4/`, `${base}/newsletter/issue-5/`, `${base}/newsletter/issue-6/`, `${base}/newsletter/issue-7/`]) {
   if (!existsSync(pathToFile(page))) fail(`built page is missing ${page}`);
   if (!sitemap.includes(`${origin}${page}`)) fail(`sitemap is missing ${page}`);
 }
@@ -703,6 +704,116 @@ else {
   if (issue6.includes('beehiiv.com/p/')) fail('issue 6 links to a guessed Beehiiv post URL');
   if (issue6.includes('rel="sponsored"') || issue6.includes('{{') || issue6.includes('first_name')) {
     fail('issue 6 has a sponsored link or a Beehiiv merge tag');
+  }
+}
+const issue7Path = pathToFile(`${base}/newsletter/issue-7/`);
+const issue7 = issue7Path && existsSync(issue7Path) ? readFileSync(issue7Path, 'utf8') : '';
+if (!issue7) fail('built page is missing issue 7');
+else {
+  const issue7Title = attr(issue7, /<title>([^<]*)<\/title>/);
+  if (issue7Title !== 'Tried & Tooled #7: hands-on notes and an AI-writing check') {
+    fail(`issue 7 title is ${JSON.stringify(issue7Title)}`);
+  }
+  if (issue7Title.length > 60) fail(`issue 7 title is ${issue7Title.length} characters`);
+  for (const phrase of [
+    'twenty-two hands-on notes and an AI-writing check',
+    'datetime="2026-11-26"',
+    'href="https://archies-newsletter-77bb75.beehiiv.com/"',
+    'now has twenty-two notes',
+    'issues #4 to #6 went out on the web only',
+    'nobody pays to rank',
+    'ChatGPT Space rolls out to Plus (20 Nov)',
+    'https://help.openai.com/en/articles/6825453-chatgpt-release-notes',
+    'Claude computer use (20 Nov)',
+    'https://support.claude.com/en/articles/12138966-release-notes',
+    'ChatGPT Live Dictation drops the 10-minute limit (18 Nov)',
+    'GPT-6.2 Astra and Sol (17 Nov)',
+    'MAI Code 2 and Code 2 Flash (17 Nov)',
+    'https://github.blog/changelog/2026-11-17-mai-code-2-and-mai-code-2-flash-in-github-copilot/',
+    'Gemini in Apps Script is generally available',
+    'https://workspaceupdates.googleblog.com/2026/11/customize-and-extend-workspace-with-apps-script.html',
+    '50,000 new ChatGPT Plus grants',
+    'https://openai.com/index/expanding-chatgpt-for-academic-researchers/',
+    `${base}/new/`,
+    'No top or budget pick was replaced',
+    "Space doesn't replace Gamma",
+    'another Copilot model rather than a CodeRabbit swap',
+    "Gemini in Apps Script doesn't replace Zapier",
+    'Starter is now $33/mo, billed annually at $390/yr',
+    '$63/mo ($750/yr)',
+    'Free is still $0',
+    '$32.50 and $24.17',
+    'https://www.tidio.com/pricing/',
+    'Starter is still $6/mo and Creator $22/mo',
+    '$99 for the year until 1 December 2026',
+    'up to 55% off annual plans',
+    'https://elevenlabs.io/pricing',
+    'a new Platinum plan is on the page at $120/mo',
+    '$100/mo billed annually ($1,200/year)',
+    '15,000 song credits a month',
+    'Pro ($10/mo, or $8/mo yearly)',
+    'https://suno.com/pricing',
+    `${base}/use-cases/add-captions-to-a-video/`,
+    'Kapwing Pro at $16/month',
+    'Kapwing Free is the budget pick',
+    `${base}/use-cases/check-if-writing-is-ai/`,
+    'up to 10,000 words a month',
+    `${base}/use-cases/clean-up-a-noisy-recording/`,
+    'Auphonic Free (2 hours a month, adds a jingle)',
+    `${base}/use-cases/upscale-a-low-resolution-image/`,
+    'Magnific Premium at $14.50/month',
+    'Upscayl, free and open source',
+    `${base}/pricing/lovable/`,
+    '5 build credits a day, up to 30 a month',
+    'Pro from $25/month for 100 credits',
+    `${base}/pricing/cursor/`,
+    'Free $0, Plus $8/month, Premium $30',
+    `${base}/compare/lovable-vs-cursor/`,
+    'Lovable is the chat builder for a first version',
+    'Grammarly Free, signed out (19 Nov)',
+    '9 underlines on an 8-error email',
+    '618-word post was silently cut to 709 characters',
+    'AmIPicked (20 Nov)',
+    "Fack'd (21 Nov)",
+    '6 of 10 used',
+    'Scam Link Check (23 Nov)',
+    'a capital I for an l',
+    'GPTZero Free, signed out (24 Nov)',
+    'three of three known texts labelled correctly',
+    'Upscayl 2.15.0 on Linux (25 Nov)',
+    'PSNR about 21.4 dB',
+    'Kickresume Free and Elicit Basic',
+    `${base}/tested/`,
+    'class="callout"',
+    'take one section and write down the word count',
+    'try for $0.00',
+    '$30 for 1 month, $60 for 3 months or $144 for a year',
+    'https://www.grammarly.com/plans',
+    'paid dollar amounts weren\'t in the page HTML',
+    'https://gptzero.me/pricing',
+    'Avoid for this job: Grammarly Free.',
+    'GPTZero Model 5.0b',
+    '100% human',
+    '100% AI',
+    'pending hands-on test',
+    'See the AI-writing check stack',
+    `${base}/use-cases/proofread-and-edit/`,
+    'Before you trust any checker',
+    'No known risk found',
+    'swapped an l for a capital I',
+    'Just hit reply',
+    `${base}/submit/`,
+    `${base}/newsletter/`,
+    'No pay-to-rank and no sponsors in this issue',
+    'None of the links in this issue are affiliate links',
+    'Six daily checks, four new use-case pages, and Lovable and Cursor pricing',
+    'a scam checker missed a fake Royal Mail link',
+  ]) {
+    if (!issue7.includes(phrase)) fail(`issue 7 is missing ${phrase}`);
+  }
+  if (issue7.includes('beehiiv.com/p/')) fail('issue 7 links to a guessed Beehiiv post URL');
+  if (issue7.includes('rel="sponsored"') || issue7.includes('{{') || issue7.includes('first_name')) {
+    fail('issue 7 has a sponsored link or a Beehiiv merge tag');
   }
 }
 const sitemapUrls = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
