@@ -22,6 +22,8 @@ budgetPick:
     sourceUrl: "https://www.kapwing.com/pricing"
     checked: 2026-11-23
   affiliateUrl: null
+  handsOn: 2026-11-26
+  handsOnSummary: "Kapwing Free web app on 26 Nov 2026, from kapwing.com/subtitles into the studio editor. Starting the editor needs no account. Uploading a video opened \"Sign in to continue\". Sign-up was an email and a one-time sign-in code, with no password, no card and no trial. The clip was 2 minutes 38 seconds: a LibriVox public-domain recording of the Gettysburg Address, one clear speaker, a studio read, including the LibriVox spoken intro and outro, over a still slide. Upload took about 15 seconds. Auto subtitles, with language auto-detect, took about 25 seconds and cost 3 of 10 credits shown in the panel. Export to 720p MP4 took about 2 to 3 minutes. Captions were burned in as short phrases, with the current word highlighted. Checked frame by frame on the exported file, every line matched the published text of the speech and the LibriVox intro and outro, word for word. 0 wrong words were seen. Numbers came out as words (\"November nineteenth, eighteen sixty-three\"). Compared with the published text, not a human transcript of this reading. One clean speaker only. Noisy audio, accents, several speakers and longer clips were not tested. Every frame of the export carries a KAPWING watermark in the bottom-right corner. SRT, VTT and TXT downloads are locked. Clicking .SRT opened an \"Upgrade your workspace\" dialog showing Pro at $16 a month billed annually ($192) and Business at $50 a month billed annually ($600). Free gives burned-in captions only, not a caption file. Accurate and quick for a clean voice, and fine for a draft or a personal post. The watermark and the lack of a caption file mean it is the wrong free plan for a client video or for uploading captions separately. Kapwing Pro, translation, dubbing, caption style edits and other languages were not tested. YouTube automatic captions were not tested."
 avoid:
   name: "Kapwing Free, for a video you will publish"
   reason: "The Free card says unlimited exports with a watermark, and auto-subtitling only up to 10 minutes. Pro is the card that says no Kapwing watermark and auto-subtitling up to 1,000 minutes a month. Business, at $50 on the same annual view, is the wrong spend when Pro already lists the captions."
@@ -50,7 +52,7 @@ alsoConsidered:
 testStatus: "pending"
 lastTested: null
 lastVerified: 2026-11-23
-testNotes: "Pending hands-on test. Planned standard task: from the same two-minute talking clip, generate captions in each tool, then count wrong words, and record whether the export carries a watermark and what the published plan costs. No caption file has been generated for this page."
+testNotes: "Hands-on note, 26 Nov 2026: Kapwing Free only, the web app, from kapwing.com/subtitles into the studio editor. Starting the editor needs no account. Uploading a video opened \"Sign in to continue\". Sign-up was an email and a one-time sign-in code, with no password, no card and no trial. The clip was 2 minutes 38 seconds: a LibriVox public-domain recording of the Gettysburg Address, one clear speaker, a studio read, including the LibriVox spoken intro and outro, over a still slide. Upload took about 15 seconds. Auto subtitles, with language auto-detect, took about 25 seconds and cost 3 of 10 credits shown in the panel. Export to 720p MP4 took about 2 to 3 minutes. Captions were burned in as short phrases, with the current word highlighted. Checked frame by frame on the exported file, every line matched the published text of the speech and the LibriVox intro and outro, word for word. 0 wrong words were seen. Numbers came out as words (\"November nineteenth, eighteen sixty-three\"). Compared with the published text, not a human transcript of this reading. One clean speaker only. Noisy audio, accents, several speakers and longer clips were not tested. Every frame of the export carries a KAPWING watermark in the bottom-right corner. SRT, VTT and TXT downloads are locked. Clicking .SRT opened an \"Upgrade your workspace\" dialog showing Pro at $16 a month billed annually ($192) and Business at $50 a month billed annually ($600). Free gives burned-in captions only, not a caption file. Accurate and quick for a clean voice, and fine for a draft or a personal post. The watermark and the lack of a caption file mean it is the wrong free plan for a client video or for uploading captions separately. Kapwing Pro and YouTube automatic captions were not part of this check. Not tested: Kapwing Pro, translation, dubbing, caption style edits, and other languages. The standard task is still pending: from the same two-minute talking clip, generate captions in each tool, then count wrong words, and record whether the export carries a watermark and what the published plan costs."
 ---
 
 ## Who this is for
@@ -60,8 +62,34 @@ Creators and marketers who need captions on a short video, either burned into th
 ## How to choose
 
 - **The file has to go out without a watermark:** Kapwing Pro. On 23 Nov 2026 the annual view showed $16 and 1,000 credits a month on [Kapwing's pricing page](https://www.kapwing.com/pricing).
-- **You only need to see a short test:** Kapwing Free, $0, with a watermark and auto-subtitling up to 10 minutes.
-- **The video is already on YouTube:** review automatic captions on [YouTube's help page](https://support.google.com/youtube/answer/6373554). That page does not list a price.
+- **You only need to see a short test:** Kapwing Free, $0, with a watermark and auto-subtitling up to 10 minutes. On 26 Nov 2026, Kapwing Free burned captions into one 2 min 38 s clip. The export had a watermark, and caption-file downloads were locked. Kapwing Pro was not part of that check.
+- **The video is already on YouTube:** review automatic captions on [YouTube's help page](https://support.google.com/youtube/answer/6373554). That page does not list a price. YouTube automatic captions were not tested on 26 Nov 2026 and stay pending.
 - **The job is cutting a long video into shorts, not captioning one file:** [Clip long videos into shorts](../../use-cases/clip-long-videos-into-shorts/).
 
-Pending hands-on test. Prices were read on 23 Nov 2026. No caption file has been generated.
+The note below is a check of Kapwing Free only, dated 26 Nov 2026. Sign-up was an email and a one-time code. No card and no trial. Kapwing Pro and YouTube automatic captions were not part of it. Prices were read on 23 Nov 2026. The standard task on this page has not been run.
+
+## Hands-on test (26 Nov 2026)
+
+This note is for Kapwing Free, the budget pick. The check ran on 26 Nov 2026 in the Kapwing Free web app. The path was [kapwing.com/subtitles](https://www.kapwing.com/subtitles), then the studio editor. Kapwing Pro, the top pick, was not part of it. YouTube automatic captions were not part of it.
+
+Starting the editor needs no account. Uploading a video opened "Sign in to continue". Sign-up was an email and a one-time sign-in code. There was no password. No card and no trial.
+
+The clip was 2 minutes 38 seconds. It was a LibriVox public-domain recording of the Gettysburg Address. One clear speaker, a studio read, including the LibriVox spoken intro and outro, over a still slide.
+
+Upload took about 15 seconds. Auto subtitles, with language auto-detect, took about 25 seconds and cost 3 of 10 credits shown in the panel. Export to 720p MP4 took about 2 to 3 minutes.
+
+The captions were burned in as short phrases, with the current word highlighted. The exported file was checked frame by frame. Every line matched the published text of the speech and the LibriVox intro and outro, word for word. 0 wrong words were seen. Numbers came out as words: "November nineteenth, eighteen sixty-three".
+
+The comparison was with the published text, not a human transcript of this reading. One clean speaker only. Noisy audio, accents, several speakers and longer clips were not tested.
+
+Every frame of the export carries a KAPWING watermark in the bottom-right corner. SRT, VTT and TXT caption downloads are locked. Clicking .SRT opened an "Upgrade your workspace" dialog. It showed Pro at $16 a month billed annually ($192) and Business at $50 a month billed annually ($600). Free gives burned-in captions only, not a caption file.
+
+It was accurate and quick for a clean voice. It is fine for a draft or a personal post. The watermark and the lack of a caption file mean it is the wrong free plan for a client video, or for uploading captions separately.
+
+Not tested: Kapwing Pro, translation and dubbing, caption style edits, and other languages. YouTube automatic captions were not tested and stay pending.
+
+The standard task on this page has not been run. That task is the same two-minute talking clip, with captions generated in each tool, then a count of wrong words, and a record of whether the export carries a watermark and what the published plan costs.
+
+## Where this goes next
+
+- The 26 Nov 2026 note is also listed on [Tested by us](../../tested/).
