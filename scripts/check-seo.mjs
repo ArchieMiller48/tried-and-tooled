@@ -488,6 +488,9 @@ if (existsSync(llms) && existsSync(full)) {
   if (!index.includes('Tested 26 Nov 2026: Kapwing Free, after an email sign-in code, burned captions into a 2 min 38 s Gettysburg Address clip')) {
     fail('llms.txt is missing the Kapwing Free quotable line');
   }
+  if (!index.includes('Tested 27 Nov 2026: OpusClip, on a new account\'s 7-day trial rather than the plain Free plan')) {
+    fail('llms.txt is missing the OpusClip quotable line');
+  }
   if (!index.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms.txt does not advertise the sitemap');
   if (!expanded.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms-full.txt does not advertise the sitemap');
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
@@ -1170,6 +1173,103 @@ if (!captions.includes('$16/month') || !captions.includes('$50/month')) {
   fail('captions page dropped a Kapwing price');
 }
 
+const clips = decode(readFileSync(pathToFile(`${base}/use-cases/clip-long-videos-into-shorts/`), 'utf8'));
+for (const phrase of [
+  'Hands-on test (27 Nov 2026)',
+  'clip.opus.pro',
+  '6-digit code',
+  'no password',
+  'no phone',
+  'no card',
+  '7-day free trial',
+  '90 credits',
+  'not on the plain Free plan',
+  '25-minute',
+  'George Cardenas',
+  'CC BY 3.0',
+  'Wikimedia Commons',
+  'not exactly that task',
+  'about 6 seconds',
+  '25 credits',
+  '1 credit per minute',
+  'about 8 to 9 minutes',
+  '9:16',
+  'under 60 seconds',
+  '30 to 59 seconds',
+  '28 clips',
+  '99 to 79',
+  'immigration and foster care',
+  'mentoring students',
+  'recycling',
+  'donated bikes',
+  'school closures',
+  'non-adjacent',
+  'about 1 minute',
+  '1080×1920',
+  '36.7 seconds',
+  'top-left',
+  'Trial and free users will see OpusClip logo in their clips',
+  'word-by-word',
+  'speech-to-text',
+  'no clear errors',
+  'uh',
+  'centred',
+  'auto headline was accurate',
+  'ended mid-word',
+  'Premiere',
+  'DaVinci',
+  'Pro features',
+  '60 credits a month',
+  '150 credits',
+  'slowest queue',
+  '10 GB',
+  "can't be exported after 3 days",
+  'checked 27 Nov 2026',
+  '$15/mo',
+  '$29/mo',
+  '$14.50/mo',
+  'Descript (Hobbyist) stays pending',
+  'YouTube link import',
+  'reframing when the interviewer speaks',
+  'the editor',
+  'exporting the other clips',
+  'plain Free plan after the trial',
+]) {
+  if (!clips.includes(phrase)) fail(`clips page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!clips.includes('datetime="2026-11-27"')) fail('clips page does not show 27 Nov 2026 as dateModified');
+if (!clips.includes('Standard task still pending') || !clips.includes('standard task')) {
+  fail('clips page does not keep the standard task pending');
+}
+if (!clips.includes(`${base}/tested/`)) fail('clips page does not link to the tested page');
+const clipsTop = clips.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const clipsBudget = clips.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const clipsAvoid = clips.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!clipsTop.includes('OpusClip') || !clipsTop.includes('Hands-on test 27 Nov 2026')) {
+  fail('OpusClip card is missing its hands-on label');
+}
+if (clipsTop.includes('Pending hands-on test')) fail('OpusClip card still has a pending hands-on label');
+if (!clipsTop.includes('Tested 27 Nov 2026: OpusClip, on a new account\'s 7-day trial rather than the plain Free plan')) {
+  fail('OpusClip card is missing the quotable line');
+}
+if (!clipsBudget.includes('Descript (Hobbyist)') || !clipsBudget.includes('Pending hands-on test')) {
+  fail('Descript (Hobbyist) lost its pending hands-on label');
+}
+if (clipsBudget.includes('Hands-on test 27 Nov')) fail('Descript (Hobbyist) was marked as hands-on tested');
+if (!clipsAvoid.includes("OpusClip Free, for clips you'll actually post") || !clipsAvoid.includes('Hands-on test 27 Nov 2026')) {
+  fail('OpusClip Free avoid card is missing its hands-on label');
+}
+if (!clipsAvoid.includes('Trial and free users will see OpusClip logo')) {
+  fail('OpusClip Free avoid card does not keep the watermark that was seen');
+}
+if (!clipsAvoid.includes('60 credits a month') || !clipsAvoid.includes("can't be exported after 3 days")) {
+  fail('OpusClip Free avoid card does not keep the Free limits from the pricing page');
+}
+if (clips.includes('>Tested 27 Nov 2026<')) fail('clips page was marked as a completed test');
+if (!clips.includes('$15/mo') || !clips.includes('$29/mo') || !clips.includes('$14.50/mo')) {
+  fail('clips page dropped an OpusClip price');
+}
+
 const logos = readFileSync(pathToFile(`${base}/use-cases/design-logos-and-graphics/`), 'utf8');
 for (const phrase of [
   'Hands-on test (5 Nov 2026)',
@@ -1332,7 +1432,15 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Twenty-three notes exist',
+  'Twenty-four notes exist',
+  '27 Nov 2026',
+  'OpusClip',
+  'clips page',
+  'George Cardenas',
+  '28 clips',
+  'ended mid-word',
+  '7-day free trial',
+  'plain Free plan',
   '26 Nov 2026',
   'Kapwing Free',
   'Gettysburg Address',
@@ -1562,6 +1670,9 @@ if (!tested.includes('Tested 25 Nov 2026: Upscayl 2.15.0, with no account, upsca
 if (!tested.includes('Tested 26 Nov 2026: Kapwing Free, after an email sign-in code, burned captions into a 2 min 38 s Gettysburg Address clip')) {
   fail('tested page is missing the Kapwing Free quotable line');
 }
+if (!tested.includes('Tested 27 Nov 2026: OpusClip, on a new account') || !tested.includes('7-day trial rather than the plain Free plan, returned 28 clips from a 25-minute interview')) {
+  fail('tested page is missing the OpusClip quotable line');
+}
 if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
   fail('tested page is missing the Anki quotable line');
 }
@@ -1615,6 +1726,9 @@ if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 25 Nov 2026
 }
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 26 Nov 2026: Kapwing Free, after an email sign-in code, burned captions into a 2 min 38 s Gettysburg Address clip')) {
   fail('llms-full.txt is missing the Kapwing Free quotable line');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 27 Nov 2026: OpusClip, on a new account\'s 7-day trial rather than the plain Free plan')) {
+  fail('llms-full.txt is missing the OpusClip quotable line');
 }
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
@@ -1677,6 +1791,12 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Upscayl (25 Nov 20
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Kapwing Free (26 Nov 2026)')) {
   fail('llms.txt omits the Kapwing Free note');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('OpusClip (27 Nov 2026)')) {
+  fail('llms.txt omits the OpusClip note');
+}
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('OpusClip is on the clips page')) {
+  fail('llms.txt does not file the OpusClip note on the clips page');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -1737,6 +1857,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('Invalid GPU Devic
 }
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('November nineteenth, eighteen sixty-three') || !readFileSync(full, 'utf8').includes('The captions page\'s standard task'))) {
   fail('llms-full.txt omits the Kapwing Free note or its unrun standard task');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('George Cardenas') || !readFileSync(full, 'utf8').includes('The clips page\'s standard task'))) {
+  fail('llms-full.txt omits the OpusClip note or its unrun standard task');
 }
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
