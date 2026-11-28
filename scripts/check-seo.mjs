@@ -491,6 +491,9 @@ if (existsSync(llms) && existsSync(full)) {
   if (!index.includes('Tested 27 Nov 2026: OpusClip, on a new account\'s 7-day trial rather than the plain Free plan')) {
     fail('llms.txt is missing the OpusClip quotable line');
   }
+  if (!index.includes('Tested 28 Nov 2026: Datastripes Public, signed out, charted a synthetic 34-row CSV in 0.19 seconds')) {
+    fail('llms.txt is missing the Datastripes Public quotable line');
+  }
   if (!index.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms.txt does not advertise the sitemap');
   if (!expanded.includes(`${origin}${base}/sitemap-index.xml`)) fail('llms-full.txt does not advertise the sitemap');
   for (const needle of ['/compare/', '/best/', '/alternatives/', '/pricing/', '/about/', '/newsletter/']) {
@@ -1270,6 +1273,73 @@ if (!clips.includes('$15/mo') || !clips.includes('$29/mo') || !clips.includes('$
   fail('clips page dropped an OpusClip price');
 }
 
+const money = decode(readFileSync(pathToFile(`${base}/use-cases/see-where-the-money-went/`), 'utf8'));
+for (const phrase of [
+  'Hands-on test (28 Nov 2026)',
+  'datastripes.com',
+  'signed out',
+  'No account, no email and no card',
+  'No bank was connected',
+  'synthetic 34-row',
+  'not a real bank export',
+  'amount_gbp',
+  'No account needed',
+  'never uploaded',
+  'not independently verified',
+  'no captcha',
+  '0.19 seconds',
+  'repeat load',
+  '34 rows',
+  'hand/Python sum',
+  'Rent -725',
+  'Groceries -225.82',
+  '8 grocery rows',
+  'Shopping -14.50',
+  'refund',
+  'TOTAL AMOUNT GBP',
+  '531.17',
+  '-1,448.82',
+  'WHY INCOME LEADS AMOUNT GBP',
+  'Category is well spread, with no value taking the lead',
+  '€-725.00',
+  'VODAFONE DD (-18)',
+  '2/2 free projects',
+  'not saved',
+  'Sign up free to keep it',
+  'Made with Datastripes · Sign up to export',
+  'does not separate spending from income or transfers',
+  'Claude Personal Finance was not part of this check and stays pending',
+  'Prices were read on 23 Nov 2026',
+  'synthetic CSV',
+]) {
+  if (!money.includes(phrase)) fail(`money page is missing the hands-on note phrase: ${phrase}`);
+}
+if (!money.includes('datetime="2026-11-23"')) fail('money page does not show 23 Nov 2026 as dateModified');
+if (!money.includes('Standard task still pending') || !money.includes('standard task')) {
+  fail('money page does not keep the standard task pending');
+}
+if (!money.includes(`${base}/tested/`)) fail('money page does not link to the tested page');
+const moneyTop = money.split('class="card pick"')[1]?.split('class="card pick budget"')[0] ?? '';
+const moneyBudget = money.split('class="card pick budget"')[1]?.split('class="card pick avoid"')[0] ?? '';
+const moneyAvoid = money.split('class="card pick avoid"')[1]?.split('</section>')[0] ?? '';
+if (!moneyTop.includes('Claude Personal Finance') || !moneyTop.includes('Pending hands-on test')) {
+  fail('Claude Personal Finance lost its pending hands-on label');
+}
+if (moneyTop.includes('Hands-on test 28 Nov')) fail('Claude Personal Finance was marked as hands-on tested');
+if (!moneyBudget.includes('Datastripes Public') || !moneyBudget.includes('Hands-on test 28 Nov 2026')) {
+  fail('Datastripes Public card is missing its hands-on label');
+}
+if (moneyBudget.includes('Pending hands-on test')) fail('Datastripes Public card still has a pending hands-on label');
+if (!moneyBudget.includes('Tested 28 Nov 2026: Datastripes Public, signed out, charted a synthetic 34-row CSV in 0.19 seconds')) {
+  fail('Datastripes Public card is missing the quotable line');
+}
+if (!moneyAvoid.includes('A Claude spending total you do not open')) fail('money avoid card lost the unopened Claude total');
+if (moneyAvoid.includes('Hands-on test')) fail('the unopened Claude total was marked as hands-on tested');
+if (money.includes('>Tested 28 Nov 2026<')) fail('money page was marked as a completed test');
+if (!money.includes('€0') || !money.includes('€19/month') || !money.includes('$20/mo')) {
+  fail('money page dropped a pick price');
+}
+
 const logos = readFileSync(pathToFile(`${base}/use-cases/design-logos-and-graphics/`), 'utf8');
 for (const phrase of [
   'Hands-on test (5 Nov 2026)',
@@ -1432,7 +1502,18 @@ for (const phrase of [
   'signing an account is needed to generate images',
   '20 CREDITS ON US',
   'Those claims were not verified',
-  'Twenty-four notes exist',
+  'Twenty-five notes exist',
+  '28 Nov 2026',
+  'Datastripes Public',
+  'money page',
+  'synthetic 34-row',
+  'TOTAL AMOUNT GBP',
+  '531.17',
+  '€-725.00',
+  'VODAFONE DD (-18)',
+  '0.19 seconds',
+  'not a real bank export',
+  'Claude Personal Finance',
   '27 Nov 2026',
   'OpusClip',
   'clips page',
@@ -1673,6 +1754,9 @@ if (!tested.includes('Tested 26 Nov 2026: Kapwing Free, after an email sign-in c
 if (!tested.includes('Tested 27 Nov 2026: OpusClip, on a new account') || !tested.includes('7-day trial rather than the plain Free plan, returned 28 clips from a 25-minute interview')) {
   fail('tested page is missing the OpusClip quotable line');
 }
+if (!tested.includes('Tested 28 Nov 2026: Datastripes Public, signed out, charted a synthetic 34-row CSV in 0.19 seconds') || !tested.includes('while the headline total mixed in salary, a transfer and a refund')) {
+  fail('tested page is missing the Datastripes Public quotable line');
+}
 if (!tested.includes('Tested 16 Nov 2026: Anki desktop 26.09.4 imported 10 of 10 cards')) {
   fail('tested page is missing the Anki quotable line');
 }
@@ -1729,6 +1813,9 @@ if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 26 Nov 2026
 }
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 27 Nov 2026: OpusClip, on a new account\'s 7-day trial rather than the plain Free plan')) {
   fail('llms-full.txt is missing the OpusClip quotable line');
+}
+if (existsSync(full) && !readFileSync(full, 'utf8').includes('Tested 28 Nov 2026: Datastripes Public, signed out, charted a synthetic 34-row CSV in 0.19 seconds')) {
+  fail('llms-full.txt is missing the Datastripes Public quotable line');
 }
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes(`${base}/tested/`)) fail('llms.txt is missing /tested/');
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('LanguageTool Basic (4 Nov 2026)')) {
@@ -1797,6 +1884,12 @@ if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('OpusClip (27 Nov 2
 if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('OpusClip is on the clips page')) {
   fail('llms.txt does not file the OpusClip note on the clips page');
 }
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Datastripes Public (28 Nov 2026)')) {
+  fail('llms.txt omits the Datastripes Public note');
+}
+if (existsSync(llms) && !readFileSync(llms, 'utf8').includes('Datastripes Public is on the money page')) {
+  fail('llms.txt does not file the Datastripes Public note on the money page');
+}
 if (existsSync(full) && !readFileSync(full, 'utf8').includes(`${base}/tested/`)) fail('llms-full.txt is missing /tested/');
 if (existsSync(full) && !readFileSync(full, 'utf8').includes('has agreement error')) {
   fail('llms-full.txt omits the LanguageTool agreement-error result');
@@ -1860,6 +1953,9 @@ if (existsSync(full) && (!readFileSync(full, 'utf8').includes('November nineteen
 }
 if (existsSync(full) && (!readFileSync(full, 'utf8').includes('George Cardenas') || !readFileSync(full, 'utf8').includes('The clips page\'s standard task'))) {
   fail('llms-full.txt omits the OpusClip note or its unrun standard task');
+}
+if (existsSync(full) && (!readFileSync(full, 'utf8').includes('TOTAL AMOUNT GBP') || !readFileSync(full, 'utf8').includes('The money page\'s standard task'))) {
+  fail('llms-full.txt omits the Datastripes Public note or its unrun standard task');
 }
 if (!smallBusiness.includes('nixm')) fail('small-business hub omits the nixm hands-on note');
 if (!smallBusiness.includes('Dessn')) fail('small-business hub omits the Dessn hands-on note');
